@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pywaybiller"
+version = "0.1.0"
+description = "Python client for waybiller.com external API"
+authors = ["Thorgate <software@thorgate.eu>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
