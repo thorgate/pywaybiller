@@ -3,8 +3,11 @@ name = "pywaybiller"
 version = "0.1.0"
 description = "Python client for waybiller.com external API"
 authors = ["Thorgate <software@thorgate.eu>"]
-license = "MIT"
+license = "MIT License"
 readme = "README.md"
+repository = "https://github.com/thorgate/pywaybiller.git"
+keywords = ["OpenAPI", "OpenAPI-Generator", "pywaybiller"]
+include = ["pywaybiller/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
