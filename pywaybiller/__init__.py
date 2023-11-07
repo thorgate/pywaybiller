@@ -1,1 +1,5 @@
-from .client import WaybillerClient  # noqa: F401
+"""Top-level package for pywaybiller."""
+
+from .client import WaybillerClient
+
+__all__ = ("WaybillerClient", )
