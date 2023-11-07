@@ -5,8 +5,8 @@ Waybill rows.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **int** | The external ID of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
-**assortment_ids** | **int** | The external IDs of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] [readonly] 
+**assortment_id** | **str** | The external ID of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
+**assortment_ids** | **List[str]** | The external IDs of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] [readonly] 
 **assortment_raw_id** | **int** | The ID of the assortment. | [optional] 
 **assortment_name** | **str** | The name of the assortment. | [optional] 
 **dispatched_amount** | **decimal.Decimal** | Saadetud materjali kogus | [optional] 

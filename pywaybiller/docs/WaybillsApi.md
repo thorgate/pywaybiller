@@ -1,11 +1,12 @@
 # openapi_client.WaybillsApi
 
-All URIs are relative to *https://app.waybiller.com/external-api*
+All URIs are relative to *https://staging.app.waybiller.com/external-api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**waybills_accept**](WaybillsApi.md#waybills_accept) | **PUT** /waybills/{id}/accept/ | Accepting waybill
 [**waybills_cancel**](WaybillsApi.md#waybills_cancel) | **PUT** /waybills/{id}/cancel/ | Cancelling waybill
+[**waybills_comment**](WaybillsApi.md#waybills_comment) | **POST** /waybills/{id}/comment/ | Commenting waybill
 [**waybills_create**](WaybillsApi.md#waybills_create) | **POST** /waybills/ | Creation of a waybill
 [**waybills_finish_drive**](WaybillsApi.md#waybills_finish_drive) | **POST** /waybills/{id}/finish_drive/ | Completing driving
 [**waybills_list**](WaybillsApi.md#waybills_list) | **GET** /waybills/ | Querying of waybills
@@ -35,10 +36,10 @@ from openapi_client.models.external_api_waybill_accept import ExternalAPIWaybill
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -115,10 +116,10 @@ from openapi_client.models.external_api_waybill_cancel import ExternalAPIWaybill
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -177,6 +178,86 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **waybills_comment**
+> ExternalAPIWaybillComment waybills_comment(id, data)
+
+Commenting waybill
+
+Adds a comment to the waybill. Only companies associated with the waybill can add comments to it.
+
+### Example
+
+* Api Key Authentication (API key):
+```python
+import time
+import os
+import openapi_client
+from openapi_client.models.external_api_waybill_comment import ExternalAPIWaybillComment
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "https://staging.app.waybiller.com/external-api"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: API key
+configuration.api_key['API key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['API key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.WaybillsApi(api_client)
+    id = 'id_example' # str | The ID of the waybill.
+    data = openapi_client.ExternalAPIWaybillComment() # ExternalAPIWaybillComment | 
+
+    try:
+        # Commenting waybill
+        api_response = api_instance.waybills_comment(id, data)
+        print("The response of WaybillsApi->waybills_comment:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WaybillsApi->waybills_comment: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the waybill. | 
+ **data** | [**ExternalAPIWaybillComment**](ExternalAPIWaybillComment.md)|  | 
+
+### Return type
+
+[**ExternalAPIWaybillComment**](ExternalAPIWaybillComment.md)
+
+### Authorization
+
+[API key](../README.md#API key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **waybills_create**
 > ExternalAPIWaybillCreate waybills_create(data)
 
@@ -195,10 +276,10 @@ from openapi_client.models.external_api_waybill_create import ExternalAPIWaybill
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -273,10 +354,10 @@ from openapi_client.models.external_api_waybill_finish_drive import ExternalAPIW
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -340,7 +421,7 @@ Name | Type | Description  | Notes
 
 Querying of waybills
 
-Returns all waybills associated with your company, according to the specified filters.      NB! By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use     dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
+Returns all waybills associated with your company, according to the specified filters.<br><br>     **NB!** By default, past 30 days according to the `dispatcher_timestamp` field waybills are returned. Use     `dispatcher_timestamp__lt` and `dispatcher_timestamp__gt` for filtering. Note that the maximum range is 30 days.
 
 ### Example
 
@@ -353,10 +434,10 @@ from openapi_client.models.waybills_list200_response import WaybillsList200Respo
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -437,10 +518,10 @@ from openapi_client.models.external_api_waybill_retrieve import ExternalAPIWaybi
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -515,10 +596,10 @@ from openapi_client.models.external_api_waybill_refuse import ExternalAPIWaybill
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -582,7 +663,7 @@ Name | Type | Description  | Notes
 
 Starting driving
 
-Sets the status of a waybill to `in progress`. Waybill status has to be `created` to use this endpoint. Only     the transportation company or receiving company of the waybill are authorized to move waybill to `in     progress`.<br><br>     NB! Destination needs to belong to the receiving company in case the origin’s     `feature_waybill_destination_changing_disabled_for_drivers` flag is set to `True`.
+Sets the status of a waybill to `in progress`. Waybill status has to be `created` to use this endpoint. Only     the transportation company or receiving company of the waybill are authorized to move waybill to `in     progress`.<br><br>     **NB!** Destination needs to belong to the receiving company in case the origin’s     `feature_waybill_destination_changing_disabled_for_drivers` flag is set to `True`.
 
 ### Example
 
@@ -595,10 +676,10 @@ from openapi_client.models.external_api_waybill_start_drive import ExternalAPIWa
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -675,10 +756,10 @@ from openapi_client.models.external_api_waybill_accepted_amounts import External
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -755,10 +836,10 @@ from openapi_client.models.external_api_waybill_dispatched_amounts import Extern
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -835,10 +916,10 @@ from openapi_client.models.external_api_waybill_vehicle_location import External
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "https://staging.app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters

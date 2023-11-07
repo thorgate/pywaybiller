@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist
 
 
 class ExternalAPIWaybillRowDispatchedAmount(BaseModel):
@@ -27,11 +27,11 @@ class ExternalAPIWaybillRowDispatchedAmount(BaseModel):
     Dispatched amounts  # noqa: E501
     """
 
-    assortment_id: StrictInt = Field(
+    assortment_id: StrictStr = Field(
         ...,
         description="The ID of the accepted assortment (eg 1). Use Querying of a single waybill endpoint to see the available assortments inside rows field using the assortment_raw_id value.",
     )
-    assortment_ids: Optional[StrictInt] = Field(
+    assortment_ids: Optional[conlist(StrictStr)] = Field(
         None,
         description="The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
     )

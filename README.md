@@ -20,7 +20,7 @@ start_date = end_date - datetime.timedelta(days=7)
 
 client = pywaybiller.WaybillerClient(
     api_key="xxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    host="https://app.staging.waybiller.com/external-api",
+    host="https://staging.app.waybiller.com/external-api",
 )
 
 for waybill in client.waybills.all(

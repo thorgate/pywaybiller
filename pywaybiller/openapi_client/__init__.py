@@ -152,6 +152,9 @@ from pywaybiller.openapi_client.models.external_api_waybill_accepted_amounts imp
 from pywaybiller.openapi_client.models.external_api_waybill_cancel import (
     ExternalAPIWaybillCancel,
 )
+from pywaybiller.openapi_client.models.external_api_waybill_comment import (
+    ExternalAPIWaybillComment,
+)
 from pywaybiller.openapi_client.models.external_api_waybill_create import (
     ExternalAPIWaybillCreate,
 )

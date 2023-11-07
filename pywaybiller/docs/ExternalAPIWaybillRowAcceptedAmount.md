@@ -5,8 +5,8 @@ Accepted amounts
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **int** | The ID of the accepted assortment (eg 1). Use Querying of a single waybill endpoint to see the available assortments inside rows field using the assortment_raw_id value. | 
-**assortment_ids** | **int** | The external IDs of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] [readonly] 
+**assortment_id** | **str** | The ID of the accepted assortment (eg 1). Use Querying of a single waybill endpoint to see the available assortments inside rows field using the assortment_raw_id value. | 
+**assortment_ids** | **List[str]** | The external IDs of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] [readonly] 
 **accepted_gross_weight** | **decimal.Decimal** | The accepted gross weight in tonnes. | [optional] 
 **accepted_tare_weight** | **decimal.Decimal** | The accepted tare weight in tonnes. | [optional] 
 **accepted_amount** | **decimal.Decimal** | The accepted amount in the unit that is attached to the assortment. | [optional] 

@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, constr
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, constr
 
 
 class ExternalAPIWaybillRow(BaseModel):
@@ -27,11 +27,11 @@ class ExternalAPIWaybillRow(BaseModel):
     Waybill rows.  # noqa: E501
     """
 
-    assortment_id: Optional[StrictInt] = Field(
+    assortment_id: Optional[StrictStr] = Field(
         None,
         description="The external ID of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
     )
-    assortment_ids: Optional[StrictInt] = Field(
+    assortment_ids: Optional[conlist(StrictStr)] = Field(
         None,
         description="The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
     )

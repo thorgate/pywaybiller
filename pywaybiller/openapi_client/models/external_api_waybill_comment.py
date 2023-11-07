@@ -18,40 +18,22 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, StrictInt, constr
 
 
-class ExternalAPIWaybillRowAcceptedAmount(BaseModel):
+class ExternalAPIWaybillComment(BaseModel):
     """
-    Accepted amounts  # noqa: E501
+    ExternalAPIWaybillComment
     """
 
-    assortment_id: StrictStr = Field(
+    comment_by_user_id: StrictInt = Field(
         ...,
-        description="The ID of the accepted assortment (eg 1). Use Querying of a single waybill endpoint to see the available assortments inside rows field using the assortment_raw_id value.",
+        description="The ID of the user that adds the comment to the waybill. Use GET Employments endpoint to query all available employments and get necessary `user_id` values.",
     )
-    assortment_ids: Optional[conlist(StrictStr)] = Field(
-        None,
-        description="The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+    comment: constr(strict=True, min_length=1) = Field(
+        ..., description="Text of the comment."
     )
-    accepted_gross_weight: Optional[StrictStr] = Field(
-        None, description="The accepted gross weight in tonnes."
-    )
-    accepted_tare_weight: Optional[StrictStr] = Field(
-        None, description="The accepted tare weight in tonnes."
-    )
-    accepted_amount: Optional[StrictStr] = Field(
-        None,
-        description="The accepted amount in the unit that is attached to the assortment.",
-    )
-    __properties = [
-        "assortment_id",
-        "assortment_ids",
-        "accepted_gross_weight",
-        "accepted_tare_weight",
-        "accepted_amount",
-    ]
+    __properties = ["comment_by_user_id", "comment"]
 
     class Config:
         """Pydantic configuration"""
@@ -68,37 +50,28 @@ class ExternalAPIWaybillRowAcceptedAmount(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ExternalAPIWaybillRowAcceptedAmount:
-        """Create an instance of ExternalAPIWaybillRowAcceptedAmount from a JSON string"""
+    def from_json(cls, json_str: str) -> ExternalAPIWaybillComment:
+        """Create an instance of ExternalAPIWaybillComment from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(
-            by_alias=True,
-            exclude={
-                "assortment_ids",
-            },
-            exclude_none=True,
-        )
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ExternalAPIWaybillRowAcceptedAmount:
-        """Create an instance of ExternalAPIWaybillRowAcceptedAmount from a dict"""
+    def from_dict(cls, obj: dict) -> ExternalAPIWaybillComment:
+        """Create an instance of ExternalAPIWaybillComment from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ExternalAPIWaybillRowAcceptedAmount.parse_obj(obj)
+            return ExternalAPIWaybillComment.parse_obj(obj)
 
-        _obj = ExternalAPIWaybillRowAcceptedAmount.parse_obj(
+        _obj = ExternalAPIWaybillComment.parse_obj(
             {
-                "assortment_id": obj.get("assortment_id"),
-                "assortment_ids": obj.get("assortment_ids"),
-                "accepted_gross_weight": obj.get("accepted_gross_weight"),
-                "accepted_tare_weight": obj.get("accepted_tare_weight"),
-                "accepted_amount": obj.get("accepted_amount"),
+                "comment_by_user_id": obj.get("comment_by_user_id"),
+                "comment": obj.get("comment"),
             }
         )
         return _obj
