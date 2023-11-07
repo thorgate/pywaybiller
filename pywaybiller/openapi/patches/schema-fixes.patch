@@ -1,0 +1,21 @@
+--- ./pywaybiller/openapi/waybiller_schema.json	2023-11-06 15:41:56.234822802 +0200
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2023-11-06 15:41:30.118155789 +0200
+@@ -1567,6 +1567,18 @@
+             "description": "The initial index from which to return the results.",
+             "required": false,
+             "type": "integer"
++          },
++          {
++            "name": "dispatcher_timestamp__gt",
++            "in": "query",
++            "required": false,
++            "type": "string"
++          },
++          {
++            "name": "dispatcher_timestamp__lt",
++            "in": "query",
++            "required": false,
++            "type": "string"
+           }
+         ],
+         "responses": {
