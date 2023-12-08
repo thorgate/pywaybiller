@@ -2,4 +2,4 @@
 
 from .client import WaybillerClient
 
-__all__ = ("WaybillerClient", )
+__all__ = ("WaybillerClient",)

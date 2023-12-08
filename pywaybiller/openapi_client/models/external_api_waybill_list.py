@@ -61,12 +61,12 @@ class ExternalAPIWaybillList(BaseModel):
     shipper_company_name: Optional[StrictStr] = Field(
         None, description="The name of the shipper company."
     )
-    origin_name: Optional[constr(strict=True, min_length=1)] = None
+    origin_name: Optional[StrictStr] = None
     origin_address: Optional[constr(strict=True, min_length=1)] = None
     transportation_company_name: Optional[StrictStr] = Field(
         None, description="The name of the transportation company."
     )
-    truck_reg_number: Optional[constr(strict=True, min_length=1)] = Field(
+    truck_reg_number: Optional[StrictStr] = Field(
         None, description="The registration number of the vehicle."
     )
     trailer_reg_number: Optional[StrictStr] = Field(

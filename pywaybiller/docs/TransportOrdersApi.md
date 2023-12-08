@@ -1,6 +1,6 @@
 # openapi_client.TransportOrdersApi
 
-All URIs are relative to *https://staging.app.waybiller.com/external-api*
+All URIs are relative to *https://app.waybiller.com/external-api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,10 +29,10 @@ from openapi_client.models.external_api_transport_order_cancel import ExternalAP
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://staging.app.waybiller.com/external-api"
+    host = "https://app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -109,10 +109,10 @@ from openapi_client.models.external_api_transport_order import ExternalAPITransp
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://staging.app.waybiller.com/external-api"
+    host = "https://app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -187,10 +187,10 @@ from openapi_client.models.transport_orders_list200_response import TransportOrd
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://staging.app.waybiller.com/external-api"
+    host = "https://app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -301,10 +301,10 @@ from openapi_client.models.external_api_transport_order import ExternalAPITransp
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://staging.app.waybiller.com/external-api"
+    host = "https://app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -379,10 +379,10 @@ from openapi_client.models.external_api_transport_order_update import ExternalAP
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging.app.waybiller.com/external-api
+# Defining the host is optional and defaults to https://app.waybiller.com/external-api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://staging.app.waybiller.com/external-api"
+    host = "https://app.waybiller.com/external-api"
 )
 
 # The client must configure the authentication and authorization parameters

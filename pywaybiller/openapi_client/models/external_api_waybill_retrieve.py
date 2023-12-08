@@ -106,7 +106,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         None,
         description="The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
     )
-    origin_name: Optional[constr(strict=True, min_length=1)] = Field(
+    origin_name: Optional[StrictStr] = Field(
         None, description="The name of the origin."
     )
     origin_address: Optional[constr(strict=True, min_length=1)] = Field(
@@ -147,7 +147,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
     transportation_company_reg_code: Optional[
         constr(strict=True, max_length=16)
     ] = Field(None, description="The registry code of the transportation company.")
-    truck_reg_number: constr(strict=True, min_length=1) = Field(
+    truck_reg_number: StrictStr = Field(
         ..., description="The registration number of the vehicle."
     )
     trailer_reg_number: Optional[StrictStr] = Field(

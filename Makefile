@@ -1,5 +1,5 @@
 OPENAPI_GENERATOR_VERSION ?= v7.0.1
-API_HOST ?= staging.app.waybiller.com
+API_HOST ?= app.waybiller.com
 
 .PHONY:
 lint:

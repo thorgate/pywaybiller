@@ -101,7 +101,7 @@ class Configuration:
     ) -> None:
         """Constructor"""
         self._base_path = (
-            "https://staging.app.waybiller.com/external-api" if host is None else host
+            "https://app.waybiller.com/external-api" if host is None else host
         )
         """Default Base url
         """
@@ -425,7 +425,7 @@ class Configuration:
         """
         return [
             {
-                "url": "https://staging.app.waybiller.com/external-api",
+                "url": "https://app.waybiller.com/external-api",
                 "description": "No description provided",
             }
         ]
