@@ -49,6 +49,15 @@
          },
          "origin_address": {
            "title": "Origin address",
+@@ -5443,7 +5443,7 @@
+         "origin_id": {
+           "title": "Origin id",
+           "description": "The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+-          "type": "integer"
++          "type": "string"
+         },
+         "origin_name": {
+           "title": "Origin name",
 @@ -5527,8 +5536,7 @@
          "truck_reg_number": {
            "title": "Truck reg number",

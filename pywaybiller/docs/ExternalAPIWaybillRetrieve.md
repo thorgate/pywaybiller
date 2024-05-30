@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **receiver_company_name** | **str** | The name of the receiving company. | [optional] [readonly] 
 **receiver_company_reg_code** | **str** | The registry code of the receiving company. | [optional] [readonly] 
 **origin_raw_id** | **str** | The ID of the origin. | [optional] 
-**origin_id** | **int** | The external ID of the origin. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
+**origin_id** | **str** | The external ID of the origin. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
 **origin_name** | **str** | The name of the origin. | [optional] 
 **origin_address** | **str** | The address of the origin. | [optional] 
 **origin_latitude** | **float** | The latitude of the origin. | [optional] 

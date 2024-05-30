@@ -31,7 +31,7 @@ openapi-apply-patch: openapi-fetch
 	patch -p0 < ./pywaybiller/openapi/patches/schema-fixes.patch
 
 .PHONY:
-openapi: openapi-apply-patch
+openapi-build:
 	rm -rf .openapi
 	rm -rf ./pywaybiller/openapi_client
 	rm -rf ./pywaybiller/docs
@@ -41,3 +41,6 @@ openapi: openapi-apply-patch
 	cp -r .openapi/docs pywaybiller/docs
 	rm -rf .openapi
 	poetry run black pywaybiller
+
+.PHONY:
+openapi: openapi-apply-patch openapi-build

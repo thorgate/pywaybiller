@@ -102,7 +102,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
     origin_raw_id: Optional[constr(strict=True, min_length=1)] = Field(
         None, description="The ID of the origin."
     )
-    origin_id: Optional[StrictInt] = Field(
+    origin_id: Optional[StrictStr] = Field(
         None,
         description="The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
     )
