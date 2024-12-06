@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
 """Main module."""
-import threading
+
+import contextvars
+from pydantic import BaseModel
 
 from . import apis
 from .openapi_client.api_client import ApiClient
 from .openapi_client.configuration import Configuration
+
+
+full_serialization = contextvars.ContextVar('full_serialization', default=False)
 
 
 class ExtendedApiClient(ApiClient):
@@ -20,6 +25,20 @@ class ExtendedApiClient(ApiClient):
         :return: deserialized object.
         """
         return response_type.from_dict(response_data)
+
+    def sanitize_for_serialization(self, obj):
+        if full_serialization.get() and isinstance(obj, BaseModel):
+            return super().sanitize_for_serialization(obj.__dict__)
+
+        return super().sanitize_for_serialization(obj)
+
+    def serialize_fully(self, obj):
+        token = full_serialization.set(True)
+        try:
+            result = self.sanitize_for_serialization(obj)
+        finally:
+            full_serialization.reset(token)
+        return result
 
 
 class WaybillerClient:
@@ -54,4 +73,4 @@ class WaybillerClient:
 
     @classmethod
     def sanitize_for_serialization(cls, api_model):
-        return cls.openapi_client_class().sanitize_for_serialization(api_model)
+        return cls.openapi_client_class().serialize_fully(api_model)
