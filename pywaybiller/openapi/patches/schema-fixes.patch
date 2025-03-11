@@ -1,0 +1,70 @@
+--- ./pywaybiller/openapi/waybiller_schema.json	2023-12-08 12:13:05.914766158 +0200
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2023-12-08 12:12:53.638099329 +0200
+@@ -1567,6 +1567,18 @@
+             "description": "The initial index from which to return the results.",
+             "required": false,
+             "type": "integer"
++          },
++          {
++            "name": "dispatcher_timestamp__gt",
++            "in": "query",
++            "required": false,
++            "type": "string"
++          },
++          {
++            "name": "dispatcher_timestamp__lt",
++            "in": "query",
++            "required": false,
++            "type": "string"
+           }
+         ],
+         "responses": {
+@@ -4691,8 +4703,7 @@
+         "origin_name": {
+           "title": "L\u00e4htekoha nimi",
+           "type": "string",
+-          "readOnly": true,
+-          "minLength": 1
++          "readOnly": true
+         },
+         "origin_address": {
+           "title": "L\u00e4htekoha aadress",
+@@ -4710,8 +4721,7 @@
+           "title": "Truck reg number",
+           "description": "The registration number of the vehicle.",
+           "type": "string",
+-          "readOnly": true,
+-          "minLength": 1
++          "readOnly": true
+         },
+         "trailer_reg_number": {
+           "title": "Trailer reg number",
+@@ -5438,8 +5448,7 @@
+         "origin_name": {
+           "title": "Origin name",
+           "description": "The name of the origin.",
+-          "type": "string",
+-          "minLength": 1
++          "type": "string"
+         },
+         "origin_address": {
+           "title": "Origin address",
+@@ -5443,7 +5443,7 @@
+         "origin_id": {
+           "title": "Origin id",
+           "description": "The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+-          "type": "integer"
++          "type": "string"
+         },
+         "origin_name": {
+           "title": "Origin name",
+@@ -5527,8 +5536,7 @@
+         "truck_reg_number": {
+           "title": "Truck reg number",
+           "description": "The registration number of the vehicle.",
+-          "type": "string",
+-          "minLength": 1
++          "type": "string"
+         },
+         "trailer_reg_number": {
+           "title": "Trailer reg number",
