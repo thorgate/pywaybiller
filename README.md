@@ -116,6 +116,11 @@ make docker-manage cmd="external_api_export --view waybill --endpoint list" > /t
 poetry run python tests/manual_test_json_dump.py --filename /tmp/waybills-list.json  --skip-lines 1 --model ExternalAPIWaybillList
 ```
 
+To perform the manual test by direct API calls, use `manual_test_api.py`:
+```shell
+poetry run python tests/manual_test_api.py --model ExternalAPIWaybillList --api-key 'SECRET'
+```
+
 Note that you probably need to separately test list and detail endpoints, as schema is different.
 
 This needs to be repeated for all endpoints you want to check. Currently, only waybill list and retrieve endpoints are

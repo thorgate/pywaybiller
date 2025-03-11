@@ -1,14 +1,14 @@
 # openapi_client.VehicleLocationDataApi
 
-All URIs are relative to *https://app.waybiller.com/external-api*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**vehicle_location_data_list**](VehicleLocationDataApi.md#vehicle_location_data_list) | **GET** /vehicle-location-data/ | Querying of vehicle location data
+[**vehicle_location_data_list**](VehicleLocationDataApi.md#vehicle_location_data_list) | **GET** /external-api/vehicle-location-data/ | Querying of vehicle location data
 
 
 # **vehicle_location_data_list**
-> VehicleLocationDataList200Response vehicle_location_data_list(dispatcher_timestamp__lte=dispatcher_timestamp__lte, dispatcher_timestamp__gte=dispatcher_timestamp__gte, dispatcher_timestamp__lt=dispatcher_timestamp__lt, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp=dispatcher_timestamp, dispatcher_timestamp__isnull=dispatcher_timestamp__isnull, driver_timestamp__lte=driver_timestamp__lte, driver_timestamp__gte=driver_timestamp__gte, driver_timestamp__lt=driver_timestamp__lt, driver_timestamp__gt=driver_timestamp__gt, driver_timestamp=driver_timestamp, driver_timestamp__isnull=driver_timestamp__isnull, confirmed_timestamp__lte=confirmed_timestamp__lte, confirmed_timestamp__gte=confirmed_timestamp__gte, confirmed_timestamp__lt=confirmed_timestamp__lt, confirmed_timestamp__gt=confirmed_timestamp__gt, confirmed_timestamp=confirmed_timestamp, confirmed_timestamp__isnull=confirmed_timestamp__isnull, cancelled_timestamp__lte=cancelled_timestamp__lte, cancelled_timestamp__gte=cancelled_timestamp__gte, cancelled_timestamp__lt=cancelled_timestamp__lt, cancelled_timestamp__gt=cancelled_timestamp__gt, cancelled_timestamp=cancelled_timestamp, cancelled_timestamp__isnull=cancelled_timestamp__isnull, limit=limit, offset=offset, waybill_number=waybill_number, truck_reg_number=truck_reg_number, waybill_status=waybill_status, destination_id=destination_id)
+> PaginatedExternalAPIVehicleLocationDataList vehicle_location_data_list(cancelled_timestamp=cancelled_timestamp, cancelled_timestamp__gt=cancelled_timestamp__gt, cancelled_timestamp__gte=cancelled_timestamp__gte, cancelled_timestamp__isnull=cancelled_timestamp__isnull, cancelled_timestamp__lt=cancelled_timestamp__lt, cancelled_timestamp__lte=cancelled_timestamp__lte, confirmed_timestamp=confirmed_timestamp, confirmed_timestamp__gt=confirmed_timestamp__gt, confirmed_timestamp__gte=confirmed_timestamp__gte, confirmed_timestamp__isnull=confirmed_timestamp__isnull, confirmed_timestamp__lt=confirmed_timestamp__lt, confirmed_timestamp__lte=confirmed_timestamp__lte, destination_id=destination_id, dispatcher_timestamp=dispatcher_timestamp, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__gte=dispatcher_timestamp__gte, dispatcher_timestamp__isnull=dispatcher_timestamp__isnull, dispatcher_timestamp__lt=dispatcher_timestamp__lt, dispatcher_timestamp__lte=dispatcher_timestamp__lte, driver_timestamp=driver_timestamp, driver_timestamp__gt=driver_timestamp__gt, driver_timestamp__gte=driver_timestamp__gte, driver_timestamp__isnull=driver_timestamp__isnull, driver_timestamp__lt=driver_timestamp__lt, driver_timestamp__lte=driver_timestamp__lte, limit=limit, offset=offset, truck_reg_number=truck_reg_number, waybill_number=waybill_number, waybill_status=waybill_status)
 
 Querying of vehicle location data
 
@@ -16,19 +16,18 @@ Returns all vehicle location data for waybills associated with your company, acc
 
 ### Example
 
-* Api Key Authentication (API key):
+* Api Key Authentication (ApiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
-from openapi_client.models.vehicle_location_data_list200_response import VehicleLocationDataList200Response
+from openapi_client.models.paginated_external_api_vehicle_location_data_list import PaginatedExternalAPIVehicleLocationDataList
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://app.waybiller.com/external-api
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://app.waybiller.com/external-api"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -36,50 +35,50 @@ configuration = openapi_client.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: API key
-configuration.api_key['API key'] = os.environ["API_KEY"]
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['API key'] = 'Bearer'
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.VehicleLocationDataApi(api_client)
-    dispatcher_timestamp__lte = 'dispatcher_timestamp__lte_example' # str | dispatcher_timestamp__lte (optional)
-    dispatcher_timestamp__gte = 'dispatcher_timestamp__gte_example' # str | dispatcher_timestamp__gte (optional)
-    dispatcher_timestamp__lt = 'dispatcher_timestamp__lt_example' # str | dispatcher_timestamp__lt (optional)
-    dispatcher_timestamp__gt = 'dispatcher_timestamp__gt_example' # str | dispatcher_timestamp__gt (optional)
-    dispatcher_timestamp = 'dispatcher_timestamp_example' # str | dispatcher_timestamp (optional)
-    dispatcher_timestamp__isnull = 'dispatcher_timestamp__isnull_example' # str | dispatcher_timestamp__isnull (optional)
-    driver_timestamp__lte = 'driver_timestamp__lte_example' # str | driver_timestamp__lte (optional)
-    driver_timestamp__gte = 'driver_timestamp__gte_example' # str | driver_timestamp__gte (optional)
-    driver_timestamp__lt = 'driver_timestamp__lt_example' # str | driver_timestamp__lt (optional)
-    driver_timestamp__gt = 'driver_timestamp__gt_example' # str | driver_timestamp__gt (optional)
-    driver_timestamp = 'driver_timestamp_example' # str | driver_timestamp (optional)
-    driver_timestamp__isnull = 'driver_timestamp__isnull_example' # str | driver_timestamp__isnull (optional)
-    confirmed_timestamp__lte = 'confirmed_timestamp__lte_example' # str | confirmed_timestamp__lte (optional)
-    confirmed_timestamp__gte = 'confirmed_timestamp__gte_example' # str | confirmed_timestamp__gte (optional)
-    confirmed_timestamp__lt = 'confirmed_timestamp__lt_example' # str | confirmed_timestamp__lt (optional)
-    confirmed_timestamp__gt = 'confirmed_timestamp__gt_example' # str | confirmed_timestamp__gt (optional)
-    confirmed_timestamp = 'confirmed_timestamp_example' # str | confirmed_timestamp (optional)
-    confirmed_timestamp__isnull = 'confirmed_timestamp__isnull_example' # str | confirmed_timestamp__isnull (optional)
-    cancelled_timestamp__lte = 'cancelled_timestamp__lte_example' # str | cancelled_timestamp__lte (optional)
-    cancelled_timestamp__gte = 'cancelled_timestamp__gte_example' # str | cancelled_timestamp__gte (optional)
-    cancelled_timestamp__lt = 'cancelled_timestamp__lt_example' # str | cancelled_timestamp__lt (optional)
-    cancelled_timestamp__gt = 'cancelled_timestamp__gt_example' # str | cancelled_timestamp__gt (optional)
-    cancelled_timestamp = 'cancelled_timestamp_example' # str | cancelled_timestamp (optional)
-    cancelled_timestamp__isnull = 'cancelled_timestamp__isnull_example' # str | cancelled_timestamp__isnull (optional)
-    limit = 56 # int | Number of results to return per page. (optional)
-    offset = 56 # int | The initial index from which to return the results. (optional)
-    waybill_number = 'waybill_number_example' # str | Filters available vehicle location data by waybill number. (optional)
-    truck_reg_number = 'truck_reg_number_example' # str | Filters available vehicle location data by truck registration number. (optional)
-    waybill_status = 56 # int | Filters available vehicle location data by waybill status. (optional)
-    destination_id = 56 # int | Filters available vehicle location data by destination ID. (optional)
+    cancelled_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data by specified cancellation timestamp (optional)
+    cancelled_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where cancellation timestamp is greater than specified value (optional)
+    cancelled_timestamp__gte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where cancellation timestamp is greater than or equal to specified value (optional)
+    cancelled_timestamp__isnull = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where cancellation timestamp is null or not null (optional)
+    cancelled_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where cancellation timestamp is less than specified value (optional)
+    cancelled_timestamp__lte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where cancellation timestamp is less than or equal to specified value (optional)
+    confirmed_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data by specified confirmation timestamp (optional)
+    confirmed_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where confirmation timestamp is greater than specified value (optional)
+    confirmed_timestamp__gte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where confirmation timestamp is greater than or equal to specified value (optional)
+    confirmed_timestamp__isnull = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where confirmation timestamp is null or not null (optional)
+    confirmed_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where confirmation timestamp is less than specified value (optional)
+    confirmed_timestamp__lte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where confirmation timestamp is less than or equal to specified value (optional)
+    destination_id = 56 # int | Filters vehicle location data by specified destination ID (optional)
+    dispatcher_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data by specified dispatcher timestamp (optional)
+    dispatcher_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where dispatcher timestamp is greater than specified value (optional)
+    dispatcher_timestamp__gte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where dispatcher timestamp is greater than or equal to specified value (optional)
+    dispatcher_timestamp__isnull = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where dispatcher timestamp is null or not null (optional)
+    dispatcher_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where dispatcher timestamp is less than specified value (optional)
+    dispatcher_timestamp__lte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where dispatcher timestamp is less than or equal to specified value (optional)
+    driver_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data by specified driver timestamp (optional)
+    driver_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where driver timestamp is greater than specified value (optional)
+    driver_timestamp__gte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where driver timestamp is greater than or equal to specified value (optional)
+    driver_timestamp__isnull = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where driver timestamp is null or not null (optional)
+    driver_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where driver timestamp is less than specified value (optional)
+    driver_timestamp__lte = '2013-10-20T19:20:30+01:00' # datetime | Filters vehicle location data where driver timestamp is less than or equal to specified value (optional)
+    limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
+    offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
+    truck_reg_number = 'truck_reg_number_example' # str | Filters vehicle location data by specified truck registration number (optional)
+    waybill_number = 'waybill_number_example' # str | Filters vehicle location data by specified waybill number (optional)
+    waybill_status = 56 # int | Filters vehicle location data by specified waybill status (optional)
 
     try:
         # Querying of vehicle location data
-        api_response = api_instance.vehicle_location_data_list(dispatcher_timestamp__lte=dispatcher_timestamp__lte, dispatcher_timestamp__gte=dispatcher_timestamp__gte, dispatcher_timestamp__lt=dispatcher_timestamp__lt, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp=dispatcher_timestamp, dispatcher_timestamp__isnull=dispatcher_timestamp__isnull, driver_timestamp__lte=driver_timestamp__lte, driver_timestamp__gte=driver_timestamp__gte, driver_timestamp__lt=driver_timestamp__lt, driver_timestamp__gt=driver_timestamp__gt, driver_timestamp=driver_timestamp, driver_timestamp__isnull=driver_timestamp__isnull, confirmed_timestamp__lte=confirmed_timestamp__lte, confirmed_timestamp__gte=confirmed_timestamp__gte, confirmed_timestamp__lt=confirmed_timestamp__lt, confirmed_timestamp__gt=confirmed_timestamp__gt, confirmed_timestamp=confirmed_timestamp, confirmed_timestamp__isnull=confirmed_timestamp__isnull, cancelled_timestamp__lte=cancelled_timestamp__lte, cancelled_timestamp__gte=cancelled_timestamp__gte, cancelled_timestamp__lt=cancelled_timestamp__lt, cancelled_timestamp__gt=cancelled_timestamp__gt, cancelled_timestamp=cancelled_timestamp, cancelled_timestamp__isnull=cancelled_timestamp__isnull, limit=limit, offset=offset, waybill_number=waybill_number, truck_reg_number=truck_reg_number, waybill_status=waybill_status, destination_id=destination_id)
+        api_response = api_instance.vehicle_location_data_list(cancelled_timestamp=cancelled_timestamp, cancelled_timestamp__gt=cancelled_timestamp__gt, cancelled_timestamp__gte=cancelled_timestamp__gte, cancelled_timestamp__isnull=cancelled_timestamp__isnull, cancelled_timestamp__lt=cancelled_timestamp__lt, cancelled_timestamp__lte=cancelled_timestamp__lte, confirmed_timestamp=confirmed_timestamp, confirmed_timestamp__gt=confirmed_timestamp__gt, confirmed_timestamp__gte=confirmed_timestamp__gte, confirmed_timestamp__isnull=confirmed_timestamp__isnull, confirmed_timestamp__lt=confirmed_timestamp__lt, confirmed_timestamp__lte=confirmed_timestamp__lte, destination_id=destination_id, dispatcher_timestamp=dispatcher_timestamp, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__gte=dispatcher_timestamp__gte, dispatcher_timestamp__isnull=dispatcher_timestamp__isnull, dispatcher_timestamp__lt=dispatcher_timestamp__lt, dispatcher_timestamp__lte=dispatcher_timestamp__lte, driver_timestamp=driver_timestamp, driver_timestamp__gt=driver_timestamp__gt, driver_timestamp__gte=driver_timestamp__gte, driver_timestamp__isnull=driver_timestamp__isnull, driver_timestamp__lt=driver_timestamp__lt, driver_timestamp__lte=driver_timestamp__lte, limit=limit, offset=offset, truck_reg_number=truck_reg_number, waybill_number=waybill_number, waybill_status=waybill_status)
         print("The response of VehicleLocationDataApi->vehicle_location_data_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -90,46 +89,47 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dispatcher_timestamp__lte** | **str**| dispatcher_timestamp__lte | [optional] 
- **dispatcher_timestamp__gte** | **str**| dispatcher_timestamp__gte | [optional] 
- **dispatcher_timestamp__lt** | **str**| dispatcher_timestamp__lt | [optional] 
- **dispatcher_timestamp__gt** | **str**| dispatcher_timestamp__gt | [optional] 
- **dispatcher_timestamp** | **str**| dispatcher_timestamp | [optional] 
- **dispatcher_timestamp__isnull** | **str**| dispatcher_timestamp__isnull | [optional] 
- **driver_timestamp__lte** | **str**| driver_timestamp__lte | [optional] 
- **driver_timestamp__gte** | **str**| driver_timestamp__gte | [optional] 
- **driver_timestamp__lt** | **str**| driver_timestamp__lt | [optional] 
- **driver_timestamp__gt** | **str**| driver_timestamp__gt | [optional] 
- **driver_timestamp** | **str**| driver_timestamp | [optional] 
- **driver_timestamp__isnull** | **str**| driver_timestamp__isnull | [optional] 
- **confirmed_timestamp__lte** | **str**| confirmed_timestamp__lte | [optional] 
- **confirmed_timestamp__gte** | **str**| confirmed_timestamp__gte | [optional] 
- **confirmed_timestamp__lt** | **str**| confirmed_timestamp__lt | [optional] 
- **confirmed_timestamp__gt** | **str**| confirmed_timestamp__gt | [optional] 
- **confirmed_timestamp** | **str**| confirmed_timestamp | [optional] 
- **confirmed_timestamp__isnull** | **str**| confirmed_timestamp__isnull | [optional] 
- **cancelled_timestamp__lte** | **str**| cancelled_timestamp__lte | [optional] 
- **cancelled_timestamp__gte** | **str**| cancelled_timestamp__gte | [optional] 
- **cancelled_timestamp__lt** | **str**| cancelled_timestamp__lt | [optional] 
- **cancelled_timestamp__gt** | **str**| cancelled_timestamp__gt | [optional] 
- **cancelled_timestamp** | **str**| cancelled_timestamp | [optional] 
- **cancelled_timestamp__isnull** | **str**| cancelled_timestamp__isnull | [optional] 
- **limit** | **int**| Number of results to return per page. | [optional] 
- **offset** | **int**| The initial index from which to return the results. | [optional] 
- **waybill_number** | **str**| Filters available vehicle location data by waybill number. | [optional] 
- **truck_reg_number** | **str**| Filters available vehicle location data by truck registration number. | [optional] 
- **waybill_status** | **int**| Filters available vehicle location data by waybill status. | [optional] 
- **destination_id** | **int**| Filters available vehicle location data by destination ID. | [optional] 
+ **cancelled_timestamp** | **datetime**| Filters vehicle location data by specified cancellation timestamp | [optional] 
+ **cancelled_timestamp__gt** | **datetime**| Filters vehicle location data where cancellation timestamp is greater than specified value | [optional] 
+ **cancelled_timestamp__gte** | **datetime**| Filters vehicle location data where cancellation timestamp is greater than or equal to specified value | [optional] 
+ **cancelled_timestamp__isnull** | **datetime**| Filters vehicle location data where cancellation timestamp is null or not null | [optional] 
+ **cancelled_timestamp__lt** | **datetime**| Filters vehicle location data where cancellation timestamp is less than specified value | [optional] 
+ **cancelled_timestamp__lte** | **datetime**| Filters vehicle location data where cancellation timestamp is less than or equal to specified value | [optional] 
+ **confirmed_timestamp** | **datetime**| Filters vehicle location data by specified confirmation timestamp | [optional] 
+ **confirmed_timestamp__gt** | **datetime**| Filters vehicle location data where confirmation timestamp is greater than specified value | [optional] 
+ **confirmed_timestamp__gte** | **datetime**| Filters vehicle location data where confirmation timestamp is greater than or equal to specified value | [optional] 
+ **confirmed_timestamp__isnull** | **datetime**| Filters vehicle location data where confirmation timestamp is null or not null | [optional] 
+ **confirmed_timestamp__lt** | **datetime**| Filters vehicle location data where confirmation timestamp is less than specified value | [optional] 
+ **confirmed_timestamp__lte** | **datetime**| Filters vehicle location data where confirmation timestamp is less than or equal to specified value | [optional] 
+ **destination_id** | **int**| Filters vehicle location data by specified destination ID | [optional] 
+ **dispatcher_timestamp** | **datetime**| Filters vehicle location data by specified dispatcher timestamp | [optional] 
+ **dispatcher_timestamp__gt** | **datetime**| Filters vehicle location data where dispatcher timestamp is greater than specified value | [optional] 
+ **dispatcher_timestamp__gte** | **datetime**| Filters vehicle location data where dispatcher timestamp is greater than or equal to specified value | [optional] 
+ **dispatcher_timestamp__isnull** | **datetime**| Filters vehicle location data where dispatcher timestamp is null or not null | [optional] 
+ **dispatcher_timestamp__lt** | **datetime**| Filters vehicle location data where dispatcher timestamp is less than specified value | [optional] 
+ **dispatcher_timestamp__lte** | **datetime**| Filters vehicle location data where dispatcher timestamp is less than or equal to specified value | [optional] 
+ **driver_timestamp** | **datetime**| Filters vehicle location data by specified driver timestamp | [optional] 
+ **driver_timestamp__gt** | **datetime**| Filters vehicle location data where driver timestamp is greater than specified value | [optional] 
+ **driver_timestamp__gte** | **datetime**| Filters vehicle location data where driver timestamp is greater than or equal to specified value | [optional] 
+ **driver_timestamp__isnull** | **datetime**| Filters vehicle location data where driver timestamp is null or not null | [optional] 
+ **driver_timestamp__lt** | **datetime**| Filters vehicle location data where driver timestamp is less than specified value | [optional] 
+ **driver_timestamp__lte** | **datetime**| Filters vehicle location data where driver timestamp is less than or equal to specified value | [optional] 
+ **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
+ **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
+ **truck_reg_number** | **str**| Filters vehicle location data by specified truck registration number | [optional] 
+ **waybill_number** | **str**| Filters vehicle location data by specified waybill number | [optional] 
+ **waybill_status** | **int**| Filters vehicle location data by specified waybill status | [optional] 
 
 ### Return type
 
-[**VehicleLocationDataList200Response**](VehicleLocationDataList200Response.md)
+[**PaginatedExternalAPIVehicleLocationDataList**](PaginatedExternalAPIVehicleLocationDataList.md)
 
 ### Authorization
 
-[API key](../README.md#API key)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -137,9 +137,11 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

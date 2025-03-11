@@ -1,8 +1,8 @@
 # ExternalAPIOrderOrigin
 
-The origins for which the order is created for.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **origin_raw_id** | **str** | Origin raw id. | [optional] 
@@ -23,12 +23,12 @@ json = "{}"
 # create an instance of ExternalAPIOrderOrigin from a JSON string
 external_api_order_origin_instance = ExternalAPIOrderOrigin.from_json(json)
 # print the JSON string representation of the object
-print ExternalAPIOrderOrigin.to_json()
+print(ExternalAPIOrderOrigin.to_json())
 
 # convert the object into a dict
 external_api_order_origin_dict = external_api_order_origin_instance.to_dict()
 # create an instance of ExternalAPIOrderOrigin from a dict
-external_api_order_origin_form_dict = external_api_order_origin.from_dict(external_api_order_origin_dict)
+external_api_order_origin_from_dict = ExternalAPIOrderOrigin.from_dict(external_api_order_origin_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
