@@ -11,9 +11,9 @@ import logging
 models = {c.__name__: c for c in [
     openapi_client.ExternalAPIWaybillList,
     openapi_client.ExternalAPIWaybillRetrieve,
-    openapi_client.ExtAPIOriginList,
-    openapi_client.ExtAPIOriginRead,
-    openapi_client.ExtAPIDestination,
+    openapi_client.ExternalAPIOriginList,
+    openapi_client.ExternalAPIOriginRead,
+    openapi_client.ExternalAPIDestination,
 ]}
 
 

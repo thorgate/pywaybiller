@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
 """Main module."""
-import threading
+
+import contextvars
+
+from pydantic import BaseModel
 
 from . import apis
 from .openapi_client.api_client import ApiClient
 from .openapi_client.configuration import Configuration
+
+full_serialization = contextvars.ContextVar("full_serialization", default=False)
 
 
 class ExtendedApiClient(ApiClient):
@@ -21,6 +26,23 @@ class ExtendedApiClient(ApiClient):
         """
         return response_type.from_dict(response_data)
 
+    def sanitize_for_serialization(self, obj):
+        if hasattr(obj, "actual_instance"):
+            return self.sanitize_for_serialization(obj.actual_instance)
+
+        if full_serialization.get() and isinstance(obj, BaseModel):
+            return super().sanitize_for_serialization(obj.__dict__)
+
+        return super().sanitize_for_serialization(obj)
+
+    def serialize_fully(self, obj):
+        token = full_serialization.set(True)
+        try:
+            result = self.sanitize_for_serialization(obj)
+        finally:
+            full_serialization.reset(token)
+        return result
+
 
 class WaybillerClient:
     """API client class for Waybiller.
@@ -32,7 +54,7 @@ class WaybillerClient:
     openapi_client_class = ExtendedApiClient
 
     def __init__(self, api_key: str, host: str = None):
-        configuration = Configuration(api_key={"API key": api_key})
+        configuration = Configuration(api_key={"ApiKeyAuth": api_key})
         if host is not None:
             configuration.host = host
         self.openapi_client = self.openapi_client_class(configuration)
@@ -54,4 +76,4 @@ class WaybillerClient:
 
     @classmethod
     def sanitize_for_serialization(cls, api_model):
-        return cls.openapi_client_class().sanitize_for_serialization(api_model)
+        return cls.openapi_client_class().serialize_fully(api_model)

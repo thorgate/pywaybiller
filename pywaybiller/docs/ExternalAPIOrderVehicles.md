@@ -1,8 +1,8 @@
 # ExternalAPIOrderVehicles
 
-The vehicles that the transportation companies are allowed to use for this order.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **truck_reg_number** | **str** | Truck reg number. | [optional] 
@@ -19,12 +19,12 @@ json = "{}"
 # create an instance of ExternalAPIOrderVehicles from a JSON string
 external_api_order_vehicles_instance = ExternalAPIOrderVehicles.from_json(json)
 # print the JSON string representation of the object
-print ExternalAPIOrderVehicles.to_json()
+print(ExternalAPIOrderVehicles.to_json())
 
 # convert the object into a dict
 external_api_order_vehicles_dict = external_api_order_vehicles_instance.to_dict()
 # create an instance of ExternalAPIOrderVehicles from a dict
-external_api_order_vehicles_form_dict = external_api_order_vehicles.from_dict(external_api_order_vehicles_dict)
+external_api_order_vehicles_from_dict = ExternalAPIOrderVehicles.from_dict(external_api_order_vehicles_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

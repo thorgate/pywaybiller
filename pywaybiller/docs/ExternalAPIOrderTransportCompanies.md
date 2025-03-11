@@ -1,8 +1,8 @@
 # ExternalAPIOrderTransportCompanies
 
-The transportation companies the client is using for transporting assortments from origins to destination.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **transportation_company_name** | **str** | Transportation company name. | [optional] 
@@ -18,12 +18,12 @@ json = "{}"
 # create an instance of ExternalAPIOrderTransportCompanies from a JSON string
 external_api_order_transport_companies_instance = ExternalAPIOrderTransportCompanies.from_json(json)
 # print the JSON string representation of the object
-print ExternalAPIOrderTransportCompanies.to_json()
+print(ExternalAPIOrderTransportCompanies.to_json())
 
 # convert the object into a dict
 external_api_order_transport_companies_dict = external_api_order_transport_companies_instance.to_dict()
 # create an instance of ExternalAPIOrderTransportCompanies from a dict
-external_api_order_transport_companies_form_dict = external_api_order_transport_companies.from_dict(external_api_order_transport_companies_dict)
+external_api_order_transport_companies_from_dict = ExternalAPIOrderTransportCompanies.from_dict(external_api_order_transport_companies_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

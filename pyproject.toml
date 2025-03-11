@@ -1,31 +1,27 @@
-[tool.poetry]
+[project]
 name = "pywaybiller"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python client for waybiller.com external API"
-authors = ["Thorgate <software@thorgate.eu>"]
+authors = [{name = "Thorgate Digital", email = "software@thorgate.eu" }]
 license = "MIT License"
 readme = "README.md"
 repository = "https://github.com/thorgate/pywaybiller.git"
 keywords = ["OpenAPI", "OpenAPI-Generator", "pywaybiller"]
 include = ["pywaybiller/py.typed"]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-
-urllib3 = ">= 1.25.3"
-python-dateutil = ">=2.8.2"
-pydantic = "^1.10.5, <2"
-aenum = ">=3.1.11"
+requires-python = ">=3.9,<4"
+dependencies = [
+    "urllib3 (>= 1.25.3,< 3.0.0)",
+    "python-dateutil (>=2.8.2)",
+    "pydantic (>=2)",
+    "typing-extensions (>=4.7.1)"
+]
 
 [tool.poetry.group.dev.dependencies]
-pytest = ">=7.2.1"
-tox = ">=3.9.0"
-flake8 = ">=4.0.0"
-black = "^23.10.1"
-json-stream = "^2.3.2"
+ruff = "*"
+pytest = "*"
+tox = "*"
+json-stream = "*"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-

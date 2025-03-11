@@ -1,26 +1,28 @@
-OPENAPI_GENERATOR_VERSION ?= v7.0.1
+OPENAPI_GENERATOR_VERSION ?= v7.12.0
 API_HOST ?= app.waybiller.com
 
 .PHONY:
 lint:
-	poetry run flake8 --select=E9,F63,F7,F82 pywaybiller
+	poetry run ruff check --select I pywaybiller --exclude pywaybiller/openapi_client
+	poetry run ruff check pywaybiller --exclude pywaybiller/openapi_client
 
 .PHONY:
 fmt:
-	poetry run black pywaybiller
-	poetry run black test
+	poetry run ruff check --select I pywaybiller --fix --exclude pywaybiller/openapi_client
+	poetry run ruff check pywaybiller --fix --exclude pywaybiller/openapi_client
+	poetry run ruff format pywaybiller --exclude pywaybiller/openapi_client
 
 .PHONY:
-test: ## run tests quickly with the default Python
+test: # run tests quickly with the default Python
 	poetry run pytest
 
 .PHONY:
-test-all: ## run tests on every Python version with tox
+test-all: # run tests on every Python version with tox
 	tox
 
 .PHONY:
 openapi-fetch:
-	curl https://$(API_HOST)/api/swagger/?format=openapi | poetry run python -c "import json; import sys; print(json.dumps(json.load(sys.stdin), indent=2))" > ./pywaybiller/openapi/waybiller_schema.json
+	curl https://$(API_HOST)/api/schema/ | poetry run python -c "import json; import sys; print(json.dumps(json.load(sys.stdin), indent=2))" > ./pywaybiller/openapi/waybiller_schema.json
 
 .PHONY:
 openapi-patch: openapi-fetch
@@ -40,7 +42,8 @@ openapi-build:
 	cp -r .openapi/openapi_client pywaybiller/openapi_client
 	cp -r .openapi/docs pywaybiller/docs
 	rm -rf .openapi
-	poetry run black pywaybiller
+	poetry run ruff check --select I pywaybiller/openapi_client --fix
+	poetry run ruff format pywaybiller/openapi_client
 
 .PHONY:
 openapi: openapi-apply-patch openapi-build
