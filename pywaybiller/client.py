@@ -30,6 +30,10 @@ class ExtendedApiClient(ApiClient):
         if hasattr(obj, "actual_instance"):
             return self.sanitize_for_serialization(obj.actual_instance)
 
+        # For some reason, set sanitization is not handled correctly
+        if isinstance(obj, set):
+            obj = [*obj]
+
         if full_serialization.get() and isinstance(obj, BaseModel):
             return super().sanitize_for_serialization(obj.__dict__)
 

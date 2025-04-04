@@ -6,6 +6,7 @@
 * **Breaking** Drop support for Python 3.8
 * Update to use newer openapi generator (pydantic 2)
 * Ensure read-only fields are serialized correctly when saving data locally
+* Fix set sanitization in sanitize_for_serialization
 
 ## Version 0.1.0
 
