@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **vehicles_list**
-> PaginatedExternalAPIVehicleList vehicles_list(limit=limit, offset=offset)
+> PaginatedExternalAPIVehicleList vehicles_list(limit=limit, offset=offset, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__lt=dispatcher_timestamp__lt)
 
 Querying of vehicles
 
@@ -48,10 +48,12 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = openapi_client.VehiclesApi(api_client)
     limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
+    dispatcher_timestamp__gt = 'dispatcher_timestamp__gt_example' # str |  (optional)
+    dispatcher_timestamp__lt = 'dispatcher_timestamp__lt_example' # str |  (optional)
 
     try:
         # Querying of vehicles
-        api_response = api_instance.vehicles_list(limit=limit, offset=offset)
+        api_response = api_instance.vehicles_list(limit=limit, offset=offset, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__lt=dispatcher_timestamp__lt)
         print("The response of VehiclesApi->vehicles_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -67,6 +69,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
+ **dispatcher_timestamp__gt** | **str**|  | [optional] 
+ **dispatcher_timestamp__lt** | **str**|  | [optional] 
 
 ### Return type
 

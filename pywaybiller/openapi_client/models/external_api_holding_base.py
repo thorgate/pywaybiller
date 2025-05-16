@@ -32,7 +32,7 @@ class ExternalAPIHoldingBase(BaseModel):
     ExternalAPIHoldingBase
     """  # noqa: E501
 
-    type: TypeEnum
+    type: Optional[TypeEnum] = None
     contract_number: Optional[Annotated[str, Field(strict=True, max_length=32)]] = (
         Field(default=None, alias="contractNumber")
     )

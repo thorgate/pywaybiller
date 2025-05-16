@@ -38,9 +38,6 @@ from pywaybiller.openapi_client.models.external_api_holding_base_previous_owner 
 from pywaybiller.openapi_client.models.external_api_holding_base_previous_owner_request import (
     ExternalAPIHoldingBasePreviousOwnerRequest,
 )
-from pywaybiller.openapi_client.models.external_api_holding_base_read import (
-    ExternalAPIHoldingBaseRead,
-)
 from pywaybiller.openapi_client.models.external_api_holding_base_request import (
     ExternalAPIHoldingBaseRequest,
 )
@@ -117,17 +114,29 @@ from pywaybiller.openapi_client.models.external_api_origin_create_waybill_create
 from pywaybiller.openapi_client.models.external_api_origin_list import (
     ExternalAPIOriginList,
 )
+from pywaybiller.openapi_client.models.external_api_origin_location import (
+    ExternalAPIOriginLocation,
+)
+from pywaybiller.openapi_client.models.external_api_origin_location_request import (
+    ExternalAPIOriginLocationRequest,
+)
 from pywaybiller.openapi_client.models.external_api_origin_raw_data import (
     ExternalAPIOriginRawData,
 )
-from pywaybiller.openapi_client.models.external_api_origin_read import (
-    ExternalAPIOriginRead,
+from pywaybiller.openapi_client.models.external_api_origin_retrieve import (
+    ExternalAPIOriginRetrieve,
+)
+from pywaybiller.openapi_client.models.external_api_origin_retrieve_waybill_created_emails_language import (
+    ExternalAPIOriginRetrieveWaybillCreatedEmailsLanguage,
 )
 from pywaybiller.openapi_client.models.external_api_origin_update import (
     ExternalAPIOriginUpdate,
 )
 from pywaybiller.openapi_client.models.external_api_origin_update_request import (
     ExternalAPIOriginUpdateRequest,
+)
+from pywaybiller.openapi_client.models.external_api_origin_update_waybill_created_emails_language import (
+    ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage,
 )
 from pywaybiller.openapi_client.models.external_api_partial_order_update import (
     ExternalAPIPartialOrderUpdate,
@@ -271,11 +280,19 @@ from pywaybiller.openapi_client.models.external_api_waybill_start_drive import (
 from pywaybiller.openapi_client.models.external_api_waybill_start_drive_request import (
     ExternalAPIWaybillStartDriveRequest,
 )
+from pywaybiller.openapi_client.models.external_api_waybill_transport_costs import (
+    ExternalAPIWaybillTransportCosts,
+)
+from pywaybiller.openapi_client.models.external_api_waybill_transport_costs_pricing_system import (
+    ExternalAPIWaybillTransportCostsPricingSystem,
+)
+from pywaybiller.openapi_client.models.external_api_waybill_transport_costs_weights_to_use import (
+    ExternalAPIWaybillTransportCostsWeightsToUse,
+)
 from pywaybiller.openapi_client.models.external_api_waybill_vehicle_location import (
     ExternalAPIWaybillVehicleLocation,
 )
-from pywaybiller.openapi_client.models.geo_location import GeoLocation
-from pywaybiller.openapi_client.models.geo_location_request import GeoLocationRequest
+from pywaybiller.openapi_client.models.incoterm_enum import IncotermEnum
 from pywaybiller.openapi_client.models.language_enum import LanguageEnum
 from pywaybiller.openapi_client.models.paginated_external_api_destination_list import (
     PaginatedExternalAPIDestinationList,
@@ -307,6 +324,7 @@ from pywaybiller.openapi_client.models.paginated_external_api_vehicle_location_d
 from pywaybiller.openapi_client.models.paginated_external_api_waybill_list_list import (
     PaginatedExternalAPIWaybillListList,
 )
+from pywaybiller.openapi_client.models.pricing_system_enum import PricingSystemEnum
 from pywaybiller.openapi_client.models.role_enum import RoleEnum
 from pywaybiller.openapi_client.models.transport_order_status_enum import (
     TransportOrderStatusEnum,
@@ -316,3 +334,4 @@ from pywaybiller.openapi_client.models.waybill_status_enum import WaybillStatusE
 from pywaybiller.openapi_client.models.waybills_update_custom_fields_update_request_value import (
     WaybillsUpdateCustomFieldsUpdateRequestValue,
 )
+from pywaybiller.openapi_client.models.weights_to_use_enum import WeightsToUseEnum

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing_extensions import Self
 
 
@@ -27,8 +27,10 @@ class ExternalAPIOriginRawData(BaseModel):
     ExternalAPIOriginRawData
     """  # noqa: E501
 
-    id: StrictInt
-    only_origin_owner_can_create_waybills: StrictBool
+    id: StrictInt = Field(description="Unique identifier of the origin")
+    only_origin_owner_can_create_waybills: StrictBool = Field(
+        description="Only origin owner can create waybills from this origin"
+    )
     __properties: ClassVar[List[str]] = ["id", "only_origin_owner_can_create_waybills"]
 
     model_config = ConfigDict(

@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
@@ -40,8 +41,14 @@ class ExternalAPIWaybillRowAcceptedAmount(BaseModel):
     accepted_gross_weight: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The accepted gross weight in tonnes."
     )
+    accepted_gross_weight_timestamp: Optional[datetime] = Field(
+        default=None, description="The timestamp of the accepted gross weight."
+    )
     accepted_tare_weight: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The accepted tare weight in tonnes."
+    )
+    accepted_tare_weight_timestamp: Optional[datetime] = Field(
+        default=None, description="The timestamp of the accepted tare weight."
     )
     accepted_amount: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
@@ -52,7 +59,9 @@ class ExternalAPIWaybillRowAcceptedAmount(BaseModel):
         "assortment_ids",
         "accepted_assortment_id",
         "accepted_gross_weight",
+        "accepted_gross_weight_timestamp",
         "accepted_tare_weight",
+        "accepted_tare_weight_timestamp",
         "accepted_amount",
     ]
 
@@ -156,7 +165,13 @@ class ExternalAPIWaybillRowAcceptedAmount(BaseModel):
                 "assortment_ids": obj.get("assortment_ids"),
                 "accepted_assortment_id": obj.get("accepted_assortment_id"),
                 "accepted_gross_weight": obj.get("accepted_gross_weight"),
+                "accepted_gross_weight_timestamp": obj.get(
+                    "accepted_gross_weight_timestamp"
+                ),
                 "accepted_tare_weight": obj.get("accepted_tare_weight"),
+                "accepted_tare_weight_timestamp": obj.get(
+                    "accepted_tare_weight_timestamp"
+                ),
                 "accepted_amount": obj.get("accepted_amount"),
             }
         )

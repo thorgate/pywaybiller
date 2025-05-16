@@ -12,6 +12,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 import warnings
+from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
@@ -1463,6 +1464,12 @@ class WaybillsApi:
     @validate_call
     def waybills_list(
         self,
+        destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
         limit: Annotated[
             Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
             Field(description="Maximum number of objects to return per page"),
@@ -1471,8 +1478,36 @@ class WaybillsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
-        dispatcher_timestamp__gt: Optional[StrictStr] = None,
-        dispatcher_timestamp__lt: Optional[StrictStr] = None,
+        origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        transportation_cost_confirmed_at_timestamp__gt: Annotated[
+            Optional[datetime],
+            Field(
+                description="Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format."
+            ),
+        ] = None,
+        transportation_cost_confirmed_at_timestamp__lt: Annotated[
+            Optional[datetime],
+            Field(
+                description="Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1489,14 +1524,22 @@ class WaybillsApi:
 
         Returns all waybills associated with your company, according to the specified filters.<br><br>         **NB!** By default, past 30 days according to the `dispatcher_timestamp` field waybills are returned. Use         `dispatcher_timestamp__lt` and `dispatcher_timestamp__gt` for filtering. Note that the maximum range is 30 days.
 
+        :param destination_ids: Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas.
+        :type destination_ids: str
         :param limit: Maximum number of objects to return per page
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
-        :param dispatcher_timestamp__gt:
-        :type dispatcher_timestamp__gt: str
-        :param dispatcher_timestamp__lt:
-        :type dispatcher_timestamp__lt: str
+        :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
+        :type origin_ids: str
+        :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
+        :type raw_destination_ids: str
+        :param raw_origin_ids: Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas.
+        :type raw_origin_ids: str
+        :param transportation_cost_confirmed_at_timestamp__gt: Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format.
+        :type transportation_cost_confirmed_at_timestamp__gt: datetime
+        :param transportation_cost_confirmed_at_timestamp__lt: Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format.
+        :type transportation_cost_confirmed_at_timestamp__lt: datetime
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1520,10 +1563,14 @@ class WaybillsApi:
         """  # noqa: E501
 
         _param = self._waybills_list_serialize(
+            destination_ids=destination_ids,
             limit=limit,
             offset=offset,
-            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
-            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
+            origin_ids=origin_ids,
+            raw_destination_ids=raw_destination_ids,
+            raw_origin_ids=raw_origin_ids,
+            transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt,
+            transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1546,6 +1593,12 @@ class WaybillsApi:
     @validate_call
     def waybills_list_with_http_info(
         self,
+        destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
         limit: Annotated[
             Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
             Field(description="Maximum number of objects to return per page"),
@@ -1554,8 +1607,36 @@ class WaybillsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
-        dispatcher_timestamp__gt: Optional[StrictStr] = None,
-        dispatcher_timestamp__lt: Optional[StrictStr] = None,
+        origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        transportation_cost_confirmed_at_timestamp__gt: Annotated[
+            Optional[datetime],
+            Field(
+                description="Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format."
+            ),
+        ] = None,
+        transportation_cost_confirmed_at_timestamp__lt: Annotated[
+            Optional[datetime],
+            Field(
+                description="Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1572,14 +1653,22 @@ class WaybillsApi:
 
         Returns all waybills associated with your company, according to the specified filters.<br><br>         **NB!** By default, past 30 days according to the `dispatcher_timestamp` field waybills are returned. Use         `dispatcher_timestamp__lt` and `dispatcher_timestamp__gt` for filtering. Note that the maximum range is 30 days.
 
+        :param destination_ids: Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas.
+        :type destination_ids: str
         :param limit: Maximum number of objects to return per page
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
-        :param dispatcher_timestamp__gt:
-        :type dispatcher_timestamp__gt: str
-        :param dispatcher_timestamp__lt:
-        :type dispatcher_timestamp__lt: str
+        :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
+        :type origin_ids: str
+        :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
+        :type raw_destination_ids: str
+        :param raw_origin_ids: Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas.
+        :type raw_origin_ids: str
+        :param transportation_cost_confirmed_at_timestamp__gt: Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format.
+        :type transportation_cost_confirmed_at_timestamp__gt: datetime
+        :param transportation_cost_confirmed_at_timestamp__lt: Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format.
+        :type transportation_cost_confirmed_at_timestamp__lt: datetime
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1603,10 +1692,14 @@ class WaybillsApi:
         """  # noqa: E501
 
         _param = self._waybills_list_serialize(
+            destination_ids=destination_ids,
             limit=limit,
             offset=offset,
-            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
-            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
+            origin_ids=origin_ids,
+            raw_destination_ids=raw_destination_ids,
+            raw_origin_ids=raw_origin_ids,
+            transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt,
+            transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1629,6 +1722,12 @@ class WaybillsApi:
     @validate_call
     def waybills_list_without_preload_content(
         self,
+        destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
         limit: Annotated[
             Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]],
             Field(description="Maximum number of objects to return per page"),
@@ -1637,8 +1736,36 @@ class WaybillsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
-        dispatcher_timestamp__gt: Optional[StrictStr] = None,
-        dispatcher_timestamp__lt: Optional[StrictStr] = None,
+        origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        transportation_cost_confirmed_at_timestamp__gt: Annotated[
+            Optional[datetime],
+            Field(
+                description="Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format."
+            ),
+        ] = None,
+        transportation_cost_confirmed_at_timestamp__lt: Annotated[
+            Optional[datetime],
+            Field(
+                description="Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format."
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1655,14 +1782,22 @@ class WaybillsApi:
 
         Returns all waybills associated with your company, according to the specified filters.<br><br>         **NB!** By default, past 30 days according to the `dispatcher_timestamp` field waybills are returned. Use         `dispatcher_timestamp__lt` and `dispatcher_timestamp__gt` for filtering. Note that the maximum range is 30 days.
 
+        :param destination_ids: Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas.
+        :type destination_ids: str
         :param limit: Maximum number of objects to return per page
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
-        :param dispatcher_timestamp__gt:
-        :type dispatcher_timestamp__gt: str
-        :param dispatcher_timestamp__lt:
-        :type dispatcher_timestamp__lt: str
+        :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
+        :type origin_ids: str
+        :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
+        :type raw_destination_ids: str
+        :param raw_origin_ids: Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas.
+        :type raw_origin_ids: str
+        :param transportation_cost_confirmed_at_timestamp__gt: Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format.
+        :type transportation_cost_confirmed_at_timestamp__gt: datetime
+        :param transportation_cost_confirmed_at_timestamp__lt: Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format.
+        :type transportation_cost_confirmed_at_timestamp__lt: datetime
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1686,10 +1821,14 @@ class WaybillsApi:
         """  # noqa: E501
 
         _param = self._waybills_list_serialize(
+            destination_ids=destination_ids,
             limit=limit,
             offset=offset,
-            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
-            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
+            origin_ids=origin_ids,
+            raw_destination_ids=raw_destination_ids,
+            raw_origin_ids=raw_origin_ids,
+            transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt,
+            transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1707,10 +1846,14 @@ class WaybillsApi:
 
     def _waybills_list_serialize(
         self,
+        destination_ids,
         limit,
         offset,
-        dispatcher_timestamp__gt,
-        dispatcher_timestamp__lt,
+        origin_ids,
+        raw_destination_ids,
+        raw_origin_ids,
+        transportation_cost_confirmed_at_timestamp__gt,
+        transportation_cost_confirmed_at_timestamp__lt,
         _request_auth,
         _content_type,
         _headers,
@@ -1731,17 +1874,59 @@ class WaybillsApi:
 
         # process the path parameters
         # process the query parameters
+        if destination_ids is not None:
+            _query_params.append(("destination_ids", destination_ids))
+
         if limit is not None:
             _query_params.append(("limit", limit))
 
         if offset is not None:
             _query_params.append(("offset", offset))
 
-        if dispatcher_timestamp__gt is not None:
-            _query_params.append(("dispatcher_timestamp__gt", dispatcher_timestamp__gt))
+        if origin_ids is not None:
+            _query_params.append(("origin_ids", origin_ids))
 
-        if dispatcher_timestamp__lt is not None:
-            _query_params.append(("dispatcher_timestamp__lt", dispatcher_timestamp__lt))
+        if raw_destination_ids is not None:
+            _query_params.append(("raw_destination_ids", raw_destination_ids))
+
+        if raw_origin_ids is not None:
+            _query_params.append(("raw_origin_ids", raw_origin_ids))
+
+        if transportation_cost_confirmed_at_timestamp__gt is not None:
+            if isinstance(transportation_cost_confirmed_at_timestamp__gt, datetime):
+                _query_params.append(
+                    (
+                        "transportation_cost_confirmed_at_timestamp__gt",
+                        transportation_cost_confirmed_at_timestamp__gt.strftime(
+                            self.api_client.configuration.datetime_format
+                        ),
+                    )
+                )
+            else:
+                _query_params.append(
+                    (
+                        "transportation_cost_confirmed_at_timestamp__gt",
+                        transportation_cost_confirmed_at_timestamp__gt,
+                    )
+                )
+
+        if transportation_cost_confirmed_at_timestamp__lt is not None:
+            if isinstance(transportation_cost_confirmed_at_timestamp__lt, datetime):
+                _query_params.append(
+                    (
+                        "transportation_cost_confirmed_at_timestamp__lt",
+                        transportation_cost_confirmed_at_timestamp__lt.strftime(
+                            self.api_client.configuration.datetime_format
+                        ),
+                    )
+                )
+            else:
+                _query_params.append(
+                    (
+                        "transportation_cost_confirmed_at_timestamp__lt",
+                        transportation_cost_confirmed_at_timestamp__lt,
+                    )
+                )
 
         # process the header parameters
         # process the form parameters

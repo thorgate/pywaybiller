@@ -6,6 +6,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **transport_order_id** | **str** |  | [readonly] 
+**transport_date** | **date** |  | [readonly] 
+**origin_id** | **str** | Unique identifier of the origin in your system | 
+**origin_name** | **str** |  | [optional] 
+**origin_address** | **str** |  | [optional] 
+**destination_id** | **str** | Unique identifier of the destination in your system | 
+**destination_name** | **str** |  | [optional] 
+**destination_address** | **str** |  | [optional] 
+**assortment_name** | **str** |  | [readonly] 
+**transportation_company_name** | **str** |  | [optional] 
+**truck_reg_number** | **str** |  | [optional] 
+**trailer_reg_number** | **str** |  | [optional] 
 **waybills_ids** | **List[int]** |  | [readonly] 
 **raw_data** | [**ExternalAPITransportOrderRawDataList**](ExternalAPITransportOrderRawDataList.md) | The IDs of the Waybiller internal objects | [readonly] 
 

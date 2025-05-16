@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
@@ -33,8 +34,14 @@ class ExternalAPIWaybillRowDispatchedAmountRequest(BaseModel):
     dispatched_gross_weight: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The dispatched gross weight in tonnes."
     )
+    dispatched_gross_weight_timestamp: Optional[datetime] = Field(
+        default=None, description="The timestamp of the dispatched gross weight."
+    )
     dispatched_tare_weight: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None, description="The dispatched tare weight in tonnes."
+    )
+    dispatched_tare_weight_timestamp: Optional[datetime] = Field(
+        default=None, description="The timestamp of the dispatched tare weight."
     )
     dispatched_amount: Optional[Annotated[str, Field(strict=True)]] = Field(
         default=None,
@@ -43,7 +50,9 @@ class ExternalAPIWaybillRowDispatchedAmountRequest(BaseModel):
     __properties: ClassVar[List[str]] = [
         "assortment_id",
         "dispatched_gross_weight",
+        "dispatched_gross_weight_timestamp",
         "dispatched_tare_weight",
+        "dispatched_tare_weight_timestamp",
         "dispatched_amount",
     ]
 
@@ -135,7 +144,13 @@ class ExternalAPIWaybillRowDispatchedAmountRequest(BaseModel):
             {
                 "assortment_id": obj.get("assortment_id"),
                 "dispatched_gross_weight": obj.get("dispatched_gross_weight"),
+                "dispatched_gross_weight_timestamp": obj.get(
+                    "dispatched_gross_weight_timestamp"
+                ),
                 "dispatched_tare_weight": obj.get("dispatched_tare_weight"),
+                "dispatched_tare_weight_timestamp": obj.get(
+                    "dispatched_tare_weight_timestamp"
+                ),
                 "dispatched_amount": obj.get("dispatched_amount"),
             }
         )

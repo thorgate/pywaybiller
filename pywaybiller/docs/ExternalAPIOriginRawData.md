@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**only_origin_owner_can_create_waybills** | **bool** |  | [readonly] 
+**id** | **int** | Unique identifier of the origin | [readonly] 
+**only_origin_owner_can_create_waybills** | **bool** | Only origin owner can create waybills from this origin | [readonly] 
 
 ## Example
 

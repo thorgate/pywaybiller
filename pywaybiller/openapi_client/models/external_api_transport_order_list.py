@@ -16,10 +16,11 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import date
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_transport_order_raw_data_list import (
     ExternalAPITransportOrderRawDataList,
@@ -32,12 +33,46 @@ class ExternalAPITransportOrderList(BaseModel):
     """  # noqa: E501
 
     transport_order_id: StrictStr
+    transport_date: Optional[date]
+    origin_id: Optional[StrictStr] = Field(
+        description="Unique identifier of the origin in your system"
+    )
+    origin_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
+    origin_address: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
+    destination_id: Optional[StrictStr] = Field(
+        description="Unique identifier of the destination in your system"
+    )
+    destination_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = (
+        None
+    )
+    destination_address: Optional[
+        Annotated[str, Field(strict=True, max_length=255)]
+    ] = None
+    assortment_name: StrictStr
+    transportation_company_name: Optional[
+        Annotated[str, Field(strict=True, max_length=64)]
+    ] = None
+    truck_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = None
+    trailer_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
+        None
+    )
     waybills_ids: List[StrictInt]
     raw_data: ExternalAPITransportOrderRawDataList = Field(
         description="The IDs of the Waybiller internal objects"
     )
     __properties: ClassVar[List[str]] = [
         "transport_order_id",
+        "transport_date",
+        "origin_id",
+        "origin_name",
+        "origin_address",
+        "destination_id",
+        "destination_name",
+        "destination_address",
+        "assortment_name",
+        "transportation_company_name",
+        "truck_reg_number",
+        "trailer_reg_number",
         "waybills_ids",
         "raw_data",
     ]
@@ -74,10 +109,14 @@ class ExternalAPITransportOrderList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "transport_order_id",
+                "transport_date",
+                "assortment_name",
                 "waybills_ids",
                 "raw_data",
             ]
@@ -91,6 +130,21 @@ class ExternalAPITransportOrderList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
+        # set to None if transport_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.transport_date is None and "transport_date" in self.model_fields_set:
+            _dict["transport_date"] = None
+
+        # set to None if origin_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin_id is None and "origin_id" in self.model_fields_set:
+            _dict["origin_id"] = None
+
+        # set to None if destination_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.destination_id is None and "destination_id" in self.model_fields_set:
+            _dict["destination_id"] = None
+
         return _dict
 
     @classmethod
@@ -105,6 +159,17 @@ class ExternalAPITransportOrderList(BaseModel):
         _obj = cls.model_validate(
             {
                 "transport_order_id": obj.get("transport_order_id"),
+                "transport_date": obj.get("transport_date"),
+                "origin_id": obj.get("origin_id"),
+                "origin_name": obj.get("origin_name"),
+                "origin_address": obj.get("origin_address"),
+                "destination_id": obj.get("destination_id"),
+                "destination_name": obj.get("destination_name"),
+                "destination_address": obj.get("destination_address"),
+                "assortment_name": obj.get("assortment_name"),
+                "transportation_company_name": obj.get("transportation_company_name"),
+                "truck_reg_number": obj.get("truck_reg_number"),
+                "trailer_reg_number": obj.get("trailer_reg_number"),
                 "waybills_ids": obj.get("waybills_ids"),
                 "raw_data": ExternalAPITransportOrderRawDataList.from_dict(
                     obj["raw_data"]

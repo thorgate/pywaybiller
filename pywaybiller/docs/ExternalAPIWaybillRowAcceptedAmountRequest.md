@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **assortment_id** | **int** | The ID of the dispatched assortment (eg 1). Use Querying of a single waybill endpoint to see the available assortments inside rows field using the assortment_raw_id value. | 
 **accepted_assortment_id** | **int** | The ID of the accepted assortment (eg 1). Use Querying of a single waybill endpoint to see the available assortments inside rows field using the assortment_raw_id value. | [optional] 
 **accepted_gross_weight** | **decimal.Decimal** | The accepted gross weight in tonnes. | [optional] 
+**accepted_gross_weight_timestamp** | **datetime** | The timestamp of the accepted gross weight. | [optional] 
 **accepted_tare_weight** | **decimal.Decimal** | The accepted tare weight in tonnes. | [optional] 
+**accepted_tare_weight_timestamp** | **datetime** | The timestamp of the accepted tare weight. | [optional] 
 **accepted_amount** | **decimal.Decimal** | The accepted amount in the unit that is attached to the assortment. | [optional] 
 
 ## Example

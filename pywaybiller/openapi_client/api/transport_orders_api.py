@@ -597,6 +597,12 @@ class TransportOrdersApi:
     @validate_call
     def transport_orders_list(
         self,
+        destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
         end_date: Annotated[
             Optional[datetime],
             Field(
@@ -640,6 +646,24 @@ class TransportOrdersApi:
         offset: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
+        ] = None,
+        origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas."
+            ),
         ] = None,
         start_date: Annotated[
             Optional[datetime],
@@ -719,9 +743,12 @@ class TransportOrdersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedExternalAPITransportOrderListList:
-        """transport_orders_list
+        """Querying of transport orders
 
+        Returns transport orders associated with your company, according to the specified filters.
 
+        :param destination_ids: Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas.
+        :type destination_ids: str
         :param end_date: Filters transport orders that have transport date on or before the specified date.
         :type end_date: datetime
         :param limit: Maximum number of objects to return per page
@@ -738,6 +765,12 @@ class TransportOrdersApi:
         :type number__in: str
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param origin_ids: Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas.
+        :type origin_ids: str
+        :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
+        :type raw_destination_ids: str
+        :param raw_origin_ids: Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas.
+        :type raw_origin_ids: str
         :param start_date: Filters transport orders that have transport date after the specified date.
         :type start_date: datetime
         :param status: Filters transport orders with specified status (case sensitive).
@@ -783,6 +816,7 @@ class TransportOrdersApi:
         """  # noqa: E501
 
         _param = self._transport_orders_list_serialize(
+            destination_ids=destination_ids,
             end_date=end_date,
             limit=limit,
             number=number,
@@ -791,6 +825,9 @@ class TransportOrdersApi:
             number__iexact=number__iexact,
             number__in=number__in,
             offset=offset,
+            origin_ids=origin_ids,
+            raw_destination_ids=raw_destination_ids,
+            raw_origin_ids=raw_origin_ids,
             start_date=start_date,
             status=status,
             status__contains=status__contains,
@@ -824,6 +861,12 @@ class TransportOrdersApi:
     @validate_call
     def transport_orders_list_with_http_info(
         self,
+        destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
         end_date: Annotated[
             Optional[datetime],
             Field(
@@ -867,6 +910,24 @@ class TransportOrdersApi:
         offset: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
+        ] = None,
+        origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas."
+            ),
         ] = None,
         start_date: Annotated[
             Optional[datetime],
@@ -946,9 +1007,12 @@ class TransportOrdersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedExternalAPITransportOrderListList]:
-        """transport_orders_list
+        """Querying of transport orders
 
+        Returns transport orders associated with your company, according to the specified filters.
 
+        :param destination_ids: Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas.
+        :type destination_ids: str
         :param end_date: Filters transport orders that have transport date on or before the specified date.
         :type end_date: datetime
         :param limit: Maximum number of objects to return per page
@@ -965,6 +1029,12 @@ class TransportOrdersApi:
         :type number__in: str
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param origin_ids: Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas.
+        :type origin_ids: str
+        :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
+        :type raw_destination_ids: str
+        :param raw_origin_ids: Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas.
+        :type raw_origin_ids: str
         :param start_date: Filters transport orders that have transport date after the specified date.
         :type start_date: datetime
         :param status: Filters transport orders with specified status (case sensitive).
@@ -1010,6 +1080,7 @@ class TransportOrdersApi:
         """  # noqa: E501
 
         _param = self._transport_orders_list_serialize(
+            destination_ids=destination_ids,
             end_date=end_date,
             limit=limit,
             number=number,
@@ -1018,6 +1089,9 @@ class TransportOrdersApi:
             number__iexact=number__iexact,
             number__in=number__in,
             offset=offset,
+            origin_ids=origin_ids,
+            raw_destination_ids=raw_destination_ids,
+            raw_origin_ids=raw_origin_ids,
             start_date=start_date,
             status=status,
             status__contains=status__contains,
@@ -1051,6 +1125,12 @@ class TransportOrdersApi:
     @validate_call
     def transport_orders_list_without_preload_content(
         self,
+        destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
         end_date: Annotated[
             Optional[datetime],
             Field(
@@ -1094,6 +1174,24 @@ class TransportOrdersApi:
         offset: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
+        ] = None,
+        origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_destination_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_origin_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas."
+            ),
         ] = None,
         start_date: Annotated[
             Optional[datetime],
@@ -1173,9 +1271,12 @@ class TransportOrdersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """transport_orders_list
+        """Querying of transport orders
 
+        Returns transport orders associated with your company, according to the specified filters.
 
+        :param destination_ids: Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas.
+        :type destination_ids: str
         :param end_date: Filters transport orders that have transport date on or before the specified date.
         :type end_date: datetime
         :param limit: Maximum number of objects to return per page
@@ -1192,6 +1293,12 @@ class TransportOrdersApi:
         :type number__in: str
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param origin_ids: Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas.
+        :type origin_ids: str
+        :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
+        :type raw_destination_ids: str
+        :param raw_origin_ids: Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas.
+        :type raw_origin_ids: str
         :param start_date: Filters transport orders that have transport date after the specified date.
         :type start_date: datetime
         :param status: Filters transport orders with specified status (case sensitive).
@@ -1237,6 +1344,7 @@ class TransportOrdersApi:
         """  # noqa: E501
 
         _param = self._transport_orders_list_serialize(
+            destination_ids=destination_ids,
             end_date=end_date,
             limit=limit,
             number=number,
@@ -1245,6 +1353,9 @@ class TransportOrdersApi:
             number__iexact=number__iexact,
             number__in=number__in,
             offset=offset,
+            origin_ids=origin_ids,
+            raw_destination_ids=raw_destination_ids,
+            raw_origin_ids=raw_origin_ids,
             start_date=start_date,
             status=status,
             status__contains=status__contains,
@@ -1273,6 +1384,7 @@ class TransportOrdersApi:
 
     def _transport_orders_list_serialize(
         self,
+        destination_ids,
         end_date,
         limit,
         number,
@@ -1281,6 +1393,9 @@ class TransportOrdersApi:
         number__iexact,
         number__in,
         offset,
+        origin_ids,
+        raw_destination_ids,
+        raw_origin_ids,
         start_date,
         status,
         status__contains,
@@ -1312,6 +1427,9 @@ class TransportOrdersApi:
 
         # process the path parameters
         # process the query parameters
+        if destination_ids is not None:
+            _query_params.append(("destination_ids", destination_ids))
+
         if end_date is not None:
             if isinstance(end_date, datetime):
                 _query_params.append(
@@ -1345,6 +1463,15 @@ class TransportOrdersApi:
 
         if offset is not None:
             _query_params.append(("offset", offset))
+
+        if origin_ids is not None:
+            _query_params.append(("origin_ids", origin_ids))
+
+        if raw_destination_ids is not None:
+            _query_params.append(("raw_destination_ids", raw_destination_ids))
+
+        if raw_origin_ids is not None:
+            _query_params.append(("raw_origin_ids", raw_origin_ids))
 
         if start_date is not None:
             if isinstance(start_date, datetime):

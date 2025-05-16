@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assortment_id** | **int** | The ID of the dispatched assortment (eg 1). Use Querying of a single waybill endpoint to see the available assortments inside rows field using the assortment_raw_id value. | 
 **dispatched_gross_weight** | **decimal.Decimal** | The dispatched gross weight in tonnes. | [optional] 
+**dispatched_gross_weight_timestamp** | **datetime** | The timestamp of the dispatched gross weight. | [optional] 
 **dispatched_tare_weight** | **decimal.Decimal** | The dispatched tare weight in tonnes. | [optional] 
+**dispatched_tare_weight_timestamp** | **datetime** | The timestamp of the dispatched tare weight. | [optional] 
 **dispatched_amount** | **decimal.Decimal** | The dispatched amount in the unit that is attached to the assortment. | [optional] 
 
 ## Example

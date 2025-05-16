@@ -63,6 +63,9 @@ class ExternalAPIWaybillList(BaseModel):
     shipper_company_name: StrictStr = Field(
         description="The name of the shipper company."
     )
+    origin_id: Optional[StrictStr] = Field(
+        description="The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
+    )
     origin_name: StrictStr
     origin_address: StrictStr
     transportation_company_name: StrictStr = Field(
@@ -106,6 +109,7 @@ class ExternalAPIWaybillList(BaseModel):
         "project",
         "raw_data",
         "shipper_company_name",
+        "origin_id",
         "origin_name",
         "origin_address",
         "transportation_company_name",
@@ -185,6 +189,7 @@ class ExternalAPIWaybillList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -201,6 +206,7 @@ class ExternalAPIWaybillList(BaseModel):
                 "project",
                 "raw_data",
                 "shipper_company_name",
+                "origin_id",
                 "origin_name",
                 "origin_address",
                 "transportation_company_name",
@@ -287,6 +293,11 @@ class ExternalAPIWaybillList(BaseModel):
         if self.project is None and "project" in self.model_fields_set:
             _dict["project"] = None
 
+        # set to None if origin_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin_id is None and "origin_id" in self.model_fields_set:
+            _dict["origin_id"] = None
+
         # set to None if last_vehicle_location (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -323,6 +334,7 @@ class ExternalAPIWaybillList(BaseModel):
                 if obj.get("raw_data") is not None
                 else None,
                 "shipper_company_name": obj.get("shipper_company_name"),
+                "origin_id": obj.get("origin_id"),
                 "origin_name": obj.get("origin_name"),
                 "origin_address": obj.get("origin_address"),
                 "transportation_company_name": obj.get("transportation_company_name"),

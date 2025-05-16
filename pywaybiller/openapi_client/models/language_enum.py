@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class LanguageEnum(str, Enum):
     """
-    * `` -  * `et` - Eesti * `ru` - Русский * `en` - English * `us` - English (US) * `lv` - Latviski * `fi` - Suomi * `nb` - Norsk * `pl` - Polski
+    * `et` - Eesti * `ru` - Русский * `en` - English * `us` - English (US) * `lv` - Latviski * `fi` - Suomi * `nb` - Norsk * `pl` - Polski
     """
 
     """

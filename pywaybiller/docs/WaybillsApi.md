@@ -441,7 +441,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **waybills_list**
-> PaginatedExternalAPIWaybillListList waybills_list(limit=limit, offset=offset, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__lt=dispatcher_timestamp__lt)
+> PaginatedExternalAPIWaybillListList waybills_list(destination_ids=destination_ids, limit=limit, offset=offset, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt, transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt)
 
 Querying of waybills
 
@@ -481,14 +481,18 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.WaybillsApi(api_client)
+    destination_ids = 'destination_ids_example' # str | Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas. (optional)
     limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
-    dispatcher_timestamp__gt = 'dispatcher_timestamp__gt_example' # str |  (optional)
-    dispatcher_timestamp__lt = 'dispatcher_timestamp__lt_example' # str |  (optional)
+    origin_ids = 'origin_ids_example' # str | Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas. (optional)
+    raw_destination_ids = 'raw_destination_ids_example' # str | Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas. (optional)
+    raw_origin_ids = 'raw_origin_ids_example' # str | Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas. (optional)
+    transportation_cost_confirmed_at_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format. (optional)
+    transportation_cost_confirmed_at_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format. (optional)
 
     try:
         # Querying of waybills
-        api_response = api_instance.waybills_list(limit=limit, offset=offset, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__lt=dispatcher_timestamp__lt)
+        api_response = api_instance.waybills_list(destination_ids=destination_ids, limit=limit, offset=offset, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt, transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt)
         print("The response of WaybillsApi->waybills_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -502,10 +506,14 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **destination_ids** | **str**| Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas. | [optional] 
  **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
- **dispatcher_timestamp__gt** | **str**|  | [optional] 
- **dispatcher_timestamp__lt** | **str**|  | [optional] 
+ **origin_ids** | **str**| Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas. | [optional] 
+ **raw_destination_ids** | **str**| Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas. | [optional] 
+ **raw_origin_ids** | **str**| Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas. | [optional] 
+ **transportation_cost_confirmed_at_timestamp__gt** | **datetime**| Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format. | [optional] 
+ **transportation_cost_confirmed_at_timestamp__lt** | **datetime**| Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format. | [optional] 
 
 ### Return type
 

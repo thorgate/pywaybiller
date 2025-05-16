@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **transport_order_id** | **int** |  | [readonly] 
 **status** | [**TransportOrderStatusEnum**](TransportOrderStatusEnum.md) |  | [readonly] 
 **number** | **str** |  | [readonly] 
+**origin_id** | **int** |  | [readonly] 
+**destination_id** | **int** |  | [readonly] 
 **entity_code** | **str** |  | [readonly] 
 **waybills_ids** | **List[int]** |  | [readonly] 
 

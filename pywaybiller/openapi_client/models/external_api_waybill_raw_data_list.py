@@ -31,7 +31,8 @@ class ExternalAPIWaybillRawDataList(BaseModel):
     destination_id: Optional[StrictInt] = Field(
         description="The ID of the destination."
     )
-    __properties: ClassVar[List[str]] = ["waybill_id", "destination_id"]
+    origin_id: StrictInt = Field(description="The ID of the origin.")
+    __properties: ClassVar[List[str]] = ["waybill_id", "destination_id", "origin_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,11 +65,13 @@ class ExternalAPIWaybillRawDataList(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "waybill_id",
                 "destination_id",
+                "origin_id",
             ]
         )
 
@@ -97,6 +100,7 @@ class ExternalAPIWaybillRawDataList(BaseModel):
             {
                 "waybill_id": obj.get("waybill_id"),
                 "destination_id": obj.get("destination_id"),
+                "origin_id": obj.get("origin_id"),
             }
         )
         return _obj

@@ -34,12 +34,16 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
     transport_order_id: StrictInt
     status: TransportOrderStatusEnum
     number: Optional[Annotated[str, Field(strict=True, max_length=16)]]
+    origin_id: Optional[StrictInt]
+    destination_id: StrictInt
     entity_code: StrictStr
     waybills_ids: List[StrictInt]
     __properties: ClassVar[List[str]] = [
         "transport_order_id",
         "status",
         "number",
+        "origin_id",
+        "destination_id",
         "entity_code",
         "waybills_ids",
     ]
@@ -78,12 +82,16 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "transport_order_id",
                 "status",
                 "number",
+                "origin_id",
+                "destination_id",
                 "entity_code",
                 "waybills_ids",
             ]
@@ -98,6 +106,11 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
         # and model_fields_set contains the field
         if self.number is None and "number" in self.model_fields_set:
             _dict["number"] = None
+
+        # set to None if origin_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin_id is None and "origin_id" in self.model_fields_set:
+            _dict["origin_id"] = None
 
         return _dict
 
@@ -115,6 +128,8 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
                 "transport_order_id": obj.get("transport_order_id"),
                 "status": obj.get("status"),
                 "number": obj.get("number"),
+                "origin_id": obj.get("origin_id"),
+                "destination_id": obj.get("destination_id"),
                 "entity_code": obj.get("entity_code"),
                 "waybills_ids": obj.get("waybills_ids"),
             }

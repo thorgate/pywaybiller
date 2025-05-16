@@ -25,8 +25,8 @@ from pywaybiller.openapi_client.models.external_api_origin_create import (
 from pywaybiller.openapi_client.models.external_api_origin_create_request import (
     ExternalAPIOriginCreateRequest,
 )
-from pywaybiller.openapi_client.models.external_api_origin_read import (
-    ExternalAPIOriginRead,
+from pywaybiller.openapi_client.models.external_api_origin_retrieve import (
+    ExternalAPIOriginRetrieve,
 )
 from pywaybiller.openapi_client.models.external_api_origin_update import (
     ExternalAPIOriginUpdate,
@@ -70,7 +70,7 @@ class OriginsApi:
     ) -> ExternalAPIOriginCreate:
         """Creation of an origin
 
-        Creates a new origin.<br><br>         **NB!** All posted IDs are Waybiller IDs.
+        Creates a new origin          **NB!** All provided identifiers must be valid Waybiller IDs.
 
         :param external_api_origin_create_request: (required)
         :type external_api_origin_create_request: ExternalAPIOriginCreateRequest
@@ -135,7 +135,7 @@ class OriginsApi:
     ) -> ApiResponse[ExternalAPIOriginCreate]:
         """Creation of an origin
 
-        Creates a new origin.<br><br>         **NB!** All posted IDs are Waybiller IDs.
+        Creates a new origin          **NB!** All provided identifiers must be valid Waybiller IDs.
 
         :param external_api_origin_create_request: (required)
         :type external_api_origin_create_request: ExternalAPIOriginCreateRequest
@@ -200,7 +200,7 @@ class OriginsApi:
     ) -> RESTResponseType:
         """Creation of an origin
 
-        Creates a new origin.<br><br>         **NB!** All posted IDs are Waybiller IDs.
+        Creates a new origin          **NB!** All provided identifiers must be valid Waybiller IDs.
 
         :param external_api_origin_create_request: (required)
         :type external_api_origin_create_request: ExternalAPIOriginCreateRequest
@@ -312,31 +312,31 @@ class OriginsApi:
         company__reg_code: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company with the specified register code (case sensitive)."
+                description="Filters origins that belong to the company with the specified registration code (case-sensitive)"
             ),
         ] = None,
         company__reg_code__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company of which register codes contain this keyword (case sensitive)."
+                description="Filters origins that belong to companies whose registration codes contain this keyword (case-sensitive)"
             ),
         ] = None,
         company__reg_code__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company of which register codes contain this keyword (case insensitive)."
+                description="Filters origins that belong to companies whose registration codes contain this keyword (case-insensitive)"
             ),
         ] = None,
         company__reg_code__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company with the specified register code (case insensitive)."
+                description="Filters origins that belong to the company with the specified registration code (case-insensitive)"
             ),
         ] = None,
         explicitly_viewable: Annotated[
             Optional[StrictBool],
             Field(
-                description="Filters origins that belong to your company or where your company was added as a partner."
+                description="Filters origins that belong to your company or where your company was added as a partner"
             ),
         ] = None,
         limit: Annotated[
@@ -346,47 +346,49 @@ class OriginsApi:
         location__address: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified address (case sensitive)."
+                description="Filters origins with the specified address (case-sensitive)"
             ),
         ] = None,
         location__address__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which addresses contain this keyword (case sensitive)."
+                description="Filters origins whose addresses contain this keyword (case-sensitive)"
             ),
         ] = None,
         location__address__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which addresses contain this keyword (case insensitive)."
+                description="Filters origins whose addresses contain this keyword (case-insensitive)"
             ),
         ] = None,
         location__address__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified address (case insensitive)."
+                description="Filters origins with the specified address (case-insensitive)"
             ),
         ] = None,
         name: Annotated[
             Optional[StrictStr],
-            Field(description="Filters origins with specified name (case sensitive)."),
+            Field(
+                description="Filters origins with the specified name (case-sensitive)"
+            ),
         ] = None,
         name__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which names contain this keyword (case sensitive)."
+                description="Filters origins whose names contain this keyword (case-sensitive)"
             ),
         ] = None,
         name__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which names contain this keyword (case insensitive)."
+                description="Filters origins whose names contain this keyword (case-insensitive)"
             ),
         ] = None,
         name__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified name (case insensitive)."
+                description="Filters origins with the specified name (case-insensitive)"
             ),
         ] = None,
         offset: Annotated[
@@ -405,37 +407,37 @@ class OriginsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PaginatedExternalAPIOriginListList:
-        """Querying of origins
+        """Querying origins
 
-        Returns all origins associated with your company, according to the specified filters.
+        Returns all origins associated with your company, according to the specified filters
 
-        :param company__reg_code: Filters origins belonging to the company with the specified register code (case sensitive).
+        :param company__reg_code: Filters origins that belong to the company with the specified registration code (case-sensitive)
         :type company__reg_code: str
-        :param company__reg_code__contains: Filters origins belonging to the company of which register codes contain this keyword (case sensitive).
+        :param company__reg_code__contains: Filters origins that belong to companies whose registration codes contain this keyword (case-sensitive)
         :type company__reg_code__contains: str
-        :param company__reg_code__icontains: Filters origins belonging to the company of which register codes contain this keyword (case insensitive).
+        :param company__reg_code__icontains: Filters origins that belong to companies whose registration codes contain this keyword (case-insensitive)
         :type company__reg_code__icontains: str
-        :param company__reg_code__iexact: Filters origins belonging to the company with the specified register code (case insensitive).
+        :param company__reg_code__iexact: Filters origins that belong to the company with the specified registration code (case-insensitive)
         :type company__reg_code__iexact: str
-        :param explicitly_viewable: Filters origins that belong to your company or where your company was added as a partner.
+        :param explicitly_viewable: Filters origins that belong to your company or where your company was added as a partner
         :type explicitly_viewable: bool
         :param limit: Maximum number of objects to return per page
         :type limit: int
-        :param location__address: Filters origins with specified address (case sensitive).
+        :param location__address: Filters origins with the specified address (case-sensitive)
         :type location__address: str
-        :param location__address__contains: Filters origins of which addresses contain this keyword (case sensitive).
+        :param location__address__contains: Filters origins whose addresses contain this keyword (case-sensitive)
         :type location__address__contains: str
-        :param location__address__icontains: Filters origins of which addresses contain this keyword (case insensitive).
+        :param location__address__icontains: Filters origins whose addresses contain this keyword (case-insensitive)
         :type location__address__icontains: str
-        :param location__address__iexact: Filters origins with specified address (case insensitive).
+        :param location__address__iexact: Filters origins with the specified address (case-insensitive)
         :type location__address__iexact: str
-        :param name: Filters origins with specified name (case sensitive).
+        :param name: Filters origins with the specified name (case-sensitive)
         :type name: str
-        :param name__contains: Filters origins of which names contain this keyword (case sensitive).
+        :param name__contains: Filters origins whose names contain this keyword (case-sensitive)
         :type name__contains: str
-        :param name__icontains: Filters origins of which names contain this keyword (case insensitive).
+        :param name__icontains: Filters origins whose names contain this keyword (case-insensitive)
         :type name__icontains: str
-        :param name__iexact: Filters origins with specified name (case insensitive).
+        :param name__iexact: Filters origins with the specified name (case-insensitive)
         :type name__iexact: str
         :param offset: The initial index from which to return the results
         :type offset: int
@@ -502,31 +504,31 @@ class OriginsApi:
         company__reg_code: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company with the specified register code (case sensitive)."
+                description="Filters origins that belong to the company with the specified registration code (case-sensitive)"
             ),
         ] = None,
         company__reg_code__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company of which register codes contain this keyword (case sensitive)."
+                description="Filters origins that belong to companies whose registration codes contain this keyword (case-sensitive)"
             ),
         ] = None,
         company__reg_code__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company of which register codes contain this keyword (case insensitive)."
+                description="Filters origins that belong to companies whose registration codes contain this keyword (case-insensitive)"
             ),
         ] = None,
         company__reg_code__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company with the specified register code (case insensitive)."
+                description="Filters origins that belong to the company with the specified registration code (case-insensitive)"
             ),
         ] = None,
         explicitly_viewable: Annotated[
             Optional[StrictBool],
             Field(
-                description="Filters origins that belong to your company or where your company was added as a partner."
+                description="Filters origins that belong to your company or where your company was added as a partner"
             ),
         ] = None,
         limit: Annotated[
@@ -536,47 +538,49 @@ class OriginsApi:
         location__address: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified address (case sensitive)."
+                description="Filters origins with the specified address (case-sensitive)"
             ),
         ] = None,
         location__address__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which addresses contain this keyword (case sensitive)."
+                description="Filters origins whose addresses contain this keyword (case-sensitive)"
             ),
         ] = None,
         location__address__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which addresses contain this keyword (case insensitive)."
+                description="Filters origins whose addresses contain this keyword (case-insensitive)"
             ),
         ] = None,
         location__address__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified address (case insensitive)."
+                description="Filters origins with the specified address (case-insensitive)"
             ),
         ] = None,
         name: Annotated[
             Optional[StrictStr],
-            Field(description="Filters origins with specified name (case sensitive)."),
+            Field(
+                description="Filters origins with the specified name (case-sensitive)"
+            ),
         ] = None,
         name__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which names contain this keyword (case sensitive)."
+                description="Filters origins whose names contain this keyword (case-sensitive)"
             ),
         ] = None,
         name__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which names contain this keyword (case insensitive)."
+                description="Filters origins whose names contain this keyword (case-insensitive)"
             ),
         ] = None,
         name__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified name (case insensitive)."
+                description="Filters origins with the specified name (case-insensitive)"
             ),
         ] = None,
         offset: Annotated[
@@ -595,37 +599,37 @@ class OriginsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PaginatedExternalAPIOriginListList]:
-        """Querying of origins
+        """Querying origins
 
-        Returns all origins associated with your company, according to the specified filters.
+        Returns all origins associated with your company, according to the specified filters
 
-        :param company__reg_code: Filters origins belonging to the company with the specified register code (case sensitive).
+        :param company__reg_code: Filters origins that belong to the company with the specified registration code (case-sensitive)
         :type company__reg_code: str
-        :param company__reg_code__contains: Filters origins belonging to the company of which register codes contain this keyword (case sensitive).
+        :param company__reg_code__contains: Filters origins that belong to companies whose registration codes contain this keyword (case-sensitive)
         :type company__reg_code__contains: str
-        :param company__reg_code__icontains: Filters origins belonging to the company of which register codes contain this keyword (case insensitive).
+        :param company__reg_code__icontains: Filters origins that belong to companies whose registration codes contain this keyword (case-insensitive)
         :type company__reg_code__icontains: str
-        :param company__reg_code__iexact: Filters origins belonging to the company with the specified register code (case insensitive).
+        :param company__reg_code__iexact: Filters origins that belong to the company with the specified registration code (case-insensitive)
         :type company__reg_code__iexact: str
-        :param explicitly_viewable: Filters origins that belong to your company or where your company was added as a partner.
+        :param explicitly_viewable: Filters origins that belong to your company or where your company was added as a partner
         :type explicitly_viewable: bool
         :param limit: Maximum number of objects to return per page
         :type limit: int
-        :param location__address: Filters origins with specified address (case sensitive).
+        :param location__address: Filters origins with the specified address (case-sensitive)
         :type location__address: str
-        :param location__address__contains: Filters origins of which addresses contain this keyword (case sensitive).
+        :param location__address__contains: Filters origins whose addresses contain this keyword (case-sensitive)
         :type location__address__contains: str
-        :param location__address__icontains: Filters origins of which addresses contain this keyword (case insensitive).
+        :param location__address__icontains: Filters origins whose addresses contain this keyword (case-insensitive)
         :type location__address__icontains: str
-        :param location__address__iexact: Filters origins with specified address (case insensitive).
+        :param location__address__iexact: Filters origins with the specified address (case-insensitive)
         :type location__address__iexact: str
-        :param name: Filters origins with specified name (case sensitive).
+        :param name: Filters origins with the specified name (case-sensitive)
         :type name: str
-        :param name__contains: Filters origins of which names contain this keyword (case sensitive).
+        :param name__contains: Filters origins whose names contain this keyword (case-sensitive)
         :type name__contains: str
-        :param name__icontains: Filters origins of which names contain this keyword (case insensitive).
+        :param name__icontains: Filters origins whose names contain this keyword (case-insensitive)
         :type name__icontains: str
-        :param name__iexact: Filters origins with specified name (case insensitive).
+        :param name__iexact: Filters origins with the specified name (case-insensitive)
         :type name__iexact: str
         :param offset: The initial index from which to return the results
         :type offset: int
@@ -692,31 +696,31 @@ class OriginsApi:
         company__reg_code: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company with the specified register code (case sensitive)."
+                description="Filters origins that belong to the company with the specified registration code (case-sensitive)"
             ),
         ] = None,
         company__reg_code__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company of which register codes contain this keyword (case sensitive)."
+                description="Filters origins that belong to companies whose registration codes contain this keyword (case-sensitive)"
             ),
         ] = None,
         company__reg_code__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company of which register codes contain this keyword (case insensitive)."
+                description="Filters origins that belong to companies whose registration codes contain this keyword (case-insensitive)"
             ),
         ] = None,
         company__reg_code__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins belonging to the company with the specified register code (case insensitive)."
+                description="Filters origins that belong to the company with the specified registration code (case-insensitive)"
             ),
         ] = None,
         explicitly_viewable: Annotated[
             Optional[StrictBool],
             Field(
-                description="Filters origins that belong to your company or where your company was added as a partner."
+                description="Filters origins that belong to your company or where your company was added as a partner"
             ),
         ] = None,
         limit: Annotated[
@@ -726,47 +730,49 @@ class OriginsApi:
         location__address: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified address (case sensitive)."
+                description="Filters origins with the specified address (case-sensitive)"
             ),
         ] = None,
         location__address__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which addresses contain this keyword (case sensitive)."
+                description="Filters origins whose addresses contain this keyword (case-sensitive)"
             ),
         ] = None,
         location__address__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which addresses contain this keyword (case insensitive)."
+                description="Filters origins whose addresses contain this keyword (case-insensitive)"
             ),
         ] = None,
         location__address__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified address (case insensitive)."
+                description="Filters origins with the specified address (case-insensitive)"
             ),
         ] = None,
         name: Annotated[
             Optional[StrictStr],
-            Field(description="Filters origins with specified name (case sensitive)."),
+            Field(
+                description="Filters origins with the specified name (case-sensitive)"
+            ),
         ] = None,
         name__contains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which names contain this keyword (case sensitive)."
+                description="Filters origins whose names contain this keyword (case-sensitive)"
             ),
         ] = None,
         name__icontains: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins of which names contain this keyword (case insensitive)."
+                description="Filters origins whose names contain this keyword (case-insensitive)"
             ),
         ] = None,
         name__iexact: Annotated[
             Optional[StrictStr],
             Field(
-                description="Filters origins with specified name (case insensitive)."
+                description="Filters origins with the specified name (case-insensitive)"
             ),
         ] = None,
         offset: Annotated[
@@ -785,37 +791,37 @@ class OriginsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Querying of origins
+        """Querying origins
 
-        Returns all origins associated with your company, according to the specified filters.
+        Returns all origins associated with your company, according to the specified filters
 
-        :param company__reg_code: Filters origins belonging to the company with the specified register code (case sensitive).
+        :param company__reg_code: Filters origins that belong to the company with the specified registration code (case-sensitive)
         :type company__reg_code: str
-        :param company__reg_code__contains: Filters origins belonging to the company of which register codes contain this keyword (case sensitive).
+        :param company__reg_code__contains: Filters origins that belong to companies whose registration codes contain this keyword (case-sensitive)
         :type company__reg_code__contains: str
-        :param company__reg_code__icontains: Filters origins belonging to the company of which register codes contain this keyword (case insensitive).
+        :param company__reg_code__icontains: Filters origins that belong to companies whose registration codes contain this keyword (case-insensitive)
         :type company__reg_code__icontains: str
-        :param company__reg_code__iexact: Filters origins belonging to the company with the specified register code (case insensitive).
+        :param company__reg_code__iexact: Filters origins that belong to the company with the specified registration code (case-insensitive)
         :type company__reg_code__iexact: str
-        :param explicitly_viewable: Filters origins that belong to your company or where your company was added as a partner.
+        :param explicitly_viewable: Filters origins that belong to your company or where your company was added as a partner
         :type explicitly_viewable: bool
         :param limit: Maximum number of objects to return per page
         :type limit: int
-        :param location__address: Filters origins with specified address (case sensitive).
+        :param location__address: Filters origins with the specified address (case-sensitive)
         :type location__address: str
-        :param location__address__contains: Filters origins of which addresses contain this keyword (case sensitive).
+        :param location__address__contains: Filters origins whose addresses contain this keyword (case-sensitive)
         :type location__address__contains: str
-        :param location__address__icontains: Filters origins of which addresses contain this keyword (case insensitive).
+        :param location__address__icontains: Filters origins whose addresses contain this keyword (case-insensitive)
         :type location__address__icontains: str
-        :param location__address__iexact: Filters origins with specified address (case insensitive).
+        :param location__address__iexact: Filters origins with the specified address (case-insensitive)
         :type location__address__iexact: str
-        :param name: Filters origins with specified name (case sensitive).
+        :param name: Filters origins with the specified name (case-sensitive)
         :type name: str
-        :param name__contains: Filters origins of which names contain this keyword (case sensitive).
+        :param name__contains: Filters origins whose names contain this keyword (case-sensitive)
         :type name__contains: str
-        :param name__icontains: Filters origins of which names contain this keyword (case insensitive).
+        :param name__icontains: Filters origins whose names contain this keyword (case-insensitive)
         :type name__icontains: str
-        :param name__iexact: Filters origins with specified name (case insensitive).
+        :param name__iexact: Filters origins with the specified name (case-insensitive)
         :type name__iexact: str
         :param offset: The initial index from which to return the results
         :type offset: int
@@ -1012,10 +1018,10 @@ class OriginsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPIOriginRead:
-        """Querying of a single origin
+    ) -> ExternalAPIOriginRetrieve:
+        """Querying a single origin
 
-        Returns an origin with the specified ID. Only owner company and partner companies can query non-public origins. Public origins are available for everyone.
+        Returns an origin instance - Public origins are accessible to all companies - Non-public origins are only accessible to the owner company and authorized partners
 
         :param id: A unique integer value identifying this origin. (required)
         :type id: int
@@ -1050,7 +1056,7 @@ class OriginsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOriginRead",
+            "200": "ExternalAPIOriginRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -1081,10 +1087,10 @@ class OriginsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPIOriginRead]:
-        """Querying of a single origin
+    ) -> ApiResponse[ExternalAPIOriginRetrieve]:
+        """Querying a single origin
 
-        Returns an origin with the specified ID. Only owner company and partner companies can query non-public origins. Public origins are available for everyone.
+        Returns an origin instance - Public origins are accessible to all companies - Non-public origins are only accessible to the owner company and authorized partners
 
         :param id: A unique integer value identifying this origin. (required)
         :type id: int
@@ -1119,7 +1125,7 @@ class OriginsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOriginRead",
+            "200": "ExternalAPIOriginRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -1151,9 +1157,9 @@ class OriginsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Querying of a single origin
+        """Querying a single origin
 
-        Returns an origin with the specified ID. Only owner company and partner companies can query non-public origins. Public origins are available for everyone.
+        Returns an origin instance - Public origins are accessible to all companies - Non-public origins are only accessible to the owner company and authorized partners
 
         :param id: A unique integer value identifying this origin. (required)
         :type id: int
@@ -1188,7 +1194,7 @@ class OriginsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOriginRead",
+            "200": "ExternalAPIOriginRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -1272,9 +1278,9 @@ class OriginsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ExternalAPIOriginUpdate:
-        """Editing of an origin
+        """Updating of an origin
 
-        Edits origin. It is allowed to be used by origin's owner company.<br><br>         **NB!** All posted IDs are Waybiller IDs.
+        Modifies an existing origin's details          **NB!** All provided identifiers must be valid Waybiller IDs.
 
         :param id: A unique integer value identifying this origin. (required)
         :type id: int
@@ -1346,9 +1352,9 @@ class OriginsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ExternalAPIOriginUpdate]:
-        """Editing of an origin
+        """Updating of an origin
 
-        Edits origin. It is allowed to be used by origin's owner company.<br><br>         **NB!** All posted IDs are Waybiller IDs.
+        Modifies an existing origin's details          **NB!** All provided identifiers must be valid Waybiller IDs.
 
         :param id: A unique integer value identifying this origin. (required)
         :type id: int
@@ -1420,9 +1426,9 @@ class OriginsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Editing of an origin
+        """Updating of an origin
 
-        Edits origin. It is allowed to be used by origin's owner company.<br><br>         **NB!** All posted IDs are Waybiller IDs.
+        Modifies an existing origin's details          **NB!** All provided identifiers must be valid Waybiller IDs.
 
         :param id: A unique integer value identifying this origin. (required)
         :type id: int

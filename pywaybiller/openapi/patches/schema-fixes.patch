@@ -80,16 +80,6 @@
              "description": "The IDs of the Waybiller internal objects"
            }
          },
-@@ -5497,8 +5512,7 @@
-             "maxLength": 500
-           },
-           "extra_information": {
--            "type": "string",
--            "maxLength": 254
-+            "type": "string"
-           },
-           "representative_name": {
-             "type": "string",
 @@ -7876,6 +7890,7 @@
            "project": {
              "type": "string",

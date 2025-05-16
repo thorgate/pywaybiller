@@ -19,7 +19,7 @@ import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_origin_raw_data import (
     ExternalAPIOriginRawData,
@@ -31,11 +31,17 @@ class ExternalAPIOriginList(BaseModel):
     ExternalAPIOriginList
     """  # noqa: E501
 
-    id: Optional[StrictStr]
-    name: StrictStr
-    address: StrictStr
-    latitude: Union[StrictFloat, StrictInt]
-    longitude: Union[StrictFloat, StrictInt]
+    id: Optional[StrictStr] = Field(description="ID of the destination in your system")
+    name: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Name of the origin"
+    )
+    address: StrictStr = Field(description="Physical address of the destination")
+    latitude: Union[StrictFloat, StrictInt] = Field(
+        description="Latitude coordinate of the destination's location"
+    )
+    longitude: Union[StrictFloat, StrictInt] = Field(
+        description="Longitude coordinate of the origin's location"
+    )
     raw_data: ExternalAPIOriginRawData = Field(
         description="The IDs of the Waybiller internal objects"
     )
@@ -78,9 +84,19 @@ class ExternalAPIOriginList(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "id",
+                "name",
+                "address",
+                "latitude",
+                "longitude",
                 "raw_data",
             ]
         )

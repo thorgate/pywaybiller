@@ -31,6 +31,9 @@ from pywaybiller.openapi_client.models.external_api_waybill_raw_data import (
 from pywaybiller.openapi_client.models.external_api_waybill_row import (
     ExternalAPIWaybillRow,
 )
+from pywaybiller.openapi_client.models.external_api_waybill_transport_costs import (
+    ExternalAPIWaybillTransportCosts,
+)
 from pywaybiller.openapi_client.models.waybill_status_enum import WaybillStatusEnum
 
 
@@ -183,6 +186,9 @@ class ExternalAPIWaybillRetrieve(BaseModel):
     navision_bin_code: Optional[StrictStr] = Field(description="Bin code.")
     evr_waybill_number: Optional[StrictStr] = Field(description="EVR waybill number.")
     project: Optional[StrictStr] = Field(description="Project code in your system.")
+    transport_costs: Optional[ExternalAPIWaybillTransportCosts] = Field(
+        description="Information about transport costs"
+    )
     raw_data: ExternalAPIWaybillRawData = Field(
         description="The IDs of the Waybiller internal objects"
     )
@@ -242,6 +248,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         "navision_bin_code",
         "evr_waybill_number",
         "project",
+        "transport_costs",
         "raw_data",
     ]
 
@@ -377,6 +384,9 @@ class ExternalAPIWaybillRetrieve(BaseModel):
                 if _item_holding_rights:
                     _items.append(_item_holding_rights.to_dict())
             _dict["holding_rights"] = _items
+        # override the default output from pydantic by calling `to_dict()` of transport_costs
+        if self.transport_costs:
+            _dict["transport_costs"] = self.transport_costs.to_dict()
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
@@ -505,6 +515,11 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         if self.project is None and "project" in self.model_fields_set:
             _dict["project"] = None
 
+        # set to None if transport_costs (nullable) is None
+        # and model_fields_set contains the field
+        if self.transport_costs is None and "transport_costs" in self.model_fields_set:
+            _dict["transport_costs"] = None
+
         return _dict
 
     @classmethod
@@ -592,6 +607,11 @@ class ExternalAPIWaybillRetrieve(BaseModel):
                 "navision_bin_code": obj.get("navision_bin_code"),
                 "evr_waybill_number": obj.get("evr_waybill_number"),
                 "project": obj.get("project"),
+                "transport_costs": ExternalAPIWaybillTransportCosts.from_dict(
+                    obj["transport_costs"]
+                )
+                if obj.get("transport_costs") is not None
+                else None,
                 "raw_data": ExternalAPIWaybillRawData.from_dict(obj["raw_data"])
                 if obj.get("raw_data") is not None
                 else None,

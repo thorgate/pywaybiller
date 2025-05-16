@@ -5,21 +5,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | 
-**location** | [**GeoLocationRequest**](GeoLocationRequest.md) |  | 
-**assortments** | [**List[ExternalAPIOriginAssortmentRequest]**](ExternalAPIOriginAssortmentRequest.md) |  | 
-**partner_companies** | **List[str]** | List of registry codes of partner companies. | [optional] 
-**public** | **bool** |  | [optional] [default to False]
-**active** | **bool** |  | [optional] [default to True]
+**name** | **str** | Name of the origin | 
+**location** | [**ExternalAPIOriginLocationRequest**](ExternalAPIOriginLocationRequest.md) | Physical location of the origin | 
+**assortments** | [**List[ExternalAPIOriginAssortmentRequest]**](ExternalAPIOriginAssortmentRequest.md) | List of assortments available at the origin | 
+**partner_companies** | **List[str]** | List of registry codes of partner companies | [optional] 
+**public** | **bool** | Indicates whether the origin is visible to all companies or only to the owner company and authorized partners | [optional] [default to False]
+**active** | **bool** | Indicates whether the origin is currently active and available for use | [optional] [default to True]
 **holding_base** | [**ExternalAPIHoldingBaseRequest**](ExternalAPIHoldingBaseRequest.md) | Holding base data is provided as is, in internal WB format. It may change at any time without warning and may have a different schema for old and new origins | [optional] 
-**cadaster_number** | **str** | Cadaster number of the Origin in free form. Required if holding base is sent. | [optional] 
-**extra_information** | **str** |  | [optional] 
-**representative_name** | **str** |  | [optional] 
-**representative_phone** | **str** |  | [optional] 
-**waybill_created_emails** | **List[str]** | E-mail addresses, where you want to receive notification when waybill is created. | [optional] 
-**waybill_accepted_emails** | **List[str]** | E-mail addresses, where you want to receive notification when waybill is accepted. | [optional] 
-**waybill_reached_destination_emails** | **List[str]** | E-mail addresses, where you want to receive notification when waybill has arrived at destination. | [optional] 
-**transport_order_created_emails** | **List[str]** | E-mail addresses, where you want to receive notification when transport order is created. | [optional] 
+**cadaster_number** | **str** | Cadaster number of the origin in free form. Required if holding base is sent | [optional] 
+**extra_information** | **str** | Additional information about the origin that doesn&#39;t fit in other fields | [optional] 
+**representative_name** | **str** | Name of the person representing this origin | [optional] 
+**representative_phone** | **str** | Contact phone number for the origin representative | [optional] 
+**waybill_created_emails** | **List[str]** | E-mail addresses where notifications will be sent when a waybill is created | [optional] 
+**waybill_accepted_emails** | **List[str]** | E-mail addresses where notifications will be sent when a waybill is accepted | [optional] 
+**waybill_reached_destination_emails** | **List[str]** | E-mail addresses where notifications will be sent when a waybill reaches its destination | [optional] 
+**transport_order_created_emails** | **List[str]** | E-mail addresses where notifications will be sent when a transport order is created | [optional] 
 **waybill_created_emails_language** | [**ExternalAPIOriginCreateWaybillCreatedEmailsLanguage**](ExternalAPIOriginCreateWaybillCreatedEmailsLanguage.md) |  | [optional] 
 **waybill_accepted_emails_language** | [**ExternalAPIOriginCreateWaybillCreatedEmailsLanguage**](ExternalAPIOriginCreateWaybillCreatedEmailsLanguage.md) |  | [optional] 
 **waybill_reached_destination_emails_language** | [**ExternalAPIOriginCreateWaybillCreatedEmailsLanguage**](ExternalAPIOriginCreateWaybillCreatedEmailsLanguage.md) |  | [optional] 

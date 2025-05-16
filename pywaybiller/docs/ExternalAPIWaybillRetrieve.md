@@ -60,6 +60,7 @@ Name | Type | Description | Notes
 **navision_bin_code** | **str** | Bin code. | [readonly] 
 **evr_waybill_number** | **str** | EVR waybill number. | [readonly] 
 **project** | **str** | Project code in your system. | [readonly] 
+**transport_costs** | [**ExternalAPIWaybillTransportCosts**](ExternalAPIWaybillTransportCosts.md) | Information about transport costs | 
 **raw_data** | [**ExternalAPIWaybillRawData**](ExternalAPIWaybillRawData.md) | The IDs of the Waybiller internal objects | [readonly] 
 
 ## Example

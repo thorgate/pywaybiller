@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **project** | **str** | Project code in your system. | [readonly] 
 **raw_data** | [**ExternalAPIWaybillRawDataList**](ExternalAPIWaybillRawDataList.md) | The IDs of the Waybiller internal objects | [readonly] 
 **shipper_company_name** | **str** | The name of the shipper company. | [readonly] 
+**origin_id** | **str** | The external ID of the origin. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [readonly] 
 **origin_name** | **str** |  | [readonly] 
 **origin_address** | **str** |  | [readonly] 
 **transportation_company_name** | **str** | The name of the transportation company. | [readonly] 

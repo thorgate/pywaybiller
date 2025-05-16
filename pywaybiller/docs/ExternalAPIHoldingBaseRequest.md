@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**TypeEnum**](TypeEnum.md) |  | 
+**type** | [**TypeEnum**](TypeEnum.md) |  | [optional] 
 **contract_number** | **str** |  | [optional] 
 **contract_date** | **str** |  | [optional] 
 **previous_owner** | [**ExternalAPIHoldingBasePreviousOwnerRequest**](ExternalAPIHoldingBasePreviousOwnerRequest.md) |  | [optional] 

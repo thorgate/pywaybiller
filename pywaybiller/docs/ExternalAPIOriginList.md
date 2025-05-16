@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**name** | **str** |  | 
-**address** | **str** |  | 
-**latitude** | **float** |  | 
-**longitude** | **float** |  | 
+**id** | **str** | ID of the destination in your system | [readonly] 
+**name** | **str** | Name of the origin | [readonly] 
+**address** | **str** | Physical address of the destination | [readonly] 
+**latitude** | **float** | Latitude coordinate of the destination&#39;s location | [readonly] 
+**longitude** | **float** | Longitude coordinate of the origin&#39;s location | [readonly] 
 **raw_data** | [**ExternalAPIOriginRawData**](ExternalAPIOriginRawData.md) | The IDs of the Waybiller internal objects | [readonly] 
 
 ## Example

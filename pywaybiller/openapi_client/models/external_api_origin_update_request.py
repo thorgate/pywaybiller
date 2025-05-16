@@ -27,10 +27,12 @@ from pywaybiller.openapi_client.models.external_api_holding_base_request import 
 from pywaybiller.openapi_client.models.external_api_origin_assortment_request import (
     ExternalAPIOriginAssortmentRequest,
 )
-from pywaybiller.openapi_client.models.external_api_origin_create_waybill_created_emails_language import (
-    ExternalAPIOriginCreateWaybillCreatedEmailsLanguage,
+from pywaybiller.openapi_client.models.external_api_origin_location_request import (
+    ExternalAPIOriginLocationRequest,
 )
-from pywaybiller.openapi_client.models.geo_location_request import GeoLocationRequest
+from pywaybiller.openapi_client.models.external_api_origin_update_waybill_created_emails_language import (
+    ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage,
+)
 
 
 class ExternalAPIOriginUpdateRequest(BaseModel):
@@ -38,80 +40,97 @@ class ExternalAPIOriginUpdateRequest(BaseModel):
     ExternalAPIOriginUpdateRequest
     """  # noqa: E501
 
-    name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    location: Optional[GeoLocationRequest] = None
-    assortments: Optional[List[ExternalAPIOriginAssortmentRequest]] = None
+    name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = (
+        Field(default=None, description="Name of the origin")
+    )
+    location: Optional[ExternalAPIOriginLocationRequest] = Field(
+        default=None, description="Physical location of the origin"
+    )
+    assortments: Optional[List[ExternalAPIOriginAssortmentRequest]] = Field(
+        default=None, description="List of assortments available at the origin"
+    )
     partner_companies: Optional[
         List[Annotated[str, Field(min_length=1, strict=True)]]
-    ] = Field(default=None, description="List of registry codes of partner companies.")
-    public: Optional[StrictBool] = False
-    active: Optional[StrictBool] = True
+    ] = Field(default=None, description="List of registry codes of partner companies")
+    public: Optional[StrictBool] = Field(
+        default=None,
+        description="Indicates whether the origin is visible to all companies or only to the owner company and authorized partners",
+    )
+    active: Optional[StrictBool] = Field(
+        default=None,
+        description="Indicates whether the origin is currently active and available for use",
+    )
     holding_base: Optional[ExternalAPIHoldingBaseRequest] = Field(
         default=None,
         description="Holding base data is provided as is, in internal WB format. It may change at any time without warning and may have a different schema for old and new origins",
     )
-    cadaster_number: Optional[
-        Annotated[str, Field(min_length=1, strict=True, max_length=500)]
-    ] = Field(
-        default=None,
-        description="Cadaster number of the Origin in free form. Required if holding base is sent.",
+    cadaster_number: Optional[Annotated[str, Field(strict=True, max_length=500)]] = (
+        Field(
+            default=None,
+            description="Cadaster number of the origin in free form. Required if holding base is sent",
+        )
     )
     extra_information: Optional[Annotated[str, Field(strict=True, max_length=254)]] = (
-        None
+        Field(
+            default=None,
+            description="Additional information about the origin that doesn't fit in other fields",
+        )
     )
     representative_name: Optional[Annotated[str, Field(strict=True, max_length=64)]] = (
-        None
+        Field(default=None, description="Name of the person representing this origin")
     )
     representative_phone: Optional[
         Annotated[str, Field(strict=True, max_length=128)]
-    ] = None
+    ] = Field(
+        default=None, description="Contact phone number for the origin representative"
+    )
     waybill_created_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True)]]
+        List[Annotated[str, Field(strict=True, max_length=254)]]
     ] = Field(
         default=None,
-        description="E-mail addresses, where you want to receive notification when waybill is created.",
+        description="E-mail addresses where notifications will be sent when a waybill is created",
     )
     waybill_accepted_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True)]]
+        List[Annotated[str, Field(strict=True, max_length=254)]]
     ] = Field(
         default=None,
-        description="E-mail addresses, where you want to receive notification when waybill is accepted.",
+        description="E-mail addresses where notifications will be sent when a waybill is accepted",
     )
     waybill_reached_destination_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True)]]
+        List[Annotated[str, Field(strict=True, max_length=254)]]
     ] = Field(
         default=None,
-        description="E-mail addresses, where you want to receive notification when waybill has arrived at destination.",
+        description="E-mail addresses where notifications will be sent when a waybill reaches its destination",
     )
     transport_order_created_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True)]]
+        List[Annotated[str, Field(strict=True, max_length=254)]]
     ] = Field(
         default=None,
-        description="E-mail addresses, where you want to receive notification when transport order is created.",
+        description="E-mail addresses where notifications will be sent when a transport order is created",
     )
     waybill_created_emails_language: Optional[
-        ExternalAPIOriginCreateWaybillCreatedEmailsLanguage
+        ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage
     ] = None
     waybill_accepted_emails_language: Optional[
-        ExternalAPIOriginCreateWaybillCreatedEmailsLanguage
+        ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage
     ] = None
     waybill_reached_destination_emails_language: Optional[
-        ExternalAPIOriginCreateWaybillCreatedEmailsLanguage
+        ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage
     ] = None
     transport_order_created_emails_language: Optional[
-        ExternalAPIOriginCreateWaybillCreatedEmailsLanguage
+        ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage
     ] = None
     feature_single_transport_order_per_truck: Optional[StrictBool] = Field(
-        default=False,
+        default=None,
         description="Managers are not allowed to create transport orders for a vehicle if there is an active transport order for the vehicle from this origin",
     )
     feature_waybill_dispatched_amounts_changing_disabled: Optional[StrictBool] = Field(
-        default=False,
+        default=None,
         description="Drivers and receivers are not allowed to change dispatched amounts for waybills from this origin",
     )
     feature_waybill_destination_changing_disabled_for_drivers: Optional[StrictBool] = (
         Field(
-            default=False,
+            default=None,
             description="Drivers are not allowed to change the destination of waybills from this origin",
         )
     )
@@ -210,6 +229,38 @@ class ExternalAPIOriginUpdateRequest(BaseModel):
             _dict["transport_order_created_emails_language"] = (
                 self.transport_order_created_emails_language.to_dict()
             )
+        # set to None if waybill_created_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.waybill_created_emails is None
+            and "waybill_created_emails" in self.model_fields_set
+        ):
+            _dict["waybill_created_emails"] = None
+
+        # set to None if waybill_accepted_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.waybill_accepted_emails is None
+            and "waybill_accepted_emails" in self.model_fields_set
+        ):
+            _dict["waybill_accepted_emails"] = None
+
+        # set to None if waybill_reached_destination_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.waybill_reached_destination_emails is None
+            and "waybill_reached_destination_emails" in self.model_fields_set
+        ):
+            _dict["waybill_reached_destination_emails"] = None
+
+        # set to None if transport_order_created_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transport_order_created_emails is None
+            and "transport_order_created_emails" in self.model_fields_set
+        ):
+            _dict["transport_order_created_emails"] = None
+
         return _dict
 
     @classmethod
@@ -224,7 +275,7 @@ class ExternalAPIOriginUpdateRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "name": obj.get("name"),
-                "location": GeoLocationRequest.from_dict(obj["location"])
+                "location": ExternalAPIOriginLocationRequest.from_dict(obj["location"])
                 if obj.get("location") is not None
                 else None,
                 "assortments": [
@@ -234,8 +285,8 @@ class ExternalAPIOriginUpdateRequest(BaseModel):
                 if obj.get("assortments") is not None
                 else None,
                 "partner_companies": obj.get("partner_companies"),
-                "public": obj.get("public") if obj.get("public") is not None else False,
-                "active": obj.get("active") if obj.get("active") is not None else True,
+                "public": obj.get("public"),
+                "active": obj.get("active"),
                 "holding_base": ExternalAPIHoldingBaseRequest.from_dict(
                     obj["holding_base"]
                 )
@@ -253,43 +304,35 @@ class ExternalAPIOriginUpdateRequest(BaseModel):
                 "transport_order_created_emails": obj.get(
                     "transport_order_created_emails"
                 ),
-                "waybill_created_emails_language": ExternalAPIOriginCreateWaybillCreatedEmailsLanguage.from_dict(
+                "waybill_created_emails_language": ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage.from_dict(
                     obj["waybill_created_emails_language"]
                 )
                 if obj.get("waybill_created_emails_language") is not None
                 else None,
-                "waybill_accepted_emails_language": ExternalAPIOriginCreateWaybillCreatedEmailsLanguage.from_dict(
+                "waybill_accepted_emails_language": ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage.from_dict(
                     obj["waybill_accepted_emails_language"]
                 )
                 if obj.get("waybill_accepted_emails_language") is not None
                 else None,
-                "waybill_reached_destination_emails_language": ExternalAPIOriginCreateWaybillCreatedEmailsLanguage.from_dict(
+                "waybill_reached_destination_emails_language": ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage.from_dict(
                     obj["waybill_reached_destination_emails_language"]
                 )
                 if obj.get("waybill_reached_destination_emails_language") is not None
                 else None,
-                "transport_order_created_emails_language": ExternalAPIOriginCreateWaybillCreatedEmailsLanguage.from_dict(
+                "transport_order_created_emails_language": ExternalAPIOriginUpdateWaybillCreatedEmailsLanguage.from_dict(
                     obj["transport_order_created_emails_language"]
                 )
                 if obj.get("transport_order_created_emails_language") is not None
                 else None,
                 "feature_single_transport_order_per_truck": obj.get(
                     "feature_single_transport_order_per_truck"
-                )
-                if obj.get("feature_single_transport_order_per_truck") is not None
-                else False,
+                ),
                 "feature_waybill_dispatched_amounts_changing_disabled": obj.get(
                     "feature_waybill_dispatched_amounts_changing_disabled"
-                )
-                if obj.get("feature_waybill_dispatched_amounts_changing_disabled")
-                is not None
-                else False,
+                ),
                 "feature_waybill_destination_changing_disabled_for_drivers": obj.get(
                     "feature_waybill_destination_changing_disabled_for_drivers"
-                )
-                if obj.get("feature_waybill_destination_changing_disabled_for_drivers")
-                is not None
-                else False,
+                ),
             }
         )
         return _obj

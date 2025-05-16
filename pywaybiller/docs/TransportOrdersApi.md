@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**transport_orders_cancel_create**](TransportOrdersApi.md#transport_orders_cancel_create) | **POST** /external-api/transport-orders/{id}/cancel/ | Cancellation of a transport order
 [**transport_orders_create**](TransportOrdersApi.md#transport_orders_create) | **POST** /external-api/transport-orders/ | Creation of a transport order
-[**transport_orders_list**](TransportOrdersApi.md#transport_orders_list) | **GET** /external-api/transport-orders/ | 
+[**transport_orders_list**](TransportOrdersApi.md#transport_orders_list) | **GET** /external-api/transport-orders/ | Querying of transport orders
 [**transport_orders_retrieve**](TransportOrdersApi.md#transport_orders_retrieve) | **GET** /external-api/transport-orders/{id}/ | Querying of a single transport order
 [**transport_orders_update**](TransportOrdersApi.md#transport_orders_update) | **PUT** /external-api/transport-orders/{id}/ | Editing of a transport order
 
@@ -178,7 +178,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transport_orders_list**
-> PaginatedExternalAPITransportOrderListList transport_orders_list(end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
+> PaginatedExternalAPITransportOrderListList transport_orders_list(destination_ids=destination_ids, end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
+
+Querying of transport orders
+
+Returns transport orders associated with your company, according to the specified filters.
 
 ### Example
 
@@ -211,6 +215,7 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.TransportOrdersApi(api_client)
+    destination_ids = 'destination_ids_example' # str | Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas. (optional)
     end_date = '2013-10-20T19:20:30+01:00' # datetime | Filters transport orders that have transport date on or before the specified date. (optional)
     limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
     number = 'number_example' # str | Filters transport orders with specified number (case sensitive). (optional)
@@ -219,6 +224,9 @@ with openapi_client.ApiClient(configuration) as api_client:
     number__iexact = 'number__iexact_example' # str | Filters transport orders with specified number (case insensitive). (optional)
     number__in = 'number__in_example' # str | Filters transport orders with specified list of transport order numbers. Multiple values may be separated by commas. (optional)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
+    origin_ids = 'origin_ids_example' # str | Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas. (optional)
+    raw_destination_ids = 'raw_destination_ids_example' # str | Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas. (optional)
+    raw_origin_ids = 'raw_origin_ids_example' # str | Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas. (optional)
     start_date = '2013-10-20T19:20:30+01:00' # datetime | Filters transport orders that have transport date after the specified date. (optional)
     status = 'status_example' # str | Filters transport orders with specified status (case sensitive). (optional)
     status__contains = 'status__contains_example' # str | Filters transport orders of which statuses contain this keyword (case sensitive). (optional)
@@ -232,7 +240,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     truck__truck__reg_number__in = 'truck__truck__reg_number__in_example' # str | Filters transport orders with specified list of transport order truck reg numbers. Multiple values may be separated by commas. (optional)
 
     try:
-        api_response = api_instance.transport_orders_list(end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
+        # Querying of transport orders
+        api_response = api_instance.transport_orders_list(destination_ids=destination_ids, end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
         print("The response of TransportOrdersApi->transport_orders_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -246,6 +255,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **destination_ids** | **str**| Filters transport orders with a specified list of destination IDs from your system. Multiple values may be separated by commas. | [optional] 
  **end_date** | **datetime**| Filters transport orders that have transport date on or before the specified date. | [optional] 
  **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
  **number** | **str**| Filters transport orders with specified number (case sensitive). | [optional] 
@@ -254,6 +264,9 @@ Name | Type | Description  | Notes
  **number__iexact** | **str**| Filters transport orders with specified number (case insensitive). | [optional] 
  **number__in** | **str**| Filters transport orders with specified list of transport order numbers. Multiple values may be separated by commas. | [optional] 
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
+ **origin_ids** | **str**| Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas. | [optional] 
+ **raw_destination_ids** | **str**| Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas. | [optional] 
+ **raw_origin_ids** | **str**| Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas. | [optional] 
  **start_date** | **datetime**| Filters transport orders that have transport date after the specified date. | [optional] 
  **status** | **str**| Filters transport orders with specified status (case sensitive). | [optional] 
  **status__contains** | **str**| Filters transport orders of which statuses contain this keyword (case sensitive). | [optional] 
