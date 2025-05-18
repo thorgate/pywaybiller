@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **number** | **str** |  | [readonly] 
 **origin_id** | **int** |  | [readonly] 
 **destination_id** | **int** |  | [readonly] 
-**entity_code** | **str** |  | [readonly] 
+**entity_code** | **str** |  | [optional] [readonly] 
 **waybills_ids** | **List[int]** |  | [readonly] 
 
 ## Example

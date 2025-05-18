@@ -39,7 +39,7 @@ class ExternalAPITransportOrderRawData(BaseModel):
     destination_id: StrictInt
     origin_id: Optional[StrictInt]
     organizer_user_id: StrictInt
-    entity_code: StrictStr
+    entity_code: Optional[StrictStr] = None
     waybills_ids: List[StrictInt]
     __properties: ClassVar[List[str]] = [
         "transport_order_id",

@@ -36,7 +36,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
     number: Optional[Annotated[str, Field(strict=True, max_length=16)]]
     origin_id: Optional[StrictInt]
     destination_id: StrictInt
-    entity_code: StrictStr
+    entity_code: Optional[StrictStr] = None
     waybills_ids: List[StrictInt]
     __properties: ClassVar[List[str]] = [
         "transport_order_id",

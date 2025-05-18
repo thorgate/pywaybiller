@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **destination_id** | **int** |  | [readonly] 
 **origin_id** | **int** |  | [readonly] 
 **organizer_user_id** | **int** |  | [readonly] 
-**entity_code** | **str** |  | [readonly] 
+**entity_code** | **str** |  | [optional] [readonly] 
 **waybills_ids** | **List[int]** |  | [readonly] 
 
 ## Example

@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2025-05-18 11:34:09.384213917 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-18 11:34:03.189206033 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2025-05-18 12:10:28.539060852 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-18 12:10:12.688420128 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -80,7 +80,23 @@
              "description": "The IDs of the Waybiller internal objects"
            }
          },
-@@ -7265,7 +7280,6 @@
+@@ -6969,7 +6984,6 @@
+         },
+         "required": [
+           "destination_id",
+-          "entity_code",
+           "order_id",
+           "organizer_user_id",
+           "origin_id",
+@@ -7023,7 +7037,6 @@
+         },
+         "required": [
+           "destination_id",
+-          "entity_code",
+           "number",
+           "origin_id",
+           "status",
+@@ -7265,7 +7278,6 @@
            }
          },
          "required": [
@@ -88,7 +104,7 @@
            "rows",
            "transport_date",
            "transport_order_id"
-@@ -8530,6 +8544,7 @@
+@@ -8530,6 +8542,7 @@
            "project": {
              "type": "string",
              "readOnly": true,
@@ -96,7 +112,7 @@
              "description": "Project code in your system."
            },
            "raw_data": {
-@@ -8696,6 +8711,7 @@
+@@ -8696,6 +8709,7 @@
              "type": "object",
              "additionalProperties": {},
              "readOnly": true,
@@ -104,7 +120,7 @@
              "description": "User defined fields."
            }
          },
-@@ -9050,6 +9066,7 @@
+@@ -9050,6 +9064,7 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
@@ -112,7 +128,7 @@
              "description": "Time when waybill reached destination."
            },
            "confirmed_timestamp": {
-@@ -9075,16 +9092,19 @@
+@@ -9075,16 +9090,19 @@
            "navision_bin_code": {
              "type": "string",
              "readOnly": true,
@@ -132,7 +148,7 @@
              "description": "Project code in your system."
            },
            "transport_costs": {
-@@ -9157,7 +9177,7 @@
+@@ -9157,7 +9175,7 @@
            "assortment_id": {
              "type": "string",
              "nullable": true,
@@ -141,7 +157,7 @@
              "description": "The external ID of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
            "assortment_ids": {
-@@ -9166,7 +9186,6 @@
+@@ -9166,7 +9184,6 @@
                "type": "string"
              },
              "nullable": true,
@@ -149,7 +165,7 @@
              "readOnly": true,
              "description": "The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
-@@ -9200,6 +9219,7 @@
+@@ -9200,6 +9217,7 @@
            "subset_type_name": {
              "type": "string",
              "readOnly": true,
@@ -157,7 +173,7 @@
              "description": "Subset type (eg fraction)."
            },
            "subset_object_raw_id": {
-@@ -9209,6 +9229,7 @@
+@@ -9209,6 +9227,7 @@
            "subset_object_name": {
              "type": "string",
              "readOnly": true,
@@ -165,7 +181,7 @@
              "description": "Subset object (eg 0-32mm)."
            },
            "extra_information_long": {
-@@ -9241,7 +9262,6 @@
+@@ -9241,7 +9260,6 @@
                "type": "string"
              },
              "nullable": true,
@@ -173,7 +189,7 @@
              "readOnly": true,
              "description": "The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
-@@ -9340,7 +9360,6 @@
+@@ -9340,7 +9358,6 @@
                "type": "string"
              },
              "nullable": true,
@@ -181,7 +197,7 @@
              "readOnly": true,
              "description": "The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
-@@ -9424,6 +9443,7 @@
+@@ -9424,6 +9441,7 @@
            "assortment_id": {
              "type": "string",
              "readOnly": true,
@@ -189,7 +205,7 @@
              "description": "The ID of the assortment."
            },
            "assortment_ids": {
-@@ -9490,7 +9510,8 @@
+@@ -9490,7 +9508,8 @@
            },
            "subset_id": {
              "type": "integer",
@@ -199,7 +215,7 @@
            },
            "subset_type_id": {
              "type": "integer",
-@@ -9510,7 +9531,7 @@
+@@ -9510,7 +9529,7 @@
            "assortment_id": {
              "type": "string",
              "nullable": true,
