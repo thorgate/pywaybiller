@@ -393,7 +393,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ExternalAPITransportOrder",
+            "200": "ExternalAPITransportOrder",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -458,7 +458,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ExternalAPITransportOrder",
+            "200": "ExternalAPITransportOrder",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -523,7 +523,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ExternalAPITransportOrder",
+            "200": "ExternalAPITransportOrder",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
