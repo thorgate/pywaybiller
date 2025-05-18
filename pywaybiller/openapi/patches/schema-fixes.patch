@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2025-05-18 12:10:28.539060852 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-18 12:10:12.688420128 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2025-05-18 12:18:52.320655528 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-18 12:18:39.280328687 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -80,6 +80,24 @@
              "description": "The IDs of the Waybiller internal objects"
            }
          },
+@@ -6592,7 +6607,7 @@
+             "type": "string"
+           },
+           "destination_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "destination_name": {
+             "type": "string",
+@@ -6658,7 +6673,7 @@
+             "type": "string"
+           },
+           "origin_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "origin_name": {
+             "type": "string",
 @@ -6969,7 +6984,6 @@
          },
          "required": [
@@ -96,6 +114,24 @@
            "number",
            "origin_id",
            "status",
+@@ -7060,7 +7073,7 @@
+             "minLength": 1
+           },
+           "destination_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "destination_name": {
+             "type": "string",
+@@ -7135,7 +7148,7 @@
+             "minLength": 1
+           },
+           "origin_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "origin_name": {
+             "type": "string",
 @@ -7265,7 +7278,6 @@
            }
          },
@@ -104,6 +140,42 @@
            "rows",
            "transport_date",
            "transport_order_id"
+@@ -7338,7 +7350,7 @@
+             "title": "Number of pallets"
+           },
+           "origin_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "origin_raw_id": {
+             "type": "string"
+@@ -7368,7 +7380,7 @@
+             "maxLength": 16
+           },
+           "destination_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "destination_raw_id": {
+             "type": "string"
+@@ -7418,7 +7430,7 @@
+             "title": "Number of pallets"
+           },
+           "origin_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "origin_raw_id": {
+             "type": "string",
+@@ -7453,7 +7465,7 @@
+             "maxLength": 16
+           },
+           "destination_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "destination_raw_id": {
+             "type": "string",
 @@ -8530,6 +8542,7 @@
            "project": {
              "type": "string",

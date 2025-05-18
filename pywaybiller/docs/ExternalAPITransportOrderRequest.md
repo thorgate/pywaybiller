@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **rows** | [**List[ExternalAPITransportOrderRowRequest]**](ExternalAPITransportOrderRowRequest.md) |  | 
 **organizer_user_id** | **int** |  | [optional] 
 **destination_raw_id** | **str** |  | [optional] 
-**destination_id** | **int** |  | [optional] 
+**destination_id** | **str** |  | [optional] 
 **destination_name** | **str** |  | [optional] 
 **destination_address** | **str** |  | [optional] 
 **destination_latitude** | **float** |  | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **receiver_company_name** | **str** |  | [optional] 
 **receiver_company_reg_code** | **str** |  | [optional] 
 **origin_raw_id** | **str** |  | [optional] 
-**origin_id** | **int** |  | [optional] 
+**origin_id** | **str** |  | [optional] 
 **origin_name** | **str** |  | [optional] 
 **origin_address** | **str** |  | [optional] 
 **origin_latitude** | **float** |  | [optional] 

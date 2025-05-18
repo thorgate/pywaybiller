@@ -46,7 +46,7 @@ class ExternalAPITransportOrder(BaseModel):
     rows: List[ExternalAPITransportOrderRow]
     organizer_user_id: StrictInt
     destination_raw_id: Optional[StrictStr] = None
-    destination_id: Optional[StrictInt] = None
+    destination_id: Optional[StrictStr] = None
     destination_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = (
         None
     )
@@ -74,7 +74,7 @@ class ExternalAPITransportOrder(BaseModel):
         Annotated[str, Field(strict=True, max_length=16)]
     ] = None
     origin_raw_id: Optional[StrictStr] = None
-    origin_id: Optional[StrictInt] = None
+    origin_id: Optional[StrictStr] = None
     origin_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
     origin_address: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
     origin_latitude: Optional[Union[StrictFloat, StrictInt]] = None

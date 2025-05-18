@@ -40,7 +40,7 @@ class ExternalAPITransportOrderRequest(BaseModel):
     destination_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
         None
     )
-    destination_id: Optional[StrictInt] = None
+    destination_id: Optional[StrictStr] = None
     destination_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
     ] = None
@@ -68,7 +68,7 @@ class ExternalAPITransportOrderRequest(BaseModel):
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
     ] = None
     origin_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    origin_id: Optional[StrictInt] = None
+    origin_id: Optional[StrictStr] = None
     origin_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
     ] = None

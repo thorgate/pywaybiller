@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing_extensions import Annotated, Self
 
 
@@ -28,7 +28,7 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
     """  # noqa: E501
 
     pallets_number: Optional[Annotated[int, Field(le=32767, strict=True, ge=0)]] = None
-    origin_id: Optional[StrictInt] = None
+    origin_id: Optional[StrictStr] = None
     origin_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     origin_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
@@ -44,7 +44,7 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
     shipper_company_reg_code: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
     ] = None
-    destination_id: Optional[StrictInt] = None
+    destination_id: Optional[StrictStr] = None
     destination_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
         None
     )

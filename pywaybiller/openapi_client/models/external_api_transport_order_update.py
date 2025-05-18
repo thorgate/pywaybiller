@@ -28,7 +28,7 @@ class ExternalAPITransportOrderUpdate(BaseModel):
     """  # noqa: E501
 
     pallets_number: Optional[Annotated[int, Field(le=32767, strict=True, ge=0)]] = None
-    origin_id: Optional[StrictInt] = None
+    origin_id: Optional[StrictStr] = None
     origin_raw_id: Optional[StrictStr] = None
     origin_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
     origin_address: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
@@ -40,7 +40,7 @@ class ExternalAPITransportOrderUpdate(BaseModel):
     shipper_company_reg_code: Optional[
         Annotated[str, Field(strict=True, max_length=16)]
     ] = None
-    destination_id: Optional[StrictInt] = None
+    destination_id: Optional[StrictStr] = None
     destination_raw_id: Optional[StrictStr] = None
     destination_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = (
         None

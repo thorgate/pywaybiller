@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pallets_number** | **int** |  | [optional] 
-**origin_id** | **int** |  | [optional] 
+**origin_id** | **str** |  | [optional] 
 **origin_raw_id** | **str** |  | [optional] 
 **origin_name** | **str** |  | [optional] 
 **origin_address** | **str** |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **origin_longitude** | **float** |  | [optional] 
 **shipper_company_name** | **str** |  | [optional] 
 **shipper_company_reg_code** | **str** |  | [optional] 
-**destination_id** | **int** |  | [optional] 
+**destination_id** | **str** |  | [optional] 
 **destination_raw_id** | **str** |  | [optional] 
 **destination_name** | **str** |  | [optional] 
 **destination_address** | **str** |  | [optional] 
