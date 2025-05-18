@@ -36,7 +36,7 @@ class ExternalAPITransportOrderRequest(BaseModel):
     order_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     order_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     rows: List[ExternalAPITransportOrderRowRequest]
-    organizer_user_id: StrictInt
+    organizer_user_id: Optional[StrictInt] = None
     destination_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
         None
     )

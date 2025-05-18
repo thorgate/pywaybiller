@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **order_raw_id** | **str** |  | [optional] 
 **order_id** | **str** |  | [optional] 
 **rows** | [**List[ExternalAPITransportOrderRowRequest]**](ExternalAPITransportOrderRowRequest.md) |  | 
-**organizer_user_id** | **int** |  | 
+**organizer_user_id** | **int** |  | [optional] 
 **destination_raw_id** | **str** |  | [optional] 
 **destination_id** | **int** |  | [optional] 
 **destination_name** | **str** |  | [optional] 

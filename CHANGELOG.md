@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.2.2
+* Do not require organizer_user_id for creating transport orders, as it may not bre required if default is configured on the server
+
+## Version 0.2.1
+* Update Waybiller schema
+
 ## Version 0.2.0
 
 * **Breaking** Use new Waybiller schema - some classes get renamed because of this change
