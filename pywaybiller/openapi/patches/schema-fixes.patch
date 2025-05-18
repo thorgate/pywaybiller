@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2025-05-18 12:18:52.320655528 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-18 12:18:39.280328687 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2025-05-18 12:31:39.849269783 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-18 12:30:11.682718841 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -140,6 +140,15 @@
            "rows",
            "transport_date",
            "transport_order_id"
+@@ -7275,7 +7287,7 @@
+         "type": "object",
+         "properties": {
+           "assortment_id": {
+-            "type": "integer"
++            "type": "string"
+           },
+           "assortment_name": {
+             "type": "string"
 @@ -7338,7 +7350,7 @@
              "title": "Number of pallets"
            },
