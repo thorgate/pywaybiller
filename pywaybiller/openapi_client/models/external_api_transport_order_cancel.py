@@ -27,7 +27,7 @@ class ExternalAPITransportOrderCancel(BaseModel):
     ExternalAPITransportOrderCancel
     """  # noqa: E501
 
-    cancelling_reason: StrictStr
+    cancelling_reason: Optional[StrictStr] = None
     cancelled_by_user_id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["cancelling_reason", "cancelled_by_user_id"]
 

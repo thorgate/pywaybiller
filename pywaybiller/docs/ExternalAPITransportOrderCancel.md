@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cancelling_reason** | **str** |  | 
+**cancelling_reason** | **str** |  | [optional] 
 **cancelled_by_user_id** | **int** |  | [optional] 
 
 ## Example
