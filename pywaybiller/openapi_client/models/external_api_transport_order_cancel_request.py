@@ -28,7 +28,7 @@ class ExternalAPITransportOrderCancelRequest(BaseModel):
     """  # noqa: E501
 
     cancelling_reason: Annotated[str, Field(min_length=1, strict=True)]
-    cancelled_by_user_id: StrictInt
+    cancelled_by_user_id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["cancelling_reason", "cancelled_by_user_id"]
 
     model_config = ConfigDict(

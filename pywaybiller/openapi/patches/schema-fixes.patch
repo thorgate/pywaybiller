@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2025-05-18 12:57:39.175023951 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-18 12:56:45.663232454 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2025-05-19 10:44:15.315201518 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-05-19 10:43:57.533606530 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -107,7 +107,23 @@
            },
            "origin_name": {
              "type": "string",
-@@ -6969,7 +6984,6 @@
+@@ -6820,7 +6835,6 @@
+           }
+         },
+         "required": [
+-          "cancelled_by_user_id",
+           "cancelling_reason"
+         ]
+       },
+@@ -6836,7 +6850,6 @@
+           }
+         },
+         "required": [
+-          "cancelled_by_user_id",
+           "cancelling_reason"
+         ]
+       },
+@@ -6969,7 +6982,6 @@
          },
          "required": [
            "destination_id",
@@ -115,7 +131,7 @@
            "order_id",
            "organizer_user_id",
            "origin_id",
-@@ -7023,7 +7037,6 @@
+@@ -7023,7 +7035,6 @@
          },
          "required": [
            "destination_id",
@@ -123,7 +139,7 @@
            "number",
            "origin_id",
            "status",
-@@ -7060,7 +7073,7 @@
+@@ -7060,7 +7071,7 @@
              "minLength": 1
            },
            "destination_id": {
@@ -132,7 +148,7 @@
            },
            "destination_name": {
              "type": "string",
-@@ -7135,7 +7148,7 @@
+@@ -7135,7 +7146,7 @@
              "minLength": 1
            },
            "origin_id": {
@@ -141,7 +157,7 @@
            },
            "origin_name": {
              "type": "string",
-@@ -7265,7 +7278,6 @@
+@@ -7265,7 +7276,6 @@
            }
          },
          "required": [
@@ -149,7 +165,7 @@
            "rows",
            "transport_date",
            "transport_order_id"
-@@ -7275,7 +7287,7 @@
+@@ -7275,7 +7285,7 @@
          "type": "object",
          "properties": {
            "assortment_id": {
@@ -158,7 +174,7 @@
            },
            "assortment_name": {
              "type": "string"
-@@ -7338,7 +7350,7 @@
+@@ -7338,7 +7348,7 @@
              "title": "Number of pallets"
            },
            "origin_id": {
@@ -167,7 +183,7 @@
            },
            "origin_raw_id": {
              "type": "string"
-@@ -7368,7 +7380,7 @@
+@@ -7368,7 +7378,7 @@
              "maxLength": 16
            },
            "destination_id": {
@@ -176,7 +192,7 @@
            },
            "destination_raw_id": {
              "type": "string"
-@@ -7418,7 +7430,7 @@
+@@ -7418,7 +7428,7 @@
              "title": "Number of pallets"
            },
            "origin_id": {
@@ -185,7 +201,7 @@
            },
            "origin_raw_id": {
              "type": "string",
-@@ -7453,7 +7465,7 @@
+@@ -7453,7 +7463,7 @@
              "maxLength": 16
            },
            "destination_id": {
@@ -194,7 +210,7 @@
            },
            "destination_raw_id": {
              "type": "string",
-@@ -8530,6 +8542,7 @@
+@@ -8530,6 +8540,7 @@
            "project": {
              "type": "string",
              "readOnly": true,
@@ -202,7 +218,7 @@
              "description": "Project code in your system."
            },
            "raw_data": {
-@@ -8696,6 +8709,7 @@
+@@ -8696,6 +8707,7 @@
              "type": "object",
              "additionalProperties": {},
              "readOnly": true,
@@ -210,7 +226,7 @@
              "description": "User defined fields."
            }
          },
-@@ -9050,6 +9064,7 @@
+@@ -9050,6 +9062,7 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
@@ -218,7 +234,7 @@
              "description": "Time when waybill reached destination."
            },
            "confirmed_timestamp": {
-@@ -9075,16 +9090,19 @@
+@@ -9075,16 +9088,19 @@
            "navision_bin_code": {
              "type": "string",
              "readOnly": true,
@@ -238,7 +254,7 @@
              "description": "Project code in your system."
            },
            "transport_costs": {
-@@ -9157,7 +9175,7 @@
+@@ -9157,7 +9173,7 @@
            "assortment_id": {
              "type": "string",
              "nullable": true,
@@ -247,7 +263,7 @@
              "description": "The external ID of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
            "assortment_ids": {
-@@ -9166,7 +9184,6 @@
+@@ -9166,7 +9182,6 @@
                "type": "string"
              },
              "nullable": true,
@@ -255,7 +271,7 @@
              "readOnly": true,
              "description": "The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
-@@ -9200,6 +9217,7 @@
+@@ -9200,6 +9215,7 @@
            "subset_type_name": {
              "type": "string",
              "readOnly": true,
@@ -263,7 +279,7 @@
              "description": "Subset type (eg fraction)."
            },
            "subset_object_raw_id": {
-@@ -9209,6 +9227,7 @@
+@@ -9209,6 +9225,7 @@
            "subset_object_name": {
              "type": "string",
              "readOnly": true,
@@ -271,7 +287,7 @@
              "description": "Subset object (eg 0-32mm)."
            },
            "extra_information_long": {
-@@ -9241,7 +9260,6 @@
+@@ -9241,7 +9258,6 @@
                "type": "string"
              },
              "nullable": true,
@@ -279,7 +295,7 @@
              "readOnly": true,
              "description": "The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
-@@ -9340,7 +9358,6 @@
+@@ -9340,7 +9356,6 @@
                "type": "string"
              },
              "nullable": true,
@@ -287,7 +303,7 @@
              "readOnly": true,
              "description": "The external IDs of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
            },
-@@ -9424,6 +9441,7 @@
+@@ -9424,6 +9439,7 @@
            "assortment_id": {
              "type": "string",
              "readOnly": true,
@@ -295,7 +311,7 @@
              "description": "The ID of the assortment."
            },
            "assortment_ids": {
-@@ -9490,7 +9508,8 @@
+@@ -9490,7 +9506,8 @@
            },
            "subset_id": {
              "type": "integer",
@@ -305,7 +321,7 @@
            },
            "subset_type_id": {
              "type": "integer",
-@@ -9510,7 +9529,7 @@
+@@ -9510,7 +9527,7 @@
            "assortment_id": {
              "type": "string",
              "nullable": true,
