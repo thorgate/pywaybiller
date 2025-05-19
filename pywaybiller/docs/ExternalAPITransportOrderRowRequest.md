@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **int** |  | 
+**assortment_id** | **str** |  | 
 **assortment_name** | **str** |  | [optional] 
 **amount** | **decimal.Decimal** |  | 
 

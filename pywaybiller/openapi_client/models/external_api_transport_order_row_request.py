@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 
@@ -27,7 +27,7 @@ class ExternalAPITransportOrderRowRequest(BaseModel):
     ExternalAPITransportOrderRowRequest
     """  # noqa: E501
 
-    assortment_id: StrictInt
+    assortment_id: StrictStr
     assortment_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     amount: Annotated[str, Field(strict=True)]
     __properties: ClassVar[List[str]] = ["assortment_id", "assortment_name", "amount"]
