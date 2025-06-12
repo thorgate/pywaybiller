@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -30,7 +30,13 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
     assortment_id: Optional[StrictInt] = Field(
         description="Unique identifier of the assortment in your system"
     )
-    __properties: ClassVar[List[str]] = ["assortment_id"]
+    accepted_amount: StrictStr
+    dispatched_amount: StrictStr
+    __properties: ClassVar[List[str]] = [
+        "assortment_id",
+        "accepted_amount",
+        "dispatched_amount",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,10 +68,14 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "assortment_id",
+                "accepted_amount",
+                "dispatched_amount",
             ]
         )
 
@@ -90,5 +100,11 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"assortment_id": obj.get("assortment_id")})
+        _obj = cls.model_validate(
+            {
+                "assortment_id": obj.get("assortment_id"),
+                "accepted_amount": obj.get("accepted_amount"),
+                "dispatched_amount": obj.get("dispatched_amount"),
+            }
+        )
         return _obj

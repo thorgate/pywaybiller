@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 from pywaybiller.openapi_client.models.external_api_waybill_row_raw_data import (
@@ -40,6 +40,8 @@ class ExternalAPIWaybillRawData(BaseModel):
     )
     rows: List[ExternalAPIWaybillRowRawData] = Field(description="Waybill rows.")
     user_defined_fields: Dict[str, Any] = Field(description="User defined fields.")
+    transportorder_id: Optional[StrictInt]
+    transportorder_number: Optional[StrictStr]
     __properties: ClassVar[List[str]] = [
         "waybill_id",
         "truck_id",
@@ -48,6 +50,8 @@ class ExternalAPIWaybillRawData(BaseModel):
         "destination_id",
         "rows",
         "user_defined_fields",
+        "transportorder_id",
+        "transportorder_number",
     ]
 
     model_config = ConfigDict(
@@ -86,6 +90,8 @@ class ExternalAPIWaybillRawData(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -96,6 +102,8 @@ class ExternalAPIWaybillRawData(BaseModel):
                 "destination_id",
                 "rows",
                 "user_defined_fields",
+                "transportorder_id",
+                "transportorder_number",
             ]
         )
 
@@ -126,6 +134,22 @@ class ExternalAPIWaybillRawData(BaseModel):
         if self.destination_id is None and "destination_id" in self.model_fields_set:
             _dict["destination_id"] = None
 
+        # set to None if transportorder_id (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportorder_id is None
+            and "transportorder_id" in self.model_fields_set
+        ):
+            _dict["transportorder_id"] = None
+
+        # set to None if transportorder_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportorder_number is None
+            and "transportorder_number" in self.model_fields_set
+        ):
+            _dict["transportorder_number"] = None
+
         return _dict
 
     @classmethod
@@ -151,6 +175,8 @@ class ExternalAPIWaybillRawData(BaseModel):
                 if obj.get("rows") is not None
                 else None,
                 "user_defined_fields": obj.get("user_defined_fields"),
+                "transportorder_id": obj.get("transportorder_id"),
+                "transportorder_number": obj.get("transportorder_number"),
             }
         )
         return _obj

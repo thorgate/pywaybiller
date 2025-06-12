@@ -25,6 +25,9 @@ from typing_extensions import Annotated, Self
 from pywaybiller.openapi_client.models.external_api_transport_order_raw_data_list import (
     ExternalAPITransportOrderRawDataList,
 )
+from pywaybiller.openapi_client.models.external_api_transport_order_row import (
+    ExternalAPITransportOrderRow,
+)
 
 
 class ExternalAPITransportOrderList(BaseModel):
@@ -69,6 +72,9 @@ class ExternalAPITransportOrderList(BaseModel):
     raw_data: ExternalAPITransportOrderRawDataList = Field(
         description="The IDs of the Waybiller internal objects"
     )
+    rows: List[ExternalAPITransportOrderRow] = Field(
+        description="List of assortments associated with the transport order"
+    )
     __properties: ClassVar[List[str]] = [
         "transport_order_id",
         "transport_date",
@@ -83,6 +89,7 @@ class ExternalAPITransportOrderList(BaseModel):
         "truck_reg_number",
         "trailer_reg_number",
         "raw_data",
+        "rows",
     ]
 
     model_config = ConfigDict(
@@ -127,6 +134,7 @@ class ExternalAPITransportOrderList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -143,6 +151,7 @@ class ExternalAPITransportOrderList(BaseModel):
                 "truck_reg_number",
                 "trailer_reg_number",
                 "raw_data",
+                "rows",
             ]
         )
 
@@ -154,6 +163,13 @@ class ExternalAPITransportOrderList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in rows (list)
+        _items = []
+        if self.rows:
+            for _item_rows in self.rows:
+                if _item_rows:
+                    _items.append(_item_rows.to_dict())
+            _dict["rows"] = _items
         # set to None if transport_order_id (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -217,6 +233,12 @@ class ExternalAPITransportOrderList(BaseModel):
                     obj["raw_data"]
                 )
                 if obj.get("raw_data") is not None
+                else None,
+                "rows": [
+                    ExternalAPITransportOrderRow.from_dict(_item)
+                    for _item in obj["rows"]
+                ]
+                if obj.get("rows") is not None
                 else None,
             }
         )

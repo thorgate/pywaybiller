@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **entity_code** | **str** | Entity code of the transport order, if applicable | [readonly] 
 **truck_id** | **int** | Unique identifier of the truck associated with the transport order | [readonly] 
 **waybills_ids** | **List[int]** | List of waybill IDs associated with the transport order | [readonly] 
+**rows** | [**List[ExternalAPITransportOrderRowRawData]**](ExternalAPITransportOrderRowRawData.md) | List of assortments associated with the transport order | [readonly] 
 
 ## Example
 

@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assortment_id** | **int** | Unique identifier of the assortment in your system | [readonly] 
+**accepted_amount** | **decimal.Decimal** |  | [readonly] 
+**dispatched_amount** | **decimal.Decimal** |  | [readonly] 
 
 ## Example
 

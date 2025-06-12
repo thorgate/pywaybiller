@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **waybill_id** | **int** | The ID of the waybill. | [readonly] 
 **destination_id** | **int** | The ID of the destination. | [readonly] 
 **origin_id** | **int** | The ID of the origin. | [readonly] 
+**transportorder_id** | **int** |  | [readonly] 
+**transportorder_number** | **str** |  | [readonly] 
 
 ## Example
 

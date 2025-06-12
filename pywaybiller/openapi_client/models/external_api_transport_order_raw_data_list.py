@@ -21,6 +21,9 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Annotated, Self
 
+from pywaybiller.openapi_client.models.external_api_transport_order_row_raw_data import (
+    ExternalAPITransportOrderRowRawData,
+)
 from pywaybiller.openapi_client.models.transport_order_status_enum import (
     TransportOrderStatusEnum,
 )
@@ -55,6 +58,9 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
     waybills_ids: List[StrictInt] = Field(
         description="List of waybill IDs associated with the transport order"
     )
+    rows: List[ExternalAPITransportOrderRowRawData] = Field(
+        description="List of assortments associated with the transport order"
+    )
     __properties: ClassVar[List[str]] = [
         "transport_order_id",
         "status",
@@ -64,6 +70,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
         "entity_code",
         "truck_id",
         "waybills_ids",
+        "rows",
     ]
 
     model_config = ConfigDict(
@@ -103,6 +110,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -114,6 +122,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
                 "entity_code",
                 "truck_id",
                 "waybills_ids",
+                "rows",
             ]
         )
 
@@ -122,6 +131,13 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in rows (list)
+        _items = []
+        if self.rows:
+            for _item_rows in self.rows:
+                if _item_rows:
+                    _items.append(_item_rows.to_dict())
+            _dict["rows"] = _items
         # set to None if number (nullable) is None
         # and model_fields_set contains the field
         if self.number is None and "number" in self.model_fields_set:
@@ -158,6 +174,12 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
                 "entity_code": obj.get("entity_code"),
                 "truck_id": obj.get("truck_id"),
                 "waybills_ids": obj.get("waybills_ids"),
+                "rows": [
+                    ExternalAPITransportOrderRowRawData.from_dict(_item)
+                    for _item in obj["rows"]
+                ]
+                if obj.get("rows") is not None
+                else None,
             }
         )
         return _obj

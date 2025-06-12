@@ -1,5 +1,5 @@
 OPENAPI_GENERATOR_VERSION ?= v7.12.0
-API_HOST ?= app.waybiller.com
+API_HOST ?= https://app.waybiller.com
 
 .PHONY:
 lint:
@@ -22,7 +22,7 @@ test-all: # run tests on every Python version with tox
 
 .PHONY:
 openapi-fetch:
-	curl https://$(API_HOST)/api/schema/ | poetry run python -c "import json; import sys; print(json.dumps(json.load(sys.stdin), indent=2))" > ./pywaybiller/openapi/waybiller_schema.json
+	curl $(API_HOST)/api/schema/ | poetry run python -c "import json; import sys; print(json.dumps(json.load(sys.stdin), indent=2))" > ./pywaybiller/openapi/waybiller_schema.json
 
 .PHONY:
 openapi-patch: openapi-fetch

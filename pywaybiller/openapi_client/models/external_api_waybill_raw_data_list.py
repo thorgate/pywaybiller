@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -32,7 +32,15 @@ class ExternalAPIWaybillRawDataList(BaseModel):
         description="The ID of the destination."
     )
     origin_id: StrictInt = Field(description="The ID of the origin.")
-    __properties: ClassVar[List[str]] = ["waybill_id", "destination_id", "origin_id"]
+    transportorder_id: Optional[StrictInt]
+    transportorder_number: Optional[StrictStr]
+    __properties: ClassVar[List[str]] = [
+        "waybill_id",
+        "destination_id",
+        "origin_id",
+        "transportorder_id",
+        "transportorder_number",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,12 +74,16 @@ class ExternalAPIWaybillRawDataList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "waybill_id",
                 "destination_id",
                 "origin_id",
+                "transportorder_id",
+                "transportorder_number",
             ]
         )
 
@@ -84,6 +96,22 @@ class ExternalAPIWaybillRawDataList(BaseModel):
         # and model_fields_set contains the field
         if self.destination_id is None and "destination_id" in self.model_fields_set:
             _dict["destination_id"] = None
+
+        # set to None if transportorder_id (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportorder_id is None
+            and "transportorder_id" in self.model_fields_set
+        ):
+            _dict["transportorder_id"] = None
+
+        # set to None if transportorder_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportorder_number is None
+            and "transportorder_number" in self.model_fields_set
+        ):
+            _dict["transportorder_number"] = None
 
         return _dict
 
@@ -101,6 +129,8 @@ class ExternalAPIWaybillRawDataList(BaseModel):
                 "waybill_id": obj.get("waybill_id"),
                 "destination_id": obj.get("destination_id"),
                 "origin_id": obj.get("origin_id"),
+                "transportorder_id": obj.get("transportorder_id"),
+                "transportorder_number": obj.get("transportorder_number"),
             }
         )
         return _obj
