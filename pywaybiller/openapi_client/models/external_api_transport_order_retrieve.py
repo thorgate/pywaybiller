@@ -149,16 +149,16 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
     trailer_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
         Field(description="Registration number of the trailer")
     )
-    driver_email: Annotated[str, Field(strict=True, max_length=254)] = Field(
+    driver_email: Optional[Annotated[str, Field(strict=True, max_length=254)]] = Field(
         description="Driver email"
     )
-    driver_personal_code: Annotated[str, Field(strict=True, max_length=24)] = Field(
-        description="Driver personal code"
-    )
-    driver_name: Annotated[str, Field(strict=True, max_length=255)] = Field(
+    driver_personal_code: Optional[
+        Annotated[str, Field(strict=True, max_length=24)]
+    ] = Field(description="Driver personal code")
+    driver_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         description="Driver name"
     )
-    driver_phone: Annotated[str, Field(strict=True, max_length=128)] = Field(
+    driver_phone: Optional[Annotated[str, Field(strict=True, max_length=128)]] = Field(
         description="Driver phone number"
     )
     transport_date: date = Field(description="Date of transport")
@@ -444,6 +444,29 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
             and "trailer_reg_number" in self.model_fields_set
         ):
             _dict["trailer_reg_number"] = None
+
+        # set to None if driver_email (nullable) is None
+        # and model_fields_set contains the field
+        if self.driver_email is None and "driver_email" in self.model_fields_set:
+            _dict["driver_email"] = None
+
+        # set to None if driver_personal_code (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.driver_personal_code is None
+            and "driver_personal_code" in self.model_fields_set
+        ):
+            _dict["driver_personal_code"] = None
+
+        # set to None if driver_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.driver_name is None and "driver_name" in self.model_fields_set:
+            _dict["driver_name"] = None
+
+        # set to None if driver_phone (nullable) is None
+        # and model_fields_set contains the field
+        if self.driver_phone is None and "driver_phone" in self.model_fields_set:
+            _dict["driver_phone"] = None
 
         # set to None if transport_time (nullable) is None
         # and model_fields_set contains the field
