@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **str** |  | 
-**assortment_name** | **str** |  | [optional] 
-**amount** | **decimal.Decimal** |  | 
+**assortment_id** | **str** | Unique identifier of the assortment in your system | 
+**assortment_name** | **str** | Name of the assortment | 
+**amount** | **decimal.Decimal** | Amount of the assortment | 
 
 ## Example
 

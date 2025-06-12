@@ -51,7 +51,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.TransportOrdersApi(api_client)
     id = 56 # int | A unique integer value identifying this Transport order.
-    external_api_transport_order_cancel_request = openapi_client.ExternalAPITransportOrderCancelRequest() # ExternalAPITransportOrderCancelRequest | 
+    external_api_transport_order_cancel_request = {"cancelling_reason":"Client requested cancellation","cancelled_by_user_id":123} # ExternalAPITransportOrderCancelRequest | 
 
     try:
         # Cancellation of a transport order
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transport_orders_create**
-> ExternalAPITransportOrder transport_orders_create(external_api_transport_order_request)
+> transport_orders_create(external_api_transport_order_request)
 
 Creation of a transport order
 
@@ -109,7 +109,6 @@ Creates a new transport order.<br><br>
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_transport_order import ExternalAPITransportOrder
 from openapi_client.models.external_api_transport_order_request import ExternalAPITransportOrderRequest
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -135,13 +134,11 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.TransportOrdersApi(api_client)
-    external_api_transport_order_request = openapi_client.ExternalAPITransportOrderRequest() # ExternalAPITransportOrderRequest | 
+    external_api_transport_order_request = {"transport_order_id":"1","order_raw_id":1,"rows":[{"assortment_id":"1","assortment_name":"Construction sand","amount":"23.456"}],"organizer_user_id":1,"destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1, Tallinn","destination_latitude":59.3962767,"destination_longitude":24.6566519,"destination_waybill_created_emails":["waybiller@waybiller.com"],"destination_waybill_reached_destination_emails":["waybiller@waybiller.com"],"destination_waybill_accepted_emails":["waybiller@waybiller.com"],"destination_transport_order_created_emails":["waybiller@waybiller.com"],"receiver_company_name":"Waybiller OÜ","receiver_company_reg_code":"14200010","origin_id":"1","origin_name":"Waybiller OÜ","origin_address":"Mäealuse 2/1, Tallinn","origin_latitude":59.3962767,"origin_longitude":24.6566519,"origin_waybill_created_emails":["waybiller@waybiller.com"],"origin_waybill_reached_destination_emails":["waybiller@waybiller.com"],"origin_waybill_accepted_emails":["waybiller@waybiller.com"],"origin_transport_order_created_emails":["waybiller@waybiller.com"],"shipper_company_name":"Waybiller OÜ","shipper_company_reg_code":"14200010","transportation_company_name":"Waybiller OÜ","transportation_company_reg_code":"14200010","truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","driver_email":"driver@waybiller.com","driver_personal_code":"3891020xxxx","driver_name":"John Doe","driver_phone":"+372987654321","transport_date":"2025-01-01","transport_time":"14:15","additional_info":"Additional instructions for the driver","pallets_number":10} # ExternalAPITransportOrderRequest | 
 
     try:
         # Creation of a transport order
-        api_response = api_instance.transport_orders_create(external_api_transport_order_request)
-        print("The response of TransportOrdersApi->transport_orders_create:\n")
-        pprint(api_response)
+        api_instance.transport_orders_create(external_api_transport_order_request)
     except Exception as e:
         print("Exception when calling TransportOrdersApi->transport_orders_create: %s\n" % e)
 ```
@@ -157,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPITransportOrder**](ExternalAPITransportOrder.md)
+void (empty response body)
 
 ### Authorization
 
@@ -172,13 +169,13 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**303** |  |  -  |
 **403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transport_orders_list**
-> PaginatedExternalAPITransportOrderListList transport_orders_list(destination_ids=destination_ids, end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
+> PaginatedExternalAPITransportOrderListList transport_orders_list(destination_ids=destination_ids, end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, origin_ids=origin_ids, raw_assortment_ids=raw_assortment_ids, raw_destination_ids=raw_destination_ids, raw_organizer_company_ids=raw_organizer_company_ids, raw_organizer_user_ids=raw_organizer_user_ids, raw_origin_ids=raw_origin_ids, raw_transportation_company_ids=raw_transportation_company_ids, raw_truck_ids=raw_truck_ids, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
 
 Querying of transport orders
 
@@ -225,9 +222,14 @@ with openapi_client.ApiClient(configuration) as api_client:
     number__in = 'number__in_example' # str | Filters transport orders with specified list of transport order numbers. Multiple values may be separated by commas. (optional)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
     origin_ids = 'origin_ids_example' # str | Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas. (optional)
+    raw_assortment_ids = 'raw_assortment_ids_example' # str | Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas. (optional)
     raw_destination_ids = 'raw_destination_ids_example' # str | Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas. (optional)
+    raw_organizer_company_ids = 'raw_organizer_company_ids_example' # str | Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas. (optional)
+    raw_organizer_user_ids = 'raw_organizer_user_ids_example' # str | Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas. (optional)
     raw_origin_ids = 'raw_origin_ids_example' # str | Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas. (optional)
-    start_date = '2013-10-20T19:20:30+01:00' # datetime | Filters transport orders that have transport date after the specified date. (optional)
+    raw_transportation_company_ids = 'raw_transportation_company_ids_example' # str | Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas. (optional)
+    raw_truck_ids = 'raw_truck_ids_example' # str | Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas. (optional)
+    start_date = '2013-10-20T19:20:30+01:00' # datetime | Filters transport orders that have transport date on or after the specified date. (optional)
     status = 'status_example' # str | Filters transport orders with specified status (case sensitive). (optional)
     status__contains = 'status__contains_example' # str | Filters transport orders of which statuses contain this keyword (case sensitive). (optional)
     status__icontains = 'status__icontains_example' # str | Filters transport orders of which statuses contain this keyword (case insensitive). (optional)
@@ -241,7 +243,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Querying of transport orders
-        api_response = api_instance.transport_orders_list(destination_ids=destination_ids, end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
+        api_response = api_instance.transport_orders_list(destination_ids=destination_ids, end_date=end_date, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, number__in=number__in, offset=offset, origin_ids=origin_ids, raw_assortment_ids=raw_assortment_ids, raw_destination_ids=raw_destination_ids, raw_organizer_company_ids=raw_organizer_company_ids, raw_organizer_user_ids=raw_organizer_user_ids, raw_origin_ids=raw_origin_ids, raw_transportation_company_ids=raw_transportation_company_ids, raw_truck_ids=raw_truck_ids, start_date=start_date, status=status, status__contains=status__contains, status__icontains=status__icontains, status__iexact=status__iexact, status__in=status__in, truck__truck__reg_number=truck__truck__reg_number, truck__truck__reg_number__contains=truck__truck__reg_number__contains, truck__truck__reg_number__icontains=truck__truck__reg_number__icontains, truck__truck__reg_number__iexact=truck__truck__reg_number__iexact, truck__truck__reg_number__in=truck__truck__reg_number__in)
         print("The response of TransportOrdersApi->transport_orders_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -265,9 +267,14 @@ Name | Type | Description  | Notes
  **number__in** | **str**| Filters transport orders with specified list of transport order numbers. Multiple values may be separated by commas. | [optional] 
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
  **origin_ids** | **str**| Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas. | [optional] 
+ **raw_assortment_ids** | **str**| Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas. | [optional] 
  **raw_destination_ids** | **str**| Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas. | [optional] 
+ **raw_organizer_company_ids** | **str**| Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas. | [optional] 
+ **raw_organizer_user_ids** | **str**| Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas. | [optional] 
  **raw_origin_ids** | **str**| Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas. | [optional] 
- **start_date** | **datetime**| Filters transport orders that have transport date after the specified date. | [optional] 
+ **raw_transportation_company_ids** | **str**| Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas. | [optional] 
+ **raw_truck_ids** | **str**| Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas. | [optional] 
+ **start_date** | **datetime**| Filters transport orders that have transport date on or after the specified date. | [optional] 
  **status** | **str**| Filters transport orders with specified status (case sensitive). | [optional] 
  **status__contains** | **str**| Filters transport orders of which statuses contain this keyword (case sensitive). | [optional] 
  **status__icontains** | **str**| Filters transport orders of which statuses contain this keyword (case insensitive). | [optional] 
@@ -302,7 +309,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transport_orders_retrieve**
-> ExternalAPITransportOrder transport_orders_retrieve(id)
+> ExternalAPITransportOrderRetrieve transport_orders_retrieve(id)
 
 Querying of a single transport order
 
@@ -314,7 +321,7 @@ Returns a transport order with the specified ID. Only companies associated with 
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_transport_order import ExternalAPITransportOrder
+from openapi_client.models.external_api_transport_order_retrieve import ExternalAPITransportOrderRetrieve
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -339,7 +346,7 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.TransportOrdersApi(api_client)
-    id = 'id_example' # str | The ID of the transport order queried.
+    id = 56 # int | A unique integer value identifying this Transport order.
 
     try:
         # Querying of a single transport order
@@ -357,11 +364,11 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The ID of the transport order queried. | 
+ **id** | **int**| A unique integer value identifying this Transport order. | 
 
 ### Return type
 
-[**ExternalAPITransportOrder**](ExternalAPITransportOrder.md)
+[**ExternalAPITransportOrderRetrieve**](ExternalAPITransportOrderRetrieve.md)
 
 ### Authorization
 
@@ -383,7 +390,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transport_orders_update**
-> ExternalAPITransportOrderUpdate transport_orders_update(id, external_api_transport_order_update_request=external_api_transport_order_update_request)
+> transport_orders_update(id, external_api_transport_order_update_request=external_api_transport_order_update_request)
 
 Editing of a transport order
 
@@ -395,7 +402,6 @@ Edits a transport order.
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_transport_order_update import ExternalAPITransportOrderUpdate
 from openapi_client.models.external_api_transport_order_update_request import ExternalAPITransportOrderUpdateRequest
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -422,13 +428,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.TransportOrdersApi(api_client)
     id = 56 # int | A unique integer value identifying this Transport order.
-    external_api_transport_order_update_request = openapi_client.ExternalAPITransportOrderUpdateRequest() # ExternalAPITransportOrderUpdateRequest |  (optional)
+    external_api_transport_order_update_request = {"origin_id":"1","origin_name":"Waybiller OÜ","origin_address":"Mäealuse 2/1, Tallinn","origin_latitude":59.3962767,"origin_longitude":24.6566519,"shipper_company_name":"Waybiller OÜ","shipper_company_reg_code":"14200010","origin_transport_order_created_emails":["waybiller@waybiller.com"],"origin_waybill_accepted_emails":["waybiller@waybiller.com"],"origin_waybill_created_emails":["waybiller@waybiller.com"],"origin_waybill_reached_destination_emails":["waybiller@waybiller.com"],"destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1, Tallinn","destination_latitude":59.3962767,"destination_longitude":24.6566519,"receiver_company_name":"Waybiller OÜ","receiver_company_reg_code":"14200010","destination_transport_order_created_emails":["waybiller@waybiller.com"],"destination_waybill_accepted_emails":["waybiller@waybiller.com"],"destination_waybill_created_emails":["waybiller@waybiller.com"],"destination_waybill_reached_destination_emails":["waybiller@waybiller.com"],"truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","pallets_number":1} # ExternalAPITransportOrderUpdateRequest |  (optional)
 
     try:
         # Editing of a transport order
-        api_response = api_instance.transport_orders_update(id, external_api_transport_order_update_request=external_api_transport_order_update_request)
-        print("The response of TransportOrdersApi->transport_orders_update:\n")
-        pprint(api_response)
+        api_instance.transport_orders_update(id, external_api_transport_order_update_request=external_api_transport_order_update_request)
     except Exception as e:
         print("Exception when calling TransportOrdersApi->transport_orders_update: %s\n" % e)
 ```
@@ -445,7 +449,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPITransportOrderUpdate**](ExternalAPITransportOrderUpdate.md)
+void (empty response body)
 
 ### Authorization
 
@@ -460,7 +464,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**303** |  |  -  |
 **403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

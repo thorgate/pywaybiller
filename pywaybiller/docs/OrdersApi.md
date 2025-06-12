@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **orders_create**
-> ExternalAPIOrderCreate orders_create(external_api_order_create_request)
+> orders_create(external_api_order_create_request)
 
 Creation of an order
 
@@ -29,7 +29,6 @@ Creates a new order.<br><br>
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_order_create import ExternalAPIOrderCreate
 from openapi_client.models.external_api_order_create_request import ExternalAPIOrderCreateRequest
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -55,13 +54,11 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.OrdersApi(api_client)
-    external_api_order_create_request = openapi_client.ExternalAPIOrderCreateRequest() # ExternalAPIOrderCreateRequest | 
+    external_api_order_create_request = {"order_id":"1","period":["2025-01-01","2025-12-31"],"client_id":1,"client_company_reg_code":"14200010","client_company_name":"Waybiller OÜ","destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1, Tallinn","destination_latitude":59.3962767,"destination_longitude":24.6566519,"origins":[{"origin_raw_id":1}],"total_allowed_amount":123.456,"rows":[{"origin_assortment_raw_id":1}],"transportation_companies":[{"transportation_company_name":"Waybiller OÜ","transportation_company_reg_code":"14200010"}],"cancel_transport_orders_on_allowed_amount_exceeding":true,"client_can_edit_transportation_values":true,"vehicles":[{"truck_reg_number":"ABC123","trailer_reg_number":"XYZ456","company_reg_code":"14200010"}],"extra_information":"Extra information","user_id":1} # ExternalAPIOrderCreateRequest | 
 
     try:
         # Creation of an order
-        api_response = api_instance.orders_create(external_api_order_create_request)
-        print("The response of OrdersApi->orders_create:\n")
-        pprint(api_response)
+        api_instance.orders_create(external_api_order_create_request)
     except Exception as e:
         print("Exception when calling OrdersApi->orders_create: %s\n" % e)
 ```
@@ -77,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIOrderCreate**](ExternalAPIOrderCreate.md)
+void (empty response body)
 
 ### Authorization
 
@@ -92,7 +89,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**303** |  |  -  |
 **403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -180,7 +177,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **orders_retrieve**
-> ExternalAPIOrder orders_retrieve(id)
+> ExternalAPIOrderRetrieve orders_retrieve(id)
 
 Querying of a single order
 
@@ -192,7 +189,7 @@ Returns an order with the specified ID. Only companies associated with the order
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_order import ExternalAPIOrder
+from openapi_client.models.external_api_order_retrieve import ExternalAPIOrderRetrieve
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -239,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIOrder**](ExternalAPIOrder.md)
+[**ExternalAPIOrderRetrieve**](ExternalAPIOrderRetrieve.md)
 
 ### Authorization
 
@@ -261,7 +258,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **orders_transportation_update**
-> ExternalAPIPartialOrderUpdate orders_transportation_update(id, external_api_partial_order_update_request=external_api_partial_order_update_request)
+> orders_transportation_update(id, external_api_partial_order_update_request=external_api_partial_order_update_request)
 
 Editing of an order transportation companies and vehicles
 
@@ -273,7 +270,6 @@ Edits order transportation companies and vehicles data. It is allowed to be used
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_partial_order_update import ExternalAPIPartialOrderUpdate
 from openapi_client.models.external_api_partial_order_update_request import ExternalAPIPartialOrderUpdateRequest
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -300,13 +296,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.OrdersApi(api_client)
     id = 56 # int | A unique integer value identifying this Order.
-    external_api_partial_order_update_request = openapi_client.ExternalAPIPartialOrderUpdateRequest() # ExternalAPIPartialOrderUpdateRequest |  (optional)
+    external_api_partial_order_update_request = {"transportation_companies":[{"transportation_company_name":"Waybiller OÜ","transportation_company_reg_code":"14200010"}],"vehicles":[{"truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","company_reg_code":"14200010"}]} # ExternalAPIPartialOrderUpdateRequest |  (optional)
 
     try:
         # Editing of an order transportation companies and vehicles
-        api_response = api_instance.orders_transportation_update(id, external_api_partial_order_update_request=external_api_partial_order_update_request)
-        print("The response of OrdersApi->orders_transportation_update:\n")
-        pprint(api_response)
+        api_instance.orders_transportation_update(id, external_api_partial_order_update_request=external_api_partial_order_update_request)
     except Exception as e:
         print("Exception when calling OrdersApi->orders_transportation_update: %s\n" % e)
 ```
@@ -323,7 +317,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIPartialOrderUpdate**](ExternalAPIPartialOrderUpdate.md)
+void (empty response body)
 
 ### Authorization
 
@@ -338,13 +332,13 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**303** |  |  -  |
 **403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **orders_update**
-> ExternalAPIOrderUpdate orders_update(id, external_api_order_update_request=external_api_order_update_request)
+> orders_update(id, external_api_order_update_request=external_api_order_update_request)
 
 Editing of an order
 
@@ -356,7 +350,6 @@ Edits order. It is allowed to be used by order's owner company
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_order_update import ExternalAPIOrderUpdate
 from openapi_client.models.external_api_order_update_request import ExternalAPIOrderUpdateRequest
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -383,13 +376,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.OrdersApi(api_client)
     id = 56 # int | A unique integer value identifying this Order.
-    external_api_order_update_request = openapi_client.ExternalAPIOrderUpdateRequest() # ExternalAPIOrderUpdateRequest |  (optional)
+    external_api_order_update_request = {"period":["2025-01-01","2025-12-31"],"client_id":"1","client_company_reg_code":"14200010","client_company_name":"Waybiller OÜ","destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1","destination_latitude":59.3962767,"destination_longitude":24.6566519,"origins":[{"origin_raw_id":1}],"rows":[{"origin_assortment_raw_id":1}],"total_allowed_amount":"123.456","transportation_companies":[{"transportation_company_name":"Waybiller OÜ","transportation_company_reg_code":"14200010"}],"vehicles":[{"truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","company_reg_code":"14200010"}],"client_can_edit_transportation_values":true,"cancel_transport_orders_on_allowed_amount_exceeding":true,"extra_information":"Extra information"} # ExternalAPIOrderUpdateRequest |  (optional)
 
     try:
         # Editing of an order
-        api_response = api_instance.orders_update(id, external_api_order_update_request=external_api_order_update_request)
-        print("The response of OrdersApi->orders_update:\n")
-        pprint(api_response)
+        api_instance.orders_update(id, external_api_order_update_request=external_api_order_update_request)
     except Exception as e:
         print("Exception when calling OrdersApi->orders_update: %s\n" % e)
 ```
@@ -406,7 +397,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIOrderUpdate**](ExternalAPIOrderUpdate.md)
+void (empty response body)
 
 ### Authorization
 
@@ -421,7 +412,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**303** |  |  -  |
 **403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

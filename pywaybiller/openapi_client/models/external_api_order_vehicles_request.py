@@ -27,14 +27,14 @@ class ExternalAPIOrderVehiclesRequest(BaseModel):
     ExternalAPIOrderVehiclesRequest
     """  # noqa: E501
 
-    truck_reg_number: Optional[
+    truck_reg_number: Annotated[
+        str, Field(min_length=1, strict=True, max_length=16)
+    ] = Field(description="Registration number of the truck")
+    trailer_reg_number: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = Field(default=None, description="Truck reg number.")
-    trailer_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
-        Field(default=None, description="Trailer reg number.")
-    )
-    company_reg_code: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
-        Field(default=None, description="Company reg code that owns the truck.")
+    ] = Field(default="", description="Registration number of the trailer")
+    company_reg_code: Annotated[str, Field(min_length=1, strict=True)] = Field(
+        description="Official registration number of the company that owns the vehicle"
     )
     __properties: ClassVar[List[str]] = [
         "truck_reg_number",
@@ -93,7 +93,9 @@ class ExternalAPIOrderVehiclesRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "truck_reg_number": obj.get("truck_reg_number"),
-                "trailer_reg_number": obj.get("trailer_reg_number"),
+                "trailer_reg_number": obj.get("trailer_reg_number")
+                if obj.get("trailer_reg_number") is not None
+                else "",
                 "company_reg_code": obj.get("company_reg_code"),
             }
         )

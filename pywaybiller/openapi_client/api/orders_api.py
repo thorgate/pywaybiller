@@ -19,21 +19,14 @@ from typing_extensions import Annotated
 
 from pywaybiller.openapi_client.api_client import ApiClient, RequestSerialized
 from pywaybiller.openapi_client.api_response import ApiResponse
-from pywaybiller.openapi_client.models.external_api_order import ExternalAPIOrder
-from pywaybiller.openapi_client.models.external_api_order_create import (
-    ExternalAPIOrderCreate,
-)
 from pywaybiller.openapi_client.models.external_api_order_create_request import (
     ExternalAPIOrderCreateRequest,
 )
-from pywaybiller.openapi_client.models.external_api_order_update import (
-    ExternalAPIOrderUpdate,
+from pywaybiller.openapi_client.models.external_api_order_retrieve import (
+    ExternalAPIOrderRetrieve,
 )
 from pywaybiller.openapi_client.models.external_api_order_update_request import (
     ExternalAPIOrderUpdateRequest,
-)
-from pywaybiller.openapi_client.models.external_api_partial_order_update import (
-    ExternalAPIPartialOrderUpdate,
 )
 from pywaybiller.openapi_client.models.external_api_partial_order_update_request import (
     ExternalAPIPartialOrderUpdateRequest,
@@ -71,7 +64,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPIOrderCreate:
+    ) -> None:
         """Creation of an order
 
         Creates a new order.<br><br>         **NB!** All posted IDs are IDs in your system and these are used to match objects in your system with objects in Waybiller.         It is also possible to use the Waybiller IDs (`_raw_id`)         (if you have received it via GET endpoints (e.g. Destinations, Origin assortments).         Exception is `client`, where the `reg_code` is used as raw id.
@@ -109,7 +102,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ExternalAPIOrderCreate",
+            "303": "ExternalAPIOrderCreate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -136,7 +129,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPIOrderCreate]:
+    ) -> ApiResponse[None]:
         """Creation of an order
 
         Creates a new order.<br><br>         **NB!** All posted IDs are IDs in your system and these are used to match objects in your system with objects in Waybiller.         It is also possible to use the Waybiller IDs (`_raw_id`)         (if you have received it via GET endpoints (e.g. Destinations, Origin assortments).         Exception is `client`, where the `reg_code` is used as raw id.
@@ -174,7 +167,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ExternalAPIOrderCreate",
+            "303": "ExternalAPIOrderCreate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -239,7 +232,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ExternalAPIOrderCreate",
+            "303": "ExternalAPIOrderCreate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -604,7 +597,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPIOrder:
+    ) -> ExternalAPIOrderRetrieve:
         """Querying of a single order
 
         Returns an order with the specified ID. Only companies associated with the order can query it.
@@ -642,7 +635,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOrder",
+            "200": "ExternalAPIOrderRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -670,7 +663,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPIOrder]:
+    ) -> ApiResponse[ExternalAPIOrderRetrieve]:
         """Querying of a single order
 
         Returns an order with the specified ID. Only companies associated with the order can query it.
@@ -708,7 +701,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOrder",
+            "200": "ExternalAPIOrderRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -774,7 +767,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOrder",
+            "200": "ExternalAPIOrderRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -857,7 +850,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPIPartialOrderUpdate:
+    ) -> None:
         """Editing of an order transportation companies and vehicles
 
         Edits order transportation companies and vehicles data. It is allowed to be used by order's client company
@@ -898,7 +891,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIPartialOrderUpdate",
+            "303": "ExternalAPIPartialOrderUpdate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -931,7 +924,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPIPartialOrderUpdate]:
+    ) -> ApiResponse[None]:
         """Editing of an order transportation companies and vehicles
 
         Edits order transportation companies and vehicles data. It is allowed to be used by order's client company
@@ -972,7 +965,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIPartialOrderUpdate",
+            "303": "ExternalAPIPartialOrderUpdate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -1046,7 +1039,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIPartialOrderUpdate",
+            "303": "ExternalAPIPartialOrderUpdate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -1141,7 +1134,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPIOrderUpdate:
+    ) -> None:
         """Editing of an order
 
         Edits order. It is allowed to be used by order's owner company
@@ -1182,7 +1175,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOrderUpdate",
+            "303": "ExternalAPIOrderUpdate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -1215,7 +1208,7 @@ class OrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPIOrderUpdate]:
+    ) -> ApiResponse[None]:
         """Editing of an order
 
         Edits order. It is allowed to be used by order's owner company
@@ -1256,7 +1249,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOrderUpdate",
+            "303": "ExternalAPIOrderUpdate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -1330,7 +1323,7 @@ class OrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIOrderUpdate",
+            "303": "ExternalAPIOrderUpdate",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(

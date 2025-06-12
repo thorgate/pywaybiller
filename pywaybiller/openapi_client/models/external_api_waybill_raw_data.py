@@ -39,9 +39,7 @@ class ExternalAPIWaybillRawData(BaseModel):
         description="The ID of the destination."
     )
     rows: List[ExternalAPIWaybillRowRawData] = Field(description="Waybill rows.")
-    user_defined_fields: Optional[Dict[str, Any]] = Field(
-        description="User defined fields."
-    )
+    user_defined_fields: Dict[str, Any] = Field(description="User defined fields.")
     __properties: ClassVar[List[str]] = [
         "waybill_id",
         "truck_id",
@@ -127,14 +125,6 @@ class ExternalAPIWaybillRawData(BaseModel):
         # and model_fields_set contains the field
         if self.destination_id is None and "destination_id" in self.model_fields_set:
             _dict["destination_id"] = None
-
-        # set to None if user_defined_fields (nullable) is None
-        # and model_fields_set contains the field
-        if (
-            self.user_defined_fields is None
-            and "user_defined_fields" in self.model_fields_set
-        ):
-            _dict["user_defined_fields"] = None
 
         return _dict
 

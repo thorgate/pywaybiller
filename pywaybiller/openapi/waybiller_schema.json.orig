@@ -592,6 +592,61 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaginatedExternalAPIOrderListList"
+                },
+                "examples": {
+                  "ExampleOrders": {
+                    "value": {
+                      "count": 123,
+                      "next": "https://app.waybiller.com/external-api/orders/?limit=30&offset=90",
+                      "previous": "https://app.waybiller.com/external-api/orders/?limit=30&offset=30",
+                      "results": [
+                        {
+                          "order_id": "1000",
+                          "number": "WAY001000D",
+                          "status": "Active",
+                          "period": [
+                            "01.01.2025",
+                            "31.12.2025"
+                          ],
+                          "origins": [
+                            {
+                              "origin_name": "Waybiller O\u00dc",
+                              "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                              "origin_latitude": 59.3962767,
+                              "origin_longitude": 24.6566519,
+                              "shipper_company_name": "Waybiller O\u00dc",
+                              "shipper_company_reg_code": "14200010"
+                            }
+                          ],
+                          "owner_company_name": "Waybiller O\u00dc",
+                          "client_company_name": "Waybiller O\u00dc",
+                          "destination_name": "Waybiller O\u00dc",
+                          "total_allowed_amount": "120.000",
+                          "raw_data": {
+                            "order_id": 1000,
+                            "number": "WAY001000D",
+                            "status": 2,
+                            "origins": [
+                              1
+                            ],
+                            "owner_company_id": "1",
+                            "client_id": "1",
+                            "origins_assortment": [
+                              1
+                            ],
+                            "transportation_companies": [
+                              1
+                            ],
+                            "vehicles": [
+                              1
+                            ],
+                            "destination": 1
+                          }
+                        }
+                      ]
+                    },
+                    "summary": "Example orders"
+                  }
                 }
               }
             },
@@ -628,6 +683,54 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ExternalAPIOrderCreateRequest"
+              },
+              "examples": {
+                "ExampleOrderCreate": {
+                  "value": {
+                    "order_id": "1",
+                    "period": [
+                      "2025-01-01",
+                      "2025-12-31"
+                    ],
+                    "client_id": 1,
+                    "client_company_reg_code": "14200010",
+                    "client_company_name": "Waybiller O\u00dc",
+                    "destination_id": "1",
+                    "destination_name": "Waybiller O\u00dc",
+                    "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                    "destination_latitude": 59.3962767,
+                    "destination_longitude": 24.6566519,
+                    "origins": [
+                      {
+                        "origin_raw_id": 1
+                      }
+                    ],
+                    "total_allowed_amount": 123.456,
+                    "rows": [
+                      {
+                        "origin_assortment_raw_id": 1
+                      }
+                    ],
+                    "transportation_companies": [
+                      {
+                        "transportation_company_name": "Waybiller O\u00dc",
+                        "transportation_company_reg_code": "14200010"
+                      }
+                    ],
+                    "cancel_transport_orders_on_allowed_amount_exceeding": true,
+                    "client_can_edit_transportation_values": true,
+                    "vehicles": [
+                      {
+                        "truck_reg_number": "ABC123",
+                        "trailer_reg_number": "XYZ456",
+                        "company_reg_code": "14200010"
+                      }
+                    ],
+                    "extra_information": "Extra information",
+                    "user_id": 1
+                  },
+                  "summary": "Example order create"
+                }
               }
             }
           },
@@ -639,11 +742,87 @@
           }
         ],
         "responses": {
-          "201": {
+          "303": {
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExternalAPIOrderCreate"
+                },
+                "examples": {
+                  "ExampleOrderCreateResponse": {
+                    "value": {
+                      "number": "WAY000001D",
+                      "status": "Active",
+                      "order_id": "1",
+                      "period": [
+                        "01.01.2025",
+                        "31.12.2025"
+                      ],
+                      "owner_raw_id": "1",
+                      "owner_company_name": "Waybiller O\u00dc",
+                      "client_id": "1",
+                      "destination_id": "1",
+                      "destination_name": "Waybiller O\u00dc",
+                      "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "destination_latitude": 59.3962767,
+                      "destination_longitude": 24.6566519,
+                      "origins": [
+                        {
+                          "origin_name": "Waybiller O\u00dc",
+                          "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "origin_latitude": 59.3962767,
+                          "origin_longitude": 24.6566519,
+                          "shipper_company_name": "Waybiller O\u00dc",
+                          "shipper_company_reg_code": "14200010"
+                        }
+                      ],
+                      "total_allowed_amount": "123.456",
+                      "rows": [
+                        {
+                          "origin_assortment_raw_id": 1,
+                          "assortment_name": "Construction sand"
+                        }
+                      ],
+                      "transportation_companies": [
+                        {
+                          "transportation_company_name": "Waybiller O\u00dc",
+                          "transportation_company_reg_code": "14200010"
+                        }
+                      ],
+                      "cancel_transport_orders_on_allowed_amount_exceeding": true,
+                      "client_can_edit_transportation_values": true,
+                      "vehicles": [
+                        {
+                          "truck_reg_number": "ABC123",
+                          "trailer_reg_number": "XYZ456",
+                          "company_reg_code": "14200010"
+                        }
+                      ],
+                      "extra_information": "Extra information",
+                      "user_id": 1,
+                      "raw_data": {
+                        "order_id": 1,
+                        "number": "WAY000001D",
+                        "status": 2,
+                        "origins": [
+                          1
+                        ],
+                        "owner_company_id": "1",
+                        "client_id": "1",
+                        "origins_assortment": [
+                          1
+                        ],
+                        "transportation_companies": [
+                          1
+                        ],
+                        "vehicles": [
+                          1
+                        ],
+                        "destination": 1
+                      }
+                    },
+                    "summary": "Example order create response"
+                  }
                 }
               }
             },
@@ -698,7 +877,83 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExternalAPIOrder"
+                  "$ref": "#/components/schemas/ExternalAPIOrderRetrieve"
+                },
+                "examples": {
+                  "OrderExample": {
+                    "value": {
+                      "number": "WAY000001D",
+                      "status": "Active",
+                      "order_id": "1",
+                      "period": [
+                        "01.01.2025",
+                        "31.12.2025"
+                      ],
+                      "owner_raw_id": "1",
+                      "owner_company_name": "Waybiller O\u00dc",
+                      "client_id": "1",
+                      "destination_id": "1",
+                      "destination_name": "Waybiller O\u00dc",
+                      "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "destination_latitude": 59.3962767,
+                      "destination_longitude": 24.6566519,
+                      "origins": [
+                        {
+                          "origin_name": "Waybiller O\u00dc",
+                          "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "origin_latitude": 59.3962767,
+                          "origin_longitude": 24.6566519,
+                          "shipper_company_name": "Waybiller O\u00dc",
+                          "shipper_company_reg_code": "14200010"
+                        }
+                      ],
+                      "total_allowed_amount": "123.456",
+                      "rows": [
+                        {
+                          "origin_assortment_raw_id": 1,
+                          "assortment_name": "Construction sand"
+                        }
+                      ],
+                      "transportation_companies": [
+                        {
+                          "transportation_company_name": "Waybiller O\u00dc",
+                          "transportation_company_reg_code": "14200010"
+                        }
+                      ],
+                      "cancel_transport_orders_on_allowed_amount_exceeding": true,
+                      "client_can_edit_transportation_values": true,
+                      "vehicles": [
+                        {
+                          "truck_reg_number": "ABC123",
+                          "trailer_reg_number": "XYZ456",
+                          "company_reg_code": "14200010"
+                        }
+                      ],
+                      "extra_information": "Extra information",
+                      "user_id": 1,
+                      "raw_data": {
+                        "order_id": 1,
+                        "number": "WAY000001D",
+                        "status": 2,
+                        "origins": [
+                          1
+                        ],
+                        "owner_company_id": "1",
+                        "client_id": "1",
+                        "origins_assortment": [
+                          1
+                        ],
+                        "transportation_companies": [
+                          1
+                        ],
+                        "vehicles": [
+                          1
+                        ],
+                        "destination": 1
+                      }
+                    },
+                    "summary": "Order example"
+                  }
                 }
               }
             },
@@ -763,6 +1018,52 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ExternalAPIOrderUpdateRequest"
+              },
+              "examples": {
+                "ExampleOrderUpdate": {
+                  "value": {
+                    "period": [
+                      "2025-01-01",
+                      "2025-12-31"
+                    ],
+                    "client_id": "1",
+                    "client_company_reg_code": "14200010",
+                    "client_company_name": "Waybiller O\u00dc",
+                    "destination_id": "1",
+                    "destination_name": "Waybiller O\u00dc",
+                    "destination_address": "M\u00e4ealuse 2/1",
+                    "destination_latitude": 59.3962767,
+                    "destination_longitude": 24.6566519,
+                    "origins": [
+                      {
+                        "origin_raw_id": 1
+                      }
+                    ],
+                    "rows": [
+                      {
+                        "origin_assortment_raw_id": 1
+                      }
+                    ],
+                    "total_allowed_amount": "123.456",
+                    "transportation_companies": [
+                      {
+                        "transportation_company_name": "Waybiller O\u00dc",
+                        "transportation_company_reg_code": "14200010"
+                      }
+                    ],
+                    "vehicles": [
+                      {
+                        "truck_reg_number": "ABC123",
+                        "trailer_reg_number": "XYZ789",
+                        "company_reg_code": "14200010"
+                      }
+                    ],
+                    "client_can_edit_transportation_values": true,
+                    "cancel_transport_orders_on_allowed_amount_exceeding": true,
+                    "extra_information": "Extra information"
+                  },
+                  "summary": "Example order update"
+                }
               }
             }
           }
@@ -773,11 +1074,57 @@
           }
         ],
         "responses": {
-          "200": {
+          "303": {
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExternalAPIOrderUpdate"
+                },
+                "examples": {
+                  "ExampleOrderUpdate": {
+                    "value": {
+                      "period": [
+                        "2025-01-01",
+                        "2025-12-31"
+                      ],
+                      "client_id": "1",
+                      "client_company_reg_code": "14200010",
+                      "client_company_name": "Waybiller O\u00dc",
+                      "destination_id": "1",
+                      "destination_name": "Waybiller O\u00dc",
+                      "destination_address": "M\u00e4ealuse 2/1",
+                      "destination_latitude": 59.3962767,
+                      "destination_longitude": 24.6566519,
+                      "origins": [
+                        {
+                          "origin_raw_id": 1
+                        }
+                      ],
+                      "rows": [
+                        {
+                          "origin_assortment_raw_id": 1
+                        }
+                      ],
+                      "total_allowed_amount": "123.456",
+                      "transportation_companies": [
+                        {
+                          "transportation_company_name": "Waybiller O\u00dc",
+                          "transportation_company_reg_code": "14200010"
+                        }
+                      ],
+                      "vehicles": [
+                        {
+                          "truck_reg_number": "ABC123",
+                          "trailer_reg_number": "XYZ789",
+                          "company_reg_code": "14200010"
+                        }
+                      ],
+                      "client_can_edit_transportation_values": true,
+                      "cancel_transport_orders_on_allowed_amount_exceeding": true,
+                      "extra_information": "Extra information"
+                    },
+                    "summary": "Example order update"
+                  }
                 }
               }
             },
@@ -827,6 +1174,26 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ExternalAPIPartialOrderUpdateRequest"
+              },
+              "examples": {
+                "ExampleOrderTransportationUpdate": {
+                  "value": {
+                    "transportation_companies": [
+                      {
+                        "transportation_company_name": "Waybiller O\u00dc",
+                        "transportation_company_reg_code": "14200010"
+                      }
+                    ],
+                    "vehicles": [
+                      {
+                        "truck_reg_number": "ABC123",
+                        "trailer_reg_number": "XYZ789",
+                        "company_reg_code": "14200010"
+                      }
+                    ]
+                  },
+                  "summary": "Example order transportation update"
+                }
               }
             }
           }
@@ -837,11 +1204,31 @@
           }
         ],
         "responses": {
-          "200": {
+          "303": {
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExternalAPIPartialOrderUpdate"
+                },
+                "examples": {
+                  "ExampleOrderTransportationUpdate": {
+                    "value": {
+                      "transportation_companies": [
+                        {
+                          "transportation_company_name": "Waybiller O\u00dc",
+                          "transportation_company_reg_code": "14200010"
+                        }
+                      ],
+                      "vehicles": [
+                        {
+                          "truck_reg_number": "ABC123",
+                          "trailer_reg_number": "XYZ789",
+                          "company_reg_code": "14200010"
+                        }
+                      ]
+                    },
+                    "summary": "Example order transportation update"
+                  }
                 }
               }
             },
@@ -1989,11 +2376,35 @@
           },
           {
             "in": "query",
+            "name": "raw_assortment_ids",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
             "name": "raw_destination_ids",
             "schema": {
               "type": "string"
             },
             "description": "Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "raw_organizer_company_ids",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "raw_organizer_user_ids",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas."
           },
           {
             "in": "query",
@@ -2005,12 +2416,28 @@
           },
           {
             "in": "query",
+            "name": "raw_transportation_company_ids",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "raw_truck_ids",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
             "name": "start_date",
             "schema": {
               "type": "string",
               "format": "date-time"
             },
-            "description": "Filters transport orders that have transport date after the specified date."
+            "description": "Filters transport orders that have transport date on or after the specified date."
           },
           {
             "in": "query",
@@ -2107,6 +2534,42 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaginatedExternalAPITransportOrderListList"
+                },
+                "examples": {
+                  "TransportOrderListExample": {
+                    "value": {
+                      "count": 123,
+                      "next": "https://app.waybiller.com/external-api/transport-orders/?limit=30&offset=90",
+                      "previous": "https://app.waybiller.com/external-api/transport-orders/?limit=30&offset=30",
+                      "results": [
+                        {
+                          "transport_order_id": "1",
+                          "transport_date": "2025-01-01",
+                          "origin_id": "1",
+                          "origin_name": "Waybiller O\u00dc",
+                          "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "destination_id": "1",
+                          "destination_name": "Waybiller O\u00dc",
+                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "assortment_name": "Construction sand",
+                          "transportation_company_name": "Waybiller O\u00dc",
+                          "truck_reg_number": "ABC123",
+                          "trailer_reg_number": "XYZ789",
+                          "raw_data": {
+                            "transport_order_id": 1,
+                            "status": "new",
+                            "number": "WAY000001T",
+                            "origin_id": 1,
+                            "destination_id": 1,
+                            "entity_code": null,
+                            "truck_id": 1,
+                            "waybills_ids": []
+                          }
+                        }
+                      ]
+                    },
+                    "summary": "Transport Order List Example"
+                  }
                 }
               }
             },
@@ -2143,6 +2606,73 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ExternalAPITransportOrderRequest"
+              },
+              "examples": {
+                "TransportOrderCreateExample": {
+                  "value": {
+                    "transport_order_id": "1",
+                    "order_raw_id": 1,
+                    "rows": [
+                      {
+                        "assortment_id": "1",
+                        "assortment_name": "Construction sand",
+                        "amount": "23.456"
+                      }
+                    ],
+                    "organizer_user_id": 1,
+                    "destination_id": "1",
+                    "destination_name": "Waybiller O\u00dc",
+                    "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                    "destination_latitude": 59.3962767,
+                    "destination_longitude": 24.6566519,
+                    "destination_waybill_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "destination_waybill_reached_destination_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "destination_waybill_accepted_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "destination_transport_order_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "receiver_company_name": "Waybiller O\u00dc",
+                    "receiver_company_reg_code": "14200010",
+                    "origin_id": "1",
+                    "origin_name": "Waybiller O\u00dc",
+                    "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                    "origin_latitude": 59.3962767,
+                    "origin_longitude": 24.6566519,
+                    "origin_waybill_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "origin_waybill_reached_destination_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "origin_waybill_accepted_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "origin_transport_order_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "shipper_company_name": "Waybiller O\u00dc",
+                    "shipper_company_reg_code": "14200010",
+                    "transportation_company_name": "Waybiller O\u00dc",
+                    "transportation_company_reg_code": "14200010",
+                    "truck_reg_number": "ABC123",
+                    "trailer_reg_number": "XYZ789",
+                    "driver_email": "driver@waybiller.com",
+                    "driver_personal_code": "3891020xxxx",
+                    "driver_name": "John Doe",
+                    "driver_phone": "+372987654321",
+                    "transport_date": "2025-01-01",
+                    "transport_time": "14:15",
+                    "additional_info": "Additional instructions for the driver",
+                    "pallets_number": 10
+                  },
+                  "summary": "Transport Order Create Example"
+                }
               }
             }
           },
@@ -2154,11 +2684,94 @@
           }
         ],
         "responses": {
-          "201": {
+          "303": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExternalAPITransportOrder"
+                  "$ref": "#/components/schemas/ExternalAPITransportOrderRetrieve"
+                },
+                "examples": {
+                  "TransportOrderRetrieveExample": {
+                    "value": {
+                      "transport_order_id": "1",
+                      "number": "WAY000001T",
+                      "status": "new",
+                      "rows": [
+                        {
+                          "assortment_id": "1",
+                          "assortment_name": "Construction sand",
+                          "amount": "23.456"
+                        }
+                      ],
+                      "organizer_user_id": 1,
+                      "destination_id": "1",
+                      "destination_name": "Waybiller O\u00dc",
+                      "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "destination_latitude": 59.3962767,
+                      "destination_longitude": 24.6566519,
+                      "destination_waybill_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_waybill_reached_destination_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_waybill_accepted_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_transport_order_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "receiver_company_name": "Waybiller O\u00dc",
+                      "receiver_company_reg_code": "14200010",
+                      "origin_id": "1",
+                      "origin_name": "Waybiller O\u00dc",
+                      "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "origin_latitude": 59.3962767,
+                      "origin_longitude": 24.6566519,
+                      "origin_waybill_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_waybill_reached_destination_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_waybill_accepted_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_transport_order_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "shipper_company_name": "Waybiller O\u00dc",
+                      "shipper_company_reg_code": "14200010",
+                      "transportation_company_name": "Waybiller O\u00dc",
+                      "transportation_company_reg_code": "14200010",
+                      "truck_reg_number": "ABC123",
+                      "trailer_reg_number": "XYZ789",
+                      "driver_email": "driver@waybiller.com",
+                      "driver_personal_code": "3891020xxxx",
+                      "driver_name": "John Doe",
+                      "driver_phone": "+372987654321",
+                      "transport_date": "2025-01-01",
+                      "transport_time": "14:15:00",
+                      "additional_info": "Additional instructions for the driver",
+                      "waybill_pdf_urls": [],
+                      "pallets_number": 10,
+                      "raw_data": {
+                        "transport_order_id": 1,
+                        "order_id": 1,
+                        "rows": [
+                          {
+                            "assortment_id": 1
+                          }
+                        ],
+                        "destination_id": 1,
+                        "origin_id": 1,
+                        "organizer_user_id": 1,
+                        "entity_code": null,
+                        "waybills_ids": []
+                      }
+                    },
+                    "summary": "Transport Order Retrieve Example"
+                  }
                 }
               }
             },
@@ -2194,9 +2807,9 @@
             "in": "path",
             "name": "id",
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
-            "description": "The ID of the transport order queried.",
+            "description": "A unique integer value identifying this Transport order.",
             "required": true
           }
         ],
@@ -2213,7 +2826,90 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExternalAPITransportOrder"
+                  "$ref": "#/components/schemas/ExternalAPITransportOrderRetrieve"
+                },
+                "examples": {
+                  "TransportOrderRetrieveExample": {
+                    "value": {
+                      "transport_order_id": "1",
+                      "number": "WAY000001T",
+                      "status": "new",
+                      "rows": [
+                        {
+                          "assortment_id": "1",
+                          "assortment_name": "Construction sand",
+                          "amount": "23.456"
+                        }
+                      ],
+                      "organizer_user_id": 1,
+                      "destination_id": "1",
+                      "destination_name": "Waybiller O\u00dc",
+                      "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "destination_latitude": 59.3962767,
+                      "destination_longitude": 24.6566519,
+                      "destination_waybill_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_waybill_reached_destination_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_waybill_accepted_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_transport_order_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "receiver_company_name": "Waybiller O\u00dc",
+                      "receiver_company_reg_code": "14200010",
+                      "origin_id": "1",
+                      "origin_name": "Waybiller O\u00dc",
+                      "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "origin_latitude": 59.3962767,
+                      "origin_longitude": 24.6566519,
+                      "origin_waybill_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_waybill_reached_destination_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_waybill_accepted_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_transport_order_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "shipper_company_name": "Waybiller O\u00dc",
+                      "shipper_company_reg_code": "14200010",
+                      "transportation_company_name": "Waybiller O\u00dc",
+                      "transportation_company_reg_code": "14200010",
+                      "truck_reg_number": "ABC123",
+                      "trailer_reg_number": "XYZ789",
+                      "driver_email": "driver@waybiller.com",
+                      "driver_personal_code": "3891020xxxx",
+                      "driver_name": "John Doe",
+                      "driver_phone": "+372987654321",
+                      "transport_date": "2025-01-01",
+                      "transport_time": "14:15:00",
+                      "additional_info": "Additional instructions for the driver",
+                      "waybill_pdf_urls": [],
+                      "pallets_number": 10,
+                      "raw_data": {
+                        "transport_order_id": 1,
+                        "order_id": 1,
+                        "rows": [
+                          {
+                            "assortment_id": 1
+                          }
+                        ],
+                        "destination_id": 1,
+                        "origin_id": 1,
+                        "organizer_user_id": 1,
+                        "entity_code": null,
+                        "waybills_ids": []
+                      }
+                    },
+                    "summary": "Transport Order Retrieve Example"
+                  }
                 }
               }
             },
@@ -2278,6 +2974,54 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ExternalAPITransportOrderUpdateRequest"
+              },
+              "examples": {
+                "TransportOrderUpdateExample": {
+                  "value": {
+                    "origin_id": "1",
+                    "origin_name": "Waybiller O\u00dc",
+                    "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                    "origin_latitude": 59.3962767,
+                    "origin_longitude": 24.6566519,
+                    "shipper_company_name": "Waybiller O\u00dc",
+                    "shipper_company_reg_code": "14200010",
+                    "origin_transport_order_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "origin_waybill_accepted_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "origin_waybill_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "origin_waybill_reached_destination_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "destination_id": "1",
+                    "destination_name": "Waybiller O\u00dc",
+                    "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                    "destination_latitude": 59.3962767,
+                    "destination_longitude": 24.6566519,
+                    "receiver_company_name": "Waybiller O\u00dc",
+                    "receiver_company_reg_code": "14200010",
+                    "destination_transport_order_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "destination_waybill_accepted_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "destination_waybill_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "destination_waybill_reached_destination_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "truck_reg_number": "ABC123",
+                    "trailer_reg_number": "XYZ789",
+                    "pallets_number": 1
+                  },
+                  "summary": "Transport Order Update Example"
+                }
               }
             }
           }
@@ -2288,11 +3032,94 @@
           }
         ],
         "responses": {
-          "200": {
+          "303": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExternalAPITransportOrderUpdate"
+                  "$ref": "#/components/schemas/ExternalAPITransportOrderRetrieve"
+                },
+                "examples": {
+                  "TransportOrderRetrieveExample": {
+                    "value": {
+                      "transport_order_id": "1",
+                      "number": "WAY000001T",
+                      "status": "new",
+                      "rows": [
+                        {
+                          "assortment_id": "1",
+                          "assortment_name": "Construction sand",
+                          "amount": "23.456"
+                        }
+                      ],
+                      "organizer_user_id": 1,
+                      "destination_id": "1",
+                      "destination_name": "Waybiller O\u00dc",
+                      "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "destination_latitude": 59.3962767,
+                      "destination_longitude": 24.6566519,
+                      "destination_waybill_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_waybill_reached_destination_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_waybill_accepted_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "destination_transport_order_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "receiver_company_name": "Waybiller O\u00dc",
+                      "receiver_company_reg_code": "14200010",
+                      "origin_id": "1",
+                      "origin_name": "Waybiller O\u00dc",
+                      "origin_address": "M\u00e4ealuse 2/1, Tallinn",
+                      "origin_latitude": 59.3962767,
+                      "origin_longitude": 24.6566519,
+                      "origin_waybill_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_waybill_reached_destination_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_waybill_accepted_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "origin_transport_order_created_emails": [
+                        "waybiller@waybiller.com"
+                      ],
+                      "shipper_company_name": "Waybiller O\u00dc",
+                      "shipper_company_reg_code": "14200010",
+                      "transportation_company_name": "Waybiller O\u00dc",
+                      "transportation_company_reg_code": "14200010",
+                      "truck_reg_number": "ABC123",
+                      "trailer_reg_number": "XYZ789",
+                      "driver_email": "driver@waybiller.com",
+                      "driver_personal_code": "3891020xxxx",
+                      "driver_name": "John Doe",
+                      "driver_phone": "+372987654321",
+                      "transport_date": "2025-01-01",
+                      "transport_time": "14:15:00",
+                      "additional_info": "Additional instructions for the driver",
+                      "waybill_pdf_urls": [],
+                      "pallets_number": 10,
+                      "raw_data": {
+                        "transport_order_id": 1,
+                        "order_id": 1,
+                        "rows": [
+                          {
+                            "assortment_id": 1
+                          }
+                        ],
+                        "destination_id": 1,
+                        "origin_id": 1,
+                        "organizer_user_id": 1,
+                        "entity_code": null,
+                        "waybills_ids": []
+                      }
+                    },
+                    "summary": "Transport Order Retrieve Example"
+                  }
                 }
               }
             },
@@ -2342,6 +3169,15 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ExternalAPITransportOrderCancelRequest"
+              },
+              "examples": {
+                "CancelTransportOrder": {
+                  "value": {
+                    "cancelling_reason": "Client requested cancellation",
+                    "cancelled_by_user_id": 123
+                  },
+                  "summary": "Cancel transport order"
+                }
               }
             }
           },
@@ -2358,6 +3194,15 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExternalAPITransportOrderCancel"
+                },
+                "examples": {
+                  "CancelTransportOrder": {
+                    "value": {
+                      "cancelling_reason": "Client requested cancellation",
+                      "cancelled_by_user_id": 123
+                    },
+                    "summary": "Cancel transport order"
+                  }
                 }
               }
             },
@@ -3985,7 +4830,7 @@
               }
             ],
             "readOnly": true,
-            "description": "User's role within the company\n\n* `manager` - Manager\n* `project_manager` - Project Manager\n* `object_manager` - Object Manager\n* `dispatcher` - Dispatcher\n* `driver` - Driver\n* `acceptor` - Acceptor\n* `loader_operator` - Loader operator"
+            "description": "User's role within the company"
           },
           "obsolete": {
             "type": "boolean",
@@ -4344,174 +5189,27 @@
           "vehicle_id"
         ]
       },
-      "ExternalAPIOrder": {
-        "type": "object",
-        "properties": {
-          "number": {
-            "type": "string",
-            "readOnly": true,
-            "description": "Order number."
-          },
-          "status": {
-            "type": "string",
-            "readOnly": true,
-            "description": "The status of the order."
-          },
-          "order_id": {
-            "type": "string",
-            "description": "Order id (in your system)."
-          },
-          "order_raw_id": {
-            "type": "string",
-            "readOnly": true,
-            "description": "Order raw id."
-          },
-          "period": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "date"
-            },
-            "description": "The date range when the order is active."
-          },
-          "owner_raw_id": {
-            "type": "string",
-            "readOnly": true,
-            "description": "Raw id of the owner company."
-          },
-          "owner_company_name": {
-            "type": "string",
-            "readOnly": true,
-            "description": "Name of the company who owns the order."
-          },
-          "client_id": {
-            "type": "string",
-            "description": "The company id (in your system) for whom the order is created for."
-          },
-          "client_company_reg_code": {
-            "type": "string",
-            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists."
-          },
-          "client_company_name": {
-            "type": "string",
-            "description": "Name of the company for whom the order is created for."
-          },
-          "destination_raw_id": {
-            "type": "string",
-            "description": "Destination raw id."
-          },
-          "destination_id": {
-            "type": "integer",
-            "description": "Destination id (in your system)."
-          },
-          "destination_name": {
-            "type": "string",
-            "description": "Destination name."
-          },
-          "destination_address": {
-            "type": "string",
-            "description": "Destination address.",
-            "maxLength": 255
-          },
-          "destination_latitude": {
-            "type": "number",
-            "format": "double",
-            "description": "Destination location - latitude."
-          },
-          "destination_longitude": {
-            "type": "number",
-            "format": "double",
-            "description": "Destination location - longitude."
-          },
-          "origins": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExternalAPIOrderOrigin"
-            },
-            "description": "The origins for which the order is created for."
-          },
-          "total_allowed_amount": {
-            "type": "string",
-            "format": "decimal",
-            "pattern": "^-?\\d{0,7}(?:\\.\\d{0,3})?$",
-            "description": "Total allowed amount."
-          },
-          "rows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExternalAPIOrderOriginsAssortments"
-            },
-            "description": "Origin's assortments."
-          },
-          "transportation_companies": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExternalAPIOrderTransportCompanies"
-            },
-            "description": "The transportation companies the client is using for transporting assortments from origins to destination."
-          },
-          "client_can_edit_transportation_values": {
-            "type": "boolean",
-            "description": "Client can edit transportation values."
-          },
-          "vehicles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExternalAPIOrderVehicles"
-            },
-            "description": "The vehicles that the transportation companies are allowed to use for this order."
-          },
-          "extra_information": {
-            "type": "string",
-            "description": "Extra information."
-          },
-          "user_id": {
-            "type": "integer",
-            "description": "User who created this order."
-          },
-          "raw_data": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ExternalAPIOrderRawData"
-              }
-            ],
-            "readOnly": true,
-            "description": "The IDs of the Waybiller internal objects"
-          }
-        },
-        "required": [
-          "number",
-          "order_id",
-          "order_raw_id",
-          "owner_company_name",
-          "owner_raw_id",
-          "period",
-          "raw_data",
-          "status",
-          "user_id"
-        ]
-      },
       "ExternalAPIOrderCreate": {
         "type": "object",
         "properties": {
           "number": {
             "type": "string",
             "readOnly": true,
-            "description": "Order number."
+            "description": "Unique order reference number"
           },
           "status": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusEnum"
+              }
+            ],
             "readOnly": true,
-            "description": "The status of the order."
+            "description": "Current status of the order"
           },
           "order_id": {
             "type": "string",
-            "description": "Order id (in your system)."
-          },
-          "order_raw_id": {
-            "type": "string",
-            "readOnly": true,
-            "description": "Order raw id."
+            "description": "Unique identifier for this order in your system",
+            "readOnly": true
           },
           "period": {
             "type": "array",
@@ -4519,104 +5217,118 @@
               "type": "string",
               "format": "date"
             },
-            "description": "The date range when the order is active.",
+            "description": "The date range when the order is active",
             "maxItems": 2,
             "minItems": 2
           },
           "owner_raw_id": {
             "type": "string",
             "readOnly": true,
-            "description": "Raw id of the owner company."
+            "description": "Unique identifier for the company that owns this order"
           },
           "owner_company_name": {
             "type": "string",
             "readOnly": true,
-            "description": "Name of the company who owns the order."
+            "description": "Name of the company who owns the order"
           },
           "client_id": {
             "type": "string",
-            "description": "The company id (in your system) for whom the order is created for."
+            "nullable": true,
+            "description": "Unique identifier for the client company of this order in your system",
+            "readOnly": true,
+            "maxLength": 1024
           },
           "client_company_reg_code": {
             "type": "string",
-            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists."
+            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists. Required if the `client_id` is not provided",
+            "maxLength": 16
           },
           "client_company_name": {
             "type": "string",
-            "description": "Name of the company for whom the order is created for."
+            "description": "Name of the company for whom the order is created for. Only used if a company with the given `client_company_reg_code` does not exist",
+            "maxLength": 64
           },
           "destination_raw_id": {
-            "type": "string",
-            "description": "Destination raw id."
+            "type": "integer",
+            "description": "Unique identifier of the destination"
           },
           "destination_id": {
-            "type": "integer",
-            "description": "Destination id (in your system)."
+            "type": "string",
+            "nullable": true,
+            "description": "Unique identifier of the destination in your system",
+            "readOnly": true
           },
           "destination_name": {
             "type": "string",
-            "description": "Destination name."
+            "description": "Name of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_address": {
             "type": "string",
-            "description": "Destination address.",
+            "description": "Address of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
             "maxLength": 255
           },
           "destination_latitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - latitude."
+            "description": "Geographic latitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_longitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - longitude."
+            "description": "Geographic longitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "origins": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOrigin"
             },
-            "description": "The origins for which the order is created for."
+            "description": "The origins for which the order is created"
           },
           "total_allowed_amount": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,7}(?:\\.\\d{0,3})?$",
-            "description": "Total allowed amount."
+            "nullable": true,
+            "description": "Maximum total quantity allowed for this order"
           },
           "rows": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOriginsAssortments"
             },
-            "description": "Origin's assortments."
+            "description": "Assortments associated with the origins of this order"
           },
           "transportation_companies": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderTransportCompanies"
             },
-            "description": "The transportation companies the client is using for transporting assortments from origins to destination."
+            "description": "The transportation companies the client is using for transporting assortments from origins to destination"
+          },
+          "cancel_transport_orders_on_allowed_amount_exceeding": {
+            "type": "boolean",
+            "title": "Cancel transport orders when allowed amount exceeds",
+            "description": "Cancel transport orders and do not allow to create new transport orders if the order amount has been exceeded."
           },
           "client_can_edit_transportation_values": {
             "type": "boolean",
-            "description": "Client can edit transportation values."
+            "default": false,
+            "description": "Boolean flag indicating whether the client has permission to modify transportation details"
           },
           "vehicles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderVehicles"
             },
-            "description": "The vehicles that the transportation companies are allowed to use for this order."
+            "description": "The vehicles that the transportation companies are allowed to use for this order"
           },
           "extra_information": {
             "type": "string",
-            "description": "Extra information."
+            "description": "Additional notes, special instructions, or requirements for this order"
           },
           "user_id": {
             "type": "integer",
-            "description": "User who created this order."
+            "description": "Unique identifier of the user who created this order"
           },
           "raw_data": {
             "allOf": [
@@ -4629,9 +5341,10 @@
           }
         },
         "required": [
+          "client_id",
+          "destination_id",
           "number",
           "order_id",
-          "order_raw_id",
           "owner_company_name",
           "owner_raw_id",
           "period",
@@ -4646,7 +5359,7 @@
           "order_id": {
             "type": "string",
             "minLength": 1,
-            "description": "Order id (in your system)."
+            "description": "Unique identifier for this order in your system"
           },
           "period": {
             "type": "array",
@@ -4654,101 +5367,112 @@
               "type": "string",
               "format": "date"
             },
-            "description": "The date range when the order is active.",
+            "description": "The date range when the order is active",
             "maxItems": 2,
             "minItems": 2
           },
           "client_id": {
             "type": "string",
+            "nullable": true,
             "minLength": 1,
-            "description": "The company id (in your system) for whom the order is created for."
+            "description": "Unique identifier for the client company of this order in your system",
+            "maxLength": 1024
           },
           "client_company_reg_code": {
             "type": "string",
             "minLength": 1,
-            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists."
+            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists. Required if the `client_id` is not provided",
+            "maxLength": 16
           },
           "client_company_name": {
             "type": "string",
             "minLength": 1,
-            "description": "Name of the company for whom the order is created for."
+            "description": "Name of the company for whom the order is created for. Only used if a company with the given `client_company_reg_code` does not exist",
+            "maxLength": 64
           },
           "destination_raw_id": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Destination raw id."
+            "type": "integer",
+            "description": "Unique identifier of the destination"
           },
           "destination_id": {
-            "type": "integer",
-            "description": "Destination id (in your system)."
+            "type": "string",
+            "nullable": true,
+            "description": "Unique identifier of the destination in your system"
           },
           "destination_name": {
             "type": "string",
             "minLength": 1,
-            "description": "Destination name."
+            "description": "Name of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_address": {
             "type": "string",
             "minLength": 1,
-            "description": "Destination address.",
+            "description": "Address of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
             "maxLength": 255
           },
           "destination_latitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - latitude."
+            "description": "Geographic latitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_longitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - longitude."
+            "description": "Geographic longitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "origins": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOriginRequest"
             },
-            "description": "The origins for which the order is created for."
+            "description": "The origins for which the order is created"
           },
           "total_allowed_amount": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,7}(?:\\.\\d{0,3})?$",
-            "description": "Total allowed amount."
+            "nullable": true,
+            "description": "Maximum total quantity allowed for this order"
           },
           "rows": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOriginsAssortmentsRequest"
             },
-            "description": "Origin's assortments."
+            "description": "Assortments associated with the origins of this order"
           },
           "transportation_companies": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderTransportCompaniesRequest"
             },
-            "description": "The transportation companies the client is using for transporting assortments from origins to destination."
+            "description": "The transportation companies the client is using for transporting assortments from origins to destination"
+          },
+          "cancel_transport_orders_on_allowed_amount_exceeding": {
+            "type": "boolean",
+            "title": "Cancel transport orders when allowed amount exceeds",
+            "description": "Cancel transport orders and do not allow to create new transport orders if the order amount has been exceeded."
           },
           "client_can_edit_transportation_values": {
             "type": "boolean",
-            "description": "Client can edit transportation values."
+            "default": false,
+            "description": "Boolean flag indicating whether the client has permission to modify transportation details"
           },
           "vehicles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderVehiclesRequest"
             },
-            "description": "The vehicles that the transportation companies are allowed to use for this order."
+            "description": "The vehicles that the transportation companies are allowed to use for this order"
           },
           "extra_information": {
             "type": "string",
             "minLength": 1,
-            "description": "Extra information."
+            "description": "Additional notes, special instructions, or requirements for this order"
           },
           "user_id": {
             "type": "integer",
-            "description": "User who created this order."
+            "description": "Unique identifier of the user who created this order"
           }
         },
         "required": [
@@ -4763,17 +5487,24 @@
           "order_id": {
             "type": "string",
             "readOnly": true,
-            "description": "Order id."
+            "description": "Unique identifier of the order in Waybiller",
+            "maxLength": 10
           },
           "number": {
             "type": "string",
             "readOnly": true,
-            "description": "Order number."
+            "title": "Order number",
+            "description": "Unique order reference number",
+            "maxLength": 16
           },
           "status": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusEnum"
+              }
+            ],
             "readOnly": true,
-            "description": "The status of the order."
+            "description": "Current status of the order"
           },
           "period": {
             "type": "array",
@@ -4781,7 +5512,8 @@
               "type": "string",
               "format": "date"
             },
-            "description": "The date range when the order is active."
+            "readOnly": true,
+            "description": "Date range when the order is active"
           },
           "origins": {
             "type": "array",
@@ -4789,29 +5521,34 @@
               "$ref": "#/components/schemas/ExternalAPIOrderOrigin"
             },
             "readOnly": true,
-            "description": "The origins for which the order is created for."
+            "description": "List of origins associated with this order"
           },
           "owner_company_name": {
             "type": "string",
             "readOnly": true,
-            "description": "Name of the company who owns the order."
+            "description": "Name of the company that owns this order",
+            "maxLength": 64
           },
           "client_company_name": {
             "type": "string",
             "readOnly": true,
-            "description": "Name of the company for whom the order is created for."
+            "description": "Name of the client company for whom this order was created",
+            "maxLength": 64
           },
           "destination_name": {
             "type": "string",
             "readOnly": true,
-            "description": "Destination name."
+            "default": "",
+            "description": "Name of the destination",
+            "maxLength": 255
           },
           "total_allowed_amount": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,7}(?:\\.\\d{0,3})?$",
             "readOnly": true,
-            "description": "Total allowed amount."
+            "nullable": true,
+            "description": "Maximum total quantity allowed for this order"
           },
           "raw_data": {
             "allOf": [
@@ -4839,97 +5576,76 @@
       "ExternalAPIOrderOrigin": {
         "type": "object",
         "properties": {
-          "origin_raw_id": {
-            "type": "string",
-            "description": "Origin raw id."
-          },
           "origin_name": {
             "type": "string",
-            "description": "Origin name.",
+            "readOnly": true,
+            "description": "Name of the origin",
             "maxLength": 255
           },
           "origin_address": {
             "type": "string",
-            "description": "Origin address.",
+            "readOnly": true,
+            "description": "Physical address of the origin",
             "maxLength": 255
           },
           "origin_latitude": {
             "type": "number",
             "format": "double",
-            "description": "Origin location - latitude."
+            "readOnly": true,
+            "description": "Geographic latitude coordinate of the origin (decimal degrees)"
           },
           "origin_longitude": {
             "type": "number",
             "format": "double",
-            "description": "Origin location - longitude."
+            "readOnly": true,
+            "description": "Geographic longitude coordinate of the origin (decimal degrees)"
           },
           "shipper_company_name": {
             "type": "string",
-            "description": "Origin company name.",
+            "readOnly": true,
+            "description": "Name of the company that owns the origin",
             "maxLength": 64
           },
           "shipper_company_reg_code": {
             "type": "string",
-            "description": "Origin company reg code.",
+            "readOnly": true,
+            "description": "Official registration number of the origin company",
             "maxLength": 16
           }
-        }
+        },
+        "required": [
+          "origin_address",
+          "origin_latitude",
+          "origin_longitude",
+          "origin_name",
+          "shipper_company_name",
+          "shipper_company_reg_code"
+        ]
       },
       "ExternalAPIOrderOriginRequest": {
         "type": "object",
         "properties": {
           "origin_raw_id": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Origin raw id."
-          },
-          "origin_name": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Origin name.",
-            "maxLength": 255
-          },
-          "origin_address": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Origin address.",
-            "maxLength": 255
-          },
-          "origin_latitude": {
-            "type": "number",
-            "format": "double",
-            "description": "Origin location - latitude."
-          },
-          "origin_longitude": {
-            "type": "number",
-            "format": "double",
-            "description": "Origin location - longitude."
-          },
-          "shipper_company_name": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Origin company name.",
-            "maxLength": 64
-          },
-          "shipper_company_reg_code": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Origin company reg code.",
-            "maxLength": 16
+            "type": "integer",
+            "writeOnly": true,
+            "description": "Unique identifier of the origin"
           }
-        }
+        },
+        "required": [
+          "origin_raw_id"
+        ]
       },
       "ExternalAPIOrderOriginsAssortments": {
         "type": "object",
         "properties": {
           "origin_assortment_raw_id": {
-            "type": "string",
-            "description": "Origin assortment raw id."
+            "type": "integer",
+            "description": "Unique identifier of the origin assortment"
           },
           "assortment_name": {
             "type": "string",
             "readOnly": true,
-            "description": "Origin assortment name with subset value (if exists)."
+            "description": "Origin assortment name with subset value (if exists)"
           }
         },
         "required": [
@@ -4940,9 +5656,8 @@
         "type": "object",
         "properties": {
           "origin_assortment_raw_id": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Origin assortment raw id."
+            "type": "integer",
+            "description": "Unique identifier of the origin assortment"
           }
         }
       },
@@ -4951,18 +5666,25 @@
         "properties": {
           "order_id": {
             "type": "integer",
+            "minimum": 1,
             "readOnly": true,
-            "description": "Order raw id."
+            "description": "Unique identifier of the order"
           },
           "number": {
             "type": "string",
             "readOnly": true,
-            "description": "Order number."
+            "title": "Order number",
+            "description": "Unique order reference number",
+            "maxLength": 16
           },
           "status": {
-            "type": "integer",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPIOrderRawDataStatusEnum"
+              }
+            ],
             "readOnly": true,
-            "description": "The number representing the status of the order. 1 - Mustand, 2 - Aktiivne, 3 - Mitteaktiivne, 4 - Arhiveeritud"
+            "description": "Numeric status code of the order"
           },
           "origins": {
             "type": "array",
@@ -4970,17 +5692,19 @@
               "type": "integer"
             },
             "readOnly": true,
-            "description": "The origins for which the order is created for."
+            "description": "List of origin IDs associated with this order"
           },
           "owner_company_id": {
             "type": "string",
             "readOnly": true,
-            "description": "Owner company raw id."
+            "description": "Unique identifier of the company that owns this order",
+            "maxLength": 10
           },
           "client_id": {
             "type": "string",
             "readOnly": true,
-            "description": "Client company raw id."
+            "description": "Unique identifier of the client company for whom this order was created",
+            "maxLength": 10
           },
           "origins_assortment": {
             "type": "array",
@@ -4990,7 +5714,7 @@
             },
             "readOnly": true,
             "title": "Origins' assortment",
-            "description": "The assortment that can be grabbed by an order's executor."
+            "description": "IDs of origin assortments that can be used for this order"
           },
           "transportation_companies": {
             "type": "array",
@@ -5012,7 +5736,7 @@
             "type": "integer",
             "readOnly": true,
             "nullable": true,
-            "description": "The destination to where is order allows transporting assortments."
+            "description": "ID of the delivery destination"
           }
         },
         "required": [
@@ -5028,20 +5752,218 @@
           "vehicles"
         ]
       },
+      "ExternalAPIOrderRawDataStatusEnum": {
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer"
+      },
+      "ExternalAPIOrderRetrieve": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Order number",
+            "description": "Unique order reference number",
+            "maxLength": 16
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusEnum"
+              }
+            ],
+            "readOnly": true,
+            "description": "Current status of the order"
+          },
+          "order_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Unique identifier for this order in your system",
+            "maxLength": 1024
+          },
+          "period": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            },
+            "readOnly": true,
+            "description": "Date range when the order is active"
+          },
+          "owner_raw_id": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Unique identifier of the company that owns this order",
+            "maxLength": 10
+          },
+          "owner_company_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Name of the company that owns this order",
+            "maxLength": 64
+          },
+          "client_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Unique identifier for the client company of this order in your system",
+            "maxLength": 1024
+          },
+          "destination_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Unique identifier for the destination of this order in your system",
+            "maxLength": 1024
+          },
+          "destination_name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Name of the destination",
+            "maxLength": 64
+          },
+          "destination_address": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Physical address of the delivery destination",
+            "maxLength": 255
+          },
+          "destination_latitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Geographic latitude coordinate of the destination (decimal degrees)"
+          },
+          "destination_longitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Geographic longitude coordinate of the destination (decimal degrees)"
+          },
+          "origins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPIOrderOrigin"
+            },
+            "readOnly": true,
+            "description": "List of origins associated with this order"
+          },
+          "total_allowed_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,7}(?:\\.\\d{0,3})?$",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Maximum total quantity allowed for this order"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPIOrderOriginsAssortments"
+            },
+            "readOnly": true,
+            "description": "Assortments associated with the origins of this order"
+          },
+          "transportation_companies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPIOrderTransportCompanies"
+            },
+            "readOnly": true,
+            "description": "List of companies authorized to transport assortments for this order"
+          },
+          "cancel_transport_orders_on_allowed_amount_exceeding": {
+            "type": "boolean",
+            "readOnly": true,
+            "title": "Cancel transport orders when allowed amount exceeds",
+            "description": "Cancel transport orders and do not allow to create new transport orders if the order amount has been exceeded."
+          },
+          "client_can_edit_transportation_values": {
+            "type": "boolean",
+            "readOnly": true,
+            "description": "Boolean flag indicating whether the client has permission to modify transportation details"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPIOrderVehicles"
+            },
+            "readOnly": true,
+            "description": "Specific vehicles approved for transporting materials in this order"
+          },
+          "extra_information": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Additional notes, special instructions, or requirements for this order"
+          },
+          "user_id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "Identifier of the user who created this order"
+          },
+          "raw_data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPIOrderRawData"
+              }
+            ],
+            "readOnly": true,
+            "description": "The IDs of the Waybiller internal objects"
+          }
+        },
+        "required": [
+          "cancel_transport_orders_on_allowed_amount_exceeding",
+          "client_can_edit_transportation_values",
+          "client_id",
+          "destination_address",
+          "destination_id",
+          "destination_latitude",
+          "destination_longitude",
+          "destination_name",
+          "extra_information",
+          "number",
+          "order_id",
+          "origins",
+          "owner_company_name",
+          "owner_raw_id",
+          "period",
+          "raw_data",
+          "rows",
+          "status",
+          "total_allowed_amount",
+          "transportation_companies",
+          "user_id",
+          "vehicles"
+        ]
+      },
       "ExternalAPIOrderTransportCompanies": {
         "type": "object",
         "properties": {
           "transportation_company_name": {
             "type": "string",
-            "description": "Transportation company name.",
+            "description": "Name of the transportation company",
             "maxLength": 64
           },
           "transportation_company_reg_code": {
             "type": "string",
-            "description": "Transportation company reg code.",
+            "description": "Official registration number of the transportation company",
             "maxLength": 16
           }
-        }
+        },
+        "required": [
+          "transportation_company_name",
+          "transportation_company_reg_code"
+        ]
       },
       "ExternalAPIOrderTransportCompaniesRequest": {
         "type": "object",
@@ -5049,16 +5971,20 @@
           "transportation_company_name": {
             "type": "string",
             "minLength": 1,
-            "description": "Transportation company name.",
+            "description": "Name of the transportation company",
             "maxLength": 64
           },
           "transportation_company_reg_code": {
             "type": "string",
             "minLength": 1,
-            "description": "Transportation company reg code.",
+            "description": "Official registration number of the transportation company",
             "maxLength": 16
           }
-        }
+        },
+        "required": [
+          "transportation_company_name",
+          "transportation_company_reg_code"
+        ]
       },
       "ExternalAPIOrderUpdate": {
         "type": "object",
@@ -5069,86 +5995,94 @@
               "type": "string",
               "format": "date"
             },
-            "description": "The date range when the order is active.",
+            "description": "Date range when the order is active",
             "maxItems": 2,
             "minItems": 2
           },
           "client_id": {
             "type": "string",
-            "description": "The company id (in your system) for whom the order is created for."
+            "nullable": true,
+            "description": "Unique identifier for the client company of this order in your system",
+            "readOnly": true,
+            "maxLength": 1024
           },
           "client_company_reg_code": {
             "type": "string",
-            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists."
+            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists. Required if the `client_id` is not provided",
+            "maxLength": 16
           },
           "client_company_name": {
             "type": "string",
-            "description": "Name of the company for whom the order is created for."
+            "description": "Name of the company for whom the order is created for. Only used if a company with the given `client_company_reg_code` does not exist",
+            "maxLength": 64
           },
           "destination_raw_id": {
-            "type": "string",
-            "description": "Destination raw id."
+            "type": "integer",
+            "description": "Unique identifier of the destination"
           },
           "destination_id": {
-            "type": "integer",
-            "description": "Destination id (in your system)."
+            "type": "string",
+            "nullable": true,
+            "description": "Unique identifier of the destination in your system",
+            "readOnly": true
           },
           "destination_name": {
             "type": "string",
-            "description": "Destination name."
+            "description": "Name of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_address": {
             "type": "string",
-            "description": "Destination address.",
+            "description": "Address of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
             "maxLength": 255
           },
           "destination_latitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - latitude."
+            "description": "Geographic latitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_longitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - longitude."
+            "description": "Geographic longitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "origins": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOrigin"
             },
-            "description": "The origins for which the order is created for."
+            "description": "The origins for which the order is created"
           },
           "rows": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOriginsAssortments"
             },
-            "description": "Origin's assortments."
+            "description": "Assortments associated with the origins of this order"
           },
           "total_allowed_amount": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,7}(?:\\.\\d{0,3})?$",
-            "description": "Total allowed amount."
+            "nullable": true,
+            "description": "Maximum total quantity allowed for this order"
           },
           "transportation_companies": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderTransportCompanies"
             },
-            "description": "The transportation companies the client is using for transporting assortments from origins to destination."
+            "description": "The transportation companies the client is using for transporting assortments from origins to destination"
           },
           "vehicles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderVehicles"
             },
-            "description": "The vehicles that the transportation companies are allowed to use for this order."
+            "description": "The vehicles that the transportation companies are allowed to use for this order"
           },
           "client_can_edit_transportation_values": {
             "type": "boolean",
-            "description": "Client can edit transportation values."
+            "description": "Boolean flag indicating whether the client has permission to modify transportation details"
           },
           "cancel_transport_orders_on_allowed_amount_exceeding": {
             "type": "boolean",
@@ -5157,9 +6091,13 @@
           },
           "extra_information": {
             "type": "string",
-            "description": "Extra information."
+            "description": "Additional notes, special instructions, or requirements for this order"
           }
-        }
+        },
+        "required": [
+          "client_id",
+          "destination_id"
+        ]
       },
       "ExternalAPIOrderUpdateRequest": {
         "type": "object",
@@ -5170,92 +6108,97 @@
               "type": "string",
               "format": "date"
             },
-            "description": "The date range when the order is active.",
+            "description": "Date range when the order is active",
             "maxItems": 2,
             "minItems": 2
           },
           "client_id": {
             "type": "string",
+            "nullable": true,
             "minLength": 1,
-            "description": "The company id (in your system) for whom the order is created for."
+            "description": "Unique identifier for the client company of this order in your system",
+            "maxLength": 1024
           },
           "client_company_reg_code": {
             "type": "string",
             "minLength": 1,
-            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists."
+            "description": "The company reg code for whom the order is created for. Used as raw id to match the company, if it exists. Required if the `client_id` is not provided",
+            "maxLength": 16
           },
           "client_company_name": {
             "type": "string",
             "minLength": 1,
-            "description": "Name of the company for whom the order is created for."
+            "description": "Name of the company for whom the order is created for. Only used if a company with the given `client_company_reg_code` does not exist",
+            "maxLength": 64
           },
           "destination_raw_id": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Destination raw id."
+            "type": "integer",
+            "description": "Unique identifier of the destination"
           },
           "destination_id": {
-            "type": "integer",
-            "description": "Destination id (in your system)."
+            "type": "string",
+            "nullable": true,
+            "description": "Unique identifier of the destination in your system"
           },
           "destination_name": {
             "type": "string",
             "minLength": 1,
-            "description": "Destination name."
+            "description": "Name of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_address": {
             "type": "string",
             "minLength": 1,
-            "description": "Destination address.",
+            "description": "Address of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
             "maxLength": 255
           },
           "destination_latitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - latitude."
+            "description": "Geographic latitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "destination_longitude": {
             "type": "number",
             "format": "double",
-            "description": "Destination location - longitude."
+            "description": "Geographic longitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided"
           },
           "origins": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOriginRequest"
             },
-            "description": "The origins for which the order is created for."
+            "description": "The origins for which the order is created"
           },
           "rows": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderOriginsAssortmentsRequest"
             },
-            "description": "Origin's assortments."
+            "description": "Assortments associated with the origins of this order"
           },
           "total_allowed_amount": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,7}(?:\\.\\d{0,3})?$",
-            "description": "Total allowed amount."
+            "nullable": true,
+            "description": "Maximum total quantity allowed for this order"
           },
           "transportation_companies": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderTransportCompaniesRequest"
             },
-            "description": "The transportation companies the client is using for transporting assortments from origins to destination."
+            "description": "The transportation companies the client is using for transporting assortments from origins to destination"
           },
           "vehicles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderVehiclesRequest"
             },
-            "description": "The vehicles that the transportation companies are allowed to use for this order."
+            "description": "The vehicles that the transportation companies are allowed to use for this order"
           },
           "client_can_edit_transportation_values": {
             "type": "boolean",
-            "description": "Client can edit transportation values."
+            "description": "Boolean flag indicating whether the client has permission to modify transportation details"
           },
           "cancel_transport_orders_on_allowed_amount_exceeding": {
             "type": "boolean",
@@ -5265,7 +6208,7 @@
           "extra_information": {
             "type": "string",
             "minLength": 1,
-            "description": "Extra information."
+            "description": "Additional notes, special instructions, or requirements for this order"
           }
         }
       },
@@ -5274,19 +6217,24 @@
         "properties": {
           "truck_reg_number": {
             "type": "string",
-            "description": "Truck reg number.",
+            "description": "Registration number of the truck",
             "maxLength": 16
           },
           "trailer_reg_number": {
             "type": "string",
-            "description": "Trailer reg number.",
+            "default": "",
+            "description": "Registration number of the trailer",
             "maxLength": 16
           },
           "company_reg_code": {
             "type": "string",
-            "description": "Company reg code that owns the truck."
+            "description": "Official registration number of the company that owns the vehicle"
           }
-        }
+        },
+        "required": [
+          "company_reg_code",
+          "truck_reg_number"
+        ]
       },
       "ExternalAPIOrderVehiclesRequest": {
         "type": "object",
@@ -5294,20 +6242,26 @@
           "truck_reg_number": {
             "type": "string",
             "minLength": 1,
-            "description": "Truck reg number.",
+            "description": "Registration number of the truck",
             "maxLength": 16
           },
           "trailer_reg_number": {
             "type": "string",
-            "description": "Trailer reg number.",
+            "minLength": 1,
+            "default": "",
+            "description": "Registration number of the trailer",
             "maxLength": 16
           },
           "company_reg_code": {
             "type": "string",
             "minLength": 1,
-            "description": "Company reg code that owns the truck."
+            "description": "Official registration number of the company that owns the vehicle"
           }
-        }
+        },
+        "required": [
+          "company_reg_code",
+          "truck_reg_number"
+        ]
       },
       "ExternalAPIOriginAssortment": {
         "type": "object",
@@ -6523,14 +7477,14 @@
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderTransportCompanies"
             },
-            "description": "The transportation companies the client is using for transporting assortments from origins to destination."
+            "description": "The transportation companies the client is using for transporting assortments from origins to destination"
           },
           "vehicles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderVehicles"
             },
-            "description": "The vehicles that the transportation companies are allowed to use for this order."
+            "description": "The vehicles that the transportation companies are allowed to use for this order"
           }
         }
       },
@@ -6542,285 +7496,30 @@
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderTransportCompaniesRequest"
             },
-            "description": "The transportation companies the client is using for transporting assortments from origins to destination."
+            "description": "The transportation companies the client is using for transporting assortments from origins to destination"
           },
           "vehicles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPIOrderVehiclesRequest"
             },
-            "description": "The vehicles that the transportation companies are allowed to use for this order."
+            "description": "The vehicles that the transportation companies are allowed to use for this order"
           }
         }
-      },
-      "ExternalAPITransportOrder": {
-        "type": "object",
-        "properties": {
-          "transport_order_id": {
-            "type": "string"
-          },
-          "order_raw_id": {
-            "type": "string"
-          },
-          "order_id": {
-            "type": "string"
-          },
-          "number": {
-            "type": "string",
-            "readOnly": true,
-            "nullable": true,
-            "title": "Transport order number"
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TransportOrderStatusEnum"
-              }
-            ],
-            "readOnly": true
-          },
-          "rows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExternalAPITransportOrderRow"
-            }
-          },
-          "organizer_user_id": {
-            "type": "integer"
-          },
-          "destination_raw_id": {
-            "type": "string"
-          },
-          "destination_id": {
-            "type": "integer"
-          },
-          "destination_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "destination_address": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "destination_latitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "destination_longitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "destination_waybill_created_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "destination_waybill_reached_destination_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "destination_waybill_accepted_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "destination_transport_order_created_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "receiver_company_name": {
-            "type": "string",
-            "maxLength": 64
-          },
-          "receiver_company_reg_code": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "origin_raw_id": {
-            "type": "string"
-          },
-          "origin_id": {
-            "type": "integer"
-          },
-          "origin_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "origin_address": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "origin_latitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "origin_longitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "origin_waybill_created_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "origin_waybill_reached_destination_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "origin_waybill_accepted_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "origin_transport_order_created_emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email",
-              "maxLength": 254
-            },
-            "nullable": true
-          },
-          "shipper_company_name": {
-            "type": "string",
-            "maxLength": 64
-          },
-          "shipper_company_reg_code": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "transportation_company_name": {
-            "type": "string",
-            "maxLength": 64
-          },
-          "transportation_company_reg_code": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "truck_reg_number": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "trailer_reg_number": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "driver_email": {
-            "type": "string",
-            "format": "email",
-            "maxLength": 254
-          },
-          "driver_personal_code": {
-            "type": "string",
-            "maxLength": 24
-          },
-          "driver_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "driver_phone": {
-            "type": "string",
-            "default": "",
-            "maxLength": 128
-          },
-          "transport_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "transport_time": {
-            "type": "string",
-            "format": "time",
-            "nullable": true
-          },
-          "additional_info": {
-            "type": "string"
-          },
-          "waybills_ids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "readOnly": true
-          },
-          "waybill_pdf_urls": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "readOnly": true
-          },
-          "raw_data": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ExternalAPITransportOrderRawData"
-              }
-            ],
-            "readOnly": true,
-            "description": "The IDs of the Waybiller internal objects"
-          },
-          "pallets_number": {
-            "type": "integer",
-            "maximum": 32767,
-            "minimum": 0,
-            "nullable": true,
-            "title": "Number of pallets"
-          }
-        },
-        "required": [
-          "number",
-          "organizer_user_id",
-          "raw_data",
-          "rows",
-          "status",
-          "transport_date",
-          "transport_order_id",
-          "waybill_pdf_urls",
-          "waybills_ids"
-        ]
       },
       "ExternalAPITransportOrderCancel": {
         "type": "object",
         "properties": {
           "cancelling_reason": {
-            "type": "string"
+            "type": "string",
+            "description": "Reason for cancelling the transport order"
           },
           "cancelled_by_user_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the user who cancelled the transport order. Required unless a default values has been set for the API key."
           }
         },
         "required": [
-          "cancelled_by_user_id",
           "cancelling_reason"
         ]
       },
@@ -6829,14 +7528,15 @@
         "properties": {
           "cancelling_reason": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "Reason for cancelling the transport order"
           },
           "cancelled_by_user_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "ID of the user who cancelled the transport order. Required unless a default values has been set for the API key."
           }
         },
         "required": [
-          "cancelled_by_user_id",
           "cancelling_reason"
         ]
       },
@@ -6845,62 +7545,79 @@
         "properties": {
           "transport_order_id": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "nullable": true,
+            "description": "Unique identifier of the transport order in your system",
+            "maxLength": 1024
           },
           "transport_date": {
             "type": "string",
             "format": "date",
             "readOnly": true,
-            "nullable": true
+            "description": "Date of transport"
           },
           "origin_id": {
             "type": "string",
+            "readOnly": true,
             "nullable": true,
-            "description": "Unique identifier of the origin in your system"
+            "description": "Unique identifier of the origin in your system",
+            "maxLength": 1024
           },
           "origin_name": {
             "type": "string",
+            "readOnly": true,
+            "description": "Name of the origin location",
             "maxLength": 255
           },
           "origin_address": {
             "type": "string",
+            "readOnly": true,
+            "description": "Address of the origin location",
             "maxLength": 255
           },
           "destination_id": {
             "type": "string",
+            "readOnly": true,
             "nullable": true,
-            "description": "Unique identifier of the destination in your system"
+            "description": "Unique identifier of the destination in your system",
+            "maxLength": 1024
           },
           "destination_name": {
             "type": "string",
+            "readOnly": true,
+            "description": "Name of the destination location",
             "maxLength": 255
           },
           "destination_address": {
             "type": "string",
+            "readOnly": true,
+            "description": "Address of the destination location",
             "maxLength": 255
           },
           "assortment_name": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Name of the assortment being transported"
           },
           "transportation_company_name": {
             "type": "string",
+            "readOnly": true,
+            "description": "Transportation company name",
             "maxLength": 64
           },
           "truck_reg_number": {
             "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Registration number of the truck",
             "maxLength": 16
           },
           "trailer_reg_number": {
             "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Registration number of the trailer",
             "maxLength": 16
-          },
-          "waybills_ids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "readOnly": true
           },
           "raw_data": {
             "allOf": [
@@ -6914,12 +7631,18 @@
         },
         "required": [
           "assortment_name",
+          "destination_address",
           "destination_id",
+          "destination_name",
+          "origin_address",
           "origin_id",
+          "origin_name",
           "raw_data",
+          "trailer_reg_number",
           "transport_date",
           "transport_order_id",
-          "waybills_ids"
+          "transportation_company_name",
+          "truck_reg_number"
         ]
       },
       "ExternalAPITransportOrderRawData": {
@@ -6927,12 +7650,14 @@
         "properties": {
           "transport_order_id": {
             "type": "integer",
-            "readOnly": true
+            "minimum": 1,
+            "readOnly": true,
+            "description": "Unique identifier of the transport order in the Waybiller system"
           },
           "order_id": {
             "type": "integer",
             "nullable": true,
-            "description": "Order which was used for creating",
+            "description": "Unique identifier of the order associated with the transport order",
             "readOnly": true
           },
           "rows": {
@@ -6940,31 +7665,38 @@
             "items": {
               "$ref": "#/components/schemas/ExternalAPITransportOrderRowRawData"
             },
-            "readOnly": true
+            "readOnly": true,
+            "description": "List of assortments associated with the transport order"
           },
           "destination_id": {
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier of the destination in the Waybiller system"
           },
           "origin_id": {
             "type": "integer",
             "nullable": true,
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier of the origin in the Waybiller system"
           },
           "organizer_user_id": {
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier of the user who organized the transport order"
           },
           "entity_code": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "nullable": true,
+            "description": "Entity code of the transport order, if applicable"
           },
           "waybills_ids": {
             "type": "array",
             "items": {
               "type": "integer"
             },
-            "readOnly": true
+            "readOnly": true,
+            "description": "List of waybill IDs associated with the transport order"
           }
         },
         "required": [
@@ -6983,7 +7715,9 @@
         "properties": {
           "transport_order_id": {
             "type": "integer",
-            "readOnly": true
+            "minimum": 1,
+            "readOnly": true,
+            "description": "Unique identifier of the transport order in the Waybiller system"
           },
           "status": {
             "allOf": [
@@ -6991,34 +7725,48 @@
                 "$ref": "#/components/schemas/TransportOrderStatusEnum"
               }
             ],
-            "readOnly": true
+            "readOnly": true,
+            "description": "Current status of the transport order"
           },
           "number": {
             "type": "string",
             "readOnly": true,
             "nullable": true,
             "title": "Transport order number",
+            "description": "Unique number of the transport order in the Waybiller system",
             "maxLength": 16
           },
           "origin_id": {
             "type": "integer",
-            "nullable": true,
-            "readOnly": true
+            "minimum": 1,
+            "readOnly": true,
+            "description": "Unique identifier of the origin in the Waybiller system"
           },
           "destination_id": {
             "type": "integer",
-            "readOnly": true
+            "minimum": 1,
+            "readOnly": true,
+            "description": "Unique identifier of the destination in the Waybiller system"
           },
           "entity_code": {
             "type": "string",
-            "readOnly": true
+            "readOnly": true,
+            "nullable": true,
+            "description": "Entity code of the transport order, if applicable"
+          },
+          "truck_id": {
+            "type": "integer",
+            "nullable": true,
+            "readOnly": true,
+            "description": "Unique identifier of the truck associated with the transport order"
           },
           "waybills_ids": {
             "type": "array",
             "items": {
               "type": "integer"
             },
-            "readOnly": true
+            "readOnly": true,
+            "description": "List of waybill IDs associated with the transport order"
           }
         },
         "required": [
@@ -7028,6 +7776,7 @@
           "origin_id",
           "status",
           "transport_order_id",
+          "truck_id",
           "waybills_ids"
         ]
       },
@@ -7036,260 +7785,642 @@
         "properties": {
           "transport_order_id": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "Unique identifier of the transport order in your system"
           },
           "order_raw_id": {
-            "type": "string",
-            "minLength": 1
-          },
-          "order_id": {
-            "type": "string",
-            "minLength": 1
+            "type": "integer",
+            "minimum": 1,
+            "description": "Unique identifier of the order in your system"
           },
           "rows": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExternalAPITransportOrderRowRequest"
-            }
+            },
+            "description": "List of assortments associated with the transport order"
           },
           "organizer_user_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Organizer user ID. Required unless a default values has been set for the API key"
           },
           "destination_raw_id": {
-            "type": "string",
-            "minLength": 1
+            "type": "integer",
+            "minimum": 0,
+            "description": "Unique identifier of the destination in Waybiller. Either this field or destination_raw_id must be provided when creating a new transport order"
           },
           "destination_id": {
-            "type": "integer"
+            "type": "string",
+            "description": "Unique identifier of the destination in your system. Either this field or destination_raw_id must be provided when creating a new transport order"
           },
           "destination_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the destination location",
             "maxLength": 255
           },
           "destination_address": {
             "type": "string",
             "minLength": 1,
+            "description": "Address of the destination location",
             "maxLength": 255
           },
           "destination_latitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Latitude of the destination location"
           },
           "destination_longitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Longitude of the destination location"
           },
           "destination_waybill_created_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is created for this destination"
           },
           "destination_waybill_reached_destination_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a waybill reaches this destination"
           },
           "destination_waybill_accepted_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is accepted at this destination"
           },
           "destination_transport_order_created_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a transport order is created for this destination"
           },
           "receiver_company_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the company that owns the destination location",
             "maxLength": 64
           },
           "receiver_company_reg_code": {
             "type": "string",
             "minLength": 1,
+            "description": "Registration code of the company that owns the destination location",
             "maxLength": 16
           },
           "origin_raw_id": {
-            "type": "string",
-            "minLength": 1
+            "type": "integer",
+            "minimum": 0,
+            "description": "Unique identifier of the origin in Waybiller. Either this field or origin_id must be provided when creating a new transport order"
           },
           "origin_id": {
-            "type": "integer"
+            "type": "string",
+            "description": "Unique identifier of the origin in your system. Either this field or origin_raw_id must be provided when creating a new transport order"
           },
           "origin_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the origin location",
             "maxLength": 255
           },
           "origin_address": {
             "type": "string",
             "minLength": 1,
+            "description": "Address of the origin location",
             "maxLength": 255
           },
           "origin_latitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Latitude of the origin location"
           },
           "origin_longitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Longitude of the origin location"
           },
           "origin_waybill_created_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is created from this origin"
           },
           "origin_waybill_reached_destination_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a waybill from this origin reaches destination"
           },
           "origin_waybill_accepted_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a waybill from this origin is accepted"
           },
           "origin_transport_order_created_emails": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "email",
-              "minLength": 1,
               "maxLength": 254
             },
-            "nullable": true
+            "nullable": true,
+            "description": "List of emails to notify when a transport order is created from this origin"
           },
           "shipper_company_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the company that owns the origin location",
             "maxLength": 64
           },
           "shipper_company_reg_code": {
             "type": "string",
             "minLength": 1,
+            "description": "Registration code of the company that owns the origin location",
             "maxLength": 16
           },
           "transportation_company_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Transportation company name",
             "maxLength": 64
           },
           "transportation_company_reg_code": {
             "type": "string",
             "minLength": 1,
+            "description": "Transportation company registration code",
             "maxLength": 16
           },
           "truck_reg_number": {
             "type": "string",
+            "nullable": true,
             "minLength": 1,
+            "description": "Registration number of the truck",
             "maxLength": 16
           },
           "trailer_reg_number": {
             "type": "string",
+            "nullable": true,
+            "description": "Registration number of the trailer",
             "maxLength": 16
           },
           "driver_email": {
             "type": "string",
             "format": "email",
             "minLength": 1,
+            "description": "Driver email",
             "maxLength": 254
           },
           "driver_personal_code": {
             "type": "string",
+            "description": "Driver personal code",
             "maxLength": 24
           },
           "driver_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Driver name",
             "maxLength": 255
           },
           "driver_phone": {
             "type": "string",
-            "default": "",
+            "description": "Driver phone number",
             "maxLength": 128
           },
           "transport_date": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "Date of transport"
           },
           "transport_time": {
             "type": "string",
             "format": "time",
-            "nullable": true
+            "nullable": true,
+            "description": "Time of transport"
           },
           "additional_info": {
-            "type": "string"
+            "type": "string",
+            "description": "Additional information for drivers"
           },
           "pallets_number": {
             "type": "integer",
             "maximum": 32767,
             "minimum": 0,
             "nullable": true,
-            "title": "Number of pallets"
+            "description": "Number of pallets in the transport order"
           }
         },
         "required": [
-          "organizer_user_id",
           "rows",
           "transport_date",
           "transport_order_id"
+        ]
+      },
+      "ExternalAPITransportOrderRetrieve": {
+        "type": "object",
+        "properties": {
+          "transport_order_id": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Unique identifier of the transport order in your system"
+          },
+          "number": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Transport order number",
+            "description": "Unique transport order reference number",
+            "maxLength": 16
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransportOrderStatusEnum"
+              }
+            ],
+            "readOnly": true,
+            "description": "Status of the transport order"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPITransportOrderRow"
+            },
+            "readOnly": true,
+            "description": "List of assortments associated with the transport order"
+          },
+          "organizer_user_id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "Organizer user ID. Required unless a default values has been set for the API key"
+          },
+          "destination_id": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Unique identifier of the destination in your system",
+            "nullable": true
+          },
+          "destination_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Name of the destination location",
+            "maxLength": 255
+          },
+          "destination_address": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Address of the destination location",
+            "maxLength": 255
+          },
+          "destination_latitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "description": "Latitude of the destination location"
+          },
+          "destination_longitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "description": "Longitude of the destination location"
+          },
+          "destination_waybill_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is created for this destination"
+          },
+          "destination_waybill_reached_destination_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a waybill reaches this destination"
+          },
+          "destination_waybill_accepted_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is accepted at this destination"
+          },
+          "destination_transport_order_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a transport order is created for this destination"
+          },
+          "receiver_company_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Name of the company that owns the destination location",
+            "maxLength": 64
+          },
+          "receiver_company_reg_code": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Registration code of the company that owns the destination location",
+            "maxLength": 16
+          },
+          "origin_id": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Unique identifier of the origin in your system",
+            "nullable": true
+          },
+          "origin_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Name of the origin location",
+            "maxLength": 255
+          },
+          "origin_address": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Address of the origin location",
+            "maxLength": 255
+          },
+          "origin_latitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "description": "Latitude of the origin location"
+          },
+          "origin_longitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "description": "Longitude of the origin location"
+          },
+          "origin_waybill_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is created from this origin"
+          },
+          "origin_waybill_reached_destination_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a waybill from this origin reaches destination"
+          },
+          "origin_waybill_accepted_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a waybill from this origin is accepted"
+          },
+          "origin_transport_order_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "readOnly": true,
+            "nullable": true,
+            "description": "List of emails to notify when a transport order is created from this origin"
+          },
+          "shipper_company_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Name of the company that owns the origin location",
+            "maxLength": 64
+          },
+          "shipper_company_reg_code": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Registration code of the company that owns the origin location",
+            "maxLength": 16
+          },
+          "transportation_company_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Transportation company name",
+            "maxLength": 64
+          },
+          "transportation_company_reg_code": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Transportation company registration code",
+            "maxLength": 16
+          },
+          "truck_reg_number": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Registration number of the truck",
+            "maxLength": 16
+          },
+          "trailer_reg_number": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Registration number of the trailer",
+            "maxLength": 16
+          },
+          "driver_email": {
+            "type": "string",
+            "format": "email",
+            "readOnly": true,
+            "description": "Driver email",
+            "maxLength": 254
+          },
+          "driver_personal_code": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Driver personal code",
+            "maxLength": 24
+          },
+          "driver_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Driver name",
+            "maxLength": 255
+          },
+          "driver_phone": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Driver phone number",
+            "maxLength": 128
+          },
+          "transport_date": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true,
+            "description": "Date of transport"
+          },
+          "transport_time": {
+            "type": "string",
+            "format": "time",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Time of transport"
+          },
+          "additional_info": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Additional information for drivers"
+          },
+          "waybill_pdf_urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "readOnly": true,
+            "description": "List of links to waybill PDFs"
+          },
+          "pallets_number": {
+            "type": "integer",
+            "maximum": 32767,
+            "minimum": 0,
+            "readOnly": true,
+            "nullable": true,
+            "description": "Number of pallets in the transport order"
+          },
+          "raw_data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPITransportOrderRawData"
+              }
+            ],
+            "readOnly": true,
+            "description": "Raw data from the transport order"
+          }
+        },
+        "required": [
+          "additional_info",
+          "destination_address",
+          "destination_id",
+          "destination_latitude",
+          "destination_longitude",
+          "destination_name",
+          "destination_transport_order_created_emails",
+          "destination_waybill_accepted_emails",
+          "destination_waybill_created_emails",
+          "destination_waybill_reached_destination_emails",
+          "driver_email",
+          "driver_name",
+          "driver_personal_code",
+          "driver_phone",
+          "number",
+          "organizer_user_id",
+          "origin_address",
+          "origin_id",
+          "origin_latitude",
+          "origin_longitude",
+          "origin_name",
+          "origin_transport_order_created_emails",
+          "origin_waybill_accepted_emails",
+          "origin_waybill_created_emails",
+          "origin_waybill_reached_destination_emails",
+          "pallets_number",
+          "raw_data",
+          "receiver_company_name",
+          "receiver_company_reg_code",
+          "rows",
+          "shipper_company_name",
+          "shipper_company_reg_code",
+          "status",
+          "trailer_reg_number",
+          "transport_date",
+          "transport_order_id",
+          "transport_time",
+          "transportation_company_name",
+          "transportation_company_reg_code",
+          "truck_reg_number",
+          "waybill_pdf_urls"
         ]
       },
       "ExternalAPITransportOrderRow": {
         "type": "object",
         "properties": {
           "assortment_id": {
-            "type": "integer"
+            "type": "string",
+            "description": "Unique identifier of the assortment in your system",
+            "readOnly": true,
+            "nullable": true
           },
           "assortment_name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the assortment"
           },
           "amount": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
-            "title": "Amount in tonnes"
+            "title": "Amount in tonnes",
+            "description": "Amount of the assortment"
           }
         },
         "required": [
           "amount",
-          "assortment_id"
+          "assortment_id",
+          "assortment_name"
         ]
       },
       "ExternalAPITransportOrderRowRawData": {
@@ -7298,7 +8429,8 @@
           "assortment_id": {
             "type": "integer",
             "nullable": true,
-            "readOnly": true
+            "readOnly": true,
+            "description": "Unique identifier of the assortment in your system"
           }
         },
         "required": [
@@ -7309,192 +8441,216 @@
         "type": "object",
         "properties": {
           "assortment_id": {
-            "type": "integer"
+            "type": "string",
+            "description": "Unique identifier of the assortment in your system"
           },
           "assortment_name": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "Name of the assortment"
           },
           "amount": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
-            "title": "Amount in tonnes"
+            "title": "Amount in tonnes",
+            "description": "Amount of the assortment"
           }
         },
         "required": [
           "amount",
-          "assortment_id"
+          "assortment_id",
+          "assortment_name"
         ]
-      },
-      "ExternalAPITransportOrderUpdate": {
-        "type": "object",
-        "properties": {
-          "pallets_number": {
-            "type": "integer",
-            "maximum": 32767,
-            "minimum": 0,
-            "nullable": true,
-            "title": "Number of pallets"
-          },
-          "origin_id": {
-            "type": "integer"
-          },
-          "origin_raw_id": {
-            "type": "string"
-          },
-          "origin_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "origin_address": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "origin_latitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "origin_longitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "shipper_company_name": {
-            "type": "string",
-            "maxLength": 64
-          },
-          "shipper_company_reg_code": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "destination_id": {
-            "type": "integer"
-          },
-          "destination_raw_id": {
-            "type": "string"
-          },
-          "destination_name": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "destination_address": {
-            "type": "string",
-            "maxLength": 255
-          },
-          "destination_latitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "destination_longitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "receiver_company_name": {
-            "type": "string",
-            "maxLength": 64
-          },
-          "receiver_company_reg_code": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "truck_reg_number": {
-            "type": "string",
-            "maxLength": 16
-          },
-          "trailer_reg_number": {
-            "type": "string",
-            "maxLength": 16
-          }
-        }
       },
       "ExternalAPITransportOrderUpdateRequest": {
         "type": "object",
         "properties": {
-          "pallets_number": {
-            "type": "integer",
-            "maximum": 32767,
-            "minimum": 0,
-            "nullable": true,
-            "title": "Number of pallets"
-          },
           "origin_id": {
-            "type": "integer"
+            "type": "string",
+            "description": "Unique identifier of the origin in your system. Either this field or origin_raw_id must be provided when creating a new transport order"
           },
           "origin_raw_id": {
-            "type": "string",
-            "minLength": 1
+            "type": "integer",
+            "minimum": 0,
+            "description": "Unique identifier of the origin in Waybiller. Either this field or origin_id must be provided when creating a new transport order"
           },
           "origin_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the origin location",
             "maxLength": 255
           },
           "origin_address": {
             "type": "string",
             "minLength": 1,
+            "description": "Address of the origin location",
             "maxLength": 255
           },
           "origin_latitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Latitude of the origin location"
           },
           "origin_longitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Longitude of the origin location"
           },
           "shipper_company_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the company that owns the origin location",
             "maxLength": 64
           },
           "shipper_company_reg_code": {
             "type": "string",
             "minLength": 1,
+            "description": "Registration code of the company that owns the origin location",
             "maxLength": 16
           },
+          "origin_transport_order_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a transport order is created from this origin"
+          },
+          "origin_waybill_accepted_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a waybill from this origin is accepted"
+          },
+          "origin_waybill_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is created from this origin"
+          },
+          "origin_waybill_reached_destination_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a waybill from this origin reaches destination"
+          },
           "destination_id": {
-            "type": "integer"
+            "type": "string",
+            "description": "Unique identifier of the destination in your system. Either this field or destination_raw_id must be provided when creating a new transport order"
           },
           "destination_raw_id": {
-            "type": "string",
-            "minLength": 1
+            "type": "integer",
+            "minimum": 0,
+            "description": "Unique identifier of the destination in Waybiller. Either this field or destination_raw_id must be provided when creating a new transport order"
           },
           "destination_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the destination location",
             "maxLength": 255
           },
           "destination_address": {
             "type": "string",
             "minLength": 1,
+            "description": "Address of the destination location",
             "maxLength": 255
           },
           "destination_latitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Latitude of the destination location"
           },
           "destination_longitude": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Longitude of the destination location"
           },
           "receiver_company_name": {
             "type": "string",
             "minLength": 1,
+            "description": "Name of the company that owns the destination location",
             "maxLength": 64
           },
           "receiver_company_reg_code": {
             "type": "string",
             "minLength": 1,
+            "description": "Registration code of the company that owns the destination location",
             "maxLength": 16
+          },
+          "destination_transport_order_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a transport order is created for this destination"
+          },
+          "destination_waybill_accepted_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is accepted at this destination"
+          },
+          "destination_waybill_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is created for this destination"
+          },
+          "destination_waybill_reached_destination_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a waybill reaches this destination"
           },
           "truck_reg_number": {
             "type": "string",
+            "nullable": true,
             "minLength": 1,
+            "description": "Registration number of the truck",
             "maxLength": 16
           },
           "trailer_reg_number": {
             "type": "string",
+            "nullable": true,
+            "description": "Registration number of the trailer",
             "maxLength": 16
+          },
+          "pallets_number": {
+            "type": "integer",
+            "maximum": 32767,
+            "minimum": 0,
+            "nullable": true,
+            "description": "Number of pallets in the transport order"
           }
         }
       },
@@ -7810,7 +8966,8 @@
         "properties": {
           "waybill_id": {
             "type": "string",
-            "description": "The external ID of the waybill. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
+            "description": "The external ID of the waybill. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+            "readOnly": true
           },
           "number": {
             "type": "string",
@@ -7843,8 +9000,10 @@
             "description": "The ID of the destination."
           },
           "destination_id": {
-            "type": "integer",
-            "description": "The external ID of the destination. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
+            "type": "string",
+            "description": "The external ID of the destination. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+            "readOnly": true,
+            "nullable": true
           },
           "destination_name": {
             "type": "string",
@@ -7899,8 +9058,10 @@
             "description": "The ID of the origin."
           },
           "origin_id": {
-            "type": "integer",
-            "description": "The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
+            "type": "string",
+            "description": "The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+            "readOnly": true,
+            "nullable": true
           },
           "origin_name": {
             "type": "string",
@@ -8119,6 +9280,7 @@
           "confirmed_by_name",
           "confirmed_by_phone",
           "confirmed_timestamp",
+          "destination_id",
           "destination_timestamp",
           "dispatcher_timestamp",
           "driver_timestamp",
@@ -8126,6 +9288,7 @@
           "mileage_by_driver",
           "navision_bin_code",
           "number",
+          "origin_id",
           "pdf_url",
           "raw_data",
           "receiver_company_name",
@@ -8160,7 +9323,7 @@
             "description": "The ID of the destination."
           },
           "destination_id": {
-            "type": "integer",
+            "type": "string",
             "description": "The external ID of the destination. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
           },
           "destination_name": {
@@ -8223,7 +9386,7 @@
             "description": "The ID of the origin."
           },
           "origin_id": {
-            "type": "integer",
+            "type": "string",
             "description": "The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
           },
           "origin_name": {
@@ -8870,8 +10033,10 @@
             "description": "The ID of the origin."
           },
           "origin_id": {
-            "type": "integer",
-            "description": "The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
+            "type": "string",
+            "description": "The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+            "readOnly": true,
+            "nullable": true
           },
           "origin_name": {
             "type": "string",
@@ -9132,6 +10297,7 @@
           "mileage_by_driver",
           "navision_bin_code",
           "number",
+          "origin_id",
           "origin_waybill_accepted_emails",
           "origin_waybill_reached_destination_emails",
           "pdf_url",
@@ -9592,11 +10758,11 @@
               }
             ],
             "readOnly": true,
-            "description": "The incoterm for which the transport cost is calculated.\n\n* `EXW` - EXW (Ex Works)\n* `DAP` - DAP (Delivered At Place)"
+            "description": "The incoterm for which the transport cost is calculated."
           },
           "pricing_system": {
             "readOnly": true,
-            "description": "The price used to calculate the transport cost.\n\n* `coefficient_price` - Coefficient price\n* `ton_price` - Ton price\n* `mileage_price` - Mileage price\n* `load_price` - Load price",
+            "description": "The price used to calculate the transport cost.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/PricingSystemEnum"
@@ -9629,7 +10795,7 @@
           },
           "weights_to_use": {
             "readOnly": true,
-            "description": "The weights used to calculate the transport cost.\n\n* `accepted_weights` - Accepted weights\n* `dispatched_weights` - Dispatched weights",
+            "description": "The weights used to calculate the transport cost.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/WeightsToUseEnum"
@@ -9646,19 +10812,20 @@
             "readOnly": true,
             "description": "Amount in tonnes to be used to calculate the transport cost."
           },
+          "tonnes_client_share": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Client's share of tonnes",
+            "description": "Client's share of tonnes as a percentage."
+          },
           "ton_price": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,4}(?:\\.\\d{0,2})?$",
             "readOnly": true,
             "description": "The price used to calculate the transport cost for ton pricing system."
-          },
-          "mileage_price": {
-            "type": "string",
-            "format": "decimal",
-            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,2})?$",
-            "readOnly": true,
-            "description": "The price used to calculate the transport cost for mileage pricing system."
           },
           "mileage": {
             "type": "integer",
@@ -9667,12 +10834,35 @@
             "readOnly": true,
             "description": "The distance in kilometers used to calculate the transport cost."
           },
+          "mileage_client_share": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Client's share of mileage",
+            "description": "Client's share of mileage as a percentage."
+          },
+          "mileage_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "description": "The price used to calculate the transport cost for mileage pricing system."
+          },
           "waiting_hours": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
             "readOnly": true,
             "description": "The number of hours the driver waited."
+          },
+          "waiting_hours_client_share": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Client's share of waiting hours",
+            "description": "Client's share of waiting hours as a percentage."
           },
           "waiting_hours_price": {
             "type": "string",
@@ -9687,6 +10877,14 @@
             "pattern": "^-?\\d{0,4}(?:\\.\\d{0,2})?$",
             "readOnly": true,
             "description": "Extra costs for the transport."
+          },
+          "extra_costs_client_share": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Client's share of extra costs",
+            "description": "Client's share of extra costs as a percentage."
           },
           "transport_cost_value": {
             "type": "string",
@@ -9730,21 +10928,25 @@
         "required": [
           "confirmed_at",
           "extra_costs",
+          "extra_costs_client_share",
           "incoterm",
           "last_saved_by_company_name",
           "last_saved_by_email",
           "last_saved_by_name",
           "load_price",
           "mileage",
+          "mileage_client_share",
           "mileage_price",
           "minimum_unit_price",
           "pricing_system",
           "ton_price",
           "tonnes",
+          "tonnes_client_share",
           "transport_coefficient",
           "transport_cost_calculation",
           "transport_cost_value",
           "waiting_hours",
+          "waiting_hours_client_share",
           "waiting_hours_price",
           "weights_to_use"
         ]
@@ -9781,8 +10983,7 @@
           "EXW",
           "DAP"
         ],
-        "type": "string",
-        "description": "* `EXW` - EXW (Ex Works)\n* `DAP` - DAP (Delivered At Place)"
+        "type": "string"
       },
       "LanguageEnum": {
         "enum": [
@@ -9795,8 +10996,16 @@
           "nb",
           "pl"
         ],
-        "type": "string",
-        "description": "* `et` - Eesti\n* `ru` - \u0420\u0443\u0441\u0441\u043a\u0438\u0439\n* `en` - English\n* `us` - English (US)\n* `lv` - Latviski\n* `fi` - Suomi\n* `nb` - Norsk\n* `pl` - Polski"
+        "type": "string"
+      },
+      "OrderStatusEnum": {
+        "enum": [
+          "Draft",
+          "Active",
+          "Inactive",
+          "Archived"
+        ],
+        "type": "string"
       },
       "PaginatedExternalAPIDestinationList": {
         "type": "object",
@@ -10165,8 +11374,7 @@
           "mileage_price",
           "load_price"
         ],
-        "type": "string",
-        "description": "* `coefficient_price` - Coefficient price\n* `ton_price` - Ton price\n* `mileage_price` - Mileage price\n* `load_price` - Load price"
+        "type": "string"
       },
       "RoleEnum": {
         "enum": [
@@ -10178,8 +11386,7 @@
           "acceptor",
           "loader_operator"
         ],
-        "type": "string",
-        "description": "* `manager` - Manager\n* `project_manager` - Project Manager\n* `object_manager` - Object Manager\n* `dispatcher` - Dispatcher\n* `driver` - Driver\n* `acceptor` - Acceptor\n* `loader_operator` - Loader operator"
+        "type": "string"
       },
       "TransportOrderStatusEnum": {
         "enum": [
@@ -10191,8 +11398,7 @@
           "accepted",
           "cancelled"
         ],
-        "type": "string",
-        "description": "* `draft` - Draft\n* `new` - New\n* `approaching_origin` - Approaching origin\n* `approaching_destination` - Approaching destination\n* `in_destination` - In destination\n* `accepted` - Accepted\n* `cancelled` - Cancelled"
+        "type": "string"
       },
       "TypeEnum": {
         "enum": [
@@ -10204,8 +11410,7 @@
           "SalesContract",
           "ContractForTransferOfCuttingRights"
         ],
-        "type": "string",
-        "description": "* `ForestNotice` - ForestNotice\n* `WithoutForestNotice` - WithoutForestNotice\n* `InventoryAct` - InventoryAct\n* `ConsolidatedAct` - ConsolidatedAct\n* `ForestAct` - ForestAct\n* `SalesContract` - SalesContract\n* `ContractForTransferOfCuttingRights` - ContractForTransferOfCuttingRights"
+        "type": "string"
       },
       "WaybillStatusEnum": {
         "enum": [
@@ -10215,16 +11420,14 @@
           3,
           4
         ],
-        "type": "integer",
-        "description": "* `0` - Created\n* `1` - In progress\n* `2` - At destination\n* `3` - Confirmed\n* `4` - Cancelled"
+        "type": "integer"
       },
       "WeightsToUseEnum": {
         "enum": [
           "accepted_weights",
           "dispatched_weights"
         ],
-        "type": "string",
-        "description": "* `accepted_weights` - Accepted weights\n* `dispatched_weights` - Dispatched weights"
+        "type": "string"
       }
     },
     "securitySchemes": {

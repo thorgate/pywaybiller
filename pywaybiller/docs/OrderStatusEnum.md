@@ -1,11 +1,15 @@
-# WeightsToUseEnum
+# OrderStatusEnum
 
 
 ## Enum
 
-* `ACCEPTED_WEIGHTS` (value: `'accepted_weights'`)
+* `DRAFT` (value: `'Draft'`)
 
-* `DISPATCHED_WEIGHTS` (value: `'dispatched_weights'`)
+* `ACTIVE` (value: `'Active'`)
+
+* `INACTIVE` (value: `'Inactive'`)
+
+* `ARCHIVED` (value: `'Archived'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -20,9 +20,6 @@ from typing_extensions import Annotated
 
 from pywaybiller.openapi_client.api_client import ApiClient, RequestSerialized
 from pywaybiller.openapi_client.api_response import ApiResponse
-from pywaybiller.openapi_client.models.external_api_transport_order import (
-    ExternalAPITransportOrder,
-)
 from pywaybiller.openapi_client.models.external_api_transport_order_cancel import (
     ExternalAPITransportOrderCancel,
 )
@@ -32,8 +29,8 @@ from pywaybiller.openapi_client.models.external_api_transport_order_cancel_reque
 from pywaybiller.openapi_client.models.external_api_transport_order_request import (
     ExternalAPITransportOrderRequest,
 )
-from pywaybiller.openapi_client.models.external_api_transport_order_update import (
-    ExternalAPITransportOrderUpdate,
+from pywaybiller.openapi_client.models.external_api_transport_order_retrieve import (
+    ExternalAPITransportOrderRetrieve,
 )
 from pywaybiller.openapi_client.models.external_api_transport_order_update_request import (
     ExternalAPITransportOrderUpdateRequest,
@@ -355,7 +352,7 @@ class TransportOrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPITransportOrder:
+    ) -> None:
         """Creation of a transport order
 
         Creates a new transport order.<br><br>         **NB!** All posted IDs are IDs in your system and these are used to match objects in your system with objects in Waybiller.
@@ -393,7 +390,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrder",
+            "303": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -420,7 +417,7 @@ class TransportOrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPITransportOrder]:
+    ) -> ApiResponse[None]:
         """Creation of a transport order
 
         Creates a new transport order.<br><br>         **NB!** All posted IDs are IDs in your system and these are used to match objects in your system with objects in Waybiller.
@@ -458,7 +455,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrder",
+            "303": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -523,7 +520,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrder",
+            "303": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -653,10 +650,28 @@ class TransportOrdersApi:
                 description="Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas."
             ),
         ] = None,
+        raw_assortment_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
         raw_destination_ids: Annotated[
             Optional[StrictStr],
             Field(
                 description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_organizer_company_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_organizer_user_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas."
             ),
         ] = None,
         raw_origin_ids: Annotated[
@@ -665,10 +680,22 @@ class TransportOrdersApi:
                 description="Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas."
             ),
         ] = None,
+        raw_transportation_company_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_truck_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
         start_date: Annotated[
             Optional[datetime],
             Field(
-                description="Filters transport orders that have transport date after the specified date."
+                description="Filters transport orders that have transport date on or after the specified date."
             ),
         ] = None,
         status: Annotated[
@@ -767,11 +794,21 @@ class TransportOrdersApi:
         :type offset: int
         :param origin_ids: Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas.
         :type origin_ids: str
+        :param raw_assortment_ids: Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas.
+        :type raw_assortment_ids: str
         :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
         :type raw_destination_ids: str
+        :param raw_organizer_company_ids: Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas.
+        :type raw_organizer_company_ids: str
+        :param raw_organizer_user_ids: Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas.
+        :type raw_organizer_user_ids: str
         :param raw_origin_ids: Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas.
         :type raw_origin_ids: str
-        :param start_date: Filters transport orders that have transport date after the specified date.
+        :param raw_transportation_company_ids: Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas.
+        :type raw_transportation_company_ids: str
+        :param raw_truck_ids: Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas.
+        :type raw_truck_ids: str
+        :param start_date: Filters transport orders that have transport date on or after the specified date.
         :type start_date: datetime
         :param status: Filters transport orders with specified status (case sensitive).
         :type status: str
@@ -826,8 +863,13 @@ class TransportOrdersApi:
             number__in=number__in,
             offset=offset,
             origin_ids=origin_ids,
+            raw_assortment_ids=raw_assortment_ids,
             raw_destination_ids=raw_destination_ids,
+            raw_organizer_company_ids=raw_organizer_company_ids,
+            raw_organizer_user_ids=raw_organizer_user_ids,
             raw_origin_ids=raw_origin_ids,
+            raw_transportation_company_ids=raw_transportation_company_ids,
+            raw_truck_ids=raw_truck_ids,
             start_date=start_date,
             status=status,
             status__contains=status__contains,
@@ -917,10 +959,28 @@ class TransportOrdersApi:
                 description="Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas."
             ),
         ] = None,
+        raw_assortment_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
         raw_destination_ids: Annotated[
             Optional[StrictStr],
             Field(
                 description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_organizer_company_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_organizer_user_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas."
             ),
         ] = None,
         raw_origin_ids: Annotated[
@@ -929,10 +989,22 @@ class TransportOrdersApi:
                 description="Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas."
             ),
         ] = None,
+        raw_transportation_company_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_truck_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
         start_date: Annotated[
             Optional[datetime],
             Field(
-                description="Filters transport orders that have transport date after the specified date."
+                description="Filters transport orders that have transport date on or after the specified date."
             ),
         ] = None,
         status: Annotated[
@@ -1031,11 +1103,21 @@ class TransportOrdersApi:
         :type offset: int
         :param origin_ids: Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas.
         :type origin_ids: str
+        :param raw_assortment_ids: Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas.
+        :type raw_assortment_ids: str
         :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
         :type raw_destination_ids: str
+        :param raw_organizer_company_ids: Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas.
+        :type raw_organizer_company_ids: str
+        :param raw_organizer_user_ids: Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas.
+        :type raw_organizer_user_ids: str
         :param raw_origin_ids: Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas.
         :type raw_origin_ids: str
-        :param start_date: Filters transport orders that have transport date after the specified date.
+        :param raw_transportation_company_ids: Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas.
+        :type raw_transportation_company_ids: str
+        :param raw_truck_ids: Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas.
+        :type raw_truck_ids: str
+        :param start_date: Filters transport orders that have transport date on or after the specified date.
         :type start_date: datetime
         :param status: Filters transport orders with specified status (case sensitive).
         :type status: str
@@ -1090,8 +1172,13 @@ class TransportOrdersApi:
             number__in=number__in,
             offset=offset,
             origin_ids=origin_ids,
+            raw_assortment_ids=raw_assortment_ids,
             raw_destination_ids=raw_destination_ids,
+            raw_organizer_company_ids=raw_organizer_company_ids,
+            raw_organizer_user_ids=raw_organizer_user_ids,
             raw_origin_ids=raw_origin_ids,
+            raw_transportation_company_ids=raw_transportation_company_ids,
+            raw_truck_ids=raw_truck_ids,
             start_date=start_date,
             status=status,
             status__contains=status__contains,
@@ -1181,10 +1268,28 @@ class TransportOrdersApi:
                 description="Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas."
             ),
         ] = None,
+        raw_assortment_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
         raw_destination_ids: Annotated[
             Optional[StrictStr],
             Field(
                 description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_organizer_company_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_organizer_user_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas."
             ),
         ] = None,
         raw_origin_ids: Annotated[
@@ -1193,10 +1298,22 @@ class TransportOrdersApi:
                 description="Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas."
             ),
         ] = None,
+        raw_transportation_company_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_truck_ids: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
         start_date: Annotated[
             Optional[datetime],
             Field(
-                description="Filters transport orders that have transport date after the specified date."
+                description="Filters transport orders that have transport date on or after the specified date."
             ),
         ] = None,
         status: Annotated[
@@ -1295,11 +1412,21 @@ class TransportOrdersApi:
         :type offset: int
         :param origin_ids: Filters transport orders with a specified list of origin IDs from your system. Multiple values may be separated by commas.
         :type origin_ids: str
+        :param raw_assortment_ids: Filters transport orders with a specified list of raw assortment IDs. Multiple values may be separated by commas.
+        :type raw_assortment_ids: str
         :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
         :type raw_destination_ids: str
+        :param raw_organizer_company_ids: Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas.
+        :type raw_organizer_company_ids: str
+        :param raw_organizer_user_ids: Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas.
+        :type raw_organizer_user_ids: str
         :param raw_origin_ids: Filters transport orders with a specified list of raw origin IDs. Multiple values may be separated by commas.
         :type raw_origin_ids: str
-        :param start_date: Filters transport orders that have transport date after the specified date.
+        :param raw_transportation_company_ids: Filters transport orders with a specified list of raw transportation company IDs. Multiple values may be separated by commas.
+        :type raw_transportation_company_ids: str
+        :param raw_truck_ids: Filters transport orders with a specified list of raw truck IDs. Multiple values may be separated by commas.
+        :type raw_truck_ids: str
+        :param start_date: Filters transport orders that have transport date on or after the specified date.
         :type start_date: datetime
         :param status: Filters transport orders with specified status (case sensitive).
         :type status: str
@@ -1354,8 +1481,13 @@ class TransportOrdersApi:
             number__in=number__in,
             offset=offset,
             origin_ids=origin_ids,
+            raw_assortment_ids=raw_assortment_ids,
             raw_destination_ids=raw_destination_ids,
+            raw_organizer_company_ids=raw_organizer_company_ids,
+            raw_organizer_user_ids=raw_organizer_user_ids,
             raw_origin_ids=raw_origin_ids,
+            raw_transportation_company_ids=raw_transportation_company_ids,
+            raw_truck_ids=raw_truck_ids,
             start_date=start_date,
             status=status,
             status__contains=status__contains,
@@ -1394,8 +1526,13 @@ class TransportOrdersApi:
         number__in,
         offset,
         origin_ids,
+        raw_assortment_ids,
         raw_destination_ids,
+        raw_organizer_company_ids,
+        raw_organizer_user_ids,
         raw_origin_ids,
+        raw_transportation_company_ids,
+        raw_truck_ids,
         start_date,
         status,
         status__contains,
@@ -1467,11 +1604,30 @@ class TransportOrdersApi:
         if origin_ids is not None:
             _query_params.append(("origin_ids", origin_ids))
 
+        if raw_assortment_ids is not None:
+            _query_params.append(("raw_assortment_ids", raw_assortment_ids))
+
         if raw_destination_ids is not None:
             _query_params.append(("raw_destination_ids", raw_destination_ids))
 
+        if raw_organizer_company_ids is not None:
+            _query_params.append(
+                ("raw_organizer_company_ids", raw_organizer_company_ids)
+            )
+
+        if raw_organizer_user_ids is not None:
+            _query_params.append(("raw_organizer_user_ids", raw_organizer_user_ids))
+
         if raw_origin_ids is not None:
             _query_params.append(("raw_origin_ids", raw_origin_ids))
+
+        if raw_transportation_company_ids is not None:
+            _query_params.append(
+                ("raw_transportation_company_ids", raw_transportation_company_ids)
+            )
+
+        if raw_truck_ids is not None:
+            _query_params.append(("raw_truck_ids", raw_truck_ids))
 
         if start_date is not None:
             if isinstance(start_date, datetime):
@@ -1562,7 +1718,10 @@ class TransportOrdersApi:
     def transport_orders_retrieve(
         self,
         id: Annotated[
-            StrictStr, Field(description="The ID of the transport order queried.")
+            StrictInt,
+            Field(
+                description="A unique integer value identifying this Transport order."
+            ),
         ],
         _request_timeout: Union[
             None,
@@ -1575,13 +1734,13 @@ class TransportOrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPITransportOrder:
+    ) -> ExternalAPITransportOrderRetrieve:
         """Querying of a single transport order
 
         Returns a transport order with the specified ID. Only companies associated with the transport order can query it.
 
-        :param id: The ID of the transport order queried. (required)
-        :type id: str
+        :param id: A unique integer value identifying this Transport order. (required)
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1613,7 +1772,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrder",
+            "200": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -1630,7 +1789,10 @@ class TransportOrdersApi:
     def transport_orders_retrieve_with_http_info(
         self,
         id: Annotated[
-            StrictStr, Field(description="The ID of the transport order queried.")
+            StrictInt,
+            Field(
+                description="A unique integer value identifying this Transport order."
+            ),
         ],
         _request_timeout: Union[
             None,
@@ -1643,13 +1805,13 @@ class TransportOrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPITransportOrder]:
+    ) -> ApiResponse[ExternalAPITransportOrderRetrieve]:
         """Querying of a single transport order
 
         Returns a transport order with the specified ID. Only companies associated with the transport order can query it.
 
-        :param id: The ID of the transport order queried. (required)
-        :type id: str
+        :param id: A unique integer value identifying this Transport order. (required)
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1681,7 +1843,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrder",
+            "200": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -1698,7 +1860,10 @@ class TransportOrdersApi:
     def transport_orders_retrieve_without_preload_content(
         self,
         id: Annotated[
-            StrictStr, Field(description="The ID of the transport order queried.")
+            StrictInt,
+            Field(
+                description="A unique integer value identifying this Transport order."
+            ),
         ],
         _request_timeout: Union[
             None,
@@ -1716,8 +1881,8 @@ class TransportOrdersApi:
 
         Returns a transport order with the specified ID. Only companies associated with the transport order can query it.
 
-        :param id: The ID of the transport order queried. (required)
-        :type id: str
+        :param id: A unique integer value identifying this Transport order. (required)
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1749,7 +1914,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrder",
+            "200": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
             "404": "EmploymentsRetrieve404Response",
         }
@@ -1834,7 +1999,7 @@ class TransportOrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPITransportOrderUpdate:
+    ) -> None:
         """Editing of a transport order
 
         Edits a transport order.
@@ -1875,7 +2040,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrderUpdate",
+            "303": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -1910,7 +2075,7 @@ class TransportOrdersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPITransportOrderUpdate]:
+    ) -> ApiResponse[None]:
         """Editing of a transport order
 
         Edits a transport order.
@@ -1951,7 +2116,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrderUpdate",
+            "303": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -2027,7 +2192,7 @@ class TransportOrdersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPITransportOrderUpdate",
+            "303": "ExternalAPITransportOrderRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(

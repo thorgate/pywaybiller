@@ -1,6 +1,5 @@
 # TypeEnum
 
-* `ForestNotice` - ForestNotice * `WithoutForestNotice` - WithoutForestNotice * `InventoryAct` - InventoryAct * `ConsolidatedAct` - ConsolidatedAct * `ForestAct` - ForestAct * `SalesContract` - SalesContract * `ContractForTransferOfCuttingRights` - ContractForTransferOfCuttingRights
 
 ## Enum
 

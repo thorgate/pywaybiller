@@ -1,6 +1,5 @@
 # IncotermEnum
 
-* `EXW` - EXW (Ex Works) * `DAP` - DAP (Delivered At Place)
 
 ## Enum
 

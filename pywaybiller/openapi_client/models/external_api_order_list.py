@@ -19,7 +19,7 @@ import re  # noqa: F401
 from datetime import date
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_order_origin import (
@@ -28,6 +28,7 @@ from pywaybiller.openapi_client.models.external_api_order_origin import (
 from pywaybiller.openapi_client.models.external_api_order_raw_data import (
     ExternalAPIOrderRawData,
 )
+from pywaybiller.openapi_client.models.order_status_enum import OrderStatusEnum
 
 
 class ExternalAPIOrderList(BaseModel):
@@ -35,22 +36,28 @@ class ExternalAPIOrderList(BaseModel):
     ExternalAPIOrderList
     """  # noqa: E501
 
-    order_id: StrictStr = Field(description="Order id.")
-    number: StrictStr = Field(description="Order number.")
-    status: StrictStr = Field(description="The status of the order.")
-    period: List[date] = Field(description="The date range when the order is active.")
+    order_id: Annotated[str, Field(strict=True, max_length=10)] = Field(
+        description="Unique identifier of the order in Waybiller"
+    )
+    number: Annotated[str, Field(strict=True, max_length=16)] = Field(
+        description="Unique order reference number"
+    )
+    status: OrderStatusEnum = Field(description="Current status of the order")
+    period: List[date] = Field(description="Date range when the order is active")
     origins: List[ExternalAPIOrderOrigin] = Field(
-        description="The origins for which the order is created for."
+        description="List of origins associated with this order"
     )
-    owner_company_name: StrictStr = Field(
-        description="Name of the company who owns the order."
+    owner_company_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
+        description="Name of the company that owns this order"
     )
-    client_company_name: StrictStr = Field(
-        description="Name of the company for whom the order is created for."
+    client_company_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
+        description="Name of the client company for whom this order was created"
     )
-    destination_name: StrictStr = Field(description="Destination name.")
-    total_allowed_amount: Annotated[str, Field(strict=True)] = Field(
-        description="Total allowed amount."
+    destination_name: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Name of the destination"
+    )
+    total_allowed_amount: Optional[Annotated[str, Field(strict=True)]] = Field(
+        description="Maximum total quantity allowed for this order"
     )
     raw_data: ExternalAPIOrderRawData = Field(
         description="The IDs of the Waybiller internal objects"
@@ -71,6 +78,9 @@ class ExternalAPIOrderList(BaseModel):
     @field_validator("total_allowed_amount")
     def total_allowed_amount_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if value is None:
+            return value
+
         if not re.match(r"^-?\d{0,7}(?:\.\d{0,3})?$", value):
             raise ValueError(
                 r"must validate the regular expression /^-?\d{0,7}(?:\.\d{0,3})?$/"
@@ -115,12 +125,14 @@ class ExternalAPIOrderList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "order_id",
                 "number",
                 "status",
+                "period",
                 "origins",
                 "owner_company_name",
                 "client_company_name",
@@ -145,6 +157,14 @@ class ExternalAPIOrderList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
+        # set to None if total_allowed_amount (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.total_allowed_amount is None
+            and "total_allowed_amount" in self.model_fields_set
+        ):
+            _dict["total_allowed_amount"] = None
+
         return _dict
 
     @classmethod
@@ -169,7 +189,9 @@ class ExternalAPIOrderList(BaseModel):
                 else None,
                 "owner_company_name": obj.get("owner_company_name"),
                 "client_company_name": obj.get("client_company_name"),
-                "destination_name": obj.get("destination_name"),
+                "destination_name": obj.get("destination_name")
+                if obj.get("destination_name") is not None
+                else "",
                 "total_allowed_amount": obj.get("total_allowed_amount"),
                 "raw_data": ExternalAPIOrderRawData.from_dict(obj["raw_data"])
                 if obj.get("raw_data") is not None

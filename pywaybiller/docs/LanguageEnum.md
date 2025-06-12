@@ -1,6 +1,5 @@
 # LanguageEnum
 
-* `et` - Eesti * `ru` - Русский * `en` - English * `us` - English (US) * `lv` - Latviski * `fi` - Suomi * `nb` - Norsk * `pl` - Polski
 
 ## Enum
 

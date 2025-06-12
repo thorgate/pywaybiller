@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing_extensions import Annotated, Self
 
 
@@ -27,29 +27,25 @@ class ExternalAPIOrderOrigin(BaseModel):
     ExternalAPIOrderOrigin
     """  # noqa: E501
 
-    origin_raw_id: Optional[StrictStr] = Field(
-        default=None, description="Origin raw id."
+    origin_name: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Name of the origin"
     )
-    origin_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
-        default=None, description="Origin name."
+    origin_address: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Physical address of the origin"
     )
-    origin_address: Optional[Annotated[str, Field(strict=True, max_length=255)]] = (
-        Field(default=None, description="Origin address.")
+    origin_latitude: Union[StrictFloat, StrictInt] = Field(
+        description="Geographic latitude coordinate of the origin (decimal degrees)"
     )
-    origin_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Origin location - latitude."
+    origin_longitude: Union[StrictFloat, StrictInt] = Field(
+        description="Geographic longitude coordinate of the origin (decimal degrees)"
     )
-    origin_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Origin location - longitude."
+    shipper_company_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
+        description="Name of the company that owns the origin"
     )
-    shipper_company_name: Optional[
-        Annotated[str, Field(strict=True, max_length=64)]
-    ] = Field(default=None, description="Origin company name.")
-    shipper_company_reg_code: Optional[
-        Annotated[str, Field(strict=True, max_length=16)]
-    ] = Field(default=None, description="Origin company reg code.")
+    shipper_company_reg_code: Annotated[str, Field(strict=True, max_length=16)] = Field(
+        description="Official registration number of the origin company"
+    )
     __properties: ClassVar[List[str]] = [
-        "origin_raw_id",
         "origin_name",
         "origin_address",
         "origin_latitude",
@@ -87,8 +83,23 @@ class ExternalAPIOrderOrigin(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "origin_name",
+                "origin_address",
+                "origin_latitude",
+                "origin_longitude",
+                "shipper_company_name",
+                "shipper_company_reg_code",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
@@ -108,7 +119,6 @@ class ExternalAPIOrderOrigin(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "origin_raw_id": obj.get("origin_raw_id"),
                 "origin_name": obj.get("origin_name"),
                 "origin_address": obj.get("origin_address"),
                 "origin_latitude": obj.get("origin_latitude"),

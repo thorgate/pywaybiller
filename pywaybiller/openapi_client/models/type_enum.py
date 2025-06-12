@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class TypeEnum(str, Enum):
     """
-    * `ForestNotice` - ForestNotice * `WithoutForestNotice` - WithoutForestNotice * `InventoryAct` - InventoryAct * `ConsolidatedAct` - ConsolidatedAct * `ForestAct` - ForestAct * `SalesContract` - SalesContract * `ContractForTransferOfCuttingRights` - ContractForTransferOfCuttingRights
+    TypeEnum
     """
 
     """

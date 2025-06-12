@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cancelling_reason** | **str** |  | 
-**cancelled_by_user_id** | **int** |  | [optional] 
+**cancelling_reason** | **str** | Reason for cancelling the transport order | 
+**cancelled_by_user_id** | **int** | ID of the user who cancelled the transport order. Required unless a default values has been set for the API key. | [optional] 
 
 ## Example
 

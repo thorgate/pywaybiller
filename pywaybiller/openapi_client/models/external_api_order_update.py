@@ -51,66 +51,78 @@ class ExternalAPIOrderUpdate(BaseModel):
     """  # noqa: E501
 
     period: Optional[Annotated[List[date], Field(min_length=2, max_length=2)]] = Field(
-        default=None, description="The date range when the order is active."
+        default=None, description="Date range when the order is active"
     )
-    client_id: Optional[StrictStr] = Field(
+    client_id: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
+        description="Unique identifier for the client company of this order in your system"
+    )
+    client_company_reg_code: Optional[
+        Annotated[str, Field(strict=True, max_length=16)]
+    ] = Field(
         default=None,
-        description="The company id (in your system) for whom the order is created for.",
+        description="The company reg code for whom the order is created for. Used as raw id to match the company, if it exists. Required if the `client_id` is not provided",
     )
-    client_company_reg_code: Optional[StrictStr] = Field(
-        default=None,
-        description="The company reg code for whom the order is created for. Used as raw id to match the company, if it exists.",
+    client_company_name: Optional[Annotated[str, Field(strict=True, max_length=64)]] = (
+        Field(
+            default=None,
+            description="Name of the company for whom the order is created for. Only used if a company with the given `client_company_reg_code` does not exist",
+        )
     )
-    client_company_name: Optional[StrictStr] = Field(
-        default=None,
-        description="Name of the company for whom the order is created for.",
+    destination_raw_id: Optional[StrictInt] = Field(
+        default=None, description="Unique identifier of the destination"
     )
-    destination_raw_id: Optional[StrictStr] = Field(
-        default=None, description="Destination raw id."
-    )
-    destination_id: Optional[StrictInt] = Field(
-        default=None, description="Destination id (in your system)."
+    destination_id: Optional[StrictStr] = Field(
+        description="Unique identifier of the destination in your system"
     )
     destination_name: Optional[StrictStr] = Field(
-        default=None, description="Destination name."
+        default=None,
+        description="Name of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
     )
     destination_address: Optional[
         Annotated[str, Field(strict=True, max_length=255)]
-    ] = Field(default=None, description="Destination address.")
+    ] = Field(
+        default=None,
+        description="Address of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
+    )
     destination_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Destination location - latitude."
+        default=None,
+        description="Geographic latitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided",
     )
     destination_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Destination location - longitude."
+        default=None,
+        description="Geographic longitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided",
     )
     origins: Optional[List[ExternalAPIOrderOrigin]] = Field(
-        default=None, description="The origins for which the order is created for."
+        default=None, description="The origins for which the order is created"
     )
     rows: Optional[List[ExternalAPIOrderOriginsAssortments]] = Field(
-        default=None, description="Origin's assortments."
+        default=None,
+        description="Assortments associated with the origins of this order",
     )
     total_allowed_amount: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Total allowed amount."
+        default=None, description="Maximum total quantity allowed for this order"
     )
     transportation_companies: Optional[List[ExternalAPIOrderTransportCompanies]] = (
         Field(
             default=None,
-            description="The transportation companies the client is using for transporting assortments from origins to destination.",
+            description="The transportation companies the client is using for transporting assortments from origins to destination",
         )
     )
     vehicles: Optional[List[ExternalAPIOrderVehicles]] = Field(
         default=None,
-        description="The vehicles that the transportation companies are allowed to use for this order.",
+        description="The vehicles that the transportation companies are allowed to use for this order",
     )
     client_can_edit_transportation_values: Optional[StrictBool] = Field(
-        default=None, description="Client can edit transportation values."
+        default=None,
+        description="Boolean flag indicating whether the client has permission to modify transportation details",
     )
     cancel_transport_orders_on_allowed_amount_exceeding: Optional[StrictBool] = Field(
         default=None,
         description="Cancel transport orders and do not allow to create new transport orders if the order amount has been exceeded.",
     )
     extra_information: Optional[StrictStr] = Field(
-        default=None, description="Extra information."
+        default=None,
+        description="Additional notes, special instructions, or requirements for this order",
     )
     __properties: ClassVar[List[str]] = [
         "period",
@@ -174,8 +186,15 @@ class ExternalAPIOrderUpdate(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "client_id",
+                "destination_id",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
@@ -210,6 +229,24 @@ class ExternalAPIOrderUpdate(BaseModel):
                 if _item_vehicles:
                     _items.append(_item_vehicles.to_dict())
             _dict["vehicles"] = _items
+        # set to None if client_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.client_id is None and "client_id" in self.model_fields_set:
+            _dict["client_id"] = None
+
+        # set to None if destination_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.destination_id is None and "destination_id" in self.model_fields_set:
+            _dict["destination_id"] = None
+
+        # set to None if total_allowed_amount (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.total_allowed_amount is None
+            and "total_allowed_amount" in self.model_fields_set
+        ):
+            _dict["total_allowed_amount"] = None
+
         return _dict
 
     @classmethod

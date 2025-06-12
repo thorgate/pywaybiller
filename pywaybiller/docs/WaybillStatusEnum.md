@@ -1,6 +1,5 @@
 # WaybillStatusEnum
 
-* `0` - Created * `1` - In progress * `2` - At destination * `3` - Confirmed * `4` - Cancelled
 
 ## Enum
 

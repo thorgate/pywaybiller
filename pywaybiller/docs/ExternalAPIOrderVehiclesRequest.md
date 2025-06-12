@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**truck_reg_number** | **str** | Truck reg number. | [optional] 
-**trailer_reg_number** | **str** | Trailer reg number. | [optional] 
-**company_reg_code** | **str** | Company reg code that owns the truck. | [optional] 
+**truck_reg_number** | **str** | Registration number of the truck | 
+**trailer_reg_number** | **str** | Registration number of the trailer | [optional] [default to '']
+**company_reg_code** | **str** | Official registration number of the company that owns the vehicle | 
 
 ## Example
 

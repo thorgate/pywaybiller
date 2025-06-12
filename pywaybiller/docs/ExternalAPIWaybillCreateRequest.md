@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **waybill_id** | **str** | The external ID of the waybill. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | 
 **rows** | [**List[ExternalAPIWaybillRowRequest]**](ExternalAPIWaybillRowRequest.md) | Waybill rows. | 
 **destination_raw_id** | **str** | The ID of the destination. | [optional] 
-**destination_id** | **int** | The external ID of the destination. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
+**destination_id** | **str** | The external ID of the destination. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
 **destination_name** | **str** | The name of the destination. | [optional] 
 **destination_address** | **str** | The address of the destination. | [optional] 
 **destination_latitude** | **float** | The latitude of the destination. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **destination_waybill_reached_destination_emails** | **List[str]** | Comma separated list of e-mail addresses to whom send an e-mail when waybill reaches destination. | [optional] 
 **destination_waybill_accepted_emails** | **List[str]** | Comma separated list of e-mail addresses to whom send an e-mail when waybill is accepted. | [optional] 
 **origin_raw_id** | **str** | The ID of the origin. | [optional] 
-**origin_id** | **int** | The external ID of the origin. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
+**origin_id** | **str** | The external ID of the origin. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
 **origin_name** | **str** | The name of the origin. | [optional] 
 **origin_address** | **str** | The address of the origin. | [optional] 
 **origin_latitude** | **float** | The latitude of the origin. | [optional] 

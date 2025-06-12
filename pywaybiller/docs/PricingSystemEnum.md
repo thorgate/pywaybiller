@@ -1,6 +1,5 @@
 # PricingSystemEnum
 
-* `coefficient_price` - Coefficient price * `ton_price` - Ton price * `mileage_price` - Mileage price * `load_price` - Load price
 
 ## Enum
 

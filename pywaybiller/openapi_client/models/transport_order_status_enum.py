@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class TransportOrderStatusEnum(str, Enum):
     """
-    * `draft` - Draft * `new` - New * `approaching_origin` - Approaching origin * `approaching_destination` - Approaching destination * `in_destination` - In destination * `accepted` - Accepted * `cancelled` - Cancelled
+    TransportOrderStatusEnum
     """
 
     """

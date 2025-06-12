@@ -19,15 +19,14 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class WaybillStatusEnum(int, Enum):
+class ExternalAPIOrderRawDataStatusEnum(int, Enum):
     """
-    WaybillStatusEnum
+    ExternalAPIOrderRawDataStatusEnum
     """
 
     """
     allowed enum values
     """
-    NUMBER_0 = 0
     NUMBER_1 = 1
     NUMBER_2 = 2
     NUMBER_3 = 3
@@ -35,5 +34,5 @@ class WaybillStatusEnum(int, Enum):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of WaybillStatusEnum from a JSON string"""
+        """Create an instance of ExternalAPIOrderRawDataStatusEnum from a JSON string"""
         return cls(json.loads(json_str))

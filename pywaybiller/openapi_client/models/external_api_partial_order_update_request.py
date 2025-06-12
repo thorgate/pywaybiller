@@ -38,11 +38,11 @@ class ExternalAPIPartialOrderUpdateRequest(BaseModel):
         List[ExternalAPIOrderTransportCompaniesRequest]
     ] = Field(
         default=None,
-        description="The transportation companies the client is using for transporting assortments from origins to destination.",
+        description="The transportation companies the client is using for transporting assortments from origins to destination",
     )
     vehicles: Optional[List[ExternalAPIOrderVehiclesRequest]] = Field(
         default=None,
-        description="The vehicles that the transportation companies are allowed to use for this order.",
+        description="The vehicles that the transportation companies are allowed to use for this order",
     )
     __properties: ClassVar[List[str]] = ["transportation_companies", "vehicles"]
 

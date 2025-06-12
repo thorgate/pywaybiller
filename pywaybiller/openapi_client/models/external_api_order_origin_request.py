@@ -16,10 +16,10 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing_extensions import Self
 
 
 class ExternalAPIOrderOriginRequest(BaseModel):
@@ -27,36 +27,8 @@ class ExternalAPIOrderOriginRequest(BaseModel):
     ExternalAPIOrderOriginRequest
     """  # noqa: E501
 
-    origin_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None, description="Origin raw id."
-    )
-    origin_name: Optional[
-        Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = Field(default=None, description="Origin name.")
-    origin_address: Optional[
-        Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = Field(default=None, description="Origin address.")
-    origin_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Origin location - latitude."
-    )
-    origin_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Origin location - longitude."
-    )
-    shipper_company_name: Optional[
-        Annotated[str, Field(min_length=1, strict=True, max_length=64)]
-    ] = Field(default=None, description="Origin company name.")
-    shipper_company_reg_code: Optional[
-        Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = Field(default=None, description="Origin company reg code.")
-    __properties: ClassVar[List[str]] = [
-        "origin_raw_id",
-        "origin_name",
-        "origin_address",
-        "origin_latitude",
-        "origin_longitude",
-        "shipper_company_name",
-        "shipper_company_reg_code",
-    ]
+    origin_raw_id: StrictInt = Field(description="Unique identifier of the origin")
+    __properties: ClassVar[List[str]] = ["origin_raw_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,15 +78,5 @@ class ExternalAPIOrderOriginRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "origin_raw_id": obj.get("origin_raw_id"),
-                "origin_name": obj.get("origin_name"),
-                "origin_address": obj.get("origin_address"),
-                "origin_latitude": obj.get("origin_latitude"),
-                "origin_longitude": obj.get("origin_longitude"),
-                "shipper_company_name": obj.get("shipper_company_name"),
-                "shipper_company_reg_code": obj.get("shipper_company_reg_code"),
-            }
-        )
+        _obj = cls.model_validate({"origin_raw_id": obj.get("origin_raw_id")})
         return _obj

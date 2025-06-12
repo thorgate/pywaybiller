@@ -41,9 +41,7 @@ class ExternalAPIEmployment(BaseModel):
     user_id: Annotated[str, Field(strict=True, max_length=10)] = Field(
         description="Unique identifier of the employee's user account in Waybiller"
     )
-    role: RoleEnum = Field(
-        description="User's role within the company  * `manager` - Manager * `project_manager` - Project Manager * `object_manager` - Object Manager * `dispatcher` - Dispatcher * `driver` - Driver * `acceptor` - Acceptor * `loader_operator` - Loader operator"
-    )
+    role: RoleEnum = Field(description="User's role within the company")
     obsolete: StrictBool = Field(
         description="Whether the employment has been deactivated"
     )

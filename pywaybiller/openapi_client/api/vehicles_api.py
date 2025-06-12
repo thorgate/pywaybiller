@@ -49,8 +49,6 @@ class VehiclesApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
-        dispatcher_timestamp__gt: Optional[StrictStr] = None,
-        dispatcher_timestamp__lt: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -71,10 +69,6 @@ class VehiclesApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
-        :param dispatcher_timestamp__gt:
-        :type dispatcher_timestamp__gt: str
-        :param dispatcher_timestamp__lt:
-        :type dispatcher_timestamp__lt: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -100,8 +94,6 @@ class VehiclesApi:
         _param = self._vehicles_list_serialize(
             limit=limit,
             offset=offset,
-            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
-            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -132,8 +124,6 @@ class VehiclesApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
-        dispatcher_timestamp__gt: Optional[StrictStr] = None,
-        dispatcher_timestamp__lt: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -154,10 +144,6 @@ class VehiclesApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
-        :param dispatcher_timestamp__gt:
-        :type dispatcher_timestamp__gt: str
-        :param dispatcher_timestamp__lt:
-        :type dispatcher_timestamp__lt: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -183,8 +169,6 @@ class VehiclesApi:
         _param = self._vehicles_list_serialize(
             limit=limit,
             offset=offset,
-            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
-            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -215,8 +199,6 @@ class VehiclesApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
-        dispatcher_timestamp__gt: Optional[StrictStr] = None,
-        dispatcher_timestamp__lt: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -237,10 +219,6 @@ class VehiclesApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
-        :param dispatcher_timestamp__gt:
-        :type dispatcher_timestamp__gt: str
-        :param dispatcher_timestamp__lt:
-        :type dispatcher_timestamp__lt: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -266,8 +244,6 @@ class VehiclesApi:
         _param = self._vehicles_list_serialize(
             limit=limit,
             offset=offset,
-            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
-            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -287,8 +263,6 @@ class VehiclesApi:
         self,
         limit,
         offset,
-        dispatcher_timestamp__gt,
-        dispatcher_timestamp__lt,
         _request_auth,
         _content_type,
         _headers,
@@ -314,12 +288,6 @@ class VehiclesApi:
 
         if offset is not None:
             _query_params.append(("offset", offset))
-
-        if dispatcher_timestamp__gt is not None:
-            _query_params.append(("dispatcher_timestamp__gt", dispatcher_timestamp__gt))
-
-        if dispatcher_timestamp__lt is not None:
-            _query_params.append(("dispatcher_timestamp__lt", dispatcher_timestamp__lt))
 
         # process the header parameters
         # process the form parameters

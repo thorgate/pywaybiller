@@ -37,7 +37,7 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
     """  # noqa: E501
 
     incoterm: IncotermEnum = Field(
-        description="The incoterm for which the transport cost is calculated.  * `EXW` - EXW (Ex Works) * `DAP` - DAP (Delivered At Place)"
+        description="The incoterm for which the transport cost is calculated."
     )
     pricing_system: ExternalAPIWaybillTransportCostsPricingSystem
     load_price: Annotated[str, Field(strict=True)] = Field(
@@ -53,23 +53,35 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
     tonnes: Annotated[str, Field(strict=True)] = Field(
         description="Amount in tonnes to be used to calculate the transport cost."
     )
+    tonnes_client_share: Annotated[str, Field(strict=True)] = Field(
+        description="Client's share of tonnes as a percentage."
+    )
     ton_price: Annotated[str, Field(strict=True)] = Field(
         description="The price used to calculate the transport cost for ton pricing system."
-    )
-    mileage_price: Annotated[str, Field(strict=True)] = Field(
-        description="The price used to calculate the transport cost for mileage pricing system."
     )
     mileage: Annotated[int, Field(le=32767, strict=True, ge=0)] = Field(
         description="The distance in kilometers used to calculate the transport cost."
     )
+    mileage_client_share: Annotated[str, Field(strict=True)] = Field(
+        description="Client's share of mileage as a percentage."
+    )
+    mileage_price: Annotated[str, Field(strict=True)] = Field(
+        description="The price used to calculate the transport cost for mileage pricing system."
+    )
     waiting_hours: Annotated[str, Field(strict=True)] = Field(
         description="The number of hours the driver waited."
+    )
+    waiting_hours_client_share: Annotated[str, Field(strict=True)] = Field(
+        description="Client's share of waiting hours as a percentage."
     )
     waiting_hours_price: Annotated[str, Field(strict=True)] = Field(
         description="The cost of waiting for one hour."
     )
     extra_costs: Annotated[str, Field(strict=True)] = Field(
         description="Extra costs for the transport."
+    )
+    extra_costs_client_share: Annotated[str, Field(strict=True)] = Field(
+        description="Client's share of extra costs as a percentage."
     )
     transport_cost_value: Annotated[str, Field(strict=True)] = Field(
         description="The calculated transport cost value."
@@ -97,12 +109,16 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
         "minimum_unit_price",
         "weights_to_use",
         "tonnes",
+        "tonnes_client_share",
         "ton_price",
-        "mileage_price",
         "mileage",
+        "mileage_client_share",
+        "mileage_price",
         "waiting_hours",
+        "waiting_hours_client_share",
         "waiting_hours_price",
         "extra_costs",
+        "extra_costs_client_share",
         "transport_cost_value",
         "transport_cost_calculation",
         "last_saved_by_email",
@@ -147,12 +163,30 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
             )
         return value
 
+    @field_validator("tonnes_client_share")
+    def tonnes_client_share_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^-?\d{0,3}(?:\.\d{0,2})?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^-?\d{0,3}(?:\.\d{0,2})?$/"
+            )
+        return value
+
     @field_validator("ton_price")
     def ton_price_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^-?\d{0,4}(?:\.\d{0,2})?$", value):
             raise ValueError(
                 r"must validate the regular expression /^-?\d{0,4}(?:\.\d{0,2})?$/"
+            )
+        return value
+
+    @field_validator("mileage_client_share")
+    def mileage_client_share_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^-?\d{0,3}(?:\.\d{0,2})?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^-?\d{0,3}(?:\.\d{0,2})?$/"
             )
         return value
 
@@ -167,6 +201,15 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
 
     @field_validator("waiting_hours")
     def waiting_hours_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^-?\d{0,3}(?:\.\d{0,2})?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^-?\d{0,3}(?:\.\d{0,2})?$/"
+            )
+        return value
+
+    @field_validator("waiting_hours_client_share")
+    def waiting_hours_client_share_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^-?\d{0,3}(?:\.\d{0,2})?$", value):
             raise ValueError(
@@ -189,6 +232,15 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
         if not re.match(r"^-?\d{0,4}(?:\.\d{0,2})?$", value):
             raise ValueError(
                 r"must validate the regular expression /^-?\d{0,4}(?:\.\d{0,2})?$/"
+            )
+        return value
+
+    @field_validator("extra_costs_client_share")
+    def extra_costs_client_share_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^-?\d{0,3}(?:\.\d{0,2})?$", value):
+            raise ValueError(
+                r"must validate the regular expression /^-?\d{0,3}(?:\.\d{0,2})?$/"
             )
         return value
 
@@ -247,6 +299,10 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -255,12 +311,16 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
                 "transport_coefficient",
                 "minimum_unit_price",
                 "tonnes",
+                "tonnes_client_share",
                 "ton_price",
-                "mileage_price",
                 "mileage",
+                "mileage_client_share",
+                "mileage_price",
                 "waiting_hours",
+                "waiting_hours_client_share",
                 "waiting_hours_price",
                 "extra_costs",
+                "extra_costs_client_share",
                 "transport_cost_value",
                 "transport_cost_calculation",
                 "last_saved_by_email",
@@ -338,12 +398,16 @@ class ExternalAPIWaybillTransportCosts(BaseModel):
                 if obj.get("weights_to_use") is not None
                 else None,
                 "tonnes": obj.get("tonnes"),
+                "tonnes_client_share": obj.get("tonnes_client_share"),
                 "ton_price": obj.get("ton_price"),
-                "mileage_price": obj.get("mileage_price"),
                 "mileage": obj.get("mileage"),
+                "mileage_client_share": obj.get("mileage_client_share"),
+                "mileage_price": obj.get("mileage_price"),
                 "waiting_hours": obj.get("waiting_hours"),
+                "waiting_hours_client_share": obj.get("waiting_hours_client_share"),
                 "waiting_hours_price": obj.get("waiting_hours_price"),
                 "extra_costs": obj.get("extra_costs"),
+                "extra_costs_client_share": obj.get("extra_costs_client_share"),
                 "transport_cost_value": obj.get("transport_cost_value"),
                 "transport_cost_calculation": obj.get("transport_cost_calculation"),
                 "last_saved_by_email": obj.get("last_saved_by_email"),

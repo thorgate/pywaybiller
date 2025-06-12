@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_id** | **int** | Order raw id. | [readonly] 
-**number** | **str** | Order number. | [readonly] 
-**status** | **int** | The number representing the status of the order. 1 - Mustand, 2 - Aktiivne, 3 - Mitteaktiivne, 4 - Arhiveeritud | [readonly] 
-**origins** | **List[int]** | The origins for which the order is created for. | [readonly] 
-**owner_company_id** | **str** | Owner company raw id. | [readonly] 
-**client_id** | **str** | Client company raw id. | [readonly] 
-**origins_assortment** | **List[int]** | The assortment that can be grabbed by an order&#39;s executor. | [readonly] 
+**order_id** | **int** | Unique identifier of the order | [readonly] 
+**number** | **str** | Unique order reference number | [readonly] 
+**status** | [**ExternalAPIOrderRawDataStatusEnum**](ExternalAPIOrderRawDataStatusEnum.md) | Numeric status code of the order | [readonly] 
+**origins** | **List[int]** | List of origin IDs associated with this order | [readonly] 
+**owner_company_id** | **str** | Unique identifier of the company that owns this order | [readonly] 
+**client_id** | **str** | Unique identifier of the client company for whom this order was created | [readonly] 
+**origins_assortment** | **List[int]** | IDs of origin assortments that can be used for this order | [readonly] 
 **transportation_companies** | **List[int]** | The transportation companies the &#x60;client&#x60; is using for transporting assortments from &#x60;origins&#x60;to &#x60;destination&#x60; | [readonly] 
 **vehicles** | **List[int]** | The vehicles that the &#x60;transportation_companies&#x60; are allowed to use for this order. | [readonly] 
-**destination** | **int** | The destination to where is order allows transporting assortments. | [readonly] 
+**destination** | **int** | ID of the delivery destination | [readonly] 
 
 ## Example
 

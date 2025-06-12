@@ -31,13 +31,30 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
     ExternalAPITransportOrderRawDataList
     """  # noqa: E501
 
-    transport_order_id: StrictInt
-    status: TransportOrderStatusEnum
-    number: Optional[Annotated[str, Field(strict=True, max_length=16)]]
-    origin_id: Optional[StrictInt]
-    destination_id: StrictInt
-    entity_code: Optional[StrictStr] = None
-    waybills_ids: List[StrictInt]
+    transport_order_id: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Unique identifier of the transport order in the Waybiller system"
+    )
+    status: TransportOrderStatusEnum = Field(
+        description="Current status of the transport order"
+    )
+    number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = Field(
+        description="Unique number of the transport order in the Waybiller system"
+    )
+    origin_id: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Unique identifier of the origin in the Waybiller system"
+    )
+    destination_id: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Unique identifier of the destination in the Waybiller system"
+    )
+    entity_code: Optional[StrictStr] = Field(
+        description="Entity code of the transport order, if applicable"
+    )
+    truck_id: Optional[StrictInt] = Field(
+        description="Unique identifier of the truck associated with the transport order"
+    )
+    waybills_ids: List[StrictInt] = Field(
+        description="List of waybill IDs associated with the transport order"
+    )
     __properties: ClassVar[List[str]] = [
         "transport_order_id",
         "status",
@@ -45,6 +62,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
         "origin_id",
         "destination_id",
         "entity_code",
+        "truck_id",
         "waybills_ids",
     ]
 
@@ -84,6 +102,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -93,6 +112,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
                 "origin_id",
                 "destination_id",
                 "entity_code",
+                "truck_id",
                 "waybills_ids",
             ]
         )
@@ -107,10 +127,15 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
         if self.number is None and "number" in self.model_fields_set:
             _dict["number"] = None
 
-        # set to None if origin_id (nullable) is None
+        # set to None if entity_code (nullable) is None
         # and model_fields_set contains the field
-        if self.origin_id is None and "origin_id" in self.model_fields_set:
-            _dict["origin_id"] = None
+        if self.entity_code is None and "entity_code" in self.model_fields_set:
+            _dict["entity_code"] = None
+
+        # set to None if truck_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.truck_id is None and "truck_id" in self.model_fields_set:
+            _dict["truck_id"] = None
 
         return _dict
 
@@ -131,6 +156,7 @@ class ExternalAPITransportOrderRawDataList(BaseModel):
                 "origin_id": obj.get("origin_id"),
                 "destination_id": obj.get("destination_id"),
                 "entity_code": obj.get("entity_code"),
+                "truck_id": obj.get("truck_id"),
                 "waybills_ids": obj.get("waybills_ids"),
             }
         )

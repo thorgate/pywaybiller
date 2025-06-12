@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -27,8 +27,13 @@ class ExternalAPITransportOrderCancel(BaseModel):
     ExternalAPITransportOrderCancel
     """  # noqa: E501
 
-    cancelling_reason: Optional[StrictStr] = None
-    cancelled_by_user_id: Optional[StrictInt] = None
+    cancelling_reason: StrictStr = Field(
+        description="Reason for cancelling the transport order"
+    )
+    cancelled_by_user_id: Optional[StrictInt] = Field(
+        default=None,
+        description="ID of the user who cancelled the transport order. Required unless a default values has been set for the API key.",
+    )
     __properties: ClassVar[List[str]] = ["cancelling_reason", "cancelled_by_user_id"]
 
     model_config = ConfigDict(

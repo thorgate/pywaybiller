@@ -51,9 +51,8 @@ class ExternalAPIWaybillCreate(BaseModel):
     destination_raw_id: Optional[StrictStr] = Field(
         default=None, description="The ID of the destination."
     )
-    destination_id: Optional[StrictInt] = Field(
-        default=None,
-        description="The external ID of the destination. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+    destination_id: Optional[StrictStr] = Field(
+        description="The external ID of the destination. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
     )
     destination_name: Optional[StrictStr] = Field(
         default=None, description="The name of the destination."
@@ -88,9 +87,8 @@ class ExternalAPIWaybillCreate(BaseModel):
     origin_raw_id: Optional[StrictStr] = Field(
         default=None, description="The ID of the origin."
     )
-    origin_id: Optional[StrictInt] = Field(
-        default=None,
-        description="The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
+    origin_id: Optional[StrictStr] = Field(
+        description="The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API."
     )
     origin_name: Optional[StrictStr] = Field(
         default=None, description="The name of the origin."
@@ -306,14 +304,20 @@ class ExternalAPIWaybillCreate(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "waybill_id",
                 "number",
                 "status",
                 "status_description",
+                "destination_id",
                 "receiver_company_name",
                 "receiver_company_reg_code",
+                "origin_id",
                 "mileage",
                 "mileage_by_driver",
                 "confirmed_by_name",
@@ -354,6 +358,11 @@ class ExternalAPIWaybillCreate(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
+        # set to None if destination_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.destination_id is None and "destination_id" in self.model_fields_set:
+            _dict["destination_id"] = None
+
         # set to None if destination_waybill_reached_destination_emails (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -370,6 +379,11 @@ class ExternalAPIWaybillCreate(BaseModel):
             and "destination_waybill_accepted_emails" in self.model_fields_set
         ):
             _dict["destination_waybill_accepted_emails"] = None
+
+        # set to None if origin_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin_id is None and "origin_id" in self.model_fields_set:
+            _dict["origin_id"] = None
 
         # set to None if origin_waybill_reached_destination_emails (nullable) is None
         # and model_fields_set contains the field

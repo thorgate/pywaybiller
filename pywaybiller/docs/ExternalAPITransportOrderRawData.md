@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transport_order_id** | **int** |  | [readonly] 
-**order_id** | **int** | Order which was used for creating | [readonly] 
-**rows** | [**List[ExternalAPITransportOrderRowRawData]**](ExternalAPITransportOrderRowRawData.md) |  | [readonly] 
-**destination_id** | **int** |  | [readonly] 
-**origin_id** | **int** |  | [readonly] 
-**organizer_user_id** | **int** |  | [readonly] 
-**entity_code** | **str** |  | [optional] [readonly] 
-**waybills_ids** | **List[int]** |  | [readonly] 
+**transport_order_id** | **int** | Unique identifier of the transport order in the Waybiller system | [readonly] 
+**order_id** | **int** | Unique identifier of the order associated with the transport order | [readonly] 
+**rows** | [**List[ExternalAPITransportOrderRowRawData]**](ExternalAPITransportOrderRowRawData.md) | List of assortments associated with the transport order | [readonly] 
+**destination_id** | **int** | Unique identifier of the destination in the Waybiller system | [readonly] 
+**origin_id** | **int** | Unique identifier of the origin in the Waybiller system | [readonly] 
+**organizer_user_id** | **int** | Unique identifier of the user who organized the transport order | [readonly] 
+**entity_code** | **str** | Entity code of the transport order, if applicable | [readonly] 
+**waybills_ids** | **List[int]** | List of waybill IDs associated with the transport order | [readonly] 
 
 ## Example
 

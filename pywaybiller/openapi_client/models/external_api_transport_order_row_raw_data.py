@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing_extensions import Self
 
 
@@ -27,7 +27,9 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
     ExternalAPITransportOrderRowRawData
     """  # noqa: E501
 
-    assortment_id: Optional[StrictInt]
+    assortment_id: Optional[StrictInt] = Field(
+        description="Unique identifier of the assortment in your system"
+    )
     __properties: ClassVar[List[str]] = ["assortment_id"]
 
     model_config = ConfigDict(

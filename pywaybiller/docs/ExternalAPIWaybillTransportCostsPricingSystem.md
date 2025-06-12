@@ -1,6 +1,6 @@
 # ExternalAPIWaybillTransportCostsPricingSystem
 
-The price used to calculate the transport cost.  * `coefficient_price` - Coefficient price * `ton_price` - Ton price * `mileage_price` - Mileage price * `load_price` - Load price
+The price used to calculate the transport cost.
 
 ## Properties
 

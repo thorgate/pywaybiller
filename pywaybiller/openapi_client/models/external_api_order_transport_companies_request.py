@@ -27,12 +27,12 @@ class ExternalAPIOrderTransportCompaniesRequest(BaseModel):
     ExternalAPIOrderTransportCompaniesRequest
     """  # noqa: E501
 
-    transportation_company_name: Optional[
-        Annotated[str, Field(min_length=1, strict=True, max_length=64)]
-    ] = Field(default=None, description="Transportation company name.")
-    transportation_company_reg_code: Optional[
-        Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = Field(default=None, description="Transportation company reg code.")
+    transportation_company_name: Annotated[
+        str, Field(min_length=1, strict=True, max_length=64)
+    ] = Field(description="Name of the transportation company")
+    transportation_company_reg_code: Annotated[
+        str, Field(min_length=1, strict=True, max_length=16)
+    ] = Field(description="Official registration number of the transportation company")
     __properties: ClassVar[List[str]] = [
         "transportation_company_name",
         "transportation_company_reg_code",

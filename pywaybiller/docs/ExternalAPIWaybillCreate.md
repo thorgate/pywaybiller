@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**waybill_id** | **str** | The external ID of the waybill. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | 
+**waybill_id** | **str** | The external ID of the waybill. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [readonly] 
 **number** | **str** |  | [readonly] 
 **status** | [**WaybillStatusEnum**](WaybillStatusEnum.md) |  | [readonly] 
 **status_description** | **str** | Human readable status description (&#x60;Created&#x60;, &#x60;In progress&#x60;, &#x60;At destination&#x60;, &#x60;Confirmed&#x60; or &#x60;Cancelled&#x60;). | [readonly] 
 **rows** | [**List[ExternalAPIWaybillRow]**](ExternalAPIWaybillRow.md) | Waybill rows. | 
 **destination_raw_id** | **str** | The ID of the destination. | [optional] 
-**destination_id** | **int** | The external ID of the destination. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
+**destination_id** | **str** | The external ID of the destination. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [readonly] 
 **destination_name** | **str** | The name of the destination. | [optional] 
 **destination_address** | **str** | The address of the destination. | [optional] 
 **destination_latitude** | **float** | The latitude of the destination. | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **receiver_company_name** | **str** | The name of the receiving company. | [readonly] 
 **receiver_company_reg_code** | **str** | The registry code of the receiving company. | [readonly] 
 **origin_raw_id** | **str** | The ID of the origin. | [optional] 
-**origin_id** | **int** | The external ID of the origin. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
+**origin_id** | **str** | The external ID of the origin. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [readonly] 
 **origin_name** | **str** | The name of the origin. | [optional] 
 **origin_address** | **str** | The address of the origin. | [optional] 
 **origin_latitude** | **float** | The latitude of the origin. | [optional] 

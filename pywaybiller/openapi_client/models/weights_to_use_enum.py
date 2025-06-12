@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class WeightsToUseEnum(str, Enum):
     """
-    * `accepted_weights` - Accepted weights * `dispatched_weights` - Dispatched weights
+    WeightsToUseEnum
     """
 
     """

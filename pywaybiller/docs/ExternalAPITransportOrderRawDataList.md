@@ -5,13 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transport_order_id** | **int** |  | [readonly] 
-**status** | [**TransportOrderStatusEnum**](TransportOrderStatusEnum.md) |  | [readonly] 
-**number** | **str** |  | [readonly] 
-**origin_id** | **int** |  | [readonly] 
-**destination_id** | **int** |  | [readonly] 
-**entity_code** | **str** |  | [optional] [readonly] 
-**waybills_ids** | **List[int]** |  | [readonly] 
+**transport_order_id** | **int** | Unique identifier of the transport order in the Waybiller system | [readonly] 
+**status** | [**TransportOrderStatusEnum**](TransportOrderStatusEnum.md) | Current status of the transport order | [readonly] 
+**number** | **str** | Unique number of the transport order in the Waybiller system | [readonly] 
+**origin_id** | **int** | Unique identifier of the origin in the Waybiller system | [readonly] 
+**destination_id** | **int** | Unique identifier of the destination in the Waybiller system | [readonly] 
+**entity_code** | **str** | Entity code of the transport order, if applicable | [readonly] 
+**truck_id** | **int** | Unique identifier of the truck associated with the transport order | [readonly] 
+**waybills_ids** | **List[int]** | List of waybill IDs associated with the transport order | [readonly] 
 
 ## Example
 

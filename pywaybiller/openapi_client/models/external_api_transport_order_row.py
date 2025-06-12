@@ -27,9 +27,13 @@ class ExternalAPITransportOrderRow(BaseModel):
     ExternalAPITransportOrderRow
     """  # noqa: E501
 
-    assortment_id: StrictStr
-    assortment_name: Optional[StrictStr] = None
-    amount: Annotated[str, Field(strict=True)]
+    assortment_id: Optional[StrictStr] = Field(
+        description="Unique identifier of the assortment in your system"
+    )
+    assortment_name: StrictStr = Field(description="Name of the assortment")
+    amount: Annotated[str, Field(strict=True)] = Field(
+        description="Amount of the assortment"
+    )
     __properties: ClassVar[List[str]] = ["assortment_id", "assortment_name", "amount"]
 
     @field_validator("amount")
@@ -70,14 +74,24 @@ class ExternalAPITransportOrderRow(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
-        excluded_fields: Set[str] = set([])
+        excluded_fields: Set[str] = set(
+            [
+                "assortment_id",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if assortment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.assortment_id is None and "assortment_id" in self.model_fields_set:
+            _dict["assortment_id"] = None
+
         return _dict
 
     @classmethod

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**origin_assortment_raw_id** | **str** | Origin assortment raw id. | [optional] 
+**origin_assortment_raw_id** | **int** | Unique identifier of the origin assortment | [optional] 
 
 ## Example
 

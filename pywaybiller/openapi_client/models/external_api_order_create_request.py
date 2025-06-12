@@ -26,6 +26,7 @@ from pydantic import (
     StrictBool,
     StrictFloat,
     StrictInt,
+    StrictStr,
     field_validator,
 )
 from typing_extensions import Annotated, Self
@@ -50,71 +51,92 @@ class ExternalAPIOrderCreateRequest(BaseModel):
     """  # noqa: E501
 
     order_id: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="Order id (in your system)."
+        description="Unique identifier for this order in your system"
     )
     period: Annotated[List[date], Field(min_length=2, max_length=2)] = Field(
-        description="The date range when the order is active."
+        description="The date range when the order is active"
     )
-    client_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None,
-        description="The company id (in your system) for whom the order is created for.",
-    )
-    client_company_reg_code: Optional[
-        Annotated[str, Field(min_length=1, strict=True)]
+    client_id: Optional[
+        Annotated[str, Field(min_length=1, strict=True, max_length=1024)]
     ] = Field(
         default=None,
-        description="The company reg code for whom the order is created for. Used as raw id to match the company, if it exists.",
+        description="Unique identifier for the client company of this order in your system",
     )
-    client_company_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
-        Field(
-            default=None,
-            description="Name of the company for whom the order is created for.",
-        )
+    client_company_reg_code: Optional[
+        Annotated[str, Field(min_length=1, strict=True, max_length=16)]
+    ] = Field(
+        default=None,
+        description="The company reg code for whom the order is created for. Used as raw id to match the company, if it exists. Required if the `client_id` is not provided",
     )
-    destination_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
-        Field(default=None, description="Destination raw id.")
+    client_company_name: Optional[
+        Annotated[str, Field(min_length=1, strict=True, max_length=64)]
+    ] = Field(
+        default=None,
+        description="Name of the company for whom the order is created for. Only used if a company with the given `client_company_reg_code` does not exist",
     )
-    destination_id: Optional[StrictInt] = Field(
-        default=None, description="Destination id (in your system)."
+    destination_raw_id: Optional[StrictInt] = Field(
+        default=None, description="Unique identifier of the destination"
+    )
+    destination_id: Optional[StrictStr] = Field(
+        default=None, description="Unique identifier of the destination in your system"
     )
     destination_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
-        Field(default=None, description="Destination name.")
+        Field(
+            default=None,
+            description="Name of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
+        )
     )
     destination_address: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = Field(default=None, description="Destination address.")
+    ] = Field(
+        default=None,
+        description="Address of the destination. Ignored if existing `destination_id` or `destination_raw_id` is provided",
+    )
     destination_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Destination location - latitude."
+        default=None,
+        description="Geographic latitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided",
     )
     destination_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Destination location - longitude."
+        default=None,
+        description="Geographic longitude coordinate of the destination (decimal degrees). Ignored if existing `destination_id` or `destination_raw_id` is provided",
     )
     origins: Optional[List[ExternalAPIOrderOriginRequest]] = Field(
-        default=None, description="The origins for which the order is created for."
+        default=None, description="The origins for which the order is created"
     )
     total_allowed_amount: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Total allowed amount."
+        default=None, description="Maximum total quantity allowed for this order"
     )
     rows: Optional[List[ExternalAPIOrderOriginsAssortmentsRequest]] = Field(
-        default=None, description="Origin's assortments."
+        default=None,
+        description="Assortments associated with the origins of this order",
     )
     transportation_companies: Optional[
         List[ExternalAPIOrderTransportCompaniesRequest]
     ] = Field(
         default=None,
-        description="The transportation companies the client is using for transporting assortments from origins to destination.",
+        description="The transportation companies the client is using for transporting assortments from origins to destination",
+    )
+    cancel_transport_orders_on_allowed_amount_exceeding: Optional[StrictBool] = Field(
+        default=None,
+        description="Cancel transport orders and do not allow to create new transport orders if the order amount has been exceeded.",
     )
     client_can_edit_transportation_values: Optional[StrictBool] = Field(
-        default=None, description="Client can edit transportation values."
+        default=False,
+        description="Boolean flag indicating whether the client has permission to modify transportation details",
     )
     vehicles: Optional[List[ExternalAPIOrderVehiclesRequest]] = Field(
         default=None,
-        description="The vehicles that the transportation companies are allowed to use for this order.",
+        description="The vehicles that the transportation companies are allowed to use for this order",
     )
     extra_information: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
-        Field(default=None, description="Extra information.")
+        Field(
+            default=None,
+            description="Additional notes, special instructions, or requirements for this order",
+        )
     )
-    user_id: StrictInt = Field(description="User who created this order.")
+    user_id: StrictInt = Field(
+        description="Unique identifier of the user who created this order"
+    )
     __properties: ClassVar[List[str]] = [
         "order_id",
         "period",
@@ -131,6 +153,7 @@ class ExternalAPIOrderCreateRequest(BaseModel):
         "total_allowed_amount",
         "rows",
         "transportation_companies",
+        "cancel_transport_orders_on_allowed_amount_exceeding",
         "client_can_edit_transportation_values",
         "vehicles",
         "extra_information",
@@ -214,6 +237,24 @@ class ExternalAPIOrderCreateRequest(BaseModel):
                 if _item_vehicles:
                     _items.append(_item_vehicles.to_dict())
             _dict["vehicles"] = _items
+        # set to None if client_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.client_id is None and "client_id" in self.model_fields_set:
+            _dict["client_id"] = None
+
+        # set to None if destination_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.destination_id is None and "destination_id" in self.model_fields_set:
+            _dict["destination_id"] = None
+
+        # set to None if total_allowed_amount (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.total_allowed_amount is None
+            and "total_allowed_amount" in self.model_fields_set
+        ):
+            _dict["total_allowed_amount"] = None
+
         return _dict
 
     @classmethod
@@ -257,9 +298,14 @@ class ExternalAPIOrderCreateRequest(BaseModel):
                 ]
                 if obj.get("transportation_companies") is not None
                 else None,
+                "cancel_transport_orders_on_allowed_amount_exceeding": obj.get(
+                    "cancel_transport_orders_on_allowed_amount_exceeding"
+                ),
                 "client_can_edit_transportation_values": obj.get(
                     "client_can_edit_transportation_values"
-                ),
+                )
+                if obj.get("client_can_edit_transportation_values") is not None
+                else False,
                 "vehicles": [
                     ExternalAPIOrderVehiclesRequest.from_dict(_item)
                     for _item in obj["vehicles"]

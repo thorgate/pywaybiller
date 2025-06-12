@@ -27,49 +27,127 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
     ExternalAPITransportOrderUpdateRequest
     """  # noqa: E501
 
-    pallets_number: Optional[Annotated[int, Field(le=32767, strict=True, ge=0)]] = None
-    origin_id: Optional[StrictStr] = None
-    origin_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    origin_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Unique identifier of the origin in your system. Either this field or origin_raw_id must be provided when creating a new transport order",
+    )
+    origin_raw_id: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="Unique identifier of the origin in Waybiller. Either this field or origin_id must be provided when creating a new transport order",
+    )
     origin_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
+    ] = Field(default=None, description="Name of the origin location")
     origin_address: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
-    origin_latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    origin_longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    ] = Field(default=None, description="Address of the origin location")
+    origin_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Latitude of the origin location"
+    )
+    origin_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Longitude of the origin location"
+    )
     shipper_company_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=64)]
-    ] = None
+    ] = Field(
+        default=None, description="Name of the company that owns the origin location"
+    )
     shipper_company_reg_code: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = None
-    destination_id: Optional[StrictStr] = None
-    destination_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
-        None
+    ] = Field(
+        default=None,
+        description="Registration code of the company that owns the origin location",
+    )
+    origin_transport_order_created_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a transport order is created from this origin",
+    )
+    origin_waybill_accepted_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill from this origin is accepted",
+    )
+    origin_waybill_created_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill is created from this origin",
+    )
+    origin_waybill_reached_destination_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill from this origin reaches destination",
+    )
+    destination_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Unique identifier of the destination in your system. Either this field or destination_raw_id must be provided when creating a new transport order",
+    )
+    destination_raw_id: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="Unique identifier of the destination in Waybiller. Either this field or destination_raw_id must be provided when creating a new transport order",
     )
     destination_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
+    ] = Field(default=None, description="Name of the destination location")
     destination_address: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
-    destination_latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    destination_longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    ] = Field(default=None, description="Address of the destination location")
+    destination_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Latitude of the destination location"
+    )
+    destination_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Longitude of the destination location"
+    )
     receiver_company_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=64)]
-    ] = None
+    ] = Field(
+        default=None,
+        description="Name of the company that owns the destination location",
+    )
     receiver_company_reg_code: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = None
+    ] = Field(
+        default=None,
+        description="Registration code of the company that owns the destination location",
+    )
+    destination_transport_order_created_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a transport order is created for this destination",
+    )
+    destination_waybill_accepted_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill is accepted at this destination",
+    )
+    destination_waybill_created_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill is created for this destination",
+    )
+    destination_waybill_reached_destination_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill reaches this destination",
+    )
     truck_reg_number: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = None
+    ] = Field(default=None, description="Registration number of the truck")
     trailer_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
-        None
+        Field(default=None, description="Registration number of the trailer")
+    )
+    pallets_number: Optional[Annotated[int, Field(le=32767, strict=True, ge=0)]] = (
+        Field(default=None, description="Number of pallets in the transport order")
     )
     __properties: ClassVar[List[str]] = [
-        "pallets_number",
         "origin_id",
         "origin_raw_id",
         "origin_name",
@@ -78,6 +156,10 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
         "origin_longitude",
         "shipper_company_name",
         "shipper_company_reg_code",
+        "origin_transport_order_created_emails",
+        "origin_waybill_accepted_emails",
+        "origin_waybill_created_emails",
+        "origin_waybill_reached_destination_emails",
         "destination_id",
         "destination_raw_id",
         "destination_name",
@@ -86,8 +168,13 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
         "destination_longitude",
         "receiver_company_name",
         "receiver_company_reg_code",
+        "destination_transport_order_created_emails",
+        "destination_waybill_accepted_emails",
+        "destination_waybill_created_emails",
+        "destination_waybill_reached_destination_emails",
         "truck_reg_number",
         "trailer_reg_number",
+        "pallets_number",
     ]
 
     model_config = ConfigDict(
@@ -127,6 +214,87 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if origin_transport_order_created_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.origin_transport_order_created_emails is None
+            and "origin_transport_order_created_emails" in self.model_fields_set
+        ):
+            _dict["origin_transport_order_created_emails"] = None
+
+        # set to None if origin_waybill_accepted_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.origin_waybill_accepted_emails is None
+            and "origin_waybill_accepted_emails" in self.model_fields_set
+        ):
+            _dict["origin_waybill_accepted_emails"] = None
+
+        # set to None if origin_waybill_created_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.origin_waybill_created_emails is None
+            and "origin_waybill_created_emails" in self.model_fields_set
+        ):
+            _dict["origin_waybill_created_emails"] = None
+
+        # set to None if origin_waybill_reached_destination_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.origin_waybill_reached_destination_emails is None
+            and "origin_waybill_reached_destination_emails" in self.model_fields_set
+        ):
+            _dict["origin_waybill_reached_destination_emails"] = None
+
+        # set to None if destination_transport_order_created_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_transport_order_created_emails is None
+            and "destination_transport_order_created_emails" in self.model_fields_set
+        ):
+            _dict["destination_transport_order_created_emails"] = None
+
+        # set to None if destination_waybill_accepted_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_waybill_accepted_emails is None
+            and "destination_waybill_accepted_emails" in self.model_fields_set
+        ):
+            _dict["destination_waybill_accepted_emails"] = None
+
+        # set to None if destination_waybill_created_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_waybill_created_emails is None
+            and "destination_waybill_created_emails" in self.model_fields_set
+        ):
+            _dict["destination_waybill_created_emails"] = None
+
+        # set to None if destination_waybill_reached_destination_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_waybill_reached_destination_emails is None
+            and "destination_waybill_reached_destination_emails"
+            in self.model_fields_set
+        ):
+            _dict["destination_waybill_reached_destination_emails"] = None
+
+        # set to None if truck_reg_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.truck_reg_number is None
+            and "truck_reg_number" in self.model_fields_set
+        ):
+            _dict["truck_reg_number"] = None
+
+        # set to None if trailer_reg_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.trailer_reg_number is None
+            and "trailer_reg_number" in self.model_fields_set
+        ):
+            _dict["trailer_reg_number"] = None
+
         # set to None if pallets_number (nullable) is None
         # and model_fields_set contains the field
         if self.pallets_number is None and "pallets_number" in self.model_fields_set:
@@ -145,7 +313,6 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "pallets_number": obj.get("pallets_number"),
                 "origin_id": obj.get("origin_id"),
                 "origin_raw_id": obj.get("origin_raw_id"),
                 "origin_name": obj.get("origin_name"),
@@ -154,6 +321,18 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
                 "origin_longitude": obj.get("origin_longitude"),
                 "shipper_company_name": obj.get("shipper_company_name"),
                 "shipper_company_reg_code": obj.get("shipper_company_reg_code"),
+                "origin_transport_order_created_emails": obj.get(
+                    "origin_transport_order_created_emails"
+                ),
+                "origin_waybill_accepted_emails": obj.get(
+                    "origin_waybill_accepted_emails"
+                ),
+                "origin_waybill_created_emails": obj.get(
+                    "origin_waybill_created_emails"
+                ),
+                "origin_waybill_reached_destination_emails": obj.get(
+                    "origin_waybill_reached_destination_emails"
+                ),
                 "destination_id": obj.get("destination_id"),
                 "destination_raw_id": obj.get("destination_raw_id"),
                 "destination_name": obj.get("destination_name"),
@@ -162,8 +341,21 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
                 "destination_longitude": obj.get("destination_longitude"),
                 "receiver_company_name": obj.get("receiver_company_name"),
                 "receiver_company_reg_code": obj.get("receiver_company_reg_code"),
+                "destination_transport_order_created_emails": obj.get(
+                    "destination_transport_order_created_emails"
+                ),
+                "destination_waybill_accepted_emails": obj.get(
+                    "destination_waybill_accepted_emails"
+                ),
+                "destination_waybill_created_emails": obj.get(
+                    "destination_waybill_created_emails"
+                ),
+                "destination_waybill_reached_destination_emails": obj.get(
+                    "destination_waybill_reached_destination_emails"
+                ),
                 "truck_reg_number": obj.get("truck_reg_number"),
                 "trailer_reg_number": obj.get("trailer_reg_number"),
+                "pallets_number": obj.get("pallets_number"),
             }
         )
         return _obj

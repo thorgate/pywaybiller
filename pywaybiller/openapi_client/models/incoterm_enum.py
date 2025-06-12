@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class IncotermEnum(str, Enum):
     """
-    * `EXW` - EXW (Ex Works) * `DAP` - DAP (Delivered At Place)
+    IncotermEnum
     """
 
     """

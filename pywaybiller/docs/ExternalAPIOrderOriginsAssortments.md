@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**origin_assortment_raw_id** | **str** | Origin assortment raw id. | [optional] 
-**assortment_name** | **str** | Origin assortment name with subset value (if exists). | [readonly] 
+**origin_assortment_raw_id** | **int** | Unique identifier of the origin assortment | [optional] 
+**assortment_name** | **str** | Origin assortment name with subset value (if exists) | [readonly] 
 
 ## Example
 

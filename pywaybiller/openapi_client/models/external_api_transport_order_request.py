@@ -32,99 +32,167 @@ class ExternalAPITransportOrderRequest(BaseModel):
     ExternalAPITransportOrderRequest
     """  # noqa: E501
 
-    transport_order_id: Annotated[str, Field(min_length=1, strict=True)]
-    order_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    order_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    rows: List[ExternalAPITransportOrderRowRequest]
-    organizer_user_id: Optional[StrictInt] = None
-    destination_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
-        None
+    transport_order_id: Annotated[str, Field(min_length=1, strict=True)] = Field(
+        description="Unique identifier of the transport order in your system"
     )
-    destination_id: Optional[StrictStr] = None
+    order_raw_id: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
+        default=None, description="Unique identifier of the order in your system"
+    )
+    rows: List[ExternalAPITransportOrderRowRequest] = Field(
+        description="List of assortments associated with the transport order"
+    )
+    organizer_user_id: Optional[StrictInt] = Field(
+        default=None,
+        description="Organizer user ID. Required unless a default values has been set for the API key",
+    )
+    destination_raw_id: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="Unique identifier of the destination in Waybiller. Either this field or destination_raw_id must be provided when creating a new transport order",
+    )
+    destination_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Unique identifier of the destination in your system. Either this field or destination_raw_id must be provided when creating a new transport order",
+    )
     destination_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
+    ] = Field(default=None, description="Name of the destination location")
     destination_address: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
-    destination_latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    destination_longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    ] = Field(default=None, description="Address of the destination location")
+    destination_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Latitude of the destination location"
+    )
+    destination_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Longitude of the destination location"
+    )
     destination_waybill_created_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill is created for this destination",
+    )
     destination_waybill_reached_destination_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill reaches this destination",
+    )
     destination_waybill_accepted_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill is accepted at this destination",
+    )
     destination_transport_order_created_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a transport order is created for this destination",
+    )
     receiver_company_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=64)]
-    ] = None
+    ] = Field(
+        default=None,
+        description="Name of the company that owns the destination location",
+    )
     receiver_company_reg_code: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = None
-    origin_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    origin_id: Optional[StrictStr] = None
+    ] = Field(
+        default=None,
+        description="Registration code of the company that owns the destination location",
+    )
+    origin_raw_id: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
+        default=None,
+        description="Unique identifier of the origin in Waybiller. Either this field or origin_id must be provided when creating a new transport order",
+    )
+    origin_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Unique identifier of the origin in your system. Either this field or origin_raw_id must be provided when creating a new transport order",
+    )
     origin_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
+    ] = Field(default=None, description="Name of the origin location")
     origin_address: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
-    origin_latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    origin_longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    ] = Field(default=None, description="Address of the origin location")
+    origin_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Latitude of the origin location"
+    )
+    origin_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Longitude of the origin location"
+    )
     origin_waybill_created_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill is created from this origin",
+    )
     origin_waybill_reached_destination_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill from this origin reaches destination",
+    )
     origin_waybill_accepted_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill from this origin is accepted",
+    )
     origin_transport_order_created_emails: Optional[
-        List[Annotated[str, Field(min_length=1, strict=True, max_length=254)]]
-    ] = None
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a transport order is created from this origin",
+    )
     shipper_company_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=64)]
-    ] = None
+    ] = Field(
+        default=None, description="Name of the company that owns the origin location"
+    )
     shipper_company_reg_code: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = None
+    ] = Field(
+        default=None,
+        description="Registration code of the company that owns the origin location",
+    )
     transportation_company_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=64)]
-    ] = None
+    ] = Field(default=None, description="Transportation company name")
     transportation_company_reg_code: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = None
+    ] = Field(default=None, description="Transportation company registration code")
     truck_reg_number: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    ] = None
+    ] = Field(default=None, description="Registration number of the truck")
     trailer_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
-        None
+        Field(default=None, description="Registration number of the trailer")
     )
     driver_email: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=254)]
-    ] = None
+    ] = Field(default=None, description="Driver email")
     driver_personal_code: Optional[
         Annotated[str, Field(strict=True, max_length=24)]
-    ] = None
+    ] = Field(default=None, description="Driver personal code")
     driver_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=255)]
-    ] = None
-    driver_phone: Optional[Annotated[str, Field(strict=True, max_length=128)]] = ""
-    transport_date: date
-    transport_time: Optional[StrictStr] = None
-    additional_info: Optional[StrictStr] = None
-    pallets_number: Optional[Annotated[int, Field(le=32767, strict=True, ge=0)]] = None
+    ] = Field(default=None, description="Driver name")
+    driver_phone: Optional[Annotated[str, Field(strict=True, max_length=128)]] = Field(
+        default=None, description="Driver phone number"
+    )
+    transport_date: date = Field(description="Date of transport")
+    transport_time: Optional[StrictStr] = Field(
+        default=None, description="Time of transport"
+    )
+    additional_info: Optional[StrictStr] = Field(
+        default=None, description="Additional information for drivers"
+    )
+    pallets_number: Optional[Annotated[int, Field(le=32767, strict=True, ge=0)]] = (
+        Field(default=None, description="Number of pallets in the transport order")
+    )
     __properties: ClassVar[List[str]] = [
         "transport_order_id",
         "order_raw_id",
-        "order_id",
         "rows",
         "organizer_user_id",
         "destination_raw_id",
@@ -274,6 +342,22 @@ class ExternalAPITransportOrderRequest(BaseModel):
         ):
             _dict["origin_transport_order_created_emails"] = None
 
+        # set to None if truck_reg_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.truck_reg_number is None
+            and "truck_reg_number" in self.model_fields_set
+        ):
+            _dict["truck_reg_number"] = None
+
+        # set to None if trailer_reg_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.trailer_reg_number is None
+            and "trailer_reg_number" in self.model_fields_set
+        ):
+            _dict["trailer_reg_number"] = None
+
         # set to None if transport_time (nullable) is None
         # and model_fields_set contains the field
         if self.transport_time is None and "transport_time" in self.model_fields_set:
@@ -299,7 +383,6 @@ class ExternalAPITransportOrderRequest(BaseModel):
             {
                 "transport_order_id": obj.get("transport_order_id"),
                 "order_raw_id": obj.get("order_raw_id"),
-                "order_id": obj.get("order_id"),
                 "rows": [
                     ExternalAPITransportOrderRowRequest.from_dict(_item)
                     for _item in obj["rows"]
@@ -356,9 +439,7 @@ class ExternalAPITransportOrderRequest(BaseModel):
                 "driver_email": obj.get("driver_email"),
                 "driver_personal_code": obj.get("driver_personal_code"),
                 "driver_name": obj.get("driver_name"),
-                "driver_phone": obj.get("driver_phone")
-                if obj.get("driver_phone") is not None
-                else "",
+                "driver_phone": obj.get("driver_phone"),
                 "transport_date": obj.get("transport_date"),
                 "transport_time": obj.get("transport_time"),
                 "additional_info": obj.get("additional_info"),

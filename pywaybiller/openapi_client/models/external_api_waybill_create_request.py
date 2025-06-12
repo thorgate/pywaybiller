@@ -41,7 +41,7 @@ class ExternalAPIWaybillCreateRequest(BaseModel):
     destination_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
         Field(default=None, description="The ID of the destination.")
     )
-    destination_id: Optional[StrictInt] = Field(
+    destination_id: Optional[StrictStr] = Field(
         default=None,
         description="The external ID of the destination. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
     )
@@ -84,7 +84,7 @@ class ExternalAPIWaybillCreateRequest(BaseModel):
     origin_raw_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
         default=None, description="The ID of the origin."
     )
-    origin_id: Optional[StrictInt] = Field(
+    origin_id: Optional[StrictStr] = Field(
         default=None,
         description="The external ID of the origin. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
     )

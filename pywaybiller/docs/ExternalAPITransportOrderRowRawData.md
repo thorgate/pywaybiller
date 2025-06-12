@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **int** |  | [readonly] 
+**assortment_id** | **int** | Unique identifier of the assortment in your system | [readonly] 
 
 ## Example
 

@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing_extensions import Self
 
 
 class ExternalAPIOrderOriginsAssortmentsRequest(BaseModel):
@@ -27,9 +27,9 @@ class ExternalAPIOrderOriginsAssortmentsRequest(BaseModel):
     ExternalAPIOrderOriginsAssortmentsRequest
     """  # noqa: E501
 
-    origin_assortment_raw_id: Optional[
-        Annotated[str, Field(min_length=1, strict=True)]
-    ] = Field(default=None, description="Origin assortment raw id.")
+    origin_assortment_raw_id: Optional[StrictInt] = Field(
+        default=None, description="Unique identifier of the origin assortment"
+    )
     __properties: ClassVar[List[str]] = ["origin_assortment_raw_id"]
 
     model_config = ConfigDict(

@@ -46,78 +46,75 @@ from pywaybiller.openapi_client.models.external_api_order_transport_companies im
 from pywaybiller.openapi_client.models.external_api_order_vehicles import (
     ExternalAPIOrderVehicles,
 )
+from pywaybiller.openapi_client.models.order_status_enum import OrderStatusEnum
 
 
-class ExternalAPIOrder(BaseModel):
+class ExternalAPIOrderRetrieve(BaseModel):
     """
-    ExternalAPIOrder
+    ExternalAPIOrderRetrieve
     """  # noqa: E501
 
-    number: StrictStr = Field(description="Order number.")
-    status: StrictStr = Field(description="The status of the order.")
-    order_id: StrictStr = Field(description="Order id (in your system).")
-    order_raw_id: StrictStr = Field(description="Order raw id.")
-    period: List[date] = Field(description="The date range when the order is active.")
-    owner_raw_id: StrictStr = Field(description="Raw id of the owner company.")
-    owner_company_name: StrictStr = Field(
-        description="Name of the company who owns the order."
+    number: Annotated[str, Field(strict=True, max_length=16)] = Field(
+        description="Unique order reference number"
     )
-    client_id: Optional[StrictStr] = Field(
-        default=None,
-        description="The company id (in your system) for whom the order is created for.",
+    status: OrderStatusEnum = Field(description="Current status of the order")
+    order_id: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
+        description="Unique identifier for this order in your system"
     )
-    client_company_reg_code: Optional[StrictStr] = Field(
-        default=None,
-        description="The company reg code for whom the order is created for. Used as raw id to match the company, if it exists.",
+    period: List[date] = Field(description="Date range when the order is active")
+    owner_raw_id: Annotated[str, Field(strict=True, max_length=10)] = Field(
+        description="Unique identifier of the company that owns this order"
     )
-    client_company_name: Optional[StrictStr] = Field(
-        default=None,
-        description="Name of the company for whom the order is created for.",
+    owner_company_name: Annotated[str, Field(strict=True, max_length=64)] = Field(
+        description="Name of the company that owns this order"
     )
-    destination_raw_id: Optional[StrictStr] = Field(
-        default=None, description="Destination raw id."
+    client_id: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
+        description="Unique identifier for the client company of this order in your system"
     )
-    destination_id: Optional[StrictInt] = Field(
-        default=None, description="Destination id (in your system)."
+    destination_id: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = (
+        Field(
+            description="Unique identifier for the destination of this order in your system"
+        )
     )
-    destination_name: Optional[StrictStr] = Field(
-        default=None, description="Destination name."
+    destination_name: Optional[Annotated[str, Field(strict=True, max_length=64)]] = (
+        Field(description="Name of the destination")
     )
     destination_address: Optional[
         Annotated[str, Field(strict=True, max_length=255)]
-    ] = Field(default=None, description="Destination address.")
+    ] = Field(description="Physical address of the delivery destination")
     destination_latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Destination location - latitude."
+        description="Geographic latitude coordinate of the destination (decimal degrees)"
     )
     destination_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Destination location - longitude."
+        description="Geographic longitude coordinate of the destination (decimal degrees)"
     )
-    origins: Optional[List[ExternalAPIOrderOrigin]] = Field(
-        default=None, description="The origins for which the order is created for."
+    origins: List[ExternalAPIOrderOrigin] = Field(
+        description="List of origins associated with this order"
     )
     total_allowed_amount: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Total allowed amount."
+        description="Maximum total quantity allowed for this order"
     )
-    rows: Optional[List[ExternalAPIOrderOriginsAssortments]] = Field(
-        default=None, description="Origin's assortments."
+    rows: List[ExternalAPIOrderOriginsAssortments] = Field(
+        description="Assortments associated with the origins of this order"
     )
-    transportation_companies: Optional[List[ExternalAPIOrderTransportCompanies]] = (
-        Field(
-            default=None,
-            description="The transportation companies the client is using for transporting assortments from origins to destination.",
-        )
+    transportation_companies: List[ExternalAPIOrderTransportCompanies] = Field(
+        description="List of companies authorized to transport assortments for this order"
     )
-    client_can_edit_transportation_values: Optional[StrictBool] = Field(
-        default=None, description="Client can edit transportation values."
+    cancel_transport_orders_on_allowed_amount_exceeding: StrictBool = Field(
+        description="Cancel transport orders and do not allow to create new transport orders if the order amount has been exceeded."
     )
-    vehicles: Optional[List[ExternalAPIOrderVehicles]] = Field(
-        default=None,
-        description="The vehicles that the transportation companies are allowed to use for this order.",
+    client_can_edit_transportation_values: StrictBool = Field(
+        description="Boolean flag indicating whether the client has permission to modify transportation details"
     )
-    extra_information: Optional[StrictStr] = Field(
-        default=None, description="Extra information."
+    vehicles: List[ExternalAPIOrderVehicles] = Field(
+        description="Specific vehicles approved for transporting materials in this order"
     )
-    user_id: StrictInt = Field(description="User who created this order.")
+    extra_information: StrictStr = Field(
+        description="Additional notes, special instructions, or requirements for this order"
+    )
+    user_id: StrictInt = Field(
+        description="Identifier of the user who created this order"
+    )
     raw_data: ExternalAPIOrderRawData = Field(
         description="The IDs of the Waybiller internal objects"
     )
@@ -125,14 +122,10 @@ class ExternalAPIOrder(BaseModel):
         "number",
         "status",
         "order_id",
-        "order_raw_id",
         "period",
         "owner_raw_id",
         "owner_company_name",
         "client_id",
-        "client_company_reg_code",
-        "client_company_name",
-        "destination_raw_id",
         "destination_id",
         "destination_name",
         "destination_address",
@@ -142,6 +135,7 @@ class ExternalAPIOrder(BaseModel):
         "total_allowed_amount",
         "rows",
         "transportation_companies",
+        "cancel_transport_orders_on_allowed_amount_exceeding",
         "client_can_edit_transportation_values",
         "vehicles",
         "extra_information",
@@ -178,7 +172,7 @@ class ExternalAPIOrder(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ExternalAPIOrder from a JSON string"""
+        """Create an instance of ExternalAPIOrderRetrieve from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -196,14 +190,46 @@ class ExternalAPIOrder(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "number",
                 "status",
-                "order_raw_id",
+                "order_id",
+                "period",
                 "owner_raw_id",
                 "owner_company_name",
+                "client_id",
+                "destination_id",
+                "destination_name",
+                "destination_address",
+                "destination_latitude",
+                "destination_longitude",
+                "origins",
+                "total_allowed_amount",
+                "rows",
+                "transportation_companies",
+                "cancel_transport_orders_on_allowed_amount_exceeding",
+                "client_can_edit_transportation_values",
+                "vehicles",
+                "extra_information",
+                "user_id",
                 "raw_data",
             ]
         )
@@ -244,11 +270,66 @@ class ExternalAPIOrder(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
+        # set to None if order_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.order_id is None and "order_id" in self.model_fields_set:
+            _dict["order_id"] = None
+
+        # set to None if client_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.client_id is None and "client_id" in self.model_fields_set:
+            _dict["client_id"] = None
+
+        # set to None if destination_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.destination_id is None and "destination_id" in self.model_fields_set:
+            _dict["destination_id"] = None
+
+        # set to None if destination_name (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_name is None
+            and "destination_name" in self.model_fields_set
+        ):
+            _dict["destination_name"] = None
+
+        # set to None if destination_address (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_address is None
+            and "destination_address" in self.model_fields_set
+        ):
+            _dict["destination_address"] = None
+
+        # set to None if destination_latitude (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_latitude is None
+            and "destination_latitude" in self.model_fields_set
+        ):
+            _dict["destination_latitude"] = None
+
+        # set to None if destination_longitude (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_longitude is None
+            and "destination_longitude" in self.model_fields_set
+        ):
+            _dict["destination_longitude"] = None
+
+        # set to None if total_allowed_amount (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.total_allowed_amount is None
+            and "total_allowed_amount" in self.model_fields_set
+        ):
+            _dict["total_allowed_amount"] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ExternalAPIOrder from a dict"""
+        """Create an instance of ExternalAPIOrderRetrieve from a dict"""
         if obj is None:
             return None
 
@@ -260,14 +341,10 @@ class ExternalAPIOrder(BaseModel):
                 "number": obj.get("number"),
                 "status": obj.get("status"),
                 "order_id": obj.get("order_id"),
-                "order_raw_id": obj.get("order_raw_id"),
                 "period": obj.get("period"),
                 "owner_raw_id": obj.get("owner_raw_id"),
                 "owner_company_name": obj.get("owner_company_name"),
                 "client_id": obj.get("client_id"),
-                "client_company_reg_code": obj.get("client_company_reg_code"),
-                "client_company_name": obj.get("client_company_name"),
-                "destination_raw_id": obj.get("destination_raw_id"),
                 "destination_id": obj.get("destination_id"),
                 "destination_name": obj.get("destination_name"),
                 "destination_address": obj.get("destination_address"),
@@ -291,6 +368,9 @@ class ExternalAPIOrder(BaseModel):
                 ]
                 if obj.get("transportation_companies") is not None
                 else None,
+                "cancel_transport_orders_on_allowed_amount_exceeding": obj.get(
+                    "cancel_transport_orders_on_allowed_amount_exceeding"
+                ),
                 "client_can_edit_transportation_values": obj.get(
                     "client_can_edit_transportation_values"
                 ),

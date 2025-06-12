@@ -1,6 +1,6 @@
 # ExternalAPIWaybillTransportCostsWeightsToUse
 
-The weights used to calculate the transport cost.  * `accepted_weights` - Accepted weights * `dispatched_weights` - Dispatched weights
+The weights used to calculate the transport cost.
 
 ## Properties
 

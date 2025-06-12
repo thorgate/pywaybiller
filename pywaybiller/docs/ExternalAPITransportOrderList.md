@@ -5,19 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transport_order_id** | **str** |  | [readonly] 
-**transport_date** | **date** |  | [readonly] 
-**origin_id** | **str** | Unique identifier of the origin in your system | 
-**origin_name** | **str** |  | [optional] 
-**origin_address** | **str** |  | [optional] 
-**destination_id** | **str** | Unique identifier of the destination in your system | 
-**destination_name** | **str** |  | [optional] 
-**destination_address** | **str** |  | [optional] 
-**assortment_name** | **str** |  | [readonly] 
-**transportation_company_name** | **str** |  | [optional] 
-**truck_reg_number** | **str** |  | [optional] 
-**trailer_reg_number** | **str** |  | [optional] 
-**waybills_ids** | **List[int]** |  | [readonly] 
+**transport_order_id** | **str** | Unique identifier of the transport order in your system | [readonly] 
+**transport_date** | **date** | Date of transport | [readonly] 
+**origin_id** | **str** | Unique identifier of the origin in your system | [readonly] 
+**origin_name** | **str** | Name of the origin location | [readonly] 
+**origin_address** | **str** | Address of the origin location | [readonly] 
+**destination_id** | **str** | Unique identifier of the destination in your system | [readonly] 
+**destination_name** | **str** | Name of the destination location | [readonly] 
+**destination_address** | **str** | Address of the destination location | [readonly] 
+**assortment_name** | **str** | Name of the assortment being transported | [readonly] 
+**transportation_company_name** | **str** | Transportation company name | [readonly] 
+**truck_reg_number** | **str** | Registration number of the truck | [readonly] 
+**trailer_reg_number** | **str** | Registration number of the trailer | [readonly] 
 **raw_data** | [**ExternalAPITransportOrderRawDataList**](ExternalAPITransportOrderRawDataList.md) | The IDs of the Waybiller internal objects | [readonly] 
 
 ## Example

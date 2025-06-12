@@ -19,7 +19,7 @@ import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_transport_order_row_raw_data import (
     ExternalAPITransportOrderRowRawData,
@@ -31,16 +31,30 @@ class ExternalAPITransportOrderRawData(BaseModel):
     ExternalAPITransportOrderRawData
     """  # noqa: E501
 
-    transport_order_id: StrictInt
-    order_id: Optional[StrictInt] = Field(
-        description="Order which was used for creating"
+    transport_order_id: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Unique identifier of the transport order in the Waybiller system"
     )
-    rows: List[ExternalAPITransportOrderRowRawData]
-    destination_id: StrictInt
-    origin_id: Optional[StrictInt]
-    organizer_user_id: StrictInt
-    entity_code: Optional[StrictStr] = None
-    waybills_ids: List[StrictInt]
+    order_id: Optional[StrictInt] = Field(
+        description="Unique identifier of the order associated with the transport order"
+    )
+    rows: List[ExternalAPITransportOrderRowRawData] = Field(
+        description="List of assortments associated with the transport order"
+    )
+    destination_id: StrictInt = Field(
+        description="Unique identifier of the destination in the Waybiller system"
+    )
+    origin_id: Optional[StrictInt] = Field(
+        description="Unique identifier of the origin in the Waybiller system"
+    )
+    organizer_user_id: StrictInt = Field(
+        description="Unique identifier of the user who organized the transport order"
+    )
+    entity_code: Optional[StrictStr] = Field(
+        description="Entity code of the transport order, if applicable"
+    )
+    waybills_ids: List[StrictInt] = Field(
+        description="List of waybill IDs associated with the transport order"
+    )
     __properties: ClassVar[List[str]] = [
         "transport_order_id",
         "order_id",
@@ -124,6 +138,11 @@ class ExternalAPITransportOrderRawData(BaseModel):
         # and model_fields_set contains the field
         if self.origin_id is None and "origin_id" in self.model_fields_set:
             _dict["origin_id"] = None
+
+        # set to None if entity_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.entity_code is None and "entity_code" in self.model_fields_set:
+            _dict["entity_code"] = None
 
         return _dict
 

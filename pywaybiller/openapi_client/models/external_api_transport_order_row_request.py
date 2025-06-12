@@ -27,9 +27,15 @@ class ExternalAPITransportOrderRowRequest(BaseModel):
     ExternalAPITransportOrderRowRequest
     """  # noqa: E501
 
-    assortment_id: StrictStr
-    assortment_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    amount: Annotated[str, Field(strict=True)]
+    assortment_id: StrictStr = Field(
+        description="Unique identifier of the assortment in your system"
+    )
+    assortment_name: Annotated[str, Field(min_length=1, strict=True)] = Field(
+        description="Name of the assortment"
+    )
+    amount: Annotated[str, Field(strict=True)] = Field(
+        description="Amount of the assortment"
+    )
     __properties: ClassVar[List[str]] = ["assortment_id", "assortment_name", "amount"]
 
     @field_validator("amount")

@@ -56,7 +56,7 @@ class ExternalAPIWaybillList(BaseModel):
     status: WaybillStatusEnum
     number: StrictStr
     navision_bin_code: Optional[StrictStr] = Field(description="Bin code.")
-    project: Optional[StrictStr] = Field(description="Project code in your system.")
+    project: StrictStr = Field(description="Project code in your system.")
     raw_data: ExternalAPIWaybillRawDataList = Field(
         description="The IDs of the Waybiller internal objects"
     )
@@ -287,11 +287,6 @@ class ExternalAPIWaybillList(BaseModel):
             and "navision_bin_code" in self.model_fields_set
         ):
             _dict["navision_bin_code"] = None
-
-        # set to None if project (nullable) is None
-        # and model_fields_set contains the field
-        if self.project is None and "project" in self.model_fields_set:
-            _dict["project"] = None
 
         # set to None if origin_id (nullable) is None
         # and model_fields_set contains the field

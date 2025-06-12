@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_id** | **str** | Order id. | [readonly] 
-**number** | **str** | Order number. | [readonly] 
-**status** | **str** | The status of the order. | [readonly] 
-**period** | **List[date]** | The date range when the order is active. | 
-**origins** | [**List[ExternalAPIOrderOrigin]**](ExternalAPIOrderOrigin.md) | The origins for which the order is created for. | [readonly] 
-**owner_company_name** | **str** | Name of the company who owns the order. | [readonly] 
-**client_company_name** | **str** | Name of the company for whom the order is created for. | [readonly] 
-**destination_name** | **str** | Destination name. | [readonly] 
-**total_allowed_amount** | **decimal.Decimal** | Total allowed amount. | [readonly] 
+**order_id** | **str** | Unique identifier of the order in Waybiller | [readonly] 
+**number** | **str** | Unique order reference number | [readonly] 
+**status** | [**OrderStatusEnum**](OrderStatusEnum.md) | Current status of the order | [readonly] 
+**period** | **List[date]** | Date range when the order is active | [readonly] 
+**origins** | [**List[ExternalAPIOrderOrigin]**](ExternalAPIOrderOrigin.md) | List of origins associated with this order | [readonly] 
+**owner_company_name** | **str** | Name of the company that owns this order | [readonly] 
+**client_company_name** | **str** | Name of the client company for whom this order was created | [readonly] 
+**destination_name** | **str** | Name of the destination | [readonly] [default to '']
+**total_allowed_amount** | **decimal.Decimal** | Maximum total quantity allowed for this order | [readonly] 
 **raw_data** | [**ExternalAPIOrderRawData**](ExternalAPIOrderRawData.md) | The IDs of the Waybiller internal objects | [readonly] 
 
 ## Example

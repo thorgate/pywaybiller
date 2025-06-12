@@ -5,13 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**origin_raw_id** | **str** | Origin raw id. | [optional] 
-**origin_name** | **str** | Origin name. | [optional] 
-**origin_address** | **str** | Origin address. | [optional] 
-**origin_latitude** | **float** | Origin location - latitude. | [optional] 
-**origin_longitude** | **float** | Origin location - longitude. | [optional] 
-**shipper_company_name** | **str** | Origin company name. | [optional] 
-**shipper_company_reg_code** | **str** | Origin company reg code. | [optional] 
+**origin_raw_id** | **int** | Unique identifier of the origin | 
 
 ## Example
 

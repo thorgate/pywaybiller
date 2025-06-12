@@ -47,15 +47,11 @@ class ExternalAPIWaybillRow(BaseModel):
         default=None, description="Dispatched material amount"
     )
     accepted_amount: Optional[Annotated[str, Field(strict=True)]]
-    subset_type_name: Optional[StrictStr] = Field(
-        description="Subset type (eg fraction)."
-    )
+    subset_type_name: StrictStr = Field(description="Subset type (eg fraction).")
     subset_object_raw_id: Optional[StrictInt] = Field(
         default=None, description="The ID of the subset of the assortment."
     )
-    subset_object_name: Optional[StrictStr] = Field(
-        description="Subset object (eg 0-32mm)."
-    )
+    subset_object_name: StrictStr = Field(description="Subset object (eg 0-32mm).")
     extra_information_long: Optional[StrictStr] = None
     extra_information_short: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
@@ -169,22 +165,6 @@ class ExternalAPIWaybillRow(BaseModel):
         # and model_fields_set contains the field
         if self.accepted_amount is None and "accepted_amount" in self.model_fields_set:
             _dict["accepted_amount"] = None
-
-        # set to None if subset_type_name (nullable) is None
-        # and model_fields_set contains the field
-        if (
-            self.subset_type_name is None
-            and "subset_type_name" in self.model_fields_set
-        ):
-            _dict["subset_type_name"] = None
-
-        # set to None if subset_object_name (nullable) is None
-        # and model_fields_set contains the field
-        if (
-            self.subset_object_name is None
-            and "subset_object_name" in self.model_fields_set
-        ):
-            _dict["subset_object_name"] = None
 
         return _dict
 

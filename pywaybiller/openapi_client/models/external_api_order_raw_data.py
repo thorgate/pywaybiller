@@ -18,8 +18,12 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing_extensions import Annotated, Self
+
+from pywaybiller.openapi_client.models.external_api_order_raw_data_status_enum import (
+    ExternalAPIOrderRawDataStatusEnum,
+)
 
 
 class ExternalAPIOrderRawData(BaseModel):
@@ -27,18 +31,26 @@ class ExternalAPIOrderRawData(BaseModel):
     ExternalAPIOrderRawData
     """  # noqa: E501
 
-    order_id: StrictInt = Field(description="Order raw id.")
-    number: StrictStr = Field(description="Order number.")
-    status: StrictInt = Field(
-        description="The number representing the status of the order. 1 - Mustand, 2 - Aktiivne, 3 - Mitteaktiivne, 4 - Arhiveeritud"
+    order_id: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Unique identifier of the order"
+    )
+    number: Annotated[str, Field(strict=True, max_length=16)] = Field(
+        description="Unique order reference number"
+    )
+    status: ExternalAPIOrderRawDataStatusEnum = Field(
+        description="Numeric status code of the order"
     )
     origins: List[StrictInt] = Field(
-        description="The origins for which the order is created for."
+        description="List of origin IDs associated with this order"
     )
-    owner_company_id: StrictStr = Field(description="Owner company raw id.")
-    client_id: StrictStr = Field(description="Client company raw id.")
+    owner_company_id: Annotated[str, Field(strict=True, max_length=10)] = Field(
+        description="Unique identifier of the company that owns this order"
+    )
+    client_id: Annotated[str, Field(strict=True, max_length=10)] = Field(
+        description="Unique identifier of the client company for whom this order was created"
+    )
     origins_assortment: List[StrictInt] = Field(
-        description="The assortment that can be grabbed by an order's executor."
+        description="IDs of origin assortments that can be used for this order"
     )
     transportation_companies: List[StrictInt] = Field(
         description="The transportation companies the `client` is using for transporting assortments from `origins`to `destination`"
@@ -47,7 +59,7 @@ class ExternalAPIOrderRawData(BaseModel):
         description="The vehicles that the `transportation_companies` are allowed to use for this order."
     )
     destination: Optional[StrictInt] = Field(
-        description="The destination to where is order allows transporting assortments."
+        description="ID of the delivery destination"
     )
     __properties: ClassVar[List[str]] = [
         "order_id",

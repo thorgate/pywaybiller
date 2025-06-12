@@ -19,7 +19,7 @@ import re  # noqa: F401
 from datetime import date
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_transport_order_raw_data_list import (
@@ -32,31 +32,40 @@ class ExternalAPITransportOrderList(BaseModel):
     ExternalAPITransportOrderList
     """  # noqa: E501
 
-    transport_order_id: StrictStr
-    transport_date: Optional[date]
-    origin_id: Optional[StrictStr] = Field(
+    transport_order_id: Optional[
+        Annotated[str, Field(strict=True, max_length=1024)]
+    ] = Field(description="Unique identifier of the transport order in your system")
+    transport_date: date = Field(description="Date of transport")
+    origin_id: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = Field(
         description="Unique identifier of the origin in your system"
     )
-    origin_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
-    origin_address: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
-    destination_id: Optional[StrictStr] = Field(
-        description="Unique identifier of the destination in your system"
+    origin_name: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Name of the origin location"
     )
-    destination_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = (
-        None
+    origin_address: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Address of the origin location"
     )
-    destination_address: Optional[
-        Annotated[str, Field(strict=True, max_length=255)]
-    ] = None
-    assortment_name: StrictStr
-    transportation_company_name: Optional[
-        Annotated[str, Field(strict=True, max_length=64)]
-    ] = None
-    truck_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = None
+    destination_id: Optional[Annotated[str, Field(strict=True, max_length=1024)]] = (
+        Field(description="Unique identifier of the destination in your system")
+    )
+    destination_name: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Name of the destination location"
+    )
+    destination_address: Annotated[str, Field(strict=True, max_length=255)] = Field(
+        description="Address of the destination location"
+    )
+    assortment_name: StrictStr = Field(
+        description="Name of the assortment being transported"
+    )
+    transportation_company_name: Annotated[str, Field(strict=True, max_length=64)] = (
+        Field(description="Transportation company name")
+    )
+    truck_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
+        Field(description="Registration number of the truck")
+    )
     trailer_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
-        None
+        Field(description="Registration number of the trailer")
     )
-    waybills_ids: List[StrictInt]
     raw_data: ExternalAPITransportOrderRawDataList = Field(
         description="The IDs of the Waybiller internal objects"
     )
@@ -73,7 +82,6 @@ class ExternalAPITransportOrderList(BaseModel):
         "transportation_company_name",
         "truck_reg_number",
         "trailer_reg_number",
-        "waybills_ids",
         "raw_data",
     ]
 
@@ -111,13 +119,29 @@ class ExternalAPITransportOrderList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "transport_order_id",
                 "transport_date",
+                "origin_id",
+                "origin_name",
+                "origin_address",
+                "destination_id",
+                "destination_name",
+                "destination_address",
                 "assortment_name",
-                "waybills_ids",
+                "transportation_company_name",
+                "truck_reg_number",
+                "trailer_reg_number",
                 "raw_data",
             ]
         )
@@ -130,10 +154,13 @@ class ExternalAPITransportOrderList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
-        # set to None if transport_date (nullable) is None
+        # set to None if transport_order_id (nullable) is None
         # and model_fields_set contains the field
-        if self.transport_date is None and "transport_date" in self.model_fields_set:
-            _dict["transport_date"] = None
+        if (
+            self.transport_order_id is None
+            and "transport_order_id" in self.model_fields_set
+        ):
+            _dict["transport_order_id"] = None
 
         # set to None if origin_id (nullable) is None
         # and model_fields_set contains the field
@@ -144,6 +171,22 @@ class ExternalAPITransportOrderList(BaseModel):
         # and model_fields_set contains the field
         if self.destination_id is None and "destination_id" in self.model_fields_set:
             _dict["destination_id"] = None
+
+        # set to None if truck_reg_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.truck_reg_number is None
+            and "truck_reg_number" in self.model_fields_set
+        ):
+            _dict["truck_reg_number"] = None
+
+        # set to None if trailer_reg_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.trailer_reg_number is None
+            and "trailer_reg_number" in self.model_fields_set
+        ):
+            _dict["trailer_reg_number"] = None
 
         return _dict
 
@@ -170,7 +213,6 @@ class ExternalAPITransportOrderList(BaseModel):
                 "transportation_company_name": obj.get("transportation_company_name"),
                 "truck_reg_number": obj.get("truck_reg_number"),
                 "trailer_reg_number": obj.get("trailer_reg_number"),
-                "waybills_ids": obj.get("waybills_ids"),
                 "raw_data": ExternalAPITransportOrderRawDataList.from_dict(
                     obj["raw_data"]
                 )

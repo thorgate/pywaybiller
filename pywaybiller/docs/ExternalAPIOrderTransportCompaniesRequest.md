@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transportation_company_name** | **str** | Transportation company name. | [optional] 
-**transportation_company_reg_code** | **str** | Transportation company reg code. | [optional] 
+**transportation_company_name** | **str** | Name of the transportation company | 
+**transportation_company_reg_code** | **str** | Official registration number of the transportation company | 
 
 ## Example
 

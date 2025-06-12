@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+* **Breaking** Use refactored waybiller external API schema (exported via DRF-spectacular). Drop all previous schema
+patches and start from scratch.
+
 ## Version 0.2.2
 * Do not require organizer_user_id for creating transport orders, as it may not bre required if default is configured on the server
 

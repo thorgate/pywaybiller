@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class RoleEnum(str, Enum):
     """
-    * `manager` - Manager * `project_manager` - Project Manager * `object_manager` - Object Manager * `dispatcher` - Dispatcher * `driver` - Driver * `acceptor` - Acceptor * `loader_operator` - Loader operator
+    RoleEnum
     """
 
     """

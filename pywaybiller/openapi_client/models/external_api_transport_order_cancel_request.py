@@ -27,8 +27,13 @@ class ExternalAPITransportOrderCancelRequest(BaseModel):
     ExternalAPITransportOrderCancelRequest
     """  # noqa: E501
 
-    cancelling_reason: Annotated[str, Field(min_length=1, strict=True)]
-    cancelled_by_user_id: Optional[StrictInt] = None
+    cancelling_reason: Annotated[str, Field(min_length=1, strict=True)] = Field(
+        description="Reason for cancelling the transport order"
+    )
+    cancelled_by_user_id: Optional[StrictInt] = Field(
+        default=None,
+        description="ID of the user who cancelled the transport order. Required unless a default values has been set for the API key.",
+    )
     __properties: ClassVar[List[str]] = ["cancelling_reason", "cancelled_by_user_id"]
 
     model_config = ConfigDict(

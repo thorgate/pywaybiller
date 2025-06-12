@@ -1,6 +1,6 @@
 [project]
 name = "pywaybiller"
-version = "0.2.2"
+version = "1.0.0.dev0"
 description = "Python client for waybiller.com external API"
 authors = [{name = "Thorgate Digital", email = "software@thorgate.eu" }]
 license = "MIT License"

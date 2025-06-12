@@ -38,7 +38,7 @@ EXTERNALAPIWAYBILLTRANSPORTCOSTSWEIGHTSTOUSE_ONE_OF_SCHEMAS = [
 
 class ExternalAPIWaybillTransportCostsWeightsToUse(BaseModel):
     """
-    The weights used to calculate the transport cost.  * `accepted_weights` - Accepted weights * `dispatched_weights` - Dispatched weights
+    The weights used to calculate the transport cost.
     """
 
     # data type: WeightsToUseEnum
