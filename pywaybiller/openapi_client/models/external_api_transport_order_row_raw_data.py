@@ -30,8 +30,12 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
     assortment_id: Optional[StrictInt] = Field(
         description="Unique identifier of the assortment in your system"
     )
-    accepted_amount: StrictStr
-    dispatched_amount: StrictStr
+    accepted_amount: StrictStr = Field(
+        description="Total accepted amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row."
+    )
+    dispatched_amount: StrictStr = Field(
+        description="Total dispatched amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row."
+    )
     __properties: ClassVar[List[str]] = [
         "assortment_id",
         "accepted_amount",

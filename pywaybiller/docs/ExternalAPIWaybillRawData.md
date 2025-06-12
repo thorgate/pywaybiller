@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **destination_id** | **int** | The ID of the destination. | [readonly] 
 **rows** | [**List[ExternalAPIWaybillRowRawData]**](ExternalAPIWaybillRowRawData.md) | Waybill rows. | [readonly] 
 **user_defined_fields** | **Dict[str, object]** | User defined fields. | [readonly] 
-**transportorder_id** | **int** |  | [readonly] 
-**transportorder_number** | **str** |  | [readonly] 
+**transport_order_id** | **int** |  | [readonly] 
+**transport_order_number** | **str** |  | [readonly] 
 
 ## Example
 
