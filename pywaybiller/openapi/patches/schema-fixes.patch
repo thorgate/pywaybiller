@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2025-06-12 13:26:11.512032214 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-06-12 13:25:40.109742885 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2025-06-16 18:30:37.519101555 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-06-16 18:30:27.246416443 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -9,6 +9,24 @@
      "version": "v1",
      "description": "The **Waybiller External API** is a feature that allows companies to access **Waybiller** data as JSON objects and\ncreate **Waybiller** instances out of their own data.\n\nTo make integration easier for the companies, the external API provides mapping support - it is possible to create\ncompany-specific mappings for object identifiers (such as destination and origin).\n\nThese mappings will be used for representing companies data from external API, and for converting the values during the\ncreation of **Waybiller** instances (such as transport orders and waybills).\n\nMost of the API responses contain mapped values, which may be null if the company doesn't have a mapping for this\nobject.\n\nUnique **Waybiller** identifiers and values can be accessed via the `raw_data` key.\n\nThe API is HTTPS and JSON based.\n\n### Pagination\n\nBy default, list endpoint responses are presented in pages of 30 items.\n\nIt is possible to control the page size using the `limit` parameter:\n`/external-api/<some-list-endpoint>/?limit=<number>`, where `<number>` is an integer between 1 and 1000.\n"
    },
+@@ -4413,7 +4413,7 @@
+             "content": {
+               "application/json": {
+                 "schema": {
+-                  "$ref": "#/components/schemas/ExternalAPIWaybillAcceptedAmounts"
++                  "$ref": "#/components/schemas/ExternalAPIWaybillRetrieve"
+                 }
+               }
+             },
+@@ -4601,7 +4601,7 @@
+             "content": {
+               "application/json": {
+                 "schema": {
+-                  "$ref": "#/components/schemas/ExternalAPIWaybillDispatchedAmounts"
++                  "$ref": "#/components/schemas/ExternalAPIWaybillRetrieve"
+                 }
+               }
+             },
 @@ -8305,24 +8305,28 @@
              "type": "string",
              "format": "email",

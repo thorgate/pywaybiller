@@ -26,9 +26,6 @@ from pywaybiller.openapi_client.models.external_api_waybill_accept import (
 from pywaybiller.openapi_client.models.external_api_waybill_accept_request import (
     ExternalAPIWaybillAcceptRequest,
 )
-from pywaybiller.openapi_client.models.external_api_waybill_accepted_amounts import (
-    ExternalAPIWaybillAcceptedAmounts,
-)
 from pywaybiller.openapi_client.models.external_api_waybill_accepted_amounts_request import (
     ExternalAPIWaybillAcceptedAmountsRequest,
 )
@@ -46,9 +43,6 @@ from pywaybiller.openapi_client.models.external_api_waybill_create import (
 )
 from pywaybiller.openapi_client.models.external_api_waybill_create_request import (
     ExternalAPIWaybillCreateRequest,
-)
-from pywaybiller.openapi_client.models.external_api_waybill_dispatched_amounts import (
-    ExternalAPIWaybillDispatchedAmounts,
 )
 from pywaybiller.openapi_client.models.external_api_waybill_dispatched_amounts_request import (
     ExternalAPIWaybillDispatchedAmountsRequest,
@@ -2778,7 +2772,7 @@ class WaybillsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPIWaybillAcceptedAmounts:
+    ) -> ExternalAPIWaybillRetrieve:
         """Updating of accepted amounts
 
         Sets the accepted amounts for the waybill.         Optional `accepted_assortment_id` can be used when the accepted assortment differs from the dispatched one.         In this case, you must still provide `assortment_id` matching the dispatched assortment.         Authorized only for the receiving company of the waybill.
@@ -2819,7 +2813,7 @@ class WaybillsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIWaybillAcceptedAmounts",
+            "200": "ExternalAPIWaybillRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -2850,7 +2844,7 @@ class WaybillsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPIWaybillAcceptedAmounts]:
+    ) -> ApiResponse[ExternalAPIWaybillRetrieve]:
         """Updating of accepted amounts
 
         Sets the accepted amounts for the waybill.         Optional `accepted_assortment_id` can be used when the accepted assortment differs from the dispatched one.         In this case, you must still provide `assortment_id` matching the dispatched assortment.         Authorized only for the receiving company of the waybill.
@@ -2891,7 +2885,7 @@ class WaybillsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIWaybillAcceptedAmounts",
+            "200": "ExternalAPIWaybillRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -2963,7 +2957,7 @@ class WaybillsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIWaybillAcceptedAmounts",
+            "200": "ExternalAPIWaybillRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -3343,7 +3337,7 @@ class WaybillsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ExternalAPIWaybillDispatchedAmounts:
+    ) -> ExternalAPIWaybillRetrieve:
         """Updating of dispatched amounts
 
         Updates dispatched amounts for the waybill.<br>         Generally only authorized for the origin company of the waybill,         unless the Waybiller team has given the key a permission to update the dispatched weights as a receiver as well.
@@ -3384,7 +3378,7 @@ class WaybillsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIWaybillDispatchedAmounts",
+            "200": "ExternalAPIWaybillRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -3415,7 +3409,7 @@ class WaybillsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ExternalAPIWaybillDispatchedAmounts]:
+    ) -> ApiResponse[ExternalAPIWaybillRetrieve]:
         """Updating of dispatched amounts
 
         Updates dispatched amounts for the waybill.<br>         Generally only authorized for the origin company of the waybill,         unless the Waybiller team has given the key a permission to update the dispatched weights as a receiver as well.
@@ -3456,7 +3450,7 @@ class WaybillsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIWaybillDispatchedAmounts",
+            "200": "ExternalAPIWaybillRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(
@@ -3528,7 +3522,7 @@ class WaybillsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ExternalAPIWaybillDispatchedAmounts",
+            "200": "ExternalAPIWaybillRetrieve",
             "403": "DestinationsList403Response",
         }
         response_data = self.api_client.call_api(

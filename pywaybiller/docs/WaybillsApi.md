@@ -794,7 +794,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **waybills_update_accepted_amounts_update**
-> ExternalAPIWaybillAcceptedAmounts waybills_update_accepted_amounts_update(id, external_api_waybill_accepted_amounts_request)
+> ExternalAPIWaybillRetrieve waybills_update_accepted_amounts_update(id, external_api_waybill_accepted_amounts_request)
 
 Updating of accepted amounts
 
@@ -810,8 +810,8 @@ Sets the accepted amounts for the waybill.
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_waybill_accepted_amounts import ExternalAPIWaybillAcceptedAmounts
 from openapi_client.models.external_api_waybill_accepted_amounts_request import ExternalAPIWaybillAcceptedAmountsRequest
+from openapi_client.models.external_api_waybill_retrieve import ExternalAPIWaybillRetrieve
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -860,7 +860,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIWaybillAcceptedAmounts**](ExternalAPIWaybillAcceptedAmounts.md)
+[**ExternalAPIWaybillRetrieve**](ExternalAPIWaybillRetrieve.md)
 
 ### Authorization
 
@@ -968,7 +968,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **waybills_update_dispatched_amounts_update**
-> ExternalAPIWaybillDispatchedAmounts waybills_update_dispatched_amounts_update(id, external_api_waybill_dispatched_amounts_request)
+> ExternalAPIWaybillRetrieve waybills_update_dispatched_amounts_update(id, external_api_waybill_dispatched_amounts_request)
 
 Updating of dispatched amounts
 
@@ -983,8 +983,8 @@ Updates dispatched amounts for the waybill.<br>
 
 ```python
 import openapi_client
-from openapi_client.models.external_api_waybill_dispatched_amounts import ExternalAPIWaybillDispatchedAmounts
 from openapi_client.models.external_api_waybill_dispatched_amounts_request import ExternalAPIWaybillDispatchedAmountsRequest
+from openapi_client.models.external_api_waybill_retrieve import ExternalAPIWaybillRetrieve
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -1033,7 +1033,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIWaybillDispatchedAmounts**](ExternalAPIWaybillDispatchedAmounts.md)
+[**ExternalAPIWaybillRetrieve**](ExternalAPIWaybillRetrieve.md)
 
 ### Authorization
 
