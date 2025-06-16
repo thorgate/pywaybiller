@@ -43,4 +43,4 @@ def test_client_can_sanitize_for_serialization():
     serialized_vehicle = json.dumps(vehicle_data)
 
     # And the data is not mangled
-    assert json.loads(serialized_vehicle)["reg_number"] == "839PVF"
+    assert json.loads(serialized_vehicle).get("reg_number", "") == "839PVF", serialized_vehicle

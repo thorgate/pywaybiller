@@ -1,14 +1,14 @@
 # ExternalAPIVehicleLocationDataRawData
 
-The IDs of the Waybiller internal objects.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**waybill_id** | **int** | The ID of the waybill. | 
-**destination_id** | **int** | The ID of the destination. | 
-**origin_id** | **int** | The ID of the origin. | 
-**truck_id** | **int** | The ID of the truck. | 
+**waybill_id** | **int** | Unique identifier of the waybill | [readonly] 
+**destination_id** | **int** | Unique identifier of the destination | [readonly] 
+**origin_id** | **int** | Unique identifier of the origin | [readonly] 
+**truck_id** | **int** | Unique identifier of the truck | [readonly] 
 
 ## Example
 
@@ -20,12 +20,12 @@ json = "{}"
 # create an instance of ExternalAPIVehicleLocationDataRawData from a JSON string
 external_api_vehicle_location_data_raw_data_instance = ExternalAPIVehicleLocationDataRawData.from_json(json)
 # print the JSON string representation of the object
-print ExternalAPIVehicleLocationDataRawData.to_json()
+print(ExternalAPIVehicleLocationDataRawData.to_json())
 
 # convert the object into a dict
 external_api_vehicle_location_data_raw_data_dict = external_api_vehicle_location_data_raw_data_instance.to_dict()
 # create an instance of ExternalAPIVehicleLocationDataRawData from a dict
-external_api_vehicle_location_data_raw_data_form_dict = external_api_vehicle_location_data_raw_data.from_dict(external_api_vehicle_location_data_raw_data_dict)
+external_api_vehicle_location_data_raw_data_from_dict = ExternalAPIVehicleLocationDataRawData.from_dict(external_api_vehicle_location_data_raw_data_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -2,9 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **str** |  | [optional] [readonly] 
+**assortment_id** | **int** | Unique identifier of the assortment in your system | [readonly] 
+**accepted_amount** | **decimal.Decimal** | Total accepted amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row. | [readonly] 
+**dispatched_amount** | **decimal.Decimal** | Total dispatched amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row. | [readonly] 
 
 ## Example
 
@@ -16,12 +19,12 @@ json = "{}"
 # create an instance of ExternalAPITransportOrderRowRawData from a JSON string
 external_api_transport_order_row_raw_data_instance = ExternalAPITransportOrderRowRawData.from_json(json)
 # print the JSON string representation of the object
-print ExternalAPITransportOrderRowRawData.to_json()
+print(ExternalAPITransportOrderRowRawData.to_json())
 
 # convert the object into a dict
 external_api_transport_order_row_raw_data_dict = external_api_transport_order_row_raw_data_instance.to_dict()
 # create an instance of ExternalAPITransportOrderRowRawData from a dict
-external_api_transport_order_row_raw_data_form_dict = external_api_transport_order_row_raw_data.from_dict(external_api_transport_order_row_raw_data_dict)
+external_api_transport_order_row_raw_data_from_dict = ExternalAPITransportOrderRowRawData.from_dict(external_api_transport_order_row_raw_data_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

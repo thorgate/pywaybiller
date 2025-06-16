@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **driver_user_id** | **int** | The ID of the driver user (eg 28). Use GET Employments endpoint to query all available employments and get necessary &#x60;user_id&#x60; values. | 
@@ -18,12 +19,12 @@ json = "{}"
 # create an instance of ExternalAPIWaybillStartDrive from a JSON string
 external_api_waybill_start_drive_instance = ExternalAPIWaybillStartDrive.from_json(json)
 # print the JSON string representation of the object
-print ExternalAPIWaybillStartDrive.to_json()
+print(ExternalAPIWaybillStartDrive.to_json())
 
 # convert the object into a dict
 external_api_waybill_start_drive_dict = external_api_waybill_start_drive_instance.to_dict()
 # create an instance of ExternalAPIWaybillStartDrive from a dict
-external_api_waybill_start_drive_form_dict = external_api_waybill_start_drive.from_dict(external_api_waybill_start_drive_dict)
+external_api_waybill_start_drive_from_dict = ExternalAPIWaybillStartDrive.from_dict(external_api_waybill_start_drive_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
