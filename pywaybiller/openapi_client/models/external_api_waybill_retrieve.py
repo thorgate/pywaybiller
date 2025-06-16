@@ -172,7 +172,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
     driver_timestamp: Optional[datetime] = Field(
         description="Timestamp when driver started driving"
     )
-    destination_timestamp: datetime = Field(
+    destination_timestamp: Optional[datetime] = Field(
         description="Time when waybill reached destination."
     )
     confirmed_timestamp: Optional[datetime] = Field(
@@ -182,9 +182,9 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         description="Time of waybill cancelling"
     )
     pdf_url: StrictStr
-    navision_bin_code: StrictStr = Field(description="Bin code.")
-    evr_waybill_number: StrictStr = Field(description="EVR waybill number.")
-    project: StrictStr = Field(description="Project code in your system.")
+    navision_bin_code: Optional[StrictStr] = Field(description="Bin code.")
+    evr_waybill_number: Optional[StrictStr] = Field(description="EVR waybill number.")
+    project: Optional[StrictStr] = Field(description="Project code in your system.")
     transport_costs: Optional[ExternalAPIWaybillTransportCosts] = Field(
         description="Information about transport costs"
     )
@@ -476,6 +476,14 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         ):
             _dict["driver_timestamp"] = None
 
+        # set to None if destination_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.destination_timestamp is None
+            and "destination_timestamp" in self.model_fields_set
+        ):
+            _dict["destination_timestamp"] = None
+
         # set to None if confirmed_timestamp (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -491,6 +499,27 @@ class ExternalAPIWaybillRetrieve(BaseModel):
             and "cancelled_timestamp" in self.model_fields_set
         ):
             _dict["cancelled_timestamp"] = None
+
+        # set to None if navision_bin_code (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.navision_bin_code is None
+            and "navision_bin_code" in self.model_fields_set
+        ):
+            _dict["navision_bin_code"] = None
+
+        # set to None if evr_waybill_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.evr_waybill_number is None
+            and "evr_waybill_number" in self.model_fields_set
+        ):
+            _dict["evr_waybill_number"] = None
+
+        # set to None if project (nullable) is None
+        # and model_fields_set contains the field
+        if self.project is None and "project" in self.model_fields_set:
+            _dict["project"] = None
 
         # set to None if transport_costs (nullable) is None
         # and model_fields_set contains the field
