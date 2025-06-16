@@ -28,7 +28,7 @@ class ExternalAPIWaybillRowRawData(BaseModel):
     """  # noqa: E501
 
     assortment_id: StrictInt
-    subset_id: StrictInt
+    subset_id: Optional[StrictInt]
     subset_type_id: Optional[StrictInt]
     __properties: ClassVar[List[str]] = ["assortment_id", "subset_id", "subset_type_id"]
 
@@ -78,6 +78,11 @@ class ExternalAPIWaybillRowRawData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if subset_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.subset_id is None and "subset_id" in self.model_fields_set:
+            _dict["subset_id"] = None
+
         # set to None if subset_type_id (nullable) is None
         # and model_fields_set contains the field
         if self.subset_type_id is None and "subset_type_id" in self.model_fields_set:

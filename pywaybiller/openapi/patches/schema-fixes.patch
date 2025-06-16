@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2025-06-16 18:30:37.519101555 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-06-16 18:30:27.246416443 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2025-06-16 18:35:32.182617815 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-06-16 18:35:17.657380784 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -55,4 +55,28 @@
 +            "nullable": true,
              "description": "Driver phone number",
              "maxLength": 128
+           },
+@@ -10421,6 +10425,7 @@
+             "nullable": true
+           },
+           "subset_type_name": {
++            "nullable": true,
+             "type": "string",
+             "readOnly": true,
+             "description": "Subset type (eg fraction)."
+@@ -10430,6 +10435,7 @@
+             "description": "The ID of the subset of the assortment."
+           },
+           "subset_object_name": {
++            "nullable": true,
+             "type": "string",
+             "readOnly": true,
+             "description": "Subset object (eg 0-32mm)."
+@@ -10712,6 +10718,7 @@
+             "readOnly": true
+           },
+           "subset_id": {
++            "nullable": true,
+             "type": "integer",
+             "readOnly": true
            },
