@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2026-03-10 15:55:48.475832542 +0200
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-03-10 15:55:31.839223867 +0200
+--- ./pywaybiller/openapi/waybiller_schema.json	2026-03-10 16:22:54.698603261 +0200
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-03-10 16:22:52.624651983 +0200
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -303,7 +303,7 @@
                        "results": [
                          {
                            "id": 1,
-@@ -3898,6 +3793,26 @@
+@@ -3898,6 +3793,24 @@
              }
            },
            {
@@ -312,8 +312,7 @@
 +            "in": "query",
 +            "description": "By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.",
 +            "schema": {
-+              "type": "string",
-+              "format": "date-time"
++              "type": "string"
 +            }
 +          },
 +          {
@@ -322,15 +321,14 @@
 +            "in": "query",
 +            "description": "By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.",
 +            "schema": {
-+              "type": "string",
-+              "format": "date-time"
++              "type": "string"
 +            }
 +          },
 +          {
              "in": "query",
              "name": "origin_ids",
              "schema": {
-@@ -4518,7 +4433,7 @@
+@@ -4518,7 +4431,7 @@
              "content": {
                "application/json": {
                  "schema": {
@@ -339,7 +337,7 @@
                  }
                }
              },
-@@ -4706,7 +4621,7 @@
+@@ -4706,7 +4619,7 @@
              "content": {
                "application/json": {
                  "schema": {
@@ -348,7 +346,7 @@
                  }
                }
              },
-@@ -4732,38 +4647,24 @@
+@@ -4732,38 +4645,24 @@
          }
        }
      },
@@ -398,7 +396,7 @@
          ],
          "security": [
            {
-@@ -4775,7 +4676,7 @@
+@@ -4775,7 +4674,7 @@
              "content": {
                "application/json": {
                  "schema": {
@@ -407,7 +405,7 @@
                  }
                }
              },
-@@ -4797,43 +4698,8 @@
+@@ -4797,43 +4696,8 @@
                }
              },
              "description": ""
@@ -452,7 +450,7 @@
              "content": {
                "application/json": {
                  "schema": {
-@@ -4841,8 +4707,8 @@
+@@ -4841,8 +4705,8 @@
                    "properties": {
                      "detail": {
                        "type": "string",
@@ -463,7 +461,7 @@
                      }
                    }
                  }
-@@ -5036,7 +4902,7 @@
+@@ -5036,7 +4900,7 @@
          "type": "object",
          "properties": {
            "type": {
@@ -472,7 +470,7 @@
            },
            "contractNumber": {
              "type": "string",
-@@ -5102,7 +4968,7 @@
+@@ -5102,7 +4966,7 @@
          "type": "object",
          "properties": {
            "type": {
@@ -481,7 +479,7 @@
            },
            "contractNumber": {
              "type": "string",
-@@ -5119,18 +4985,6 @@
+@@ -5119,18 +4983,6 @@
            }
          }
        },
@@ -500,7 +498,7 @@
        "ExternalAPILoaderActionLog": {
          "type": "object",
          "properties": {
-@@ -7673,214 +7527,6 @@
+@@ -7673,214 +7525,6 @@
            }
          }
        },
@@ -715,7 +713,7 @@
        "ExternalAPITransportOrderCancel": {
          "type": "object",
          "properties": {
-@@ -7976,7 +7622,6 @@
+@@ -7976,7 +7620,6 @@
            "transportation_company_name": {
              "type": "string",
              "readOnly": true,
@@ -723,7 +721,7 @@
              "description": "Transportation company name",
              "maxLength": 64
            },
-@@ -8006,7 +7651,7 @@
+@@ -8006,7 +7649,7 @@
            "rows": {
              "type": "array",
              "items": {
@@ -732,7 +730,7 @@
              },
              "readOnly": true,
              "description": "List of assortments associated with the transport order"
-@@ -8365,14 +8010,12 @@
+@@ -8365,14 +8008,12 @@
            },
            "transportation_company_name": {
              "type": "string",
@@ -747,7 +745,7 @@
              "minLength": 1,
              "description": "Transportation company registration code",
              "maxLength": 16
-@@ -8393,27 +8036,23 @@
+@@ -8393,27 +8034,23 @@
            "driver_email": {
              "type": "string",
              "format": "email",
@@ -775,7 +773,7 @@
              "description": "Driver phone number",
              "maxLength": 128
            },
-@@ -8452,7 +8091,8 @@
+@@ -8452,7 +8089,8 @@
            "transport_order_id": {
              "type": "string",
              "readOnly": true,
@@ -785,7 +783,7 @@
            },
            "number": {
              "type": "string",
-@@ -8474,7 +8114,7 @@
+@@ -8474,7 +8112,7 @@
            "rows": {
              "type": "array",
              "items": {
@@ -794,7 +792,7 @@
              },
              "readOnly": true,
              "description": "List of assortments associated with the transport order"
-@@ -8659,14 +8299,12 @@
+@@ -8659,14 +8297,12 @@
            "transportation_company_name": {
              "type": "string",
              "readOnly": true,
@@ -809,7 +807,7 @@
              "description": "Transportation company registration code",
              "maxLength": 16
            },
-@@ -8801,20 +8439,41 @@
+@@ -8801,20 +8437,41 @@
            "waybill_pdf_urls"
          ]
        },
@@ -826,11 +824,11 @@
              "readOnly": true,
 -            "description": "Unique identifier of the destination in Waybiller"
 +            "nullable": true
-           },
++          },
 +          "assortment_name": {
 +            "type": "string",
 +            "description": "Name of the assortment"
-+          },
+           },
 +          "amount": {
 +            "type": "string",
 +            "format": "decimal",
@@ -857,7 +855,7 @@
            },
            "accepted_amount": {
              "type": "string",
-@@ -8832,7 +8491,6 @@
+@@ -8832,7 +8489,6 @@
          "required": [
            "accepted_amount",
            "assortment_id",
@@ -865,7 +863,7 @@
            "dispatched_amount"
          ]
        },
-@@ -8848,10 +8506,6 @@
+@@ -8848,10 +8504,6 @@
              "minLength": 1,
              "description": "Name of the assortment"
            },
@@ -876,7 +874,7 @@
            "amount": {
              "type": "string",
              "format": "decimal",
-@@ -8866,71 +8520,6 @@
+@@ -8866,71 +8518,6 @@
            "assortment_name"
          ]
        },
@@ -948,7 +946,7 @@
        "ExternalAPITransportOrderUpdateRequest": {
          "type": "object",
          "properties": {
-@@ -9048,13 +8637,6 @@
+@@ -9048,13 +8635,6 @@
              "format": "double",
              "description": "Longitude of the destination location"
            },
@@ -962,7 +960,7 @@
            "receiver_company_name": {
              "type": "string",
              "minLength": 1,
-@@ -9127,10 +8709,7 @@
+@@ -9127,10 +8707,7 @@
              "nullable": true,
              "description": "Number of pallets in the transport order"
            }
@@ -974,7 +972,7 @@
        },
        "ExternalAPIVehicle": {
          "type": "object",
-@@ -10171,7 +9750,8 @@
+@@ -10171,7 +9748,8 @@
            "project": {
              "type": "string",
              "readOnly": true,
@@ -984,7 +982,7 @@
            },
            "raw_data": {
              "allOf": [
-@@ -10334,23 +9914,12 @@
+@@ -10334,23 +9912,12 @@
              "description": "Waybill rows."
            },
            "user_defined_fields": {
@@ -1009,7 +1007,7 @@
            "transport_order_id": {
              "type": "integer",
              "readOnly": true,
-@@ -10359,15 +9928,12 @@
+@@ -10359,15 +9926,12 @@
            "transport_order_number": {
              "type": "string",
              "readOnly": true,
@@ -1026,7 +1024,7 @@
            "origin_id",
            "rows",
            "transport_order_id",
-@@ -10396,89 +9962,26 @@
+@@ -10396,89 +9960,26 @@
              "readOnly": true,
              "description": "The ID of the origin."
            },
@@ -1118,7 +1116,7 @@
        "ExternalAPIWaybillRefuse": {
          "type": "object",
          "properties": {
-@@ -10793,6 +10296,7 @@
+@@ -10793,6 +10294,7 @@
              "description": "Timestamp when driver started driving"
            },
            "destination_timestamp": {
@@ -1126,7 +1124,7 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
-@@ -10819,16 +10323,19 @@
+@@ -10819,16 +10321,19 @@
              "readOnly": true
            },
            "navision_bin_code": {
@@ -1146,7 +1144,7 @@
              "type": "string",
              "readOnly": true,
              "description": "Project code in your system."
-@@ -10842,13 +10349,6 @@
+@@ -10842,13 +10347,6 @@
              "nullable": true,
              "description": "Information about transport costs"
            },
@@ -1160,7 +1158,7 @@
            "raw_data": {
              "allOf": [
                {
-@@ -10891,7 +10391,6 @@
+@@ -10891,7 +10389,6 @@
            "pdf_url",
            "project",
            "raw_data",
@@ -1168,7 +1166,7 @@
            "receiver_company_name",
            "receiver_company_reg_code",
            "rows",
-@@ -10909,11 +10408,6 @@
+@@ -10909,11 +10406,6 @@
        "ExternalAPIWaybillRow": {
          "type": "object",
          "properties": {
@@ -1180,7 +1178,7 @@
            "assortment_id": {
              "type": "string",
              "nullable": true,
-@@ -10958,6 +10452,7 @@
+@@ -10958,6 +10450,7 @@
              "nullable": true
            },
            "subset_type_name": {
@@ -1188,7 +1186,7 @@
              "type": "string",
              "readOnly": true,
              "description": "Subset type (eg fraction)."
-@@ -10967,6 +10462,7 @@
+@@ -10967,6 +10460,7 @@
              "description": "The ID of the subset of the assortment."
            },
            "subset_object_name": {
@@ -1196,7 +1194,7 @@
              "type": "string",
              "readOnly": true,
              "description": "Subset object (eg 0-32mm)."
-@@ -10983,7 +10479,6 @@
+@@ -10983,7 +10477,6 @@
          "required": [
            "accepted_amount",
            "assortment_ids",
@@ -1204,7 +1202,7 @@
            "scale_assortment_raw_id",
            "subset_object_name",
            "subset_type_name"
-@@ -11019,7 +10514,6 @@
+@@ -11019,7 +10512,6 @@
            "accepted_gross_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1212,7 +1210,7 @@
              "description": "The timestamp of the accepted gross weight."
            },
            "accepted_tare_weight": {
-@@ -11031,7 +10525,6 @@
+@@ -11031,7 +10523,6 @@
            "accepted_tare_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1220,7 +1218,7 @@
              "description": "The timestamp of the accepted tare weight."
            },
            "accepted_amount": {
-@@ -11066,7 +10559,6 @@
+@@ -11066,7 +10557,6 @@
            "accepted_gross_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1228,7 +1226,7 @@
              "description": "The timestamp of the accepted gross weight."
            },
            "accepted_tare_weight": {
-@@ -11078,7 +10570,6 @@
+@@ -11078,7 +10568,6 @@
            "accepted_tare_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1236,7 +1234,7 @@
              "description": "The timestamp of the accepted tare weight."
            },
            "accepted_amount": {
-@@ -11118,7 +10609,6 @@
+@@ -11118,7 +10607,6 @@
            "dispatched_gross_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1244,7 +1242,7 @@
              "description": "The timestamp of the dispatched gross weight."
            },
            "dispatched_tare_weight": {
-@@ -11130,7 +10620,6 @@
+@@ -11130,7 +10618,6 @@
            "dispatched_tare_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1252,7 +1250,7 @@
              "description": "The timestamp of the dispatched tare weight."
            },
            "dispatched_amount": {
-@@ -11161,7 +10650,6 @@
+@@ -11161,7 +10648,6 @@
            "dispatched_gross_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1260,7 +1258,7 @@
              "description": "The timestamp of the dispatched gross weight."
            },
            "dispatched_tare_weight": {
-@@ -11173,7 +10661,6 @@
+@@ -11173,7 +10659,6 @@
            "dispatched_tare_weight_timestamp": {
              "type": "string",
              "format": "date-time",
@@ -1268,7 +1266,7 @@
              "description": "The timestamp of the dispatched tare weight."
            },
            "dispatched_amount": {
-@@ -11190,15 +10677,11 @@
+@@ -11190,15 +10675,11 @@
        "ExternalAPIWaybillRowList": {
          "type": "object",
          "properties": {
@@ -1286,7 +1284,7 @@
            },
            "assortment_ids": {
              "type": "array",
-@@ -11252,7 +10735,6 @@
+@@ -11252,7 +10733,6 @@
            "assortment_name",
            "assortment_unit",
            "dispatched_amount",
@@ -1294,7 +1292,7 @@
            "scale_assortment_raw_id"
          ]
        },
-@@ -11261,38 +10743,21 @@
+@@ -11261,38 +10741,21 @@
          "properties": {
            "assortment_id": {
              "type": "integer",
@@ -1337,7 +1335,7 @@
            "subset_id",
            "subset_type_id"
          ]
-@@ -11578,6 +11043,33 @@
+@@ -11578,6 +11041,33 @@
            "weights_to_use"
          ]
        },
@@ -1371,7 +1369,7 @@
        "IncotermEnum": {
          "enum": [
            "EXW",
-@@ -11625,14 +11117,14 @@
+@@ -11625,14 +11115,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1388,7 +1386,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11661,14 +11153,14 @@
+@@ -11661,14 +11151,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1405,7 +1403,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11697,14 +11189,14 @@
+@@ -11697,14 +11187,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1422,7 +1420,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11733,14 +11225,14 @@
+@@ -11733,14 +11223,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1439,7 +1437,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11769,14 +11261,14 @@
+@@ -11769,14 +11259,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1456,7 +1454,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11805,14 +11297,14 @@
+@@ -11805,14 +11295,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1473,7 +1471,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11823,42 +11315,6 @@
+@@ -11823,42 +11313,6 @@
            }
          }
        },
@@ -1516,7 +1514,7 @@
        "PaginatedExternalAPITransportOrderListList": {
          "type": "object",
          "required": [
-@@ -11877,14 +11333,14 @@
+@@ -11877,14 +11331,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1533,7 +1531,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11913,14 +11369,14 @@
+@@ -11913,14 +11367,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1550,7 +1548,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11949,14 +11405,14 @@
+@@ -11949,14 +11403,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1567,7 +1565,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11985,14 +11441,14 @@
+@@ -11985,14 +11439,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1584,7 +1582,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -12014,7 +11470,6 @@
+@@ -12014,7 +11468,6 @@
        },
        "RoleEnum": {
          "enum": [
@@ -1592,7 +1590,7 @@
            "manager",
            "project_manager",
            "object_manager",
-@@ -12025,49 +11480,6 @@
+@@ -12025,49 +11478,6 @@
          ],
          "type": "string"
        },
@@ -1642,7 +1640,7 @@
        "TransportOrderStatusEnum": {
          "enum": [
            "draft",
-@@ -12080,6 +11492,18 @@
+@@ -12080,6 +11490,18 @@
          ],
          "type": "string"
        },
@@ -1661,7 +1659,7 @@
        "WaybillStatusEnum": {
          "enum": [
            0,
-@@ -12090,13 +11514,6 @@
+@@ -12090,13 +11512,6 @@
          ],
          "type": "integer"
        },

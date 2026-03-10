@@ -484,8 +484,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     destination_ids = 'destination_ids_example' # str | Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas. (optional)
     limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
-    dispatcher_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. (optional)
-    dispatcher_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. (optional)
+    dispatcher_timestamp__lt = 'dispatcher_timestamp__lt_example' # str | By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. (optional)
+    dispatcher_timestamp__gt = 'dispatcher_timestamp__gt_example' # str | By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. (optional)
     origin_ids = 'origin_ids_example' # str | Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas. (optional)
     raw_destination_ids = 'raw_destination_ids_example' # str | Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas. (optional)
     raw_origin_ids = 'raw_origin_ids_example' # str | Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas. (optional)
@@ -511,8 +511,8 @@ Name | Type | Description  | Notes
  **destination_ids** | **str**| Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas. | [optional] 
  **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
- **dispatcher_timestamp__lt** | **datetime**| By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. | [optional] 
- **dispatcher_timestamp__gt** | **datetime**| By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. | [optional] 
+ **dispatcher_timestamp__lt** | **str**| By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. | [optional] 
+ **dispatcher_timestamp__gt** | **str**| By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. | [optional] 
  **origin_ids** | **str**| Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas. | [optional] 
  **raw_destination_ids** | **str**| Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas. | [optional] 
  **raw_origin_ids** | **str**| Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas. | [optional] 

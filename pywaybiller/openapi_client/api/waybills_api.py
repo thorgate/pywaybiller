@@ -1478,13 +1478,13 @@ class WaybillsApi:
             Field(description="The initial index from which to return the results"),
         ] = None,
         dispatcher_timestamp__lt: Annotated[
-            Optional[datetime],
+            Optional[StrictStr],
             Field(
                 description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
             ),
         ] = None,
         dispatcher_timestamp__gt: Annotated[
-            Optional[datetime],
+            Optional[StrictStr],
             Field(
                 description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
             ),
@@ -1542,9 +1542,9 @@ class WaybillsApi:
         :param offset: The initial index from which to return the results
         :type offset: int
         :param dispatcher_timestamp__lt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
-        :type dispatcher_timestamp__lt: datetime
+        :type dispatcher_timestamp__lt: str
         :param dispatcher_timestamp__gt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
-        :type dispatcher_timestamp__gt: datetime
+        :type dispatcher_timestamp__gt: str
         :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
         :type origin_ids: str
         :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
@@ -1625,13 +1625,13 @@ class WaybillsApi:
             Field(description="The initial index from which to return the results"),
         ] = None,
         dispatcher_timestamp__lt: Annotated[
-            Optional[datetime],
+            Optional[StrictStr],
             Field(
                 description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
             ),
         ] = None,
         dispatcher_timestamp__gt: Annotated[
-            Optional[datetime],
+            Optional[StrictStr],
             Field(
                 description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
             ),
@@ -1689,9 +1689,9 @@ class WaybillsApi:
         :param offset: The initial index from which to return the results
         :type offset: int
         :param dispatcher_timestamp__lt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
-        :type dispatcher_timestamp__lt: datetime
+        :type dispatcher_timestamp__lt: str
         :param dispatcher_timestamp__gt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
-        :type dispatcher_timestamp__gt: datetime
+        :type dispatcher_timestamp__gt: str
         :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
         :type origin_ids: str
         :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
@@ -1772,13 +1772,13 @@ class WaybillsApi:
             Field(description="The initial index from which to return the results"),
         ] = None,
         dispatcher_timestamp__lt: Annotated[
-            Optional[datetime],
+            Optional[StrictStr],
             Field(
                 description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
             ),
         ] = None,
         dispatcher_timestamp__gt: Annotated[
-            Optional[datetime],
+            Optional[StrictStr],
             Field(
                 description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
             ),
@@ -1836,9 +1836,9 @@ class WaybillsApi:
         :param offset: The initial index from which to return the results
         :type offset: int
         :param dispatcher_timestamp__lt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
-        :type dispatcher_timestamp__lt: datetime
+        :type dispatcher_timestamp__lt: str
         :param dispatcher_timestamp__gt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
-        :type dispatcher_timestamp__gt: datetime
+        :type dispatcher_timestamp__gt: str
         :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
         :type origin_ids: str
         :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
@@ -1940,34 +1940,10 @@ class WaybillsApi:
             _query_params.append(("offset", offset))
 
         if dispatcher_timestamp__lt is not None:
-            if isinstance(dispatcher_timestamp__lt, datetime):
-                _query_params.append(
-                    (
-                        "dispatcher_timestamp__lt",
-                        dispatcher_timestamp__lt.strftime(
-                            self.api_client.configuration.datetime_format
-                        ),
-                    )
-                )
-            else:
-                _query_params.append(
-                    ("dispatcher_timestamp__lt", dispatcher_timestamp__lt)
-                )
+            _query_params.append(("dispatcher_timestamp__lt", dispatcher_timestamp__lt))
 
         if dispatcher_timestamp__gt is not None:
-            if isinstance(dispatcher_timestamp__gt, datetime):
-                _query_params.append(
-                    (
-                        "dispatcher_timestamp__gt",
-                        dispatcher_timestamp__gt.strftime(
-                            self.api_client.configuration.datetime_format
-                        ),
-                    )
-                )
-            else:
-                _query_params.append(
-                    ("dispatcher_timestamp__gt", dispatcher_timestamp__gt)
-                )
+            _query_params.append(("dispatcher_timestamp__gt", dispatcher_timestamp__gt))
 
         if origin_ids is not None:
             _query_params.append(("origin_ids", origin_ids))
