@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2025-06-16 18:39:57.138719096 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-06-16 18:39:48.939699251 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2026-03-10 15:20:37.701234544 +0200
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-03-10 15:19:59.964118272 +0200
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -9,7 +9,328 @@
      "version": "v1",
      "description": "The **Waybiller External API** is a feature that allows companies to access **Waybiller** data as JSON objects and\ncreate **Waybiller** instances out of their own data.\n\nTo make integration easier for the companies, the external API provides mapping support - it is possible to create\ncompany-specific mappings for object identifiers (such as destination and origin).\n\nThese mappings will be used for representing companies data from external API, and for converting the values during the\ncreation of **Waybiller** instances (such as transport orders and waybills).\n\nMost of the API responses contain mapped values, which may be null if the company doesn't have a mapping for this\nobject.\n\nUnique **Waybiller** identifiers and values can be accessed via the `raw_data` key.\n\nThe API is HTTPS and JSON based.\n\n### Pagination\n\nBy default, list endpoint responses are presented in pages of 30 items.\n\nIt is possible to control the page size using the `limit` parameter:\n`/external-api/<some-list-endpoint>/?limit=<number>`, where `<number>` is an integer between 1 and 1000.\n"
    },
-@@ -4413,7 +4413,7 @@
+@@ -159,8 +159,8 @@
+                   "ExampleDestination": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/destinations/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/destinations/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/destinations/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/destinations/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "id": null,
+@@ -252,8 +252,8 @@
+                   "ExampleEmployment": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/employments/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/employments/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/employments/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/employments/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "id": 10538,
+@@ -490,8 +490,8 @@
+                   "ExampleLoaderActionLog": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/loader-action-logs/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/loader-action-logs/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/loader-action-logs/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/loader-action-logs/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "log_timestamp": "2025-01-01T12:42:01.862696+02:00",
+@@ -597,8 +597,8 @@
+                   "ExampleOrders": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/orders/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/orders/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/orders/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/orders/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "order_id": "1000",
+@@ -1479,8 +1479,8 @@
+                   "ExampleOriginAssortment": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/origin-assortments/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/origin-assortments/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/origin-assortments/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/origin-assortments/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "id": 10,
+@@ -1765,8 +1765,8 @@
+                   "ExampleOrigins": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/origins/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/origins/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/origins/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/origins/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "id": null,
+@@ -2539,8 +2539,8 @@
+                   "TransportOrderListExample": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/transport-orders/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/transport-orders/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/transport-orders/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/transport-orders/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "transport_order_id": "1",
+@@ -2563,34 +2563,8 @@
+                             "destination_id": 1,
+                             "entity_code": null,
+                             "truck_id": 1,
+-                            "waybills_ids": [],
+-                            "rows": [
+-                              {
+-                                "destination_id": 1,
+-                                "assortment_id": 1,
+-                                "accepted_amount": "0.000",
+-                                "dispatched_amount": "0.000"
+-                              },
+-                              {
+-                                "destination_id": 2,
+-                                "assortment_id": 2,
+-                                "accepted_amount": "0.000",
+-                                "dispatched_amount": "0.000"
+-                              }
+-                            ]
+-                          },
+-                          "rows": [
+-                            {
+-                              "assortment_id": "1",
+-                              "assortment_name": "Construction sand",
+-                              "destination_id": "1",
+-                              "destination_name": "Waybiller O\u00dc",
+-                              "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+-                              "destination_latitude": "59.436961",
+-                              "destination_longitude": "24.753575",
+-                              "amount": "23.456"
+-                            }
+-                          ]
++                            "waybills_ids": []
++                          }
+                         }
+                       ]
+                     },
+@@ -2643,12 +2617,6 @@
+                         "assortment_id": "1",
+                         "assortment_name": "Construction sand",
+                         "amount": "23.456"
+-                      },
+-                      {
+-                        "assortment_id": "2",
+-                        "assortment_name": "Gravel sand",
+-                        "amount": "30.000",
+-                        "destination_id": "2"
+                       }
+                     ],
+                     "organizer_user_id": 1,
+@@ -2732,22 +2700,7 @@
+                         {
+                           "assortment_id": "1",
+                           "assortment_name": "Construction sand",
+-                          "destination_id": "1",
+-                          "destination_name": "Waybiller O\u00dc",
+-                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+-                          "destination_latitude": 59.3962767,
+-                          "destination_longitude": 24.6566519,
+                           "amount": "23.456"
+-                        },
+-                        {
+-                          "assortment_id": "2",
+-                          "assortment_name": "Gravel sand",
+-                          "destination_id": "2",
+-                          "destination_name": "Waybiller O\u00dc 2",
+-                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+-                          "destination_latitude": 59.3962767,
+-                          "destination_longitude": 24.6566519,
+-                          "amount": "30.000"
+                         }
+                       ],
+                       "organizer_user_id": 1,
+@@ -2804,19 +2757,10 @@
+                       "pallets_number": 10,
+                       "raw_data": {
+                         "transport_order_id": 1,
+-                        "order_id": null,
++                        "order_id": 1,
+                         "rows": [
+                           {
+-                            "assortment_id": 1,
+-                            "destination_id": 1,
+-                            "accepted_amount": "0.000",
+-                            "dispatched_amount": "0.000"
+-                          },
+-                          {
+-                            "assortment_id": 2,
+-                            "destination_id": 2,
+-                            "accepted_amount": "0.000",
+-                            "dispatched_amount": "0.000"
++                            "assortment_id": 1
+                           }
+                         ],
+                         "destination_id": 1,
+@@ -2894,22 +2838,7 @@
+                         {
+                           "assortment_id": "1",
+                           "assortment_name": "Construction sand",
+-                          "destination_id": "1",
+-                          "destination_name": "Waybiller O\u00dc",
+-                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+-                          "destination_latitude": 59.3962767,
+-                          "destination_longitude": 24.6566519,
+                           "amount": "23.456"
+-                        },
+-                        {
+-                          "assortment_id": "2",
+-                          "assortment_name": "Gravel sand",
+-                          "destination_id": "2",
+-                          "destination_name": "Waybiller O\u00dc 2",
+-                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+-                          "destination_latitude": 59.3962767,
+-                          "destination_longitude": 24.6566519,
+-                          "amount": "30.000"
+                         }
+                       ],
+                       "organizer_user_id": 1,
+@@ -2966,19 +2895,10 @@
+                       "pallets_number": 10,
+                       "raw_data": {
+                         "transport_order_id": 1,
+-                        "order_id": null,
++                        "order_id": 1,
+                         "rows": [
+                           {
+-                            "assortment_id": 1,
+-                            "destination_id": 1,
+-                            "accepted_amount": "0.000",
+-                            "dispatched_amount": "0.000"
+-                          },
+-                          {
+-                            "assortment_id": 2,
+-                            "destination_id": 2,
+-                            "accepted_amount": "0.000",
+-                            "dispatched_amount": "0.000"
++                            "assortment_id": 1
+                           }
+                         ],
+                         "destination_id": 1,
+@@ -3104,8 +3024,7 @@
+                 }
+               }
+             }
+-          },
+-          "required": true
++          }
+         },
+         "security": [
+           {
+@@ -3129,22 +3048,7 @@
+                         {
+                           "assortment_id": "1",
+                           "assortment_name": "Construction sand",
+-                          "destination_id": "1",
+-                          "destination_name": "Waybiller O\u00dc",
+-                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+-                          "destination_latitude": 59.3962767,
+-                          "destination_longitude": 24.6566519,
+                           "amount": "23.456"
+-                        },
+-                        {
+-                          "assortment_id": "2",
+-                          "assortment_name": "Gravel sand",
+-                          "destination_id": "2",
+-                          "destination_name": "Waybiller O\u00dc 2",
+-                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+-                          "destination_latitude": 59.3962767,
+-                          "destination_longitude": 24.6566519,
+-                          "amount": "30.000"
+                         }
+                       ],
+                       "organizer_user_id": 1,
+@@ -3201,19 +3105,10 @@
+                       "pallets_number": 10,
+                       "raw_data": {
+                         "transport_order_id": 1,
+-                        "order_id": null,
++                        "order_id": 1,
+                         "rows": [
+                           {
+-                            "assortment_id": 1,
+-                            "destination_id": 1,
+-                            "accepted_amount": "0.000",
+-                            "dispatched_amount": "0.000"
+-                          },
+-                          {
+-                            "assortment_id": 2,
+-                            "destination_id": 2,
+-                            "accepted_amount": "0.000",
+-                            "dispatched_amount": "0.000"
++                            "assortment_id": 1
+                           }
+                         ],
+                         "destination_id": 1,
+@@ -3630,8 +3525,8 @@
+                   "ExampleVehicleLocationData": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/vehicle-location-data/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/vehicle-location-data/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/vehicle-location-data/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/vehicle-location-data/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "truck_reg_number": "ABC123",
+@@ -3733,8 +3628,8 @@
+                   "ExampleVehicle": {
+                     "value": {
+                       "count": 123,
+-                      "next": "https://app.waybiller.com/external-api/vehicles/?limit=30&offset=90",
+-                      "previous": "https://app.waybiller.com/external-api/vehicles/?limit=30&offset=30",
++                      "next": "http://127.0.0.1:8000/external-api/vehicles/?limit=30&offset=90",
++                      "previous": "http://127.0.0.1:8000/external-api/vehicles/?limit=30&offset=30",
+                       "results": [
+                         {
+                           "id": 1,
+@@ -3898,6 +3793,26 @@
+             }
+           },
+           {
++            "name": "dispatcher_timestamp__lt",
++            "required": false,
++            "in": "query",
++            "description": "By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.",
++            "schema": {
++              "type": "string",
++              "format": "date-time"
++            }
++          },
++          {
++            "name": "dispatcher_timestamp__gt",
++            "required": false,
++            "in": "query",
++            "description": "By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.",
++            "schema": {
++              "type": "string",
++              "format": "date-time"
++            }
++          },
++          {
+             "in": "query",
+             "name": "origin_ids",
+             "schema": {
+@@ -4518,7 +4433,7 @@
              "content": {
                "application/json": {
                  "schema": {
@@ -18,7 +339,7 @@
                  }
                }
              },
-@@ -4601,7 +4601,7 @@
+@@ -4706,7 +4621,7 @@
              "content": {
                "application/json": {
                  "schema": {
@@ -27,36 +348,623 @@
                  }
                }
              },
-@@ -8305,24 +8305,28 @@
+@@ -4732,38 +4647,24 @@
+         }
+       }
+     },
+-    "/external-api/worklogs/": {
++    "/external-api/waybills/{id}/vehicle_location_data/": {
+       "get": {
+-        "operationId": "worklogs_list",
+-        "description": "Returns all time entries associated with your company.",
+-        "summary": "Querying time entries",
++        "operationId": "waybills_vehicle_location_data_retrieve",
++        "description": "Returns vehicle location data.\n        ",
++        "summary": "Querying of vehicle location data",
+         "parameters": [
+           {
+-            "name": "limit",
+-            "required": false,
+-            "in": "query",
+-            "description": "Maximum number of objects to return per page",
+-            "schema": {
+-              "type": "integer",
+-              "default": 30,
+-              "maximum": 1000,
+-              "minimum": 1
+-            }
+-          },
+-          {
+-            "name": "offset",
+-            "required": false,
+-            "in": "query",
+-            "description": "The initial index from which to return the results",
++            "in": "path",
++            "name": "id",
+             "schema": {
+-              "type": "integer",
+-              "default": 0,
+-              "minimum": 0
+-            }
++              "type": "integer"
++            },
++            "description": "A unique integer value identifying this waybill.",
++            "required": true
+           }
+         ],
+         "tags": [
+-          "Worklogs"
++          "Waybills"
+         ],
+         "security": [
+           {
+@@ -4775,7 +4676,7 @@
+             "content": {
+               "application/json": {
+                 "schema": {
+-                  "$ref": "#/components/schemas/PaginatedExternalAPITimeEntryList"
++                  "$ref": "#/components/schemas/ExternalAPIWaybillVehicleLocation"
+                 }
+               }
+             },
+@@ -4797,43 +4698,8 @@
+               }
+             },
+             "description": ""
+-          }
+-        }
+-      },
+-      "post": {
+-        "operationId": "worklogs_create",
+-        "description": "Creates a new time entry associated with your company.",
+-        "summary": "Creation of a time entry",
+-        "tags": [
+-          "Worklogs"
+-        ],
+-        "requestBody": {
+-          "content": {
+-            "application/json": {
+-              "schema": {
+-                "$ref": "#/components/schemas/ExternalAPITimeEntryRequest"
+-              }
+-            }
+-          },
+-          "required": true
+-        },
+-        "security": [
+-          {
+-            "ApiKeyAuth": []
+-          }
+-        ],
+-        "responses": {
+-          "201": {
+-            "content": {
+-              "application/json": {
+-                "schema": {
+-                  "$ref": "#/components/schemas/ExternalAPITimeEntry"
+-                }
+-              }
+-            },
+-            "description": ""
+           },
+-          "403": {
++          "404": {
+             "content": {
+               "application/json": {
+                 "schema": {
+@@ -4841,8 +4707,8 @@
+                   "properties": {
+                     "detail": {
+                       "type": "string",
+-                      "example": "Provided API key is not correct or expired",
+-                      "description": "Provided API key is not correct or expired"
++                      "example": "No instance matches the given query.",
++                      "description": "No instance matches the given query."
+                     }
+                   }
+                 }
+@@ -5036,7 +4902,7 @@
+         "type": "object",
+         "properties": {
+           "type": {
+-            "$ref": "#/components/schemas/ExternalAPIHoldingBaseTypeEnum"
++            "$ref": "#/components/schemas/TypeEnum"
+           },
+           "contractNumber": {
+             "type": "string",
+@@ -5102,7 +4968,7 @@
+         "type": "object",
+         "properties": {
+           "type": {
+-            "$ref": "#/components/schemas/ExternalAPIHoldingBaseTypeEnum"
++            "$ref": "#/components/schemas/TypeEnum"
+           },
+           "contractNumber": {
+             "type": "string",
+@@ -5119,18 +4985,6 @@
+           }
+         }
+       },
+-      "ExternalAPIHoldingBaseTypeEnum": {
+-        "enum": [
+-          "ForestNotice",
+-          "WithoutForestNotice",
+-          "InventoryAct",
+-          "ConsolidatedAct",
+-          "ForestAct",
+-          "SalesContract",
+-          "ContractForTransferOfCuttingRights"
+-        ],
+-        "type": "string"
+-      },
+       "ExternalAPILoaderActionLog": {
+         "type": "object",
+         "properties": {
+@@ -7673,214 +7527,6 @@
+           }
+         }
+       },
+-      "ExternalAPITimeEntry": {
+-        "type": "object",
+-        "properties": {
+-          "id": {
+-            "type": "integer",
+-            "readOnly": true,
+-            "description": "ID of the time entry"
+-          },
+-          "owner": {
+-            "type": "integer",
+-            "description": "ID of the employee owning the time entry"
+-          },
+-          "start": {
+-            "type": "string",
+-            "format": "date-time",
+-            "title": "Start time",
+-            "description": "Start time of the time entry"
+-          },
+-          "end": {
+-            "type": "string",
+-            "format": "date-time",
+-            "nullable": true,
+-            "title": "End time",
+-            "description": "End time of the time entry"
+-          },
+-          "description": {
+-            "type": "string",
+-            "description": "Description of the time entry"
+-          },
+-          "location": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ExternalAPITimeEntryLocation"
+-              }
+-            ],
+-            "description": "Location information (`Origin` or `Destination`)"
+-          },
+-          "vehicle": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ExternalAPITimeEntryVehicle"
+-              }
+-            ],
+-            "description": "Vehicle information"
+-          },
+-          "confirmed": {
+-            "type": "boolean",
+-            "readOnly": true,
+-            "description": "Whether the time entry has been confirmed"
+-          },
+-          "confirmed_by": {
+-            "type": "integer",
+-            "readOnly": true,
+-            "nullable": true,
+-            "title": "Confirmed by user",
+-            "description": "ID of the user who confirmed the time entry"
+-          },
+-          "confirmed_by_name": {
+-            "type": "string",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Full name of the user who confirmed the time entry"
+-          }
+-        },
+-        "required": [
+-          "confirmed",
+-          "confirmed_by",
+-          "confirmed_by_name",
+-          "description",
+-          "end",
+-          "id",
+-          "owner",
+-          "start"
+-        ]
+-      },
+-      "ExternalAPITimeEntryLocation": {
+-        "type": "object",
+-        "properties": {
+-          "id": {
+-            "type": "integer",
+-            "description": "ID of the location (`Origin` or `Destination`)"
+-          },
+-          "type": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ExternalAPITimeEntryLocationTypeEnum"
+-              }
+-            ],
+-            "description": "Type of the location"
+-          },
+-          "name": {
+-            "type": "string",
+-            "readOnly": true,
+-            "description": "Name of the location"
+-          },
+-          "company_name": {
+-            "type": "string",
+-            "readOnly": true,
+-            "description": "Name of the company owning the location"
+-          }
+-        },
+-        "required": [
+-          "company_name",
+-          "id",
+-          "name",
+-          "type"
+-        ]
+-      },
+-      "ExternalAPITimeEntryLocationRequest": {
+-        "type": "object",
+-        "properties": {
+-          "id": {
+-            "type": "integer",
+-            "description": "ID of the location (`Origin` or `Destination`)"
+-          },
+-          "type": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ExternalAPITimeEntryLocationTypeEnum"
+-              }
+-            ],
+-            "description": "Type of the location"
+-          }
+-        },
+-        "required": [
+-          "id",
+-          "type"
+-        ]
+-      },
+-      "ExternalAPITimeEntryLocationTypeEnum": {
+-        "enum": [
+-          "origin",
+-          "destination"
+-        ],
+-        "type": "string"
+-      },
+-      "ExternalAPITimeEntryRequest": {
+-        "type": "object",
+-        "properties": {
+-          "owner": {
+-            "type": "integer",
+-            "description": "ID of the employee owning the time entry"
+-          },
+-          "start": {
+-            "type": "string",
+-            "format": "date-time",
+-            "title": "Start time",
+-            "description": "Start time of the time entry"
+-          },
+-          "end": {
+-            "type": "string",
+-            "format": "date-time",
+-            "nullable": true,
+-            "title": "End time",
+-            "description": "End time of the time entry"
+-          },
+-          "description": {
+-            "type": "string",
+-            "description": "Description of the time entry"
+-          },
+-          "location": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ExternalAPITimeEntryLocationRequest"
+-              }
+-            ],
+-            "description": "Location information (`Origin` or `Destination`)"
+-          },
+-          "vehicle": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ExternalAPITimeEntryVehicleRequest"
+-              }
+-            ],
+-            "description": "Vehicle information"
+-          }
+-        },
+-        "required": [
+-          "description",
+-          "end",
+-          "owner",
+-          "start"
+-        ]
+-      },
+-      "ExternalAPITimeEntryVehicle": {
+-        "type": "object",
+-        "properties": {
+-          "id": {
+-            "type": "integer",
+-            "description": "ID of the vehicle"
+-          }
+-        },
+-        "required": [
+-          "id"
+-        ]
+-      },
+-      "ExternalAPITimeEntryVehicleRequest": {
+-        "type": "object",
+-        "properties": {
+-          "id": {
+-            "type": "integer",
+-            "description": "ID of the vehicle"
+-          }
+-        },
+-        "required": [
+-          "id"
+-        ]
+-      },
+       "ExternalAPITransportOrderCancel": {
+         "type": "object",
+         "properties": {
+@@ -7976,7 +7622,6 @@
+           "transportation_company_name": {
+             "type": "string",
+             "readOnly": true,
+-            "nullable": true,
+             "description": "Transportation company name",
+             "maxLength": 64
+           },
+@@ -8006,7 +7651,7 @@
+           "rows": {
+             "type": "array",
+             "items": {
+-              "$ref": "#/components/schemas/ExternalAPITransportOrderRowRetrieve"
++              "$ref": "#/components/schemas/ExternalAPITransportOrderRow"
+             },
+             "readOnly": true,
+             "description": "List of assortments associated with the transport order"
+@@ -8365,14 +8010,12 @@
+           },
+           "transportation_company_name": {
+             "type": "string",
+-            "nullable": true,
+             "minLength": 1,
+             "description": "Transportation company name",
+             "maxLength": 64
+           },
+           "transportation_company_reg_code": {
+             "type": "string",
+-            "nullable": true,
+             "minLength": 1,
+             "description": "Transportation company registration code",
+             "maxLength": 16
+@@ -8393,27 +8036,23 @@
+           "driver_email": {
              "type": "string",
              "format": "email",
-             "readOnly": true,
-+            "nullable": true,
+-            "nullable": true,
+             "minLength": 1,
              "description": "Driver email",
              "maxLength": 254
            },
            "driver_personal_code": {
              "type": "string",
-             "readOnly": true,
-+            "nullable": true,
+-            "nullable": true,
              "description": "Driver personal code",
              "maxLength": 24
            },
            "driver_name": {
              "type": "string",
-             "readOnly": true,
-+            "nullable": true,
+-            "nullable": true,
+             "minLength": 1,
              "description": "Driver name",
              "maxLength": 255
            },
            "driver_phone": {
              "type": "string",
-             "readOnly": true,
-+            "nullable": true,
+-            "nullable": true,
              "description": "Driver phone number",
              "maxLength": 128
            },
-@@ -9888,6 +9892,7 @@
+@@ -8474,7 +8113,7 @@
+           "rows": {
+             "type": "array",
+             "items": {
+-              "$ref": "#/components/schemas/ExternalAPITransportOrderRowRetrieve"
++              "$ref": "#/components/schemas/ExternalAPITransportOrderRow"
+             },
+             "readOnly": true,
+             "description": "List of assortments associated with the transport order"
+@@ -8659,14 +8298,12 @@
+           "transportation_company_name": {
+             "type": "string",
+             "readOnly": true,
+-            "nullable": true,
+             "description": "Transportation company name",
+             "maxLength": 64
+           },
+           "transportation_company_reg_code": {
+             "type": "string",
+             "readOnly": true,
+-            "nullable": true,
+             "description": "Transportation company registration code",
+             "maxLength": 16
+           },
+@@ -8801,20 +8438,41 @@
+           "waybill_pdf_urls"
+         ]
+       },
+-      "ExternalAPITransportOrderRowRawData": {
++      "ExternalAPITransportOrderRow": {
+         "type": "object",
+         "properties": {
+-          "destination_id": {
+-            "type": "integer",
+-            "nullable": true,
++          "assortment_id": {
++            "type": "string",
++            "description": "Unique identifier of the assortment in your system",
+             "readOnly": true,
+-            "description": "Unique identifier of the destination in Waybiller"
++            "nullable": true
+           },
++          "assortment_name": {
++            "type": "string",
++            "description": "Name of the assortment"
++          },
++          "amount": {
++            "type": "string",
++            "format": "decimal",
++            "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
++            "title": "Amount in tonnes",
++            "description": "Amount of the assortment"
++          }
++        },
++        "required": [
++          "amount",
++          "assortment_id",
++          "assortment_name"
++        ]
++      },
++      "ExternalAPITransportOrderRowRawData": {
++        "type": "object",
++        "properties": {
+           "assortment_id": {
+             "type": "integer",
+             "nullable": true,
+             "readOnly": true,
+-            "description": "Unique identifier of the assortment in Waybiller"
++            "description": "Unique identifier of the assortment in your system"
+           },
+           "accepted_amount": {
+             "type": "string",
+@@ -8832,7 +8490,6 @@
+         "required": [
+           "accepted_amount",
+           "assortment_id",
+-          "destination_id",
+           "dispatched_amount"
+         ]
+       },
+@@ -8848,10 +8505,6 @@
+             "minLength": 1,
+             "description": "Name of the assortment"
+           },
+-          "destination_id": {
+-            "type": "integer",
+-            "description": "Unique identifier of the destination in your system or Waybiller. If not provided, the transport order's destination will be used"
+-          },
+           "amount": {
+             "type": "string",
+             "format": "decimal",
+@@ -8866,71 +8519,6 @@
+           "assortment_name"
+         ]
+       },
+-      "ExternalAPITransportOrderRowRetrieve": {
+-        "type": "object",
+-        "properties": {
+-          "assortment_id": {
+-            "type": "string",
+-            "readOnly": true,
+-            "description": "Unique identifier of the assortment in your system"
+-          },
+-          "assortment_name": {
+-            "type": "string",
+-            "readOnly": true,
+-            "description": "Name of the assortment"
+-          },
+-          "destination_id": {
+-            "type": "string",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Unique identifier of the destination in your system or Waybiller"
+-          },
+-          "destination_name": {
+-            "type": "string",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Name of the destination"
+-          },
+-          "destination_address": {
+-            "type": "string",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Address of the destination"
+-          },
+-          "destination_latitude": {
+-            "type": "number",
+-            "format": "double",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Latitude of the destination location"
+-          },
+-          "destination_longitude": {
+-            "type": "number",
+-            "format": "double",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Longitude of the destination location"
+-          },
+-          "amount": {
+-            "type": "string",
+-            "format": "decimal",
+-            "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
+-            "readOnly": true,
+-            "title": "Amount in tonnes",
+-            "description": "Amount of the assortment"
+-          }
+-        },
+-        "required": [
+-          "amount",
+-          "assortment_id",
+-          "assortment_name",
+-          "destination_address",
+-          "destination_id",
+-          "destination_latitude",
+-          "destination_longitude",
+-          "destination_name"
+-        ]
+-      },
+       "ExternalAPITransportOrderUpdateRequest": {
+         "type": "object",
+         "properties": {
+@@ -9048,13 +8636,6 @@
+             "format": "double",
+             "description": "Longitude of the destination location"
+           },
+-          "rows": {
+-            "type": "array",
+-            "items": {
+-              "$ref": "#/components/schemas/ExternalAPITransportOrderRowRequest"
+-            },
+-            "description": "List of assortments associated with the transport order"
+-          },
+           "receiver_company_name": {
+             "type": "string",
+             "minLength": 1,
+@@ -9127,10 +8708,7 @@
+             "nullable": true,
+             "description": "Number of pallets in the transport order"
+           }
+-        },
+-        "required": [
+-          "rows"
+-        ]
++        }
+       },
+       "ExternalAPIVehicle": {
+         "type": "object",
+@@ -10334,23 +9912,12 @@
              "description": "Waybill rows."
            },
            "user_defined_fields": {
@@ -64,7 +972,133 @@
              "type": "object",
              "additionalProperties": {},
              "readOnly": true,
-@@ -10269,6 +10274,7 @@
+             "description": "User defined fields."
+           },
+-          "order_id": {
+-            "type": "integer",
+-            "nullable": true,
+-            "description": "Order which was used for creating this waybill",
+-            "readOnly": true
+-          },
+-          "order_number": {
+-            "type": "string",
+-            "readOnly": true,
+-            "nullable": true,
+-            "maxLength": 16
+-          },
+           "transport_order_id": {
+             "type": "integer",
+             "readOnly": true,
+@@ -10359,15 +9926,12 @@
+           "transport_order_number": {
+             "type": "string",
+             "readOnly": true,
+-            "nullable": true,
+-            "maxLength": 16
++            "nullable": true
+           }
+         },
+         "required": [
+           "destination_id",
+           "driver_user_id",
+-          "order_id",
+-          "order_number",
+           "origin_id",
+           "rows",
+           "transport_order_id",
+@@ -10396,89 +9960,26 @@
+             "readOnly": true,
+             "description": "The ID of the origin."
+           },
+-          "order_id": {
+-            "type": "integer",
+-            "nullable": true,
+-            "description": "The ID of the order.",
+-            "readOnly": true
+-          },
+           "transportorder_id": {
+             "type": "integer",
+             "nullable": true,
+             "title": "Transport order",
+-            "readOnly": true,
+-            "description": "The ID of the transport order."
+-          },
+-          "order_number": {
+-            "type": "string",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "The order number.",
+-            "maxLength": 16
++            "readOnly": true
+           },
+           "transportorder_number": {
+             "type": "string",
+             "readOnly": true,
+-            "nullable": true,
+-            "description": "The transport order number.",
+-            "maxLength": 16
++            "nullable": true
+           }
+         },
+         "required": [
+           "destination_id",
+-          "order_id",
+-          "order_number",
+           "origin_id",
+           "transportorder_id",
+           "transportorder_number",
+           "waybill_id"
+         ]
+       },
+-      "ExternalAPIWaybillReadingPairs": {
+-        "type": "object",
+-        "properties": {
+-          "id": {
+-            "type": "integer",
+-            "readOnly": true,
+-            "description": "Unique identifier of the reading pair."
+-          },
+-          "weighing_flow": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/WeighingFlowEnum"
+-              }
+-            ],
+-            "readOnly": true,
+-            "title": "Weighing flow type"
+-          },
+-          "tare_reading": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ScaleReadingInReadingPair"
+-              }
+-            ],
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Information about the tare reading."
+-          },
+-          "gross_reading": {
+-            "allOf": [
+-              {
+-                "$ref": "#/components/schemas/ScaleReadingInReadingPair"
+-              }
+-            ],
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "Information about the gross reading."
+-          }
+-        },
+-        "required": [
+-          "gross_reading",
+-          "id",
+-          "tare_reading",
+-          "weighing_flow"
+-        ]
+-      },
+       "ExternalAPIWaybillRefuse": {
+         "type": "object",
+         "properties": {
+@@ -10793,6 +10294,7 @@
              "description": "Timestamp when driver started driving"
            },
            "destination_timestamp": {
@@ -72,7 +1106,7 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
-@@ -10295,16 +10301,19 @@
+@@ -10819,16 +10321,19 @@
              "readOnly": true
            },
            "navision_bin_code": {
@@ -92,7 +1126,41 @@
              "type": "string",
              "readOnly": true,
              "description": "Project code in your system."
-@@ -10421,6 +10430,7 @@
+@@ -10842,13 +10347,6 @@
+             "nullable": true,
+             "description": "Information about transport costs"
+           },
+-          "reading_pairs": {
+-            "type": "array",
+-            "items": {
+-              "$ref": "#/components/schemas/ExternalAPIWaybillReadingPairs"
+-            },
+-            "description": "Information about reading pairs"
+-          },
+           "raw_data": {
+             "allOf": [
+               {
+@@ -10891,7 +10389,6 @@
+           "pdf_url",
+           "project",
+           "raw_data",
+-          "reading_pairs",
+           "receiver_company_name",
+           "receiver_company_reg_code",
+           "rows",
+@@ -10909,11 +10406,6 @@
+       "ExternalAPIWaybillRow": {
+         "type": "object",
+         "properties": {
+-          "id": {
+-            "type": "integer",
+-            "readOnly": true,
+-            "description": "The ID of the row."
+-          },
+           "assortment_id": {
+             "type": "string",
+             "nullable": true,
+@@ -10958,6 +10450,7 @@
              "nullable": true
            },
            "subset_type_name": {
@@ -100,7 +1168,7 @@
              "type": "string",
              "readOnly": true,
              "description": "Subset type (eg fraction)."
-@@ -10430,6 +10440,7 @@
+@@ -10967,6 +10460,7 @@
              "description": "The ID of the subset of the assortment."
            },
            "subset_object_name": {
@@ -108,11 +1176,476 @@
              "type": "string",
              "readOnly": true,
              "description": "Subset object (eg 0-32mm)."
-@@ -10712,6 +10723,7 @@
-             "readOnly": true
+@@ -10983,7 +10477,6 @@
+         "required": [
+           "accepted_amount",
+           "assortment_ids",
+-          "id",
+           "scale_assortment_raw_id",
+           "subset_object_name",
+           "subset_type_name"
+@@ -11019,7 +10512,6 @@
+           "accepted_gross_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the accepted gross weight."
+           },
+           "accepted_tare_weight": {
+@@ -11031,7 +10523,6 @@
+           "accepted_tare_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the accepted tare weight."
+           },
+           "accepted_amount": {
+@@ -11066,7 +10557,6 @@
+           "accepted_gross_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the accepted gross weight."
+           },
+           "accepted_tare_weight": {
+@@ -11078,7 +10568,6 @@
+           "accepted_tare_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the accepted tare weight."
+           },
+           "accepted_amount": {
+@@ -11118,7 +10607,6 @@
+           "dispatched_gross_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the dispatched gross weight."
+           },
+           "dispatched_tare_weight": {
+@@ -11130,7 +10618,6 @@
+           "dispatched_tare_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the dispatched tare weight."
+           },
+           "dispatched_amount": {
+@@ -11161,7 +10648,6 @@
+           "dispatched_gross_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the dispatched gross weight."
+           },
+           "dispatched_tare_weight": {
+@@ -11173,7 +10659,6 @@
+           "dispatched_tare_weight_timestamp": {
+             "type": "string",
+             "format": "date-time",
+-            "nullable": true,
+             "description": "The timestamp of the dispatched tare weight."
+           },
+           "dispatched_amount": {
+@@ -11190,11 +10675,6 @@
+       "ExternalAPIWaybillRowList": {
+         "type": "object",
+         "properties": {
+-          "id": {
+-            "type": "integer",
+-            "readOnly": true,
+-            "description": "The ID of the row."
+-          },
+           "assortment_id": {
+             "type": "string",
+             "readOnly": true,
+@@ -11252,7 +10732,6 @@
+           "assortment_name",
+           "assortment_unit",
+           "dispatched_amount",
+-          "id",
+           "scale_assortment_raw_id"
+         ]
+       },
+@@ -11261,38 +10740,21 @@
+         "properties": {
+           "assortment_id": {
+             "type": "integer",
+-            "readOnly": true,
+-            "description": "The ID of the dispatched assortment."
++            "readOnly": true
            },
            "subset_id": {
-+            "nullable": true,
+-            "type": "integer",
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "The ID of the subset."
+-          },
+-          "subset_type_id": {
+-            "type": "integer",
+-            "readOnly": true,
+             "nullable": true,
+-            "description": "The ID of the subset type."
+-          },
+-          "incoming_reading_pair_id": {
              "type": "integer",
-             "readOnly": true
+-            "readOnly": true,
+-            "nullable": true,
+-            "description": "The ID of the incoming reading pair."
++            "readOnly": true
            },
+-          "outgoing_reading_pair_id": {
++          "subset_type_id": {
+             "type": "integer",
+             "readOnly": true,
+-            "nullable": true,
+-            "description": "The ID of the outgoing reading pair."
++            "nullable": true
+           }
+         },
+         "required": [
+           "assortment_id",
+-          "incoming_reading_pair_id",
+-          "outgoing_reading_pair_id",
+           "subset_id",
+           "subset_type_id"
+         ]
+@@ -11578,6 +11040,33 @@
+           "weights_to_use"
+         ]
+       },
++      "ExternalAPIWaybillVehicleLocation": {
++        "type": "object",
++        "properties": {
++          "latitude": {
++            "type": "number",
++            "format": "double",
++            "readOnly": true,
++            "description": "The latitude coordinate of the vehicle (eg 59.401034)."
++          },
++          "longitude": {
++            "type": "number",
++            "format": "double",
++            "readOnly": true,
++            "description": "The longitude coordinate of the vehicle (eg 24.791717)."
++          },
++          "location_timestamp": {
++            "type": "string",
++            "readOnly": true,
++            "description": "UTC timestamp when vehicle was in that position (eg 2020-05-08T19:06:33)."
++          }
++        },
++        "required": [
++          "latitude",
++          "location_timestamp",
++          "longitude"
++        ]
++      },
+       "IncotermEnum": {
+         "enum": [
+           "EXW",
+@@ -11625,14 +11114,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/destinations/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/destinations/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/destinations/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/destinations/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11661,14 +11150,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/employments/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/employments/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/employments/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/employments/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11697,14 +11186,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/loader-action-logs/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/loader-action-logs/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/loader-action-logs/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/loader-action-logs/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11733,14 +11222,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/orders/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/orders/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/orders/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/orders/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11769,14 +11258,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/origin-assortments/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/origin-assortments/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/origin-assortments/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/origin-assortments/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11805,14 +11294,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/origins/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/origins/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/origins/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/origins/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11823,42 +11312,6 @@
+           }
+         }
+       },
+-      "PaginatedExternalAPITimeEntryList": {
+-        "type": "object",
+-        "required": [
+-          "count",
+-          "next",
+-          "previous",
+-          "results"
+-        ],
+-        "properties": {
+-          "count": {
+-            "type": "integer",
+-            "example": 123,
+-            "description": "Total number of objects matching the provided query"
+-          },
+-          "next": {
+-            "type": "string",
+-            "nullable": true,
+-            "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/worklogs/?limit=30&offset=90",
+-            "description": "URL to the next page of results, or null if there are no additional pages"
+-          },
+-          "previous": {
+-            "type": "string",
+-            "nullable": true,
+-            "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/worklogs/?limit=30&offset=30",
+-            "description": "URL to the previous page of results, or null if it's the first page"
+-          },
+-          "results": {
+-            "type": "array",
+-            "items": {
+-              "$ref": "#/components/schemas/ExternalAPITimeEntry"
+-            }
+-          }
+-        }
+-      },
+       "PaginatedExternalAPITransportOrderListList": {
+         "type": "object",
+         "required": [
+@@ -11877,14 +11330,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/transport-orders/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/transport-orders/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/transport-orders/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/transport-orders/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11913,14 +11366,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/vehicles/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/vehicles/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/vehicles/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/vehicles/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11949,14 +11402,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/vehicle-location-data/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/vehicle-location-data/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/vehicle-location-data/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/vehicle-location-data/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -11985,14 +11438,14 @@
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/waybills/?limit=30&offset=90",
++            "example": "http://127.0.0.1:8000/external-api/waybills/?limit=30&offset=90",
+             "description": "URL to the next page of results, or null if there are no additional pages"
+           },
+           "previous": {
+             "type": "string",
+             "nullable": true,
+             "format": "uri",
+-            "example": "https://app.waybiller.com/external-api/waybills/?limit=30&offset=30",
++            "example": "http://127.0.0.1:8000/external-api/waybills/?limit=30&offset=30",
+             "description": "URL to the previous page of results, or null if it's the first page"
+           },
+           "results": {
+@@ -12014,7 +11467,6 @@
+       },
+       "RoleEnum": {
+         "enum": [
+-          "company_admin",
+           "manager",
+           "project_manager",
+           "object_manager",
+@@ -12025,49 +11477,6 @@
+         ],
+         "type": "string"
+       },
+-      "ScaleReadingInReadingPair": {
+-        "type": "object",
+-        "properties": {
+-          "id": {
+-            "type": "integer",
+-            "readOnly": true
+-          },
+-          "value": {
+-            "type": "string",
+-            "format": "decimal",
+-            "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
+-            "nullable": true
+-          },
+-          "measurement_timestamp": {
+-            "type": "string",
+-            "format": "date-time"
+-          },
+-          "source": {
+-            "oneOf": [
+-              {
+-                "$ref": "#/components/schemas/SourceEnum"
+-              },
+-              {
+-                "$ref": "#/components/schemas/BlankEnum"
+-              }
+-            ]
+-          }
+-        },
+-        "required": [
+-          "id"
+-        ]
+-      },
+-      "SourceEnum": {
+-        "enum": [
+-          "scale",
+-          "manual",
+-          "previous_tare_reading",
+-          "loader",
+-          "file_import",
+-          "external_api"
+-        ],
+-        "type": "string"
+-      },
+       "TransportOrderStatusEnum": {
+         "enum": [
+           "draft",
+@@ -12080,6 +11489,18 @@
+         ],
+         "type": "string"
+       },
++      "TypeEnum": {
++        "enum": [
++          "ForestNotice",
++          "WithoutForestNotice",
++          "InventoryAct",
++          "ConsolidatedAct",
++          "ForestAct",
++          "SalesContract",
++          "ContractForTransferOfCuttingRights"
++        ],
++        "type": "string"
++      },
+       "WaybillStatusEnum": {
+         "enum": [
+           0,
+@@ -12090,13 +11511,6 @@
+         ],
+         "type": "integer"
+       },
+-      "WeighingFlowEnum": {
+-        "enum": [
+-          "outgoing",
+-          "incoming"
+-        ],
+-        "type": "string"
+-      },
+       "WeightsToUseEnum": {
+         "enum": [
+           "accepted_weights",

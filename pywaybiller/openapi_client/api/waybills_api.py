@@ -310,6 +310,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -588,6 +589,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -866,6 +868,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1122,6 +1125,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1398,6 +1402,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1472,6 +1477,18 @@ class WaybillsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        dispatcher_timestamp__lt: Annotated[
+            Optional[datetime],
+            Field(
+                description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
+            ),
+        ] = None,
+        dispatcher_timestamp__gt: Annotated[
+            Optional[datetime],
+            Field(
+                description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
+            ),
+        ] = None,
         origin_ids: Annotated[
             Optional[StrictStr],
             Field(
@@ -1524,6 +1541,10 @@ class WaybillsApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param dispatcher_timestamp__lt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
+        :type dispatcher_timestamp__lt: datetime
+        :param dispatcher_timestamp__gt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
+        :type dispatcher_timestamp__gt: datetime
         :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
         :type origin_ids: str
         :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
@@ -1560,6 +1581,8 @@ class WaybillsApi:
             destination_ids=destination_ids,
             limit=limit,
             offset=offset,
+            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
+            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
             origin_ids=origin_ids,
             raw_destination_ids=raw_destination_ids,
             raw_origin_ids=raw_origin_ids,
@@ -1600,6 +1623,18 @@ class WaybillsApi:
         offset: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
+        ] = None,
+        dispatcher_timestamp__lt: Annotated[
+            Optional[datetime],
+            Field(
+                description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
+            ),
+        ] = None,
+        dispatcher_timestamp__gt: Annotated[
+            Optional[datetime],
+            Field(
+                description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
+            ),
         ] = None,
         origin_ids: Annotated[
             Optional[StrictStr],
@@ -1653,6 +1688,10 @@ class WaybillsApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param dispatcher_timestamp__lt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
+        :type dispatcher_timestamp__lt: datetime
+        :param dispatcher_timestamp__gt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
+        :type dispatcher_timestamp__gt: datetime
         :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
         :type origin_ids: str
         :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
@@ -1689,6 +1728,8 @@ class WaybillsApi:
             destination_ids=destination_ids,
             limit=limit,
             offset=offset,
+            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
+            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
             origin_ids=origin_ids,
             raw_destination_ids=raw_destination_ids,
             raw_origin_ids=raw_origin_ids,
@@ -1729,6 +1770,18 @@ class WaybillsApi:
         offset: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
+        ] = None,
+        dispatcher_timestamp__lt: Annotated[
+            Optional[datetime],
+            Field(
+                description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
+            ),
+        ] = None,
+        dispatcher_timestamp__gt: Annotated[
+            Optional[datetime],
+            Field(
+                description="By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days."
+            ),
         ] = None,
         origin_ids: Annotated[
             Optional[StrictStr],
@@ -1782,6 +1835,10 @@ class WaybillsApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param dispatcher_timestamp__lt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
+        :type dispatcher_timestamp__lt: datetime
+        :param dispatcher_timestamp__gt: By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.
+        :type dispatcher_timestamp__gt: datetime
         :param origin_ids: Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas.
         :type origin_ids: str
         :param raw_destination_ids: Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas.
@@ -1818,6 +1875,8 @@ class WaybillsApi:
             destination_ids=destination_ids,
             limit=limit,
             offset=offset,
+            dispatcher_timestamp__lt=dispatcher_timestamp__lt,
+            dispatcher_timestamp__gt=dispatcher_timestamp__gt,
             origin_ids=origin_ids,
             raw_destination_ids=raw_destination_ids,
             raw_origin_ids=raw_origin_ids,
@@ -1843,6 +1902,8 @@ class WaybillsApi:
         destination_ids,
         limit,
         offset,
+        dispatcher_timestamp__lt,
+        dispatcher_timestamp__gt,
         origin_ids,
         raw_destination_ids,
         raw_origin_ids,
@@ -1853,6 +1914,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -1876,6 +1938,36 @@ class WaybillsApi:
 
         if offset is not None:
             _query_params.append(("offset", offset))
+
+        if dispatcher_timestamp__lt is not None:
+            if isinstance(dispatcher_timestamp__lt, datetime):
+                _query_params.append(
+                    (
+                        "dispatcher_timestamp__lt",
+                        dispatcher_timestamp__lt.strftime(
+                            self.api_client.configuration.datetime_format
+                        ),
+                    )
+                )
+            else:
+                _query_params.append(
+                    ("dispatcher_timestamp__lt", dispatcher_timestamp__lt)
+                )
+
+        if dispatcher_timestamp__gt is not None:
+            if isinstance(dispatcher_timestamp__gt, datetime):
+                _query_params.append(
+                    (
+                        "dispatcher_timestamp__gt",
+                        dispatcher_timestamp__gt.strftime(
+                            self.api_client.configuration.datetime_format
+                        ),
+                    )
+                )
+            else:
+                _query_params.append(
+                    ("dispatcher_timestamp__gt", dispatcher_timestamp__gt)
+                )
 
         if origin_ids is not None:
             _query_params.append(("origin_ids", origin_ids))
@@ -2171,6 +2263,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -2430,6 +2523,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -2696,6 +2790,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -2974,6 +3069,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -3261,6 +3357,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -3539,6 +3636,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
@@ -3807,6 +3905,7 @@ class WaybillsApi:
         _headers,
         _host_index,
     ) -> RequestSerialized:
+
         _host = None
 
         _collection_formats: Dict[str, str] = {}
