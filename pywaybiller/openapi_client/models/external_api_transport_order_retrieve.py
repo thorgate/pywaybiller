@@ -38,7 +38,7 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
     ExternalAPITransportOrderRetrieve
     """  # noqa: E501
 
-    transport_order_id: StrictStr = Field(
+    transport_order_id: Optional[StrictStr] = Field(
         description="Unique identifier of the transport order in your system"
     )
     number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = Field(
@@ -349,6 +349,14 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
+        # set to None if transport_order_id (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transport_order_id is None
+            and "transport_order_id" in self.model_fields_set
+        ):
+            _dict["transport_order_id"] = None
+
         # set to None if number (nullable) is None
         # and model_fields_set contains the field
         if self.number is None and "number" in self.model_fields_set:
