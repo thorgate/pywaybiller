@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2026-03-10 15:20:37.701234544 +0200
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-03-10 15:19:59.964118272 +0200
+--- ./pywaybiller/openapi/waybiller_schema.json	2026-03-10 15:38:53.090607703 +0200
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-03-10 15:38:35.188026183 +0200
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -428,7 +428,7 @@
 -                "$ref": "#/components/schemas/ExternalAPITimeEntryRequest"
 -              }
 -            }
--          },
+           },
 -          "required": true
 -        },
 -        "security": [
@@ -446,7 +446,7 @@
 -              }
 -            },
 -            "description": ""
-           },
+-          },
 -          "403": {
 +          "404": {
              "content": {
@@ -816,11 +816,11 @@
              "readOnly": true,
 -            "description": "Unique identifier of the destination in Waybiller"
 +            "nullable": true
-           },
++          },
 +          "assortment_name": {
 +            "type": "string",
 +            "description": "Name of the assortment"
-+          },
+           },
 +          "amount": {
 +            "type": "string",
 +            "format": "decimal",
@@ -1248,7 +1248,7 @@
              "description": "The timestamp of the dispatched tare weight."
            },
            "dispatched_amount": {
-@@ -11190,11 +10675,6 @@
+@@ -11190,15 +10675,11 @@
        "ExternalAPIWaybillRowList": {
          "type": "object",
          "properties": {
@@ -1260,7 +1260,13 @@
            "assortment_id": {
              "type": "string",
              "readOnly": true,
-@@ -11252,7 +10732,6 @@
+-            "description": "The ID of the assortment."
++            "description": "The ID of the assortment.",
++            "nullable": true
+           },
+           "assortment_ids": {
+             "type": "array",
+@@ -11252,7 +10733,6 @@
            "assortment_name",
            "assortment_unit",
            "dispatched_amount",
@@ -1268,7 +1274,7 @@
            "scale_assortment_raw_id"
          ]
        },
-@@ -11261,38 +10740,21 @@
+@@ -11261,38 +10741,21 @@
          "properties": {
            "assortment_id": {
              "type": "integer",
@@ -1311,7 +1317,7 @@
            "subset_id",
            "subset_type_id"
          ]
-@@ -11578,6 +11040,33 @@
+@@ -11578,6 +11041,33 @@
            "weights_to_use"
          ]
        },
@@ -1345,7 +1351,7 @@
        "IncotermEnum": {
          "enum": [
            "EXW",
-@@ -11625,14 +11114,14 @@
+@@ -11625,14 +11115,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1362,7 +1368,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11661,14 +11150,14 @@
+@@ -11661,14 +11151,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1379,7 +1385,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11697,14 +11186,14 @@
+@@ -11697,14 +11187,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1396,7 +1402,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11733,14 +11222,14 @@
+@@ -11733,14 +11223,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1413,7 +1419,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11769,14 +11258,14 @@
+@@ -11769,14 +11259,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1430,7 +1436,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11805,14 +11294,14 @@
+@@ -11805,14 +11295,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1447,7 +1453,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11823,42 +11312,6 @@
+@@ -11823,42 +11313,6 @@
            }
          }
        },
@@ -1490,7 +1496,7 @@
        "PaginatedExternalAPITransportOrderListList": {
          "type": "object",
          "required": [
-@@ -11877,14 +11330,14 @@
+@@ -11877,14 +11331,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1507,7 +1513,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11913,14 +11366,14 @@
+@@ -11913,14 +11367,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1524,7 +1530,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11949,14 +11402,14 @@
+@@ -11949,14 +11403,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1541,7 +1547,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -11985,14 +11438,14 @@
+@@ -11985,14 +11439,14 @@
              "type": "string",
              "nullable": true,
              "format": "uri",
@@ -1558,7 +1564,7 @@
              "description": "URL to the previous page of results, or null if it's the first page"
            },
            "results": {
-@@ -12014,7 +11467,6 @@
+@@ -12014,7 +11468,6 @@
        },
        "RoleEnum": {
          "enum": [
@@ -1566,7 +1572,7 @@
            "manager",
            "project_manager",
            "object_manager",
-@@ -12025,49 +11477,6 @@
+@@ -12025,49 +11478,6 @@
          ],
          "type": "string"
        },
@@ -1616,7 +1622,7 @@
        "TransportOrderStatusEnum": {
          "enum": [
            "draft",
-@@ -12080,6 +11489,18 @@
+@@ -12080,6 +11490,18 @@
          ],
          "type": "string"
        },
@@ -1635,7 +1641,7 @@
        "WaybillStatusEnum": {
          "enum": [
            0,
-@@ -12090,13 +11511,6 @@
+@@ -12090,13 +11512,6 @@
          ],
          "type": "integer"
        },

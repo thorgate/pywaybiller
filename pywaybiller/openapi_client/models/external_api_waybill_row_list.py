@@ -27,7 +27,7 @@ class ExternalAPIWaybillRowList(BaseModel):
     ExternalAPIWaybillRowList
     """  # noqa: E501
 
-    assortment_id: StrictStr = Field(description="The ID of the assortment.")
+    assortment_id: Optional[StrictStr] = Field(description="The ID of the assortment.")
     assortment_ids: List[Annotated[str, Field(strict=True, max_length=8)]] = Field(
         description="The IDs of the assortments."
     )
@@ -131,6 +131,11 @@ class ExternalAPIWaybillRowList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if assortment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.assortment_id is None and "assortment_id" in self.model_fields_set:
+            _dict["assortment_id"] = None
+
         # set to None if scale_assortment_raw_id (nullable) is None
         # and model_fields_set contains the field
         if (
