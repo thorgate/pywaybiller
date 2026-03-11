@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assortment_id** | **str** | Unique identifier of the assortment in your system | 
 **assortment_name** | **str** | Name of the assortment | 
+**destination_id** | **int** | Unique identifier of the destination in your system or Waybiller. If not provided, the transport order&#39;s destination will be used | [optional] 
 **amount** | **decimal.Decimal** | Amount of the assortment | 
 
 ## Example

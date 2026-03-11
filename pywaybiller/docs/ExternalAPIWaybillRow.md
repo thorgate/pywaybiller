@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** | The ID of the row. | [readonly] 
 **assortment_id** | **str** | The external ID of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [optional] 
 **assortment_ids** | **List[str]** | The external IDs of the assortment. Usually &#x60;null&#x60; if waybill was created in Waybiller UI and not over Waybiller External API. | [readonly] 
 **assortment_raw_id** | **int** | The ID of the assortment. | [optional] 

@@ -61,6 +61,7 @@ Name | Type | Description | Notes
 **evr_waybill_number** | **str** | EVR waybill number. | [readonly] 
 **project** | **str** | Project code in your system. | [readonly] 
 **transport_costs** | [**ExternalAPIWaybillTransportCosts**](ExternalAPIWaybillTransportCosts.md) | Information about transport costs | 
+**reading_pairs** | [**List[ExternalAPIWaybillReadingPairs]**](ExternalAPIWaybillReadingPairs.md) | Information about reading pairs | [optional] [readonly] 
 **raw_data** | [**ExternalAPIWaybillRawData**](ExternalAPIWaybillRawData.md) | The IDs of the Waybiller internal objects | [readonly] 
 
 ## Example

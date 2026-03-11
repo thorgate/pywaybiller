@@ -134,7 +134,7 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.TransportOrdersApi(api_client)
-    external_api_transport_order_request = {"transport_order_id":"1","order_raw_id":1,"rows":[{"assortment_id":"1","assortment_name":"Construction sand","amount":"23.456"}],"organizer_user_id":1,"destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1, Tallinn","destination_latitude":59.3962767,"destination_longitude":24.6566519,"destination_waybill_created_emails":["waybiller@waybiller.com"],"destination_waybill_reached_destination_emails":["waybiller@waybiller.com"],"destination_waybill_accepted_emails":["waybiller@waybiller.com"],"destination_transport_order_created_emails":["waybiller@waybiller.com"],"receiver_company_name":"Waybiller OÜ","receiver_company_reg_code":"14200010","origin_id":"1","origin_name":"Waybiller OÜ","origin_address":"Mäealuse 2/1, Tallinn","origin_latitude":59.3962767,"origin_longitude":24.6566519,"origin_waybill_created_emails":["waybiller@waybiller.com"],"origin_waybill_reached_destination_emails":["waybiller@waybiller.com"],"origin_waybill_accepted_emails":["waybiller@waybiller.com"],"origin_transport_order_created_emails":["waybiller@waybiller.com"],"shipper_company_name":"Waybiller OÜ","shipper_company_reg_code":"14200010","transportation_company_name":"Waybiller OÜ","transportation_company_reg_code":"14200010","truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","driver_email":"driver@waybiller.com","driver_personal_code":"3891020xxxx","driver_name":"John Doe","driver_phone":"+372987654321","transport_date":"2025-01-01","transport_time":"14:15","additional_info":"Additional instructions for the driver","pallets_number":10} # ExternalAPITransportOrderRequest | 
+    external_api_transport_order_request = {"transport_order_id":"1","order_raw_id":1,"rows":[{"assortment_id":"1","assortment_name":"Construction sand","amount":"23.456"},{"assortment_id":"2","assortment_name":"Gravel sand","amount":"30.000","destination_id":"2"}],"organizer_user_id":1,"destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1, Tallinn","destination_latitude":59.3962767,"destination_longitude":24.6566519,"destination_waybill_created_emails":["waybiller@waybiller.com"],"destination_waybill_reached_destination_emails":["waybiller@waybiller.com"],"destination_waybill_accepted_emails":["waybiller@waybiller.com"],"destination_transport_order_created_emails":["waybiller@waybiller.com"],"receiver_company_name":"Waybiller OÜ","receiver_company_reg_code":"14200010","origin_id":"1","origin_name":"Waybiller OÜ","origin_address":"Mäealuse 2/1, Tallinn","origin_latitude":59.3962767,"origin_longitude":24.6566519,"origin_waybill_created_emails":["waybiller@waybiller.com"],"origin_waybill_reached_destination_emails":["waybiller@waybiller.com"],"origin_waybill_accepted_emails":["waybiller@waybiller.com"],"origin_transport_order_created_emails":["waybiller@waybiller.com"],"shipper_company_name":"Waybiller OÜ","shipper_company_reg_code":"14200010","transportation_company_name":"Waybiller OÜ","transportation_company_reg_code":"14200010","truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","driver_email":"driver@waybiller.com","driver_personal_code":"3891020xxxx","driver_name":"John Doe","driver_phone":"+372987654321","transport_date":"2025-01-01","transport_time":"14:15","additional_info":"Additional instructions for the driver","pallets_number":10} # ExternalAPITransportOrderRequest | 
 
     try:
         # Creation of a transport order
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transport_orders_update**
-> transport_orders_update(id, external_api_transport_order_update_request=external_api_transport_order_update_request)
+> transport_orders_update(id, external_api_transport_order_update_request)
 
 Editing of a transport order
 
@@ -428,11 +428,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.TransportOrdersApi(api_client)
     id = 56 # int | A unique integer value identifying this Transport order.
-    external_api_transport_order_update_request = {"origin_id":"1","origin_name":"Waybiller OÜ","origin_address":"Mäealuse 2/1, Tallinn","origin_latitude":59.3962767,"origin_longitude":24.6566519,"shipper_company_name":"Waybiller OÜ","shipper_company_reg_code":"14200010","origin_transport_order_created_emails":["waybiller@waybiller.com"],"origin_waybill_accepted_emails":["waybiller@waybiller.com"],"origin_waybill_created_emails":["waybiller@waybiller.com"],"origin_waybill_reached_destination_emails":["waybiller@waybiller.com"],"destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1, Tallinn","destination_latitude":59.3962767,"destination_longitude":24.6566519,"receiver_company_name":"Waybiller OÜ","receiver_company_reg_code":"14200010","destination_transport_order_created_emails":["waybiller@waybiller.com"],"destination_waybill_accepted_emails":["waybiller@waybiller.com"],"destination_waybill_created_emails":["waybiller@waybiller.com"],"destination_waybill_reached_destination_emails":["waybiller@waybiller.com"],"truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","pallets_number":1} # ExternalAPITransportOrderUpdateRequest |  (optional)
+    external_api_transport_order_update_request = {"origin_id":"1","origin_name":"Waybiller OÜ","origin_address":"Mäealuse 2/1, Tallinn","origin_latitude":59.3962767,"origin_longitude":24.6566519,"shipper_company_name":"Waybiller OÜ","shipper_company_reg_code":"14200010","origin_transport_order_created_emails":["waybiller@waybiller.com"],"origin_waybill_accepted_emails":["waybiller@waybiller.com"],"origin_waybill_created_emails":["waybiller@waybiller.com"],"origin_waybill_reached_destination_emails":["waybiller@waybiller.com"],"destination_id":"1","destination_name":"Waybiller OÜ","destination_address":"Mäealuse 2/1, Tallinn","destination_latitude":59.3962767,"destination_longitude":24.6566519,"receiver_company_name":"Waybiller OÜ","receiver_company_reg_code":"14200010","destination_transport_order_created_emails":["waybiller@waybiller.com"],"destination_waybill_accepted_emails":["waybiller@waybiller.com"],"destination_waybill_created_emails":["waybiller@waybiller.com"],"destination_waybill_reached_destination_emails":["waybiller@waybiller.com"],"truck_reg_number":"ABC123","trailer_reg_number":"XYZ789","pallets_number":1} # ExternalAPITransportOrderUpdateRequest | 
 
     try:
         # Editing of a transport order
-        api_instance.transport_orders_update(id, external_api_transport_order_update_request=external_api_transport_order_update_request)
+        api_instance.transport_orders_update(id, external_api_transport_order_update_request)
     except Exception as e:
         print("Exception when calling TransportOrdersApi->transport_orders_update: %s\n" % e)
 ```
@@ -445,7 +445,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this Transport order. | 
- **external_api_transport_order_update_request** | [**ExternalAPITransportOrderUpdateRequest**](ExternalAPITransportOrderUpdateRequest.md)|  | [optional] 
+ **external_api_transport_order_update_request** | [**ExternalAPITransportOrderUpdateRequest**](ExternalAPITransportOrderUpdateRequest.md)|  | 
 
 ### Return type
 

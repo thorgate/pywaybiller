@@ -134,6 +134,22 @@ class ExternalAPIWaybillRowAcceptedAmountRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if accepted_gross_weight_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.accepted_gross_weight_timestamp is None
+            and "accepted_gross_weight_timestamp" in self.model_fields_set
+        ):
+            _dict["accepted_gross_weight_timestamp"] = None
+
+        # set to None if accepted_tare_weight_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.accepted_tare_weight_timestamp is None
+            and "accepted_tare_weight_timestamp" in self.model_fields_set
+        ):
+            _dict["accepted_tare_weight_timestamp"] = None
+
         return _dict
 
     @classmethod

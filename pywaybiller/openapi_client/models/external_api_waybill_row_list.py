@@ -27,6 +27,7 @@ class ExternalAPIWaybillRowList(BaseModel):
     ExternalAPIWaybillRowList
     """  # noqa: E501
 
+    id: StrictInt = Field(description="The ID of the row.")
     assortment_id: Optional[StrictStr] = Field(description="The ID of the assortment.")
     assortment_ids: List[Annotated[str, Field(strict=True, max_length=8)]] = Field(
         description="The IDs of the assortments."
@@ -50,6 +51,7 @@ class ExternalAPIWaybillRowList(BaseModel):
         description="The accepted assortment amount."
     )
     __properties: ClassVar[List[str]] = [
+        "id",
         "assortment_id",
         "assortment_ids",
         "assortment_raw_id",
@@ -115,9 +117,11 @@ class ExternalAPIWaybillRowList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "id",
                 "assortment_id",
                 "assortment_ids",
                 "scale_assortment_raw_id",
@@ -162,6 +166,7 @@ class ExternalAPIWaybillRowList(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "id": obj.get("id"),
                 "assortment_id": obj.get("assortment_id"),
                 "assortment_ids": obj.get("assortment_ids"),
                 "assortment_raw_id": obj.get("assortment_raw_id"),

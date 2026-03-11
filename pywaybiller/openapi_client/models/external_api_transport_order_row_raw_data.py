@@ -27,8 +27,11 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
     ExternalAPITransportOrderRowRawData
     """  # noqa: E501
 
+    destination_id: Optional[StrictInt] = Field(
+        description="Unique identifier of the destination in Waybiller"
+    )
     assortment_id: Optional[StrictInt] = Field(
-        description="Unique identifier of the assortment in your system"
+        description="Unique identifier of the assortment in Waybiller"
     )
     accepted_amount: StrictStr = Field(
         description="Total accepted amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row."
@@ -37,6 +40,7 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
         description="Total dispatched amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row."
     )
     __properties: ClassVar[List[str]] = [
+        "destination_id",
         "assortment_id",
         "accepted_amount",
         "dispatched_amount",
@@ -74,9 +78,11 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "destination_id",
                 "assortment_id",
                 "accepted_amount",
                 "dispatched_amount",
@@ -88,6 +94,11 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if destination_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.destination_id is None and "destination_id" in self.model_fields_set:
+            _dict["destination_id"] = None
+
         # set to None if assortment_id (nullable) is None
         # and model_fields_set contains the field
         if self.assortment_id is None and "assortment_id" in self.model_fields_set:
@@ -106,6 +117,7 @@ class ExternalAPITransportOrderRowRawData(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "destination_id": obj.get("destination_id"),
                 "assortment_id": obj.get("assortment_id"),
                 "accepted_amount": obj.get("accepted_amount"),
                 "dispatched_amount": obj.get("dispatched_amount"),

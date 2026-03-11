@@ -1989,9 +1989,7 @@ class TransportOrdersApi:
                 description="A unique integer value identifying this Transport order."
             ),
         ],
-        external_api_transport_order_update_request: Optional[
-            ExternalAPITransportOrderUpdateRequest
-        ] = None,
+        external_api_transport_order_update_request: ExternalAPITransportOrderUpdateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2010,7 +2008,7 @@ class TransportOrdersApi:
 
         :param id: A unique integer value identifying this Transport order. (required)
         :type id: int
-        :param external_api_transport_order_update_request:
+        :param external_api_transport_order_update_request: (required)
         :type external_api_transport_order_update_request: ExternalAPITransportOrderUpdateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2065,9 +2063,7 @@ class TransportOrdersApi:
                 description="A unique integer value identifying this Transport order."
             ),
         ],
-        external_api_transport_order_update_request: Optional[
-            ExternalAPITransportOrderUpdateRequest
-        ] = None,
+        external_api_transport_order_update_request: ExternalAPITransportOrderUpdateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2086,7 +2082,7 @@ class TransportOrdersApi:
 
         :param id: A unique integer value identifying this Transport order. (required)
         :type id: int
-        :param external_api_transport_order_update_request:
+        :param external_api_transport_order_update_request: (required)
         :type external_api_transport_order_update_request: ExternalAPITransportOrderUpdateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2141,9 +2137,7 @@ class TransportOrdersApi:
                 description="A unique integer value identifying this Transport order."
             ),
         ],
-        external_api_transport_order_update_request: Optional[
-            ExternalAPITransportOrderUpdateRequest
-        ] = None,
+        external_api_transport_order_update_request: ExternalAPITransportOrderUpdateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2162,7 +2156,7 @@ class TransportOrdersApi:
 
         :param id: A unique integer value identifying this Transport order. (required)
         :type id: int
-        :param external_api_transport_order_update_request:
+        :param external_api_transport_order_update_request: (required)
         :type external_api_transport_order_update_request: ExternalAPITransportOrderUpdateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

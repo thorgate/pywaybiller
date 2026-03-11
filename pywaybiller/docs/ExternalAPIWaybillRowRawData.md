@@ -5,9 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **int** |  | [readonly] 
-**subset_id** | **int** |  | [readonly] 
-**subset_type_id** | **int** |  | [readonly] 
+**assortment_id** | **int** | The ID of the dispatched assortment. | [readonly] 
+**subset_id** | **int** | The ID of the subset. | [readonly] 
+**subset_type_id** | **int** | The ID of the subset type. | [readonly] 
+**incoming_reading_pair_id** | **int** | The ID of the incoming reading pair. | [readonly] 
+**outgoing_reading_pair_id** | **int** | The ID of the outgoing reading pair. | [readonly] 
 
 ## Example
 

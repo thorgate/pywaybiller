@@ -41,6 +41,9 @@ from pywaybiller.openapi_client.models.external_api_holding_base_previous_owner_
 from pywaybiller.openapi_client.models.external_api_holding_base_request import (
     ExternalAPIHoldingBaseRequest,
 )
+from pywaybiller.openapi_client.models.external_api_holding_base_type_enum import (
+    ExternalAPIHoldingBaseTypeEnum,
+)
 from pywaybiller.openapi_client.models.external_api_loader_action_log import (
     ExternalAPILoaderActionLog,
 )
@@ -149,6 +152,27 @@ from pywaybiller.openapi_client.models.external_api_partial_order_update import 
 from pywaybiller.openapi_client.models.external_api_partial_order_update_request import (
     ExternalAPIPartialOrderUpdateRequest,
 )
+from pywaybiller.openapi_client.models.external_api_time_entry import (
+    ExternalAPITimeEntry,
+)
+from pywaybiller.openapi_client.models.external_api_time_entry_location import (
+    ExternalAPITimeEntryLocation,
+)
+from pywaybiller.openapi_client.models.external_api_time_entry_location_request import (
+    ExternalAPITimeEntryLocationRequest,
+)
+from pywaybiller.openapi_client.models.external_api_time_entry_location_type_enum import (
+    ExternalAPITimeEntryLocationTypeEnum,
+)
+from pywaybiller.openapi_client.models.external_api_time_entry_request import (
+    ExternalAPITimeEntryRequest,
+)
+from pywaybiller.openapi_client.models.external_api_time_entry_vehicle import (
+    ExternalAPITimeEntryVehicle,
+)
+from pywaybiller.openapi_client.models.external_api_time_entry_vehicle_request import (
+    ExternalAPITimeEntryVehicleRequest,
+)
 from pywaybiller.openapi_client.models.external_api_transport_order_cancel import (
     ExternalAPITransportOrderCancel,
 )
@@ -170,14 +194,14 @@ from pywaybiller.openapi_client.models.external_api_transport_order_request impo
 from pywaybiller.openapi_client.models.external_api_transport_order_retrieve import (
     ExternalAPITransportOrderRetrieve,
 )
-from pywaybiller.openapi_client.models.external_api_transport_order_row import (
-    ExternalAPITransportOrderRow,
-)
 from pywaybiller.openapi_client.models.external_api_transport_order_row_raw_data import (
     ExternalAPITransportOrderRowRawData,
 )
 from pywaybiller.openapi_client.models.external_api_transport_order_row_request import (
     ExternalAPITransportOrderRowRequest,
+)
+from pywaybiller.openapi_client.models.external_api_transport_order_row_retrieve import (
+    ExternalAPITransportOrderRowRetrieve,
 )
 from pywaybiller.openapi_client.models.external_api_transport_order_update_request import (
     ExternalAPITransportOrderUpdateRequest,
@@ -243,6 +267,9 @@ from pywaybiller.openapi_client.models.external_api_waybill_raw_data import (
 from pywaybiller.openapi_client.models.external_api_waybill_raw_data_list import (
     ExternalAPIWaybillRawDataList,
 )
+from pywaybiller.openapi_client.models.external_api_waybill_reading_pairs import (
+    ExternalAPIWaybillReadingPairs,
+)
 from pywaybiller.openapi_client.models.external_api_waybill_refuse import (
     ExternalAPIWaybillRefuse,
 )
@@ -291,9 +318,6 @@ from pywaybiller.openapi_client.models.external_api_waybill_transport_costs_pric
 from pywaybiller.openapi_client.models.external_api_waybill_transport_costs_weights_to_use import (
     ExternalAPIWaybillTransportCostsWeightsToUse,
 )
-from pywaybiller.openapi_client.models.external_api_waybill_vehicle_location import (
-    ExternalAPIWaybillVehicleLocation,
-)
 from pywaybiller.openapi_client.models.incoterm_enum import IncotermEnum
 from pywaybiller.openapi_client.models.language_enum import LanguageEnum
 from pywaybiller.openapi_client.models.order_status_enum import OrderStatusEnum
@@ -315,6 +339,9 @@ from pywaybiller.openapi_client.models.paginated_external_api_origin_assortment_
 from pywaybiller.openapi_client.models.paginated_external_api_origin_list_list import (
     PaginatedExternalAPIOriginListList,
 )
+from pywaybiller.openapi_client.models.paginated_external_api_time_entry_list import (
+    PaginatedExternalAPITimeEntryList,
+)
 from pywaybiller.openapi_client.models.paginated_external_api_transport_order_list_list import (
     PaginatedExternalAPITransportOrderListList,
 )
@@ -329,12 +356,19 @@ from pywaybiller.openapi_client.models.paginated_external_api_waybill_list_list 
 )
 from pywaybiller.openapi_client.models.pricing_system_enum import PricingSystemEnum
 from pywaybiller.openapi_client.models.role_enum import RoleEnum
+from pywaybiller.openapi_client.models.scale_reading_in_reading_pair import (
+    ScaleReadingInReadingPair,
+)
+from pywaybiller.openapi_client.models.scale_reading_in_reading_pair_source import (
+    ScaleReadingInReadingPairSource,
+)
+from pywaybiller.openapi_client.models.source_enum import SourceEnum
 from pywaybiller.openapi_client.models.transport_order_status_enum import (
     TransportOrderStatusEnum,
 )
-from pywaybiller.openapi_client.models.type_enum import TypeEnum
 from pywaybiller.openapi_client.models.waybill_status_enum import WaybillStatusEnum
 from pywaybiller.openapi_client.models.waybills_update_custom_fields_update_request_value import (
     WaybillsUpdateCustomFieldsUpdateRequestValue,
 )
+from pywaybiller.openapi_client.models.weighing_flow_enum import WeighingFlowEnum
 from pywaybiller.openapi_client.models.weights_to_use_enum import WeightsToUseEnum

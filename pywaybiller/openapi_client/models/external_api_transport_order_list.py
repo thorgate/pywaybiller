@@ -25,8 +25,8 @@ from typing_extensions import Annotated, Self
 from pywaybiller.openapi_client.models.external_api_transport_order_raw_data_list import (
     ExternalAPITransportOrderRawDataList,
 )
-from pywaybiller.openapi_client.models.external_api_transport_order_row import (
-    ExternalAPITransportOrderRow,
+from pywaybiller.openapi_client.models.external_api_transport_order_row_retrieve import (
+    ExternalAPITransportOrderRowRetrieve,
 )
 
 
@@ -60,9 +60,9 @@ class ExternalAPITransportOrderList(BaseModel):
     assortment_name: StrictStr = Field(
         description="Name of the assortment being transported"
     )
-    transportation_company_name: Annotated[str, Field(strict=True, max_length=64)] = (
-        Field(description="Transportation company name")
-    )
+    transportation_company_name: Optional[
+        Annotated[str, Field(strict=True, max_length=64)]
+    ] = Field(description="Transportation company name")
     truck_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
         Field(description="Registration number of the truck")
     )
@@ -72,7 +72,7 @@ class ExternalAPITransportOrderList(BaseModel):
     raw_data: ExternalAPITransportOrderRawDataList = Field(
         description="The IDs of the Waybiller internal objects"
     )
-    rows: List[ExternalAPITransportOrderRow] = Field(
+    rows: List[ExternalAPITransportOrderRowRetrieve] = Field(
         description="List of assortments associated with the transport order"
     )
     __properties: ClassVar[List[str]] = [
@@ -188,6 +188,14 @@ class ExternalAPITransportOrderList(BaseModel):
         if self.destination_id is None and "destination_id" in self.model_fields_set:
             _dict["destination_id"] = None
 
+        # set to None if transportation_company_name (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportation_company_name is None
+            and "transportation_company_name" in self.model_fields_set
+        ):
+            _dict["transportation_company_name"] = None
+
         # set to None if truck_reg_number (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -235,7 +243,7 @@ class ExternalAPITransportOrderList(BaseModel):
                 if obj.get("raw_data") is not None
                 else None,
                 "rows": [
-                    ExternalAPITransportOrderRow.from_dict(_item)
+                    ExternalAPITransportOrderRowRetrieve.from_dict(_item)
                     for _item in obj["rows"]
                 ]
                 if obj.get("rows") is not None

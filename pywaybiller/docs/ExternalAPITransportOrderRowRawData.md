@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assortment_id** | **int** | Unique identifier of the assortment in your system | [readonly] 
+**destination_id** | **int** | Unique identifier of the destination in Waybiller | [readonly] 
+**assortment_id** | **int** | Unique identifier of the assortment in Waybiller | [readonly] 
 **accepted_amount** | **decimal.Decimal** | Total accepted amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row. | [readonly] 
 **dispatched_amount** | **decimal.Decimal** | Total dispatched amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row. | [readonly] 
 

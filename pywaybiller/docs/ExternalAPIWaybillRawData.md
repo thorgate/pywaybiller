@@ -11,7 +11,9 @@ Name | Type | Description | Notes
 **origin_id** | **int** | The ID of the origin. | [readonly] 
 **destination_id** | **int** | The ID of the destination. | [readonly] 
 **rows** | [**List[ExternalAPIWaybillRowRawData]**](ExternalAPIWaybillRowRawData.md) | Waybill rows. | [readonly] 
-**user_defined_fields** | **Dict[str, object]** | User defined fields. | [readonly] 
+**user_defined_fields** | **Dict[str, object]** | User defined fields. | [optional] [readonly] 
+**order_id** | **int** | Order which was used for creating this waybill | [readonly] 
+**order_number** | **str** |  | [readonly] 
 **transport_order_id** | **int** |  | [readonly] 
 **transport_order_number** | **str** |  | [readonly] 
 

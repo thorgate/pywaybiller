@@ -27,6 +27,7 @@ class RoleEnum(str, Enum):
     """
     allowed enum values
     """
+    COMPANY_ADMIN = "company_admin"
     MANAGER = "manager"
     PROJECT_MANAGER = "project_manager"
     OBJECT_MANAGER = "object_manager"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **truck_reg_number** | **str** | Registration number of the truck | [readonly] 
 **trailer_reg_number** | **str** | Registration number of the trailer | [readonly] 
 **raw_data** | [**ExternalAPITransportOrderRawDataList**](ExternalAPITransportOrderRawDataList.md) | The IDs of the Waybiller internal objects | [readonly] 
-**rows** | [**List[ExternalAPITransportOrderRow]**](ExternalAPITransportOrderRow.md) | List of assortments associated with the transport order | [readonly] 
+**rows** | [**List[ExternalAPITransportOrderRowRetrieve]**](ExternalAPITransportOrderRowRetrieve.md) | List of assortments associated with the transport order | [readonly] 
 
 ## Example
 

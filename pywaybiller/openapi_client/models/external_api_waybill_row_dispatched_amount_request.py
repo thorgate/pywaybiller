@@ -129,6 +129,22 @@ class ExternalAPIWaybillRowDispatchedAmountRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if dispatched_gross_weight_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.dispatched_gross_weight_timestamp is None
+            and "dispatched_gross_weight_timestamp" in self.model_fields_set
+        ):
+            _dict["dispatched_gross_weight_timestamp"] = None
+
+        # set to None if dispatched_tare_weight_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.dispatched_tare_weight_timestamp is None
+            and "dispatched_tare_weight_timestamp" in self.model_fields_set
+        ):
+            _dict["dispatched_tare_weight_timestamp"] = None
+
         return _dict
 
     @classmethod

@@ -13,3 +13,4 @@ from pywaybiller.openapi_client.api.vehicle_location_data_api import (
 )
 from pywaybiller.openapi_client.api.vehicles_api import VehiclesApi
 from pywaybiller.openapi_client.api.waybills_api import WaybillsApi
+from pywaybiller.openapi_client.api.worklogs_api import WorklogsApi

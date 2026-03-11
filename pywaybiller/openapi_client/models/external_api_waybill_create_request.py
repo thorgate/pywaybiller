@@ -308,6 +308,14 @@ class ExternalAPIWaybillCreateRequest(BaseModel):
         ):
             _dict["cancelled_by_email"] = None
 
+        # set to None if evr_waybill_number (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.evr_waybill_number is None
+            and "evr_waybill_number" in self.model_fields_set
+        ):
+            _dict["evr_waybill_number"] = None
+
         return _dict
 
     @classmethod

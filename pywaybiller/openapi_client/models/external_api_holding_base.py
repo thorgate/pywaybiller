@@ -24,7 +24,9 @@ from typing_extensions import Annotated, Self
 from pywaybiller.openapi_client.models.external_api_holding_base_previous_owner import (
     ExternalAPIHoldingBasePreviousOwner,
 )
-from pywaybiller.openapi_client.models.type_enum import TypeEnum
+from pywaybiller.openapi_client.models.external_api_holding_base_type_enum import (
+    ExternalAPIHoldingBaseTypeEnum,
+)
 
 
 class ExternalAPIHoldingBase(BaseModel):
@@ -32,7 +34,7 @@ class ExternalAPIHoldingBase(BaseModel):
     ExternalAPIHoldingBase
     """  # noqa: E501
 
-    type: Optional[TypeEnum] = None
+    type: Optional[ExternalAPIHoldingBaseTypeEnum] = None
     contract_number: Optional[Annotated[str, Field(strict=True, max_length=32)]] = (
         Field(default=None, alias="contractNumber")
     )

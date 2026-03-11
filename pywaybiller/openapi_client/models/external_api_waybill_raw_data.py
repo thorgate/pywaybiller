@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_waybill_row_raw_data import (
     ExternalAPIWaybillRowRawData,
@@ -40,10 +40,14 @@ class ExternalAPIWaybillRawData(BaseModel):
     )
     rows: List[ExternalAPIWaybillRowRawData] = Field(description="Waybill rows.")
     user_defined_fields: Optional[Dict[str, Any]] = Field(
-        description="User defined fields."
+        default=None, description="User defined fields."
     )
+    order_id: Optional[StrictInt] = Field(
+        description="Order which was used for creating this waybill"
+    )
+    order_number: Optional[Annotated[str, Field(strict=True, max_length=16)]]
     transport_order_id: Optional[StrictInt]
-    transport_order_number: Optional[StrictStr]
+    transport_order_number: Optional[Annotated[str, Field(strict=True, max_length=16)]]
     __properties: ClassVar[List[str]] = [
         "waybill_id",
         "truck_id",
@@ -52,6 +56,8 @@ class ExternalAPIWaybillRawData(BaseModel):
         "destination_id",
         "rows",
         "user_defined_fields",
+        "order_id",
+        "order_number",
         "transport_order_id",
         "transport_order_number",
     ]
@@ -94,6 +100,8 @@ class ExternalAPIWaybillRawData(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -104,6 +112,8 @@ class ExternalAPIWaybillRawData(BaseModel):
                 "destination_id",
                 "rows",
                 "user_defined_fields",
+                "order_id",
+                "order_number",
                 "transport_order_id",
                 "transport_order_number",
             ]
@@ -143,6 +153,16 @@ class ExternalAPIWaybillRawData(BaseModel):
             and "user_defined_fields" in self.model_fields_set
         ):
             _dict["user_defined_fields"] = None
+
+        # set to None if order_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.order_id is None and "order_id" in self.model_fields_set:
+            _dict["order_id"] = None
+
+        # set to None if order_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.order_number is None and "order_number" in self.model_fields_set:
+            _dict["order_number"] = None
 
         # set to None if transport_order_id (nullable) is None
         # and model_fields_set contains the field
@@ -185,6 +205,8 @@ class ExternalAPIWaybillRawData(BaseModel):
                 if obj.get("rows") is not None
                 else None,
                 "user_defined_fields": obj.get("user_defined_fields"),
+                "order_id": obj.get("order_id"),
+                "order_number": obj.get("order_number"),
                 "transport_order_id": obj.get("transport_order_id"),
                 "transport_order_number": obj.get("transport_order_number"),
             }

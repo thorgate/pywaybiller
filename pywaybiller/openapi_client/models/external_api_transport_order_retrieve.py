@@ -25,8 +25,8 @@ from typing_extensions import Annotated, Self
 from pywaybiller.openapi_client.models.external_api_transport_order_raw_data import (
     ExternalAPITransportOrderRawData,
 )
-from pywaybiller.openapi_client.models.external_api_transport_order_row import (
-    ExternalAPITransportOrderRow,
+from pywaybiller.openapi_client.models.external_api_transport_order_row_retrieve import (
+    ExternalAPITransportOrderRowRetrieve,
 )
 from pywaybiller.openapi_client.models.transport_order_status_enum import (
     TransportOrderStatusEnum,
@@ -47,7 +47,7 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
     status: TransportOrderStatusEnum = Field(
         description="Status of the transport order"
     )
-    rows: List[ExternalAPITransportOrderRow] = Field(
+    rows: List[ExternalAPITransportOrderRowRetrieve] = Field(
         description="List of assortments associated with the transport order"
     )
     organizer_user_id: StrictInt = Field(
@@ -137,11 +137,11 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
     shipper_company_reg_code: Annotated[str, Field(strict=True, max_length=16)] = Field(
         description="Registration code of the company that owns the origin location"
     )
-    transportation_company_name: Annotated[str, Field(strict=True, max_length=64)] = (
-        Field(description="Transportation company name")
-    )
-    transportation_company_reg_code: Annotated[
-        str, Field(strict=True, max_length=16)
+    transportation_company_name: Optional[
+        Annotated[str, Field(strict=True, max_length=64)]
+    ] = Field(description="Transportation company name")
+    transportation_company_reg_code: Optional[
+        Annotated[str, Field(strict=True, max_length=16)]
     ] = Field(description="Transportation company registration code")
     truck_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
         Field(description="Registration number of the truck")
@@ -437,6 +437,22 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
         ):
             _dict["origin_transport_order_created_emails"] = None
 
+        # set to None if transportation_company_name (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportation_company_name is None
+            and "transportation_company_name" in self.model_fields_set
+        ):
+            _dict["transportation_company_name"] = None
+
+        # set to None if transportation_company_reg_code (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportation_company_reg_code is None
+            and "transportation_company_reg_code" in self.model_fields_set
+        ):
+            _dict["transportation_company_reg_code"] = None
+
         # set to None if truck_reg_number (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -503,7 +519,7 @@ class ExternalAPITransportOrderRetrieve(BaseModel):
                 "number": obj.get("number"),
                 "status": obj.get("status"),
                 "rows": [
-                    ExternalAPITransportOrderRow.from_dict(_item)
+                    ExternalAPITransportOrderRowRetrieve.from_dict(_item)
                     for _item in obj["rows"]
                 ]
                 if obj.get("rows") is not None

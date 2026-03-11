@@ -19,23 +19,22 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class TypeEnum(str, Enum):
+class SourceEnum(str, Enum):
     """
-    TypeEnum
+    SourceEnum
     """
 
     """
     allowed enum values
     """
-    FORESTNOTICE = "ForestNotice"
-    WITHOUTFORESTNOTICE = "WithoutForestNotice"
-    INVENTORYACT = "InventoryAct"
-    CONSOLIDATEDACT = "ConsolidatedAct"
-    FORESTACT = "ForestAct"
-    SALESCONTRACT = "SalesContract"
-    CONTRACTFORTRANSFEROFCUTTINGRIGHTS = "ContractForTransferOfCuttingRights"
+    SCALE = "scale"
+    MANUAL = "manual"
+    PREVIOUS_TARE_READING = "previous_tare_reading"
+    LOADER = "loader"
+    FILE_IMPORT = "file_import"
+    EXTERNAL_API = "external_api"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of TypeEnum from a JSON string"""
+        """Create an instance of SourceEnum from a JSON string"""
         return cls(json.loads(json_str))

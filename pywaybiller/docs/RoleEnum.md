@@ -3,6 +3,8 @@
 
 ## Enum
 
+* `COMPANY_ADMIN` (value: `'company_admin'`)
+
 * `MANAGER` (value: `'manager'`)
 
 * `PROJECT_MANAGER` (value: `'project_manager'`)

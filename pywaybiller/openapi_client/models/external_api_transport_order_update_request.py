@@ -21,6 +21,10 @@ from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing_extensions import Annotated, Self
 
+from pywaybiller.openapi_client.models.external_api_transport_order_row_request import (
+    ExternalAPITransportOrderRowRequest,
+)
+
 
 class ExternalAPITransportOrderUpdateRequest(BaseModel):
     """
@@ -102,6 +106,9 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
     destination_longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
         default=None, description="Longitude of the destination location"
     )
+    rows: List[ExternalAPITransportOrderRowRequest] = Field(
+        description="List of assortments associated with the transport order"
+    )
     receiver_company_name: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=64)]
     ] = Field(
@@ -166,6 +173,7 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
         "destination_address",
         "destination_latitude",
         "destination_longitude",
+        "rows",
         "receiver_company_name",
         "receiver_company_reg_code",
         "destination_transport_order_created_emails",
@@ -214,6 +222,13 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in rows (list)
+        _items = []
+        if self.rows:
+            for _item_rows in self.rows:
+                if _item_rows:
+                    _items.append(_item_rows.to_dict())
+            _dict["rows"] = _items
         # set to None if origin_transport_order_created_emails (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -339,6 +354,12 @@ class ExternalAPITransportOrderUpdateRequest(BaseModel):
                 "destination_address": obj.get("destination_address"),
                 "destination_latitude": obj.get("destination_latitude"),
                 "destination_longitude": obj.get("destination_longitude"),
+                "rows": [
+                    ExternalAPITransportOrderRowRequest.from_dict(_item)
+                    for _item in obj["rows"]
+                ]
+                if obj.get("rows") is not None
+                else None,
                 "receiver_company_name": obj.get("receiver_company_name"),
                 "receiver_company_reg_code": obj.get("receiver_company_reg_code"),
                 "destination_transport_order_created_emails": obj.get(

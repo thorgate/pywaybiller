@@ -28,6 +28,9 @@ from pywaybiller.openapi_client.models.external_api_waybill_holding_right import
 from pywaybiller.openapi_client.models.external_api_waybill_raw_data import (
     ExternalAPIWaybillRawData,
 )
+from pywaybiller.openapi_client.models.external_api_waybill_reading_pairs import (
+    ExternalAPIWaybillReadingPairs,
+)
 from pywaybiller.openapi_client.models.external_api_waybill_row import (
     ExternalAPIWaybillRow,
 )
@@ -188,6 +191,9 @@ class ExternalAPIWaybillRetrieve(BaseModel):
     transport_costs: Optional[ExternalAPIWaybillTransportCosts] = Field(
         description="Information about transport costs"
     )
+    reading_pairs: Optional[List[ExternalAPIWaybillReadingPairs]] = Field(
+        default=None, description="Information about reading pairs"
+    )
     raw_data: ExternalAPIWaybillRawData = Field(
         description="The IDs of the Waybiller internal objects"
     )
@@ -248,6 +254,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         "evr_waybill_number",
         "project",
         "transport_costs",
+        "reading_pairs",
         "raw_data",
     ]
 
@@ -280,6 +287,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
@@ -362,6 +370,7 @@ class ExternalAPIWaybillRetrieve(BaseModel):
                 "navision_bin_code",
                 "evr_waybill_number",
                 "project",
+                "reading_pairs",
                 "raw_data",
             ]
         )
@@ -388,6 +397,13 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of transport_costs
         if self.transport_costs:
             _dict["transport_costs"] = self.transport_costs.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in reading_pairs (list)
+        _items = []
+        if self.reading_pairs:
+            for _item_reading_pairs in self.reading_pairs:
+                if _item_reading_pairs:
+                    _items.append(_item_reading_pairs.to_dict())
+            _dict["reading_pairs"] = _items
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
@@ -526,6 +542,11 @@ class ExternalAPIWaybillRetrieve(BaseModel):
         if self.transport_costs is None and "transport_costs" in self.model_fields_set:
             _dict["transport_costs"] = None
 
+        # set to None if reading_pairs (nullable) is None
+        # and model_fields_set contains the field
+        if self.reading_pairs is None and "reading_pairs" in self.model_fields_set:
+            _dict["reading_pairs"] = None
+
         return _dict
 
     @classmethod
@@ -617,6 +638,12 @@ class ExternalAPIWaybillRetrieve(BaseModel):
                     obj["transport_costs"]
                 )
                 if obj.get("transport_costs") is not None
+                else None,
+                "reading_pairs": [
+                    ExternalAPIWaybillReadingPairs.from_dict(_item)
+                    for _item in obj["reading_pairs"]
+                ]
+                if obj.get("reading_pairs") is not None
                 else None,
                 "raw_data": ExternalAPIWaybillRawData.from_dict(obj["raw_data"])
                 if obj.get("raw_data") is not None

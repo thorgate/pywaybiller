@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**waybills_update_accepted_amounts_update**](WaybillsApi.md#waybills_update_accepted_amounts_update) | **PUT** /external-api/waybills/{id}/update_accepted_amounts/ | Updating of accepted amounts
 [**waybills_update_custom_fields_update**](WaybillsApi.md#waybills_update_custom_fields_update) | **PUT** /external-api/waybills/{id}/update_custom_fields/ | Updating custom fields
 [**waybills_update_dispatched_amounts_update**](WaybillsApi.md#waybills_update_dispatched_amounts_update) | **PUT** /external-api/waybills/{id}/update_dispatched_amounts/ | Updating of dispatched amounts
-[**waybills_vehicle_location_data_retrieve**](WaybillsApi.md#waybills_vehicle_location_data_retrieve) | **GET** /external-api/waybills/{id}/vehicle_location_data/ | Querying of vehicle location data
 
 
 # **waybills_accept_update**
@@ -798,7 +797,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **waybills_update_accepted_amounts_update**
-> ExternalAPIWaybillRetrieve waybills_update_accepted_amounts_update(id, external_api_waybill_accepted_amounts_request)
+> ExternalAPIWaybillAcceptedAmounts waybills_update_accepted_amounts_update(id, external_api_waybill_accepted_amounts_request)
 
 Updating of accepted amounts
 
@@ -814,8 +813,8 @@ Sets the accepted amounts for the waybill.
 
 ```python
 import openapi_client
+from openapi_client.models.external_api_waybill_accepted_amounts import ExternalAPIWaybillAcceptedAmounts
 from openapi_client.models.external_api_waybill_accepted_amounts_request import ExternalAPIWaybillAcceptedAmountsRequest
-from openapi_client.models.external_api_waybill_retrieve import ExternalAPIWaybillRetrieve
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -864,7 +863,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIWaybillRetrieve**](ExternalAPIWaybillRetrieve.md)
+[**ExternalAPIWaybillAcceptedAmounts**](ExternalAPIWaybillAcceptedAmounts.md)
 
 ### Authorization
 
@@ -972,7 +971,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **waybills_update_dispatched_amounts_update**
-> ExternalAPIWaybillRetrieve waybills_update_dispatched_amounts_update(id, external_api_waybill_dispatched_amounts_request)
+> ExternalAPIWaybillDispatchedAmounts waybills_update_dispatched_amounts_update(id, external_api_waybill_dispatched_amounts_request)
 
 Updating of dispatched amounts
 
@@ -987,8 +986,8 @@ Updates dispatched amounts for the waybill.<br>
 
 ```python
 import openapi_client
+from openapi_client.models.external_api_waybill_dispatched_amounts import ExternalAPIWaybillDispatchedAmounts
 from openapi_client.models.external_api_waybill_dispatched_amounts_request import ExternalAPIWaybillDispatchedAmountsRequest
-from openapi_client.models.external_api_waybill_retrieve import ExternalAPIWaybillRetrieve
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -1037,7 +1036,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAPIWaybillRetrieve**](ExternalAPIWaybillRetrieve.md)
+[**ExternalAPIWaybillDispatchedAmounts**](ExternalAPIWaybillDispatchedAmounts.md)
 
 ### Authorization
 
@@ -1054,88 +1053,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  -  |
 **403** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **waybills_vehicle_location_data_retrieve**
-> ExternalAPIWaybillVehicleLocation waybills_vehicle_location_data_retrieve(id)
-
-Querying of vehicle location data
-
-Returns vehicle location data.
-        
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-
-```python
-import openapi_client
-from openapi_client.models.external_api_waybill_vehicle_location import ExternalAPIWaybillVehicleLocation
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.WaybillsApi(api_client)
-    id = 56 # int | A unique integer value identifying this waybill.
-
-    try:
-        # Querying of vehicle location data
-        api_response = api_instance.waybills_vehicle_location_data_retrieve(id)
-        print("The response of WaybillsApi->waybills_vehicle_location_data_retrieve:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling WaybillsApi->waybills_vehicle_location_data_retrieve: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this waybill. | 
-
-### Return type
-
-[**ExternalAPIWaybillVehicleLocation**](ExternalAPIWaybillVehicleLocation.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**403** |  |  -  |
-**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

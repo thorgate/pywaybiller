@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **transport_order_id** | **str** | Unique identifier of the transport order in your system | [readonly] 
 **number** | **str** | Unique transport order reference number | [readonly] 
 **status** | [**TransportOrderStatusEnum**](TransportOrderStatusEnum.md) | Status of the transport order | [readonly] 
-**rows** | [**List[ExternalAPITransportOrderRow]**](ExternalAPITransportOrderRow.md) | List of assortments associated with the transport order | [readonly] 
+**rows** | [**List[ExternalAPITransportOrderRowRetrieve]**](ExternalAPITransportOrderRowRetrieve.md) | List of assortments associated with the transport order | [readonly] 
 **organizer_user_id** | **int** | Organizer user ID. Required unless a default values has been set for the API key | [readonly] 
 **destination_id** | **str** | Unique identifier of the destination in your system | [readonly] 
 **destination_name** | **str** | Name of the destination location | [readonly] 

@@ -32,8 +32,8 @@ class ExternalAPITransportOrderRequest(BaseModel):
     ExternalAPITransportOrderRequest
     """  # noqa: E501
 
-    transport_order_id: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        description="Unique identifier of the transport order in your system"
+    transport_order_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = (
+        Field(description="Unique identifier of the transport order in your system")
     )
     order_raw_id: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
         default=None, description="Unique identifier of the order in your system"
@@ -277,6 +277,14 @@ class ExternalAPITransportOrderRequest(BaseModel):
                 if _item_rows:
                     _items.append(_item_rows.to_dict())
             _dict["rows"] = _items
+        # set to None if transport_order_id (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transport_order_id is None
+            and "transport_order_id" in self.model_fields_set
+        ):
+            _dict["transport_order_id"] = None
+
         # set to None if destination_waybill_created_emails (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -342,6 +350,22 @@ class ExternalAPITransportOrderRequest(BaseModel):
         ):
             _dict["origin_transport_order_created_emails"] = None
 
+        # set to None if transportation_company_name (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportation_company_name is None
+            and "transportation_company_name" in self.model_fields_set
+        ):
+            _dict["transportation_company_name"] = None
+
+        # set to None if transportation_company_reg_code (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.transportation_company_reg_code is None
+            and "transportation_company_reg_code" in self.model_fields_set
+        ):
+            _dict["transportation_company_reg_code"] = None
+
         # set to None if truck_reg_number (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -357,6 +381,29 @@ class ExternalAPITransportOrderRequest(BaseModel):
             and "trailer_reg_number" in self.model_fields_set
         ):
             _dict["trailer_reg_number"] = None
+
+        # set to None if driver_email (nullable) is None
+        # and model_fields_set contains the field
+        if self.driver_email is None and "driver_email" in self.model_fields_set:
+            _dict["driver_email"] = None
+
+        # set to None if driver_personal_code (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.driver_personal_code is None
+            and "driver_personal_code" in self.model_fields_set
+        ):
+            _dict["driver_personal_code"] = None
+
+        # set to None if driver_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.driver_name is None and "driver_name" in self.model_fields_set:
+            _dict["driver_name"] = None
+
+        # set to None if driver_phone (nullable) is None
+        # and model_fields_set contains the field
+        if self.driver_phone is None and "driver_phone" in self.model_fields_set:
+            _dict["driver_phone"] = None
 
         # set to None if transport_time (nullable) is None
         # and model_fields_set contains the field

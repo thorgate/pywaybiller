@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 
@@ -33,10 +33,19 @@ class ExternalAPITransportOrderRowRequest(BaseModel):
     assortment_name: Annotated[str, Field(min_length=1, strict=True)] = Field(
         description="Name of the assortment"
     )
+    destination_id: Optional[StrictInt] = Field(
+        default=None,
+        description="Unique identifier of the destination in your system or Waybiller. If not provided, the transport order's destination will be used",
+    )
     amount: Annotated[str, Field(strict=True)] = Field(
         description="Amount of the assortment"
     )
-    __properties: ClassVar[List[str]] = ["assortment_id", "assortment_name", "amount"]
+    __properties: ClassVar[List[str]] = [
+        "assortment_id",
+        "assortment_name",
+        "destination_id",
+        "amount",
+    ]
 
     @field_validator("amount")
     def amount_validate_regular_expression(cls, value):
@@ -99,6 +108,7 @@ class ExternalAPITransportOrderRowRequest(BaseModel):
             {
                 "assortment_id": obj.get("assortment_id"),
                 "assortment_name": obj.get("assortment_name"),
+                "destination_id": obj.get("destination_id"),
                 "amount": obj.get("amount"),
             }
         )

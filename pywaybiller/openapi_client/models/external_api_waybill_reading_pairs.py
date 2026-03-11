@@ -18,32 +18,34 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing_extensions import Annotated, Self
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing_extensions import Self
+
+from pywaybiller.openapi_client.models.scale_reading_in_reading_pair import (
+    ScaleReadingInReadingPair,
+)
+from pywaybiller.openapi_client.models.weighing_flow_enum import WeighingFlowEnum
 
 
-class ExternalAPITransportOrderRow(BaseModel):
+class ExternalAPIWaybillReadingPairs(BaseModel):
     """
-    ExternalAPITransportOrderRow
+    ExternalAPIWaybillReadingPairs
     """  # noqa: E501
 
-    assortment_id: Optional[StrictStr] = Field(
-        description="Unique identifier of the assortment in your system"
+    id: StrictInt = Field(description="Unique identifier of the reading pair.")
+    weighing_flow: WeighingFlowEnum
+    tare_reading: Optional[ScaleReadingInReadingPair] = Field(
+        description="Information about the tare reading."
     )
-    assortment_name: StrictStr = Field(description="Name of the assortment")
-    amount: Annotated[str, Field(strict=True)] = Field(
-        description="Amount of the assortment"
+    gross_reading: Optional[ScaleReadingInReadingPair] = Field(
+        description="Information about the gross reading."
     )
-    __properties: ClassVar[List[str]] = ["assortment_id", "assortment_name", "amount"]
-
-    @field_validator("amount")
-    def amount_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^-?\d{0,5}(?:\.\d{0,3})?$", value):
-            raise ValueError(
-                r"must validate the regular expression /^-?\d{0,5}(?:\.\d{0,3})?$/"
-            )
-        return value
+    __properties: ClassVar[List[str]] = [
+        "id",
+        "weighing_flow",
+        "tare_reading",
+        "gross_reading",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,7 +64,7 @@ class ExternalAPITransportOrderRow(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ExternalAPITransportOrderRow from a JSON string"""
+        """Create an instance of ExternalAPIWaybillReadingPairs from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,10 +77,16 @@ class ExternalAPITransportOrderRow(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
-                "assortment_id",
+                "id",
+                "weighing_flow",
+                "tare_reading",
+                "gross_reading",
             ]
         )
 
@@ -87,16 +95,27 @@ class ExternalAPITransportOrderRow(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if assortment_id (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of tare_reading
+        if self.tare_reading:
+            _dict["tare_reading"] = self.tare_reading.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gross_reading
+        if self.gross_reading:
+            _dict["gross_reading"] = self.gross_reading.to_dict()
+        # set to None if tare_reading (nullable) is None
         # and model_fields_set contains the field
-        if self.assortment_id is None and "assortment_id" in self.model_fields_set:
-            _dict["assortment_id"] = None
+        if self.tare_reading is None and "tare_reading" in self.model_fields_set:
+            _dict["tare_reading"] = None
+
+        # set to None if gross_reading (nullable) is None
+        # and model_fields_set contains the field
+        if self.gross_reading is None and "gross_reading" in self.model_fields_set:
+            _dict["gross_reading"] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ExternalAPITransportOrderRow from a dict"""
+        """Create an instance of ExternalAPIWaybillReadingPairs from a dict"""
         if obj is None:
             return None
 
@@ -105,9 +124,16 @@ class ExternalAPITransportOrderRow(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "assortment_id": obj.get("assortment_id"),
-                "assortment_name": obj.get("assortment_name"),
-                "amount": obj.get("amount"),
+                "id": obj.get("id"),
+                "weighing_flow": obj.get("weighing_flow"),
+                "tare_reading": ScaleReadingInReadingPair.from_dict(obj["tare_reading"])
+                if obj.get("tare_reading") is not None
+                else None,
+                "gross_reading": ScaleReadingInReadingPair.from_dict(
+                    obj["gross_reading"]
+                )
+                if obj.get("gross_reading") is not None
+                else None,
             }
         )
         return _obj

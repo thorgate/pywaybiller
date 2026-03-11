@@ -27,6 +27,7 @@ class ExternalAPIWaybillRow(BaseModel):
     ExternalAPIWaybillRow
     """  # noqa: E501
 
+    id: StrictInt = Field(description="The ID of the row.")
     assortment_id: Optional[StrictStr] = Field(
         default=None,
         description="The external ID of the assortment. Usually `null` if waybill was created in Waybiller UI and not over Waybiller External API.",
@@ -59,6 +60,7 @@ class ExternalAPIWaybillRow(BaseModel):
     extra_information_long: Optional[StrictStr] = None
     extra_information_short: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
+        "id",
         "assortment_id",
         "assortment_ids",
         "assortment_raw_id",
@@ -131,9 +133,11 @@ class ExternalAPIWaybillRow(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
+                "id",
                 "assortment_ids",
                 "scale_assortment_raw_id",
                 "accepted_amount",
@@ -199,6 +203,7 @@ class ExternalAPIWaybillRow(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "id": obj.get("id"),
                 "assortment_id": obj.get("assortment_id"),
                 "assortment_ids": obj.get("assortment_ids"),
                 "assortment_raw_id": obj.get("assortment_raw_id"),

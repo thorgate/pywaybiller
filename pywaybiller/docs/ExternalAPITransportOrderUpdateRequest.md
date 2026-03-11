@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **destination_address** | **str** | Address of the destination location | [optional] 
 **destination_latitude** | **float** | Latitude of the destination location | [optional] 
 **destination_longitude** | **float** | Longitude of the destination location | [optional] 
+**rows** | [**List[ExternalAPITransportOrderRowRequest]**](ExternalAPITransportOrderRowRequest.md) | List of assortments associated with the transport order | 
 **receiver_company_name** | **str** | Name of the company that owns the destination location | [optional] 
 **receiver_company_reg_code** | **str** | Registration code of the company that owns the destination location | [optional] 
 **destination_transport_order_created_emails** | **List[str]** | List of emails to notify when a transport order is created for this destination | [optional] 

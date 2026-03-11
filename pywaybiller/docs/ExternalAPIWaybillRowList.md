@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** | The ID of the row. | [readonly] 
 **assortment_id** | **str** | The ID of the assortment. | [readonly] 
 **assortment_ids** | **List[str]** | The IDs of the assortments. | [readonly] 
 **assortment_raw_id** | **int** | The ID of the assortment. | [optional] 

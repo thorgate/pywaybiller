@@ -16,27 +16,30 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from typing import Any, ClassVar, Dict, List, Optional, Set, Union
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
+from pywaybiller.openapi_client.models.external_api_time_entry_location_type_enum import (
+    ExternalAPITimeEntryLocationTypeEnum,
+)
 
-class ExternalAPIWaybillVehicleLocation(BaseModel):
+
+class ExternalAPITimeEntryLocation(BaseModel):
     """
-    ExternalAPIWaybillVehicleLocation
+    ExternalAPITimeEntryLocation
     """  # noqa: E501
 
-    latitude: Union[StrictFloat, StrictInt] = Field(
-        description="The latitude coordinate of the vehicle (eg 59.401034)."
+    id: StrictInt = Field(description="ID of the location (`Origin` or `Destination`)")
+    type: ExternalAPITimeEntryLocationTypeEnum = Field(
+        description="Type of the location"
     )
-    longitude: Union[StrictFloat, StrictInt] = Field(
-        description="The longitude coordinate of the vehicle (eg 24.791717)."
+    name: StrictStr = Field(description="Name of the location")
+    company_name: StrictStr = Field(
+        description="Name of the company owning the location"
     )
-    location_timestamp: StrictStr = Field(
-        description="UTC timestamp when vehicle was in that position (eg 2020-05-08T19:06:33)."
-    )
-    __properties: ClassVar[List[str]] = ["latitude", "longitude", "location_timestamp"]
+    __properties: ClassVar[List[str]] = ["id", "type", "name", "company_name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +58,7 @@ class ExternalAPIWaybillVehicleLocation(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ExternalAPIWaybillVehicleLocation from a JSON string"""
+        """Create an instance of ExternalAPITimeEntryLocation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,13 +72,11 @@ class ExternalAPIWaybillVehicleLocation(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
-                "latitude",
-                "longitude",
-                "location_timestamp",
+                "name",
+                "company_name",
             ]
         )
 
@@ -88,7 +89,7 @@ class ExternalAPIWaybillVehicleLocation(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ExternalAPIWaybillVehicleLocation from a dict"""
+        """Create an instance of ExternalAPITimeEntryLocation from a dict"""
         if obj is None:
             return None
 
@@ -97,9 +98,10 @@ class ExternalAPIWaybillVehicleLocation(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "latitude": obj.get("latitude"),
-                "longitude": obj.get("longitude"),
-                "location_timestamp": obj.get("location_timestamp"),
+                "id": obj.get("id"),
+                "type": obj.get("type"),
+                "name": obj.get("name"),
+                "company_name": obj.get("company_name"),
             }
         )
         return _obj

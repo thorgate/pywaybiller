@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing_extensions import Self
 
 
@@ -27,10 +27,24 @@ class ExternalAPIWaybillRowRawData(BaseModel):
     ExternalAPIWaybillRowRawData
     """  # noqa: E501
 
-    assortment_id: StrictInt
-    subset_id: Optional[StrictInt]
-    subset_type_id: Optional[StrictInt]
-    __properties: ClassVar[List[str]] = ["assortment_id", "subset_id", "subset_type_id"]
+    assortment_id: StrictInt = Field(description="The ID of the dispatched assortment.")
+    subset_id: Optional[StrictInt] = Field(description="The ID of the subset.")
+    subset_type_id: Optional[StrictInt] = Field(
+        description="The ID of the subset type."
+    )
+    incoming_reading_pair_id: Optional[StrictInt] = Field(
+        description="The ID of the incoming reading pair."
+    )
+    outgoing_reading_pair_id: Optional[StrictInt] = Field(
+        description="The ID of the outgoing reading pair."
+    )
+    __properties: ClassVar[List[str]] = [
+        "assortment_id",
+        "subset_id",
+        "subset_type_id",
+        "incoming_reading_pair_id",
+        "outgoing_reading_pair_id",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,12 +78,16 @@ class ExternalAPIWaybillRowRawData(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
                 "assortment_id",
                 "subset_id",
                 "subset_type_id",
+                "incoming_reading_pair_id",
+                "outgoing_reading_pair_id",
             ]
         )
 
@@ -88,6 +106,22 @@ class ExternalAPIWaybillRowRawData(BaseModel):
         if self.subset_type_id is None and "subset_type_id" in self.model_fields_set:
             _dict["subset_type_id"] = None
 
+        # set to None if incoming_reading_pair_id (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.incoming_reading_pair_id is None
+            and "incoming_reading_pair_id" in self.model_fields_set
+        ):
+            _dict["incoming_reading_pair_id"] = None
+
+        # set to None if outgoing_reading_pair_id (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.outgoing_reading_pair_id is None
+            and "outgoing_reading_pair_id" in self.model_fields_set
+        ):
+            _dict["outgoing_reading_pair_id"] = None
+
         return _dict
 
     @classmethod
@@ -104,6 +138,8 @@ class ExternalAPIWaybillRowRawData(BaseModel):
                 "assortment_id": obj.get("assortment_id"),
                 "subset_id": obj.get("subset_id"),
                 "subset_type_id": obj.get("subset_type_id"),
+                "incoming_reading_pair_id": obj.get("incoming_reading_pair_id"),
+                "outgoing_reading_pair_id": obj.get("outgoing_reading_pair_id"),
             }
         )
         return _obj
