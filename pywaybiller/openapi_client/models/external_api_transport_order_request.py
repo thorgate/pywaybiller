@@ -168,6 +168,18 @@ class ExternalAPITransportOrderRequest(BaseModel):
     trailer_reg_number: Optional[Annotated[str, Field(strict=True, max_length=16)]] = (
         Field(default=None, description="Registration number of the trailer")
     )
+    truck_waybill_created_emails: Optional[
+        List[Annotated[str, Field(strict=True, max_length=254)]]
+    ] = Field(
+        default=None,
+        description="List of emails to notify when a waybill is created for the vehicle. This only applies when a new vehicle is created as part of this request, except for transportation companies named 'Eraisik', for which it also overwrites the emails for existing vehicles.",
+    )
+    truck_waybill_created_emails_language: Optional[
+        Annotated[str, Field(strict=True, max_length=5)]
+    ] = Field(
+        default=None,
+        description="Language of the waybill-created notification emails for the vehicle. This only applies when a new vehicle is created as part of this request, except for transportation companies named 'Eraisik', for which it also overwrites the language for existing vehicles.",
+    )
     driver_email: Optional[
         Annotated[str, Field(min_length=1, strict=True, max_length=254)]
     ] = Field(default=None, description="Driver email")
@@ -223,6 +235,8 @@ class ExternalAPITransportOrderRequest(BaseModel):
         "transportation_company_reg_code",
         "truck_reg_number",
         "trailer_reg_number",
+        "truck_waybill_created_emails",
+        "truck_waybill_created_emails_language",
         "driver_email",
         "driver_personal_code",
         "driver_name",
@@ -382,6 +396,22 @@ class ExternalAPITransportOrderRequest(BaseModel):
         ):
             _dict["trailer_reg_number"] = None
 
+        # set to None if truck_waybill_created_emails (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.truck_waybill_created_emails is None
+            and "truck_waybill_created_emails" in self.model_fields_set
+        ):
+            _dict["truck_waybill_created_emails"] = None
+
+        # set to None if truck_waybill_created_emails_language (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.truck_waybill_created_emails_language is None
+            and "truck_waybill_created_emails_language" in self.model_fields_set
+        ):
+            _dict["truck_waybill_created_emails_language"] = None
+
         # set to None if driver_email (nullable) is None
         # and model_fields_set contains the field
         if self.driver_email is None and "driver_email" in self.model_fields_set:
@@ -483,6 +513,10 @@ class ExternalAPITransportOrderRequest(BaseModel):
                 ),
                 "truck_reg_number": obj.get("truck_reg_number"),
                 "trailer_reg_number": obj.get("trailer_reg_number"),
+                "truck_waybill_created_emails": obj.get("truck_waybill_created_emails"),
+                "truck_waybill_created_emails_language": obj.get(
+                    "truck_waybill_created_emails_language"
+                ),
                 "driver_email": obj.get("driver_email"),
                 "driver_personal_code": obj.get("driver_personal_code"),
                 "driver_name": obj.get("driver_name"),

@@ -37,6 +37,8 @@ Name | Type | Description | Notes
 **transportation_company_reg_code** | **str** | Transportation company registration code | [optional] 
 **truck_reg_number** | **str** | Registration number of the truck | [optional] 
 **trailer_reg_number** | **str** | Registration number of the trailer | [optional] 
+**truck_waybill_created_emails** | **List[str]** | List of emails to notify when a waybill is created for the vehicle. This only applies when a new vehicle is created as part of this request, except for transportation companies named &#39;Eraisik&#39;, for which it also overwrites the emails for existing vehicles. | [optional] 
+**truck_waybill_created_emails_language** | **str** | Language of the waybill-created notification emails for the vehicle. This only applies when a new vehicle is created as part of this request, except for transportation companies named &#39;Eraisik&#39;, for which it also overwrites the language for existing vehicles. | [optional] 
 **driver_email** | **str** | Driver email | [optional] 
 **driver_personal_code** | **str** | Driver personal code | [optional] 
 **driver_name** | **str** | Driver name | [optional] 

@@ -133,6 +133,12 @@ class OriginAssortmentsApi:
                 description="Filters origin assortments by exact origin name (case-insensitive)"
             ),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         subset__subset_type__name: Annotated[
             Optional[StrictStr],
             Field(
@@ -229,6 +235,8 @@ class OriginAssortmentsApi:
         :type origin__name__icontains: str
         :param origin__name__iexact: Filters origin assortments by exact origin name (case-insensitive)
         :type origin__name__iexact: str
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param subset__subset_type__name: Filters origin assortments by exact subset type name (case-sensitive)
         :type subset__subset_type__name: str
         :param subset__subset_type__name__contains: Filters origin assortments where the subset type name contains the specified keyword (case-sensitive)
@@ -284,6 +292,7 @@ class OriginAssortmentsApi:
             origin__name__contains=origin__name__contains,
             origin__name__icontains=origin__name__icontains,
             origin__name__iexact=origin__name__iexact,
+            raw_id__gt=raw_id__gt,
             subset__subset_type__name=subset__subset_type__name,
             subset__subset_type__name__contains=subset__subset_type__name__contains,
             subset__subset_type__name__icontains=subset__subset_type__name__icontains,
@@ -404,6 +413,12 @@ class OriginAssortmentsApi:
                 description="Filters origin assortments by exact origin name (case-insensitive)"
             ),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         subset__subset_type__name: Annotated[
             Optional[StrictStr],
             Field(
@@ -500,6 +515,8 @@ class OriginAssortmentsApi:
         :type origin__name__icontains: str
         :param origin__name__iexact: Filters origin assortments by exact origin name (case-insensitive)
         :type origin__name__iexact: str
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param subset__subset_type__name: Filters origin assortments by exact subset type name (case-sensitive)
         :type subset__subset_type__name: str
         :param subset__subset_type__name__contains: Filters origin assortments where the subset type name contains the specified keyword (case-sensitive)
@@ -555,6 +572,7 @@ class OriginAssortmentsApi:
             origin__name__contains=origin__name__contains,
             origin__name__icontains=origin__name__icontains,
             origin__name__iexact=origin__name__iexact,
+            raw_id__gt=raw_id__gt,
             subset__subset_type__name=subset__subset_type__name,
             subset__subset_type__name__contains=subset__subset_type__name__contains,
             subset__subset_type__name__icontains=subset__subset_type__name__icontains,
@@ -675,6 +693,12 @@ class OriginAssortmentsApi:
                 description="Filters origin assortments by exact origin name (case-insensitive)"
             ),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         subset__subset_type__name: Annotated[
             Optional[StrictStr],
             Field(
@@ -771,6 +795,8 @@ class OriginAssortmentsApi:
         :type origin__name__icontains: str
         :param origin__name__iexact: Filters origin assortments by exact origin name (case-insensitive)
         :type origin__name__iexact: str
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param subset__subset_type__name: Filters origin assortments by exact subset type name (case-sensitive)
         :type subset__subset_type__name: str
         :param subset__subset_type__name__contains: Filters origin assortments where the subset type name contains the specified keyword (case-sensitive)
@@ -826,6 +852,7 @@ class OriginAssortmentsApi:
             origin__name__contains=origin__name__contains,
             origin__name__icontains=origin__name__icontains,
             origin__name__iexact=origin__name__iexact,
+            raw_id__gt=raw_id__gt,
             subset__subset_type__name=subset__subset_type__name,
             subset__subset_type__name__contains=subset__subset_type__name__contains,
             subset__subset_type__name__icontains=subset__subset_type__name__icontains,
@@ -867,6 +894,7 @@ class OriginAssortmentsApi:
         origin__name__contains,
         origin__name__icontains,
         origin__name__iexact,
+        raw_id__gt,
         subset__subset_type__name,
         subset__subset_type__name__contains,
         subset__subset_type__name__icontains,
@@ -947,6 +975,9 @@ class OriginAssortmentsApi:
 
         if origin__name__iexact is not None:
             _query_params.append(("origin__name__iexact", origin__name__iexact))
+
+        if raw_id__gt is not None:
+            _query_params.append(("raw_id__gt", raw_id__gt))
 
         if subset__subset_type__name is not None:
             _query_params.append(

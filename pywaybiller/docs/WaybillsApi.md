@@ -440,13 +440,14 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **waybills_list**
-> PaginatedExternalAPIWaybillListList waybills_list(destination_ids=destination_ids, limit=limit, offset=offset, dispatcher_timestamp__lt=dispatcher_timestamp__lt, dispatcher_timestamp__gt=dispatcher_timestamp__gt, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt, transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt)
+> PaginatedExternalAPIWaybillListList waybills_list(cancelled_timestamp=cancelled_timestamp, cancelled_timestamp__gt=cancelled_timestamp__gt, cancelled_timestamp__gte=cancelled_timestamp__gte, cancelled_timestamp__isnull=cancelled_timestamp__isnull, cancelled_timestamp__lt=cancelled_timestamp__lt, cancelled_timestamp__lte=cancelled_timestamp__lte, confirmed_timestamp=confirmed_timestamp, confirmed_timestamp__gt=confirmed_timestamp__gt, confirmed_timestamp__gte=confirmed_timestamp__gte, confirmed_timestamp__isnull=confirmed_timestamp__isnull, confirmed_timestamp__lt=confirmed_timestamp__lt, confirmed_timestamp__lte=confirmed_timestamp__lte, destination_ids=destination_ids, destination_name=destination_name, destination_timestamp=destination_timestamp, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__lt=dispatcher_timestamp__lt, driver_timestamp=driver_timestamp, driver_timestamp__gt=driver_timestamp__gt, driver_timestamp__gte=driver_timestamp__gte, driver_timestamp__isnull=driver_timestamp__isnull, driver_timestamp__lt=driver_timestamp__lt, driver_timestamp__lte=driver_timestamp__lte, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, offset=offset, origin_ids=origin_ids, origin_name=origin_name, origin_name__contains=origin_name__contains, origin_name__icontains=origin_name__icontains, origin_name__iexact=origin_name__iexact, raw_destination_ids=raw_destination_ids, raw_id__gt=raw_id__gt, raw_origin_ids=raw_origin_ids, receiver_company_name=receiver_company_name, shipper_company_name=shipper_company_name, status=status, status__gt=status__gt, status__gte=status__gte, status__in=status__in, status__lt=status__lt, status__lte=status__lte, transportation_company_name=transportation_company_name, transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt, transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt, truck_reg_number=truck_reg_number)
 
 Querying of waybills
 
 Returns all waybills associated with your company, according to the specified filters.<br><br>
-        **NB!** By default, past 30 days according to the `dispatcher_timestamp` field waybills are returned. Use
-        `dispatcher_timestamp__lt` and `dispatcher_timestamp__gt` for filtering. Note that the maximum range is 30 days.
+        **NB!** When no filters are provided, only waybills from the past 30 days (based on the `dispatcher_timestamp`)
+        are returned. Providing any filter overrides this default and enables queries of arbitrary periods.<br>
+        All timestamp filters must be in ISO 8601 format
         
 
 ### Example
@@ -480,20 +481,59 @@ configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.WaybillsApi(api_client)
+    cancelled_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the cancelled timestamp equals the specified value. (optional)
+    cancelled_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the cancelled timestamp is greater than the specified value. (optional)
+    cancelled_timestamp__gte = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the cancelled timestamp is greater than or equal to the specified value. (optional)
+    cancelled_timestamp__isnull = True # bool | When true, returns waybills where the cancelled timestamp is null; when false, only those with a value. (optional)
+    cancelled_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the cancelled timestamp is less than the specified value. (optional)
+    cancelled_timestamp__lte = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the cancelled timestamp is less than or equal to the specified value. (optional)
+    confirmed_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the confirmed timestamp equals the specified value. (optional)
+    confirmed_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the confirmed timestamp is greater than the specified value. (optional)
+    confirmed_timestamp__gte = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the confirmed timestamp is greater than or equal to the specified value. (optional)
+    confirmed_timestamp__isnull = True # bool | When true, returns waybills where the confirmed timestamp is null; when false, only those with a value. (optional)
+    confirmed_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the confirmed timestamp is less than the specified value. (optional)
+    confirmed_timestamp__lte = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the confirmed timestamp is less than or equal to the specified value. (optional)
     destination_ids = 'destination_ids_example' # str | Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas. (optional)
+    destination_name = 'destination_name_example' # str | Filters waybills by the final destination name. Multiple values may be separated by commas. (optional)
+    destination_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the destination timestamp equals the specified value. The value must be in ISO 8601 format. (optional)
+    dispatcher_timestamp__gt = 'dispatcher_timestamp__gt_example' # str | Filters waybills where the dispatcher timestamp is greater than the specified value. (optional)
+    dispatcher_timestamp__lt = 'dispatcher_timestamp__lt_example' # str | Filters waybills where the dispatcher timestamp is less than the specified value. (optional)
+    driver_timestamp = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the driver timestamp equals the specified value. (optional)
+    driver_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the driver timestamp is greater than the specified value. (optional)
+    driver_timestamp__gte = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the driver timestamp is greater than or equal to the specified value. (optional)
+    driver_timestamp__isnull = True # bool | When true, returns waybills where the driver timestamp is null; when false, only those with a value. (optional)
+    driver_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the driver timestamp is less than the specified value. (optional)
+    driver_timestamp__lte = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the driver timestamp is less than or equal to the specified value. (optional)
     limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
+    number = 'number_example' # str | Filters waybills where the waybill number equals the specified value. (optional)
+    number__contains = 'number__contains_example' # str | Filters waybills where the waybill number contains the specified substring. (optional)
+    number__icontains = 'number__icontains_example' # str | Filters waybills where the waybill number contains the specified substring (case-insensitive). (optional)
+    number__iexact = 'number__iexact_example' # str | Filters waybills where the waybill number equals the specified value (case-insensitive). (optional)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
-    dispatcher_timestamp__lt = 'dispatcher_timestamp__lt_example' # str | By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. (optional)
-    dispatcher_timestamp__gt = 'dispatcher_timestamp__gt_example' # str | By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. (optional)
-    origin_ids = 'origin_ids_example' # str | Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas. (optional)
+    origin_ids = 'origin_ids_example' # str | Filters waybills with a specified list of origin IDs from your system. Multiple values may be separated by commas. (optional)
+    origin_name = 'origin_name_example' # str | Filters waybills where the origin name equals the specified value. (optional)
+    origin_name__contains = 'origin_name__contains_example' # str | Filters waybills where the origin name contains the specified substring. (optional)
+    origin_name__icontains = 'origin_name__icontains_example' # str | Filters waybills where the origin name contains the specified substring (case-insensitive). (optional)
+    origin_name__iexact = 'origin_name__iexact_example' # str | Filters waybills where the origin name equals the specified value (case-insensitive). (optional)
     raw_destination_ids = 'raw_destination_ids_example' # str | Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas. (optional)
+    raw_id__gt = 56 # int | Filters objects whose Waybiller (raw) ID is greater than the specified value (optional)
     raw_origin_ids = 'raw_origin_ids_example' # str | Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas. (optional)
-    transportation_cost_confirmed_at_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format. (optional)
-    transportation_cost_confirmed_at_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format. (optional)
+    receiver_company_name = 'receiver_company_name_example' # str | Filters waybills by the receiver (final destination) company name. Multiple values may be separated by commas. (optional)
+    shipper_company_name = 'shipper_company_name_example' # str | Filters waybills by the dispatcher (shipper) company name. Multiple values may be separated by commas. (optional)
+    status = 56 # int | Filters waybills where the waybill status equals the specified value. (optional)
+    status__gt = 56 # int | Filters waybills where the waybill status is greater than the specified value. (optional)
+    status__gte = 56 # int | Filters waybills where the waybill status is greater than or equal to the specified value. (optional)
+    status__in = 'status__in_example' # str | Filters waybills where the waybill status matches any of the comma-separated values. (optional)
+    status__lt = 56 # int | Filters waybills where the waybill status is less than the specified value. (optional)
+    status__lte = 56 # int | Filters waybills where the waybill status is less than or equal to the specified value. (optional)
+    transportation_company_name = 'transportation_company_name_example' # str | Filters waybills by the transportation (driver) company name. Multiple values may be separated by commas. (optional)
+    transportation_cost_confirmed_at_timestamp__gt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the transportation cost confirmed timestamp is greater than the specified value. (optional)
+    transportation_cost_confirmed_at_timestamp__lt = '2013-10-20T19:20:30+01:00' # datetime | Filters waybills where the transportation cost confirmed timestamp is less than the specified value. (optional)
+    truck_reg_number = 'truck_reg_number_example' # str | Filters waybills by the confirmed truck registration number. Multiple values may be separated by commas. (optional)
 
     try:
         # Querying of waybills
-        api_response = api_instance.waybills_list(destination_ids=destination_ids, limit=limit, offset=offset, dispatcher_timestamp__lt=dispatcher_timestamp__lt, dispatcher_timestamp__gt=dispatcher_timestamp__gt, origin_ids=origin_ids, raw_destination_ids=raw_destination_ids, raw_origin_ids=raw_origin_ids, transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt, transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt)
+        api_response = api_instance.waybills_list(cancelled_timestamp=cancelled_timestamp, cancelled_timestamp__gt=cancelled_timestamp__gt, cancelled_timestamp__gte=cancelled_timestamp__gte, cancelled_timestamp__isnull=cancelled_timestamp__isnull, cancelled_timestamp__lt=cancelled_timestamp__lt, cancelled_timestamp__lte=cancelled_timestamp__lte, confirmed_timestamp=confirmed_timestamp, confirmed_timestamp__gt=confirmed_timestamp__gt, confirmed_timestamp__gte=confirmed_timestamp__gte, confirmed_timestamp__isnull=confirmed_timestamp__isnull, confirmed_timestamp__lt=confirmed_timestamp__lt, confirmed_timestamp__lte=confirmed_timestamp__lte, destination_ids=destination_ids, destination_name=destination_name, destination_timestamp=destination_timestamp, dispatcher_timestamp__gt=dispatcher_timestamp__gt, dispatcher_timestamp__lt=dispatcher_timestamp__lt, driver_timestamp=driver_timestamp, driver_timestamp__gt=driver_timestamp__gt, driver_timestamp__gte=driver_timestamp__gte, driver_timestamp__isnull=driver_timestamp__isnull, driver_timestamp__lt=driver_timestamp__lt, driver_timestamp__lte=driver_timestamp__lte, limit=limit, number=number, number__contains=number__contains, number__icontains=number__icontains, number__iexact=number__iexact, offset=offset, origin_ids=origin_ids, origin_name=origin_name, origin_name__contains=origin_name__contains, origin_name__icontains=origin_name__icontains, origin_name__iexact=origin_name__iexact, raw_destination_ids=raw_destination_ids, raw_id__gt=raw_id__gt, raw_origin_ids=raw_origin_ids, receiver_company_name=receiver_company_name, shipper_company_name=shipper_company_name, status=status, status__gt=status__gt, status__gte=status__gte, status__in=status__in, status__lt=status__lt, status__lte=status__lte, transportation_company_name=transportation_company_name, transportation_cost_confirmed_at_timestamp__gt=transportation_cost_confirmed_at_timestamp__gt, transportation_cost_confirmed_at_timestamp__lt=transportation_cost_confirmed_at_timestamp__lt, truck_reg_number=truck_reg_number)
         print("The response of WaybillsApi->waybills_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -507,16 +547,55 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **cancelled_timestamp** | **datetime**| Filters waybills where the cancelled timestamp equals the specified value. | [optional] 
+ **cancelled_timestamp__gt** | **datetime**| Filters waybills where the cancelled timestamp is greater than the specified value. | [optional] 
+ **cancelled_timestamp__gte** | **datetime**| Filters waybills where the cancelled timestamp is greater than or equal to the specified value. | [optional] 
+ **cancelled_timestamp__isnull** | **bool**| When true, returns waybills where the cancelled timestamp is null; when false, only those with a value. | [optional] 
+ **cancelled_timestamp__lt** | **datetime**| Filters waybills where the cancelled timestamp is less than the specified value. | [optional] 
+ **cancelled_timestamp__lte** | **datetime**| Filters waybills where the cancelled timestamp is less than or equal to the specified value. | [optional] 
+ **confirmed_timestamp** | **datetime**| Filters waybills where the confirmed timestamp equals the specified value. | [optional] 
+ **confirmed_timestamp__gt** | **datetime**| Filters waybills where the confirmed timestamp is greater than the specified value. | [optional] 
+ **confirmed_timestamp__gte** | **datetime**| Filters waybills where the confirmed timestamp is greater than or equal to the specified value. | [optional] 
+ **confirmed_timestamp__isnull** | **bool**| When true, returns waybills where the confirmed timestamp is null; when false, only those with a value. | [optional] 
+ **confirmed_timestamp__lt** | **datetime**| Filters waybills where the confirmed timestamp is less than the specified value. | [optional] 
+ **confirmed_timestamp__lte** | **datetime**| Filters waybills where the confirmed timestamp is less than or equal to the specified value. | [optional] 
  **destination_ids** | **str**| Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas. | [optional] 
+ **destination_name** | **str**| Filters waybills by the final destination name. Multiple values may be separated by commas. | [optional] 
+ **destination_timestamp** | **datetime**| Filters waybills where the destination timestamp equals the specified value. The value must be in ISO 8601 format. | [optional] 
+ **dispatcher_timestamp__gt** | **str**| Filters waybills where the dispatcher timestamp is greater than the specified value. | [optional] 
+ **dispatcher_timestamp__lt** | **str**| Filters waybills where the dispatcher timestamp is less than the specified value. | [optional] 
+ **driver_timestamp** | **datetime**| Filters waybills where the driver timestamp equals the specified value. | [optional] 
+ **driver_timestamp__gt** | **datetime**| Filters waybills where the driver timestamp is greater than the specified value. | [optional] 
+ **driver_timestamp__gte** | **datetime**| Filters waybills where the driver timestamp is greater than or equal to the specified value. | [optional] 
+ **driver_timestamp__isnull** | **bool**| When true, returns waybills where the driver timestamp is null; when false, only those with a value. | [optional] 
+ **driver_timestamp__lt** | **datetime**| Filters waybills where the driver timestamp is less than the specified value. | [optional] 
+ **driver_timestamp__lte** | **datetime**| Filters waybills where the driver timestamp is less than or equal to the specified value. | [optional] 
  **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
+ **number** | **str**| Filters waybills where the waybill number equals the specified value. | [optional] 
+ **number__contains** | **str**| Filters waybills where the waybill number contains the specified substring. | [optional] 
+ **number__icontains** | **str**| Filters waybills where the waybill number contains the specified substring (case-insensitive). | [optional] 
+ **number__iexact** | **str**| Filters waybills where the waybill number equals the specified value (case-insensitive). | [optional] 
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
- **dispatcher_timestamp__lt** | **str**| By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. | [optional] 
- **dispatcher_timestamp__gt** | **str**| By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days. | [optional] 
- **origin_ids** | **str**| Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas. | [optional] 
+ **origin_ids** | **str**| Filters waybills with a specified list of origin IDs from your system. Multiple values may be separated by commas. | [optional] 
+ **origin_name** | **str**| Filters waybills where the origin name equals the specified value. | [optional] 
+ **origin_name__contains** | **str**| Filters waybills where the origin name contains the specified substring. | [optional] 
+ **origin_name__icontains** | **str**| Filters waybills where the origin name contains the specified substring (case-insensitive). | [optional] 
+ **origin_name__iexact** | **str**| Filters waybills where the origin name equals the specified value (case-insensitive). | [optional] 
  **raw_destination_ids** | **str**| Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas. | [optional] 
+ **raw_id__gt** | **int**| Filters objects whose Waybiller (raw) ID is greater than the specified value | [optional] 
  **raw_origin_ids** | **str**| Filters waybills with a specified list of raw origin IDs. Multiple values may be separated by commas. | [optional] 
- **transportation_cost_confirmed_at_timestamp__gt** | **datetime**| Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format. | [optional] 
- **transportation_cost_confirmed_at_timestamp__lt** | **datetime**| Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format. | [optional] 
+ **receiver_company_name** | **str**| Filters waybills by the receiver (final destination) company name. Multiple values may be separated by commas. | [optional] 
+ **shipper_company_name** | **str**| Filters waybills by the dispatcher (shipper) company name. Multiple values may be separated by commas. | [optional] 
+ **status** | **int**| Filters waybills where the waybill status equals the specified value. | [optional] 
+ **status__gt** | **int**| Filters waybills where the waybill status is greater than the specified value. | [optional] 
+ **status__gte** | **int**| Filters waybills where the waybill status is greater than or equal to the specified value. | [optional] 
+ **status__in** | **str**| Filters waybills where the waybill status matches any of the comma-separated values. | [optional] 
+ **status__lt** | **int**| Filters waybills where the waybill status is less than the specified value. | [optional] 
+ **status__lte** | **int**| Filters waybills where the waybill status is less than or equal to the specified value. | [optional] 
+ **transportation_company_name** | **str**| Filters waybills by the transportation (driver) company name. Multiple values may be separated by commas. | [optional] 
+ **transportation_cost_confirmed_at_timestamp__gt** | **datetime**| Filters waybills where the transportation cost confirmed timestamp is greater than the specified value. | [optional] 
+ **transportation_cost_confirmed_at_timestamp__lt** | **datetime**| Filters waybills where the transportation cost confirmed timestamp is less than the specified value. | [optional] 
+ **truck_reg_number** | **str**| Filters waybills by the confirmed truck registration number. Multiple values may be separated by commas. | [optional] 
 
 ### Return type
 

@@ -31,8 +31,8 @@ Name | Type | Description | Notes
 **holding_rights** | [**List[ExternalAPIWaybillHoldingRightRequest]**](ExternalAPIWaybillHoldingRightRequest.md) |  | [optional] 
 **shipper_company_name** | **str** | The name of the shipper company. | [optional] 
 **shipper_company_reg_code** | **str** | The registry code of the shipper company. | [optional] 
-**transportation_company_name** | **str** | The name of the transportation company. | 
-**transportation_company_reg_code** | **str** | The registry code of the transportation company. | 
+**transportation_company_name** | **str** | The name of the transportation company. | [optional] 
+**transportation_company_reg_code** | **str** | The registry code of the transportation company. | [optional] 
 **truck_reg_number** | **str** | The registration number of the vehicle. | 
 **trailer_reg_number** | **str** | The registration number of the trailer. | [optional] 
 **driver_email** | **str** | The e-mail address of the driver user. | [optional] 

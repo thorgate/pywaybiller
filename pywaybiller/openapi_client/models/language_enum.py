@@ -31,6 +31,7 @@ class LanguageEnum(str, Enum):
     RU = "ru"
     EN = "en"
     US = "us"
+    LT = "lt"
     LV = "lv"
     FI = "fi"
     NB = "nb"

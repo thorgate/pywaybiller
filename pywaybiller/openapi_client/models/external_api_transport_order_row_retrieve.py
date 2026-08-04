@@ -38,7 +38,7 @@ class ExternalAPITransportOrderRowRetrieve(BaseModel):
     assortment_id: Optional[StrictStr] = Field(
         description="Unique identifier of the assortment in your system"
     )
-    assortment_name: StrictStr = Field(description="Name of the assortment")
+    assortment_name: Optional[StrictStr] = Field(description="Name of the assortment")
     destination_id: Optional[StrictStr] = Field(
         description="Unique identifier of the destination in your system or Waybiller"
     )
@@ -135,6 +135,11 @@ class ExternalAPITransportOrderRowRetrieve(BaseModel):
         # and model_fields_set contains the field
         if self.assortment_id is None and "assortment_id" in self.model_fields_set:
             _dict["assortment_id"] = None
+
+        # set to None if assortment_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.assortment_name is None and "assortment_name" in self.model_fields_set:
+            _dict["assortment_name"] = None
 
         # set to None if destination_id (nullable) is None
         # and model_fields_set contains the field

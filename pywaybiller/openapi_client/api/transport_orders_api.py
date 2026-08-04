@@ -664,6 +664,12 @@ class TransportOrdersApi:
                 description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
             ),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         raw_organizer_company_ids: Annotated[
             Optional[StrictStr],
             Field(
@@ -800,6 +806,8 @@ class TransportOrdersApi:
         :type raw_assortment_ids: str
         :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
         :type raw_destination_ids: str
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param raw_organizer_company_ids: Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas.
         :type raw_organizer_company_ids: str
         :param raw_organizer_user_ids: Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas.
@@ -867,6 +875,7 @@ class TransportOrdersApi:
             origin_ids=origin_ids,
             raw_assortment_ids=raw_assortment_ids,
             raw_destination_ids=raw_destination_ids,
+            raw_id__gt=raw_id__gt,
             raw_organizer_company_ids=raw_organizer_company_ids,
             raw_organizer_user_ids=raw_organizer_user_ids,
             raw_origin_ids=raw_origin_ids,
@@ -971,6 +980,12 @@ class TransportOrdersApi:
             Optional[StrictStr],
             Field(
                 description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
             ),
         ] = None,
         raw_organizer_company_ids: Annotated[
@@ -1109,6 +1124,8 @@ class TransportOrdersApi:
         :type raw_assortment_ids: str
         :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
         :type raw_destination_ids: str
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param raw_organizer_company_ids: Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas.
         :type raw_organizer_company_ids: str
         :param raw_organizer_user_ids: Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas.
@@ -1176,6 +1193,7 @@ class TransportOrdersApi:
             origin_ids=origin_ids,
             raw_assortment_ids=raw_assortment_ids,
             raw_destination_ids=raw_destination_ids,
+            raw_id__gt=raw_id__gt,
             raw_organizer_company_ids=raw_organizer_company_ids,
             raw_organizer_user_ids=raw_organizer_user_ids,
             raw_origin_ids=raw_origin_ids,
@@ -1280,6 +1298,12 @@ class TransportOrdersApi:
             Optional[StrictStr],
             Field(
                 description="Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
+            ),
+        ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
             ),
         ] = None,
         raw_organizer_company_ids: Annotated[
@@ -1418,6 +1442,8 @@ class TransportOrdersApi:
         :type raw_assortment_ids: str
         :param raw_destination_ids: Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas.
         :type raw_destination_ids: str
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param raw_organizer_company_ids: Filters transport orders with a specified list of raw organizer company IDs. Multiple values may be separated by commas.
         :type raw_organizer_company_ids: str
         :param raw_organizer_user_ids: Filters transport orders with a specified list of raw organizer user IDs. Multiple values may be separated by commas.
@@ -1485,6 +1511,7 @@ class TransportOrdersApi:
             origin_ids=origin_ids,
             raw_assortment_ids=raw_assortment_ids,
             raw_destination_ids=raw_destination_ids,
+            raw_id__gt=raw_id__gt,
             raw_organizer_company_ids=raw_organizer_company_ids,
             raw_organizer_user_ids=raw_organizer_user_ids,
             raw_origin_ids=raw_origin_ids,
@@ -1530,6 +1557,7 @@ class TransportOrdersApi:
         origin_ids,
         raw_assortment_ids,
         raw_destination_ids,
+        raw_id__gt,
         raw_organizer_company_ids,
         raw_organizer_user_ids,
         raw_origin_ids,
@@ -1612,6 +1640,9 @@ class TransportOrdersApi:
 
         if raw_destination_ids is not None:
             _query_params.append(("raw_destination_ids", raw_destination_ids))
+
+        if raw_id__gt is not None:
+            _query_params.append(("raw_id__gt", raw_id__gt))
 
         if raw_organizer_company_ids is not None:
             _query_params.append(

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **destinations_list**
-> PaginatedExternalAPIDestinationList destinations_list(company__reg_code=company__reg_code, company__reg_code__contains=company__reg_code__contains, company__reg_code__icontains=company__reg_code__icontains, company__reg_code__iexact=company__reg_code__iexact, explicitly_viewable=explicitly_viewable, limit=limit, location__address=location__address, location__address__contains=location__address__contains, location__address__icontains=location__address__icontains, location__address__iexact=location__address__iexact, name=name, name__contains=name__contains, name__icontains=name__icontains, name__iexact=name__iexact, offset=offset)
+> PaginatedExternalAPIDestinationList destinations_list(company__reg_code=company__reg_code, company__reg_code__contains=company__reg_code__contains, company__reg_code__icontains=company__reg_code__icontains, company__reg_code__iexact=company__reg_code__iexact, explicitly_viewable=explicitly_viewable, limit=limit, location__address=location__address, location__address__contains=location__address__contains, location__address__icontains=location__address__icontains, location__address__iexact=location__address__iexact, name=name, name__contains=name__contains, name__icontains=name__icontains, name__iexact=name__iexact, offset=offset, raw_id__gt=raw_id__gt)
 
 Querying destinations
 
@@ -60,10 +60,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     name__icontains = 'name__icontains_example' # str | Filters destinations whose names contain this keyword (case-insensitive) (optional)
     name__iexact = 'name__iexact_example' # str | Filters destinations with the specified name (case-insensitive) (optional)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
+    raw_id__gt = 56 # int | Filters objects whose Waybiller (raw) ID is greater than the specified value (optional)
 
     try:
         # Querying destinations
-        api_response = api_instance.destinations_list(company__reg_code=company__reg_code, company__reg_code__contains=company__reg_code__contains, company__reg_code__icontains=company__reg_code__icontains, company__reg_code__iexact=company__reg_code__iexact, explicitly_viewable=explicitly_viewable, limit=limit, location__address=location__address, location__address__contains=location__address__contains, location__address__icontains=location__address__icontains, location__address__iexact=location__address__iexact, name=name, name__contains=name__contains, name__icontains=name__icontains, name__iexact=name__iexact, offset=offset)
+        api_response = api_instance.destinations_list(company__reg_code=company__reg_code, company__reg_code__contains=company__reg_code__contains, company__reg_code__icontains=company__reg_code__icontains, company__reg_code__iexact=company__reg_code__iexact, explicitly_viewable=explicitly_viewable, limit=limit, location__address=location__address, location__address__contains=location__address__contains, location__address__icontains=location__address__icontains, location__address__iexact=location__address__iexact, name=name, name__contains=name__contains, name__icontains=name__icontains, name__iexact=name__iexact, offset=offset, raw_id__gt=raw_id__gt)
         print("The response of DestinationsApi->destinations_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -92,6 +93,7 @@ Name | Type | Description  | Notes
  **name__icontains** | **str**| Filters destinations whose names contain this keyword (case-insensitive) | [optional] 
  **name__iexact** | **str**| Filters destinations with the specified name (case-insensitive) | [optional] 
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
+ **raw_id__gt** | **int**| Filters objects whose Waybiller (raw) ID is greater than the specified value | [optional] 
 
 ### Return type
 

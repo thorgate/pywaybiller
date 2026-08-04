@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **loader_action_logs_list**
-> PaginatedExternalAPILoaderActionLogList loader_action_logs_list(limit=limit, loader_unit_id=loader_unit_id, offset=offset, timestamp=timestamp, timestamp__gt=timestamp__gt, timestamp__gte=timestamp__gte, timestamp__isnull=timestamp__isnull, timestamp__lt=timestamp__lt, timestamp__lte=timestamp__lte)
+> PaginatedExternalAPILoaderActionLogList loader_action_logs_list(limit=limit, loader_unit_id=loader_unit_id, offset=offset, raw_id__gt=raw_id__gt, timestamp=timestamp, timestamp__gt=timestamp__gt, timestamp__gte=timestamp__gte, timestamp__isnull=timestamp__isnull, timestamp__lt=timestamp__lt, timestamp__lte=timestamp__lte)
 
 Querying loader action logs
 
@@ -48,6 +48,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
     loader_unit_id = 56 # int | Filters loader action logs for your company with the specified loader unit ID (optional)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
+    raw_id__gt = 56 # int | Filters objects whose Waybiller (raw) ID is greater than the specified value (optional)
     timestamp = 'timestamp_example' # str | Filters loader action logs for your company within the specified time period (exact) (optional)
     timestamp__gt = 'timestamp__gt_example' # str | Filters loader action logs for your company within the specified time period (greater than) (optional)
     timestamp__gte = 'timestamp__gte_example' # str | Filters loader action logs for your company within the specified time period (greater than or equal) (optional)
@@ -57,7 +58,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Querying loader action logs
-        api_response = api_instance.loader_action_logs_list(limit=limit, loader_unit_id=loader_unit_id, offset=offset, timestamp=timestamp, timestamp__gt=timestamp__gt, timestamp__gte=timestamp__gte, timestamp__isnull=timestamp__isnull, timestamp__lt=timestamp__lt, timestamp__lte=timestamp__lte)
+        api_response = api_instance.loader_action_logs_list(limit=limit, loader_unit_id=loader_unit_id, offset=offset, raw_id__gt=raw_id__gt, timestamp=timestamp, timestamp__gt=timestamp__gt, timestamp__gte=timestamp__gte, timestamp__isnull=timestamp__isnull, timestamp__lt=timestamp__lt, timestamp__lte=timestamp__lte)
         print("The response of LoaderActionLogsApi->loader_action_logs_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -74,6 +75,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
  **loader_unit_id** | **int**| Filters loader action logs for your company with the specified loader unit ID | [optional] 
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
+ **raw_id__gt** | **int**| Filters objects whose Waybiller (raw) ID is greater than the specified value | [optional] 
  **timestamp** | **str**| Filters loader action logs for your company within the specified time period (exact) | [optional] 
  **timestamp__gt** | **str**| Filters loader action logs for your company within the specified time period (greater than) | [optional] 
  **timestamp__gte** | **str**| Filters loader action logs for your company within the specified time period (greater than or equal) | [optional] 

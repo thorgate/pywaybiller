@@ -131,12 +131,14 @@ class ExternalAPIWaybillCreate(BaseModel):
     shipper_company_reg_code: Optional[
         Annotated[str, Field(strict=True, max_length=16)]
     ] = Field(default=None, description="The registry code of the shipper company.")
-    transportation_company_name: Annotated[str, Field(strict=True, max_length=64)] = (
-        Field(description="The name of the transportation company.")
+    transportation_company_name: Optional[
+        Annotated[str, Field(strict=True, max_length=64)]
+    ] = Field(default=None, description="The name of the transportation company.")
+    transportation_company_reg_code: Optional[
+        Annotated[str, Field(strict=True, max_length=16)]
+    ] = Field(
+        default=None, description="The registry code of the transportation company."
     )
-    transportation_company_reg_code: Annotated[
-        str, Field(strict=True, max_length=16)
-    ] = Field(description="The registry code of the transportation company.")
     truck_reg_number: StrictStr = Field(
         description="The registration number of the vehicle."
     )

@@ -54,6 +54,12 @@ class LoaderActionLogsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         timestamp: Annotated[
             Optional[StrictStr],
             Field(
@@ -112,6 +118,8 @@ class LoaderActionLogsApi:
         :type loader_unit_id: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param timestamp: Filters loader action logs for your company within the specified time period (exact)
         :type timestamp: str
         :param timestamp__gt: Filters loader action logs for your company within the specified time period (greater than)
@@ -150,6 +158,7 @@ class LoaderActionLogsApi:
             limit=limit,
             loader_unit_id=loader_unit_id,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             timestamp=timestamp,
             timestamp__gt=timestamp__gt,
             timestamp__gte=timestamp__gte,
@@ -191,6 +200,12 @@ class LoaderActionLogsApi:
         offset: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
+        ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
         ] = None,
         timestamp: Annotated[
             Optional[StrictStr],
@@ -250,6 +265,8 @@ class LoaderActionLogsApi:
         :type loader_unit_id: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param timestamp: Filters loader action logs for your company within the specified time period (exact)
         :type timestamp: str
         :param timestamp__gt: Filters loader action logs for your company within the specified time period (greater than)
@@ -288,6 +305,7 @@ class LoaderActionLogsApi:
             limit=limit,
             loader_unit_id=loader_unit_id,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             timestamp=timestamp,
             timestamp__gt=timestamp__gt,
             timestamp__gte=timestamp__gte,
@@ -329,6 +347,12 @@ class LoaderActionLogsApi:
         offset: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
+        ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
         ] = None,
         timestamp: Annotated[
             Optional[StrictStr],
@@ -388,6 +412,8 @@ class LoaderActionLogsApi:
         :type loader_unit_id: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param timestamp: Filters loader action logs for your company within the specified time period (exact)
         :type timestamp: str
         :param timestamp__gt: Filters loader action logs for your company within the specified time period (greater than)
@@ -426,6 +452,7 @@ class LoaderActionLogsApi:
             limit=limit,
             loader_unit_id=loader_unit_id,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             timestamp=timestamp,
             timestamp__gt=timestamp__gt,
             timestamp__gte=timestamp__gte,
@@ -452,6 +479,7 @@ class LoaderActionLogsApi:
         limit,
         loader_unit_id,
         offset,
+        raw_id__gt,
         timestamp,
         timestamp__gt,
         timestamp__gte,
@@ -487,6 +515,9 @@ class LoaderActionLogsApi:
 
         if offset is not None:
             _query_params.append(("offset", offset))
+
+        if raw_id__gt is not None:
+            _query_params.append(("raw_id__gt", raw_id__gt))
 
         if timestamp is not None:
             _query_params.append(("timestamp", timestamp))

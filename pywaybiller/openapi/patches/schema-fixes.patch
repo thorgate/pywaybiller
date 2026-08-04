@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2026-03-11 15:28:11.164619113 +0200
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-03-11 15:27:45.164226616 +0200
+--- ./pywaybiller/openapi/waybiller_schema.json	2026-08-04 14:04:55.716986586 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-08-04 14:04:54.338986568 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -9,101 +9,103 @@
      "version": "v1",
      "description": "The **Waybiller External API** is a feature that allows companies to access **Waybiller** data as JSON objects and\ncreate **Waybiller** instances out of their own data.\n\nTo make integration easier for the companies, the external API provides mapping support - it is possible to create\ncompany-specific mappings for object identifiers (such as destination and origin).\n\nThese mappings will be used for representing companies data from external API, and for converting the values during the\ncreation of **Waybiller** instances (such as transport orders and waybills).\n\nMost of the API responses contain mapped values, which may be null if the company doesn't have a mapping for this\nobject.\n\nUnique **Waybiller** identifiers and values can be accessed via the `raw_data` key.\n\nThe API is HTTPS and JSON based.\n\n### Pagination\n\nBy default, list endpoint responses are presented in pages of 30 items.\n\nIt is possible to control the page size using the `limit` parameter:\n`/external-api/<some-list-endpoint>/?limit=<number>`, where `<number>` is an integer between 1 and 1000.\n"
    },
-@@ -3898,6 +3898,24 @@
-             }
-           },
-           {
-+            "name": "dispatcher_timestamp__lt",
-+            "required": false,
-+            "in": "query",
-+            "description": "By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.",
-+            "schema": {
-+              "type": "string"
-+            }
-+          },
-+          {
-+            "name": "dispatcher_timestamp__gt",
-+            "required": false,
-+            "in": "query",
-+            "description": "By default, past 30 days according to the dispatcher_timestamp field waybills are returned. Use dispatcher_timestamp__lt and dispatcher_timestamp__gt for filtering. Note that the maximum range is 30 days.",
-+            "schema": {
-+              "type": "string"
-+            }
-+          },
-+          {
+@@ -4086,8 +4086,7 @@
              "in": "query",
-             "name": "origin_ids",
+             "name": "dispatcher_timestamp__gt",
              "schema": {
-@@ -8179,6 +8197,7 @@
+-              "type": "string",
+-              "format": "date-time"
++              "type": "string"
+             },
+             "description": "Filters waybills where the dispatcher timestamp is greater than the specified value."
+           },
+@@ -4095,8 +4094,7 @@
+             "in": "query",
+             "name": "dispatcher_timestamp__lt",
+             "schema": {
+-              "type": "string",
+-              "format": "date-time"
++              "type": "string"
+             },
+             "description": "Filters waybills where the dispatcher timestamp is less than the specified value."
+           },
+@@ -8620,7 +8618,8 @@
            "transport_order_id": {
              "type": "string",
              "minLength": 1,
-+            "nullable": true,
-             "description": "Unique identifier of the transport order in your system"
+-            "description": "Unique identifier of the transport order in your system"
++            "description": "Unique identifier of the transport order in your system",
++            "nullable": true
            },
            "order_raw_id": {
-@@ -8452,6 +8471,7 @@
+             "type": "integer",
+@@ -8909,7 +8908,8 @@
            "transport_order_id": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Unique identifier of the transport order in your system"
+-            "description": "Unique identifier of the transport order in your system"
++            "description": "Unique identifier of the transport order in your system",
++            "nullable": true
            },
            "number": {
-@@ -8872,6 +8892,7 @@
-           "assortment_id": {
              "type": "string",
-             "readOnly": true,
-+            "nullable": true,
-             "description": "Unique identifier of the assortment in your system"
-           },
-           "assortment_name": {
-@@ -9709,6 +9730,7 @@
+@@ -10168,7 +10168,8 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Time when waybill reached destination."
+-            "description": "Time when waybill reached destination."
++            "description": "Time when waybill reached destination.",
++            "nullable": true
            },
            "confirmed_timestamp": {
-@@ -9734,10 +9756,12 @@
+             "type": "string",
+@@ -10193,11 +10194,13 @@
            "navision_bin_code": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Bin code."
+-            "description": "Bin code."
++            "description": "Bin code.",
++            "nullable": true
            },
            "evr_waybill_number": {
              "type": "string",
-+            "nullable": true,
-             "description": "EVR waybill number."
+-            "description": "EVR waybill number."
++            "description": "EVR waybill number.",
++            "nullable": true
            },
            "raw_data": {
-@@ -10001,6 +10025,7 @@
+             "allOf": [
+@@ -10458,7 +10461,8 @@
            "evr_waybill_number": {
              "type": "string",
              "minLength": 1,
-+            "nullable": true,
-             "description": "EVR waybill number."
+-            "description": "EVR waybill number."
++            "description": "EVR waybill number.",
++            "nullable": true
            }
          },
-@@ -10171,6 +10196,7 @@
+         "required": [
+@@ -10626,7 +10630,8 @@
            "project": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Project code in your system."
+-            "description": "Project code in your system."
++            "description": "Project code in your system.",
++            "nullable": true
            },
            "raw_data": {
-@@ -10336,6 +10362,7 @@
-           "user_defined_fields": {
+             "allOf": [
+@@ -10792,7 +10797,8 @@
              "type": "object",
              "additionalProperties": {},
-+            "nullable": true,
              "readOnly": true,
-             "description": "User defined fields."
+-            "description": "User defined fields."
++            "description": "User defined fields.",
++            "nullable": true
            },
-@@ -10373,7 +10400,6 @@
+           "order_id": {
+             "type": "integer",
+@@ -10828,7 +10834,6 @@
            "transport_order_id",
            "transport_order_number",
            "truck_id",
@@ -111,44 +113,52 @@
            "waybill_id"
          ]
        },
-@@ -10796,6 +10822,7 @@
+@@ -11251,7 +11256,8 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Time when waybill reached destination."
+-            "description": "Time when waybill reached destination."
++            "description": "Time when waybill reached destination.",
++            "nullable": true
            },
            "confirmed_timestamp": {
-@@ -10821,16 +10848,19 @@
+             "type": "string",
+@@ -11276,17 +11282,20 @@
            "navision_bin_code": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Bin code."
+-            "description": "Bin code."
++            "description": "Bin code.",
++            "nullable": true
            },
            "evr_waybill_number": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "EVR waybill number."
+-            "description": "EVR waybill number."
++            "description": "EVR waybill number.",
++            "nullable": true
            },
            "project": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Project code in your system."
+-            "description": "Project code in your system."
++            "description": "Project code in your system.",
++            "nullable": true
            },
            "transport_costs": {
-@@ -10844,6 +10874,8 @@
-           },
-           "reading_pairs": {
-             "type": "array",
-+            "nullable": true,
-+            "readOnly": true,
+             "allOf": [
+@@ -11302,7 +11311,9 @@
              "items": {
                "$ref": "#/components/schemas/ExternalAPIWaybillReadingPairs"
              },
-@@ -10891,7 +10923,6 @@
+-            "description": "Information about reading pairs"
++            "description": "Information about reading pairs",
++            "nullable": true,
++            "readOnly": true
+           },
+           "raw_data": {
+             "allOf": [
+@@ -11346,7 +11357,6 @@
            "pdf_url",
            "project",
            "raw_data",
@@ -156,27 +166,33 @@
            "receiver_company_name",
            "receiver_company_reg_code",
            "rows",
-@@ -10960,6 +10991,7 @@
+@@ -11415,7 +11425,8 @@
            "subset_type_name": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Subset type (eg fraction)."
+-            "description": "Subset type (eg fraction)."
++            "description": "Subset type (eg fraction).",
++            "nullable": true
            },
            "subset_object_raw_id": {
-@@ -10969,6 +11001,7 @@
+             "type": "integer",
+@@ -11424,7 +11435,8 @@
            "subset_object_name": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "Subset object (eg 0-32mm)."
+-            "description": "Subset object (eg 0-32mm)."
++            "description": "Subset object (eg 0-32mm).",
++            "nullable": true
            },
            "extra_information_long": {
-@@ -11198,6 +11231,7 @@
+             "type": "string",
+@@ -11653,7 +11665,8 @@
            "assortment_id": {
              "type": "string",
              "readOnly": true,
-+            "nullable": true,
-             "description": "The ID of the assortment."
+-            "description": "The ID of the assortment."
++            "description": "The ID of the assortment.",
++            "nullable": true
            },
            "assortment_ids": {
+             "type": "array",

@@ -126,6 +126,12 @@ class DestinationsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -172,6 +178,8 @@ class DestinationsApi:
         :type name__iexact: str
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -210,6 +218,7 @@ class DestinationsApi:
             name__icontains=name__icontains,
             name__iexact=name__iexact,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -318,6 +327,12 @@ class DestinationsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -364,6 +379,8 @@ class DestinationsApi:
         :type name__iexact: str
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -402,6 +419,7 @@ class DestinationsApi:
             name__icontains=name__icontains,
             name__iexact=name__iexact,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -510,6 +528,12 @@ class DestinationsApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -556,6 +580,8 @@ class DestinationsApi:
         :type name__iexact: str
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -594,6 +620,7 @@ class DestinationsApi:
             name__icontains=name__icontains,
             name__iexact=name__iexact,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -626,6 +653,7 @@ class DestinationsApi:
         name__icontains,
         name__iexact,
         offset,
+        raw_id__gt,
         _request_auth,
         _content_type,
         _headers,
@@ -703,6 +731,9 @@ class DestinationsApi:
 
         if offset is not None:
             _query_params.append(("offset", offset))
+
+        if raw_id__gt is not None:
+            _query_params.append(("raw_id__gt", raw_id__gt))
 
         # process the header parameters
         # process the form parameters

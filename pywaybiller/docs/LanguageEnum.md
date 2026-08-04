@@ -11,6 +11,8 @@
 
 * `US` (value: `'us'`)
 
+* `LT` (value: `'lt'`)
+
 * `LV` (value: `'lv'`)
 
 * `FI` (value: `'fi'`)

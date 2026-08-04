@@ -199,6 +199,12 @@ class VehicleLocationDataApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         truck_reg_number: Annotated[
             Optional[StrictStr],
             Field(
@@ -287,6 +293,8 @@ class VehicleLocationDataApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param truck_reg_number: Filters vehicle location data by specified truck registration number
         :type truck_reg_number: str
         :param waybill_number: Filters vehicle location data by specified waybill number
@@ -343,6 +351,7 @@ class VehicleLocationDataApi:
             driver_timestamp__lte=driver_timestamp__lte,
             limit=limit,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             truck_reg_number=truck_reg_number,
             waybill_number=waybill_number,
             waybill_status=waybill_status,
@@ -526,6 +535,12 @@ class VehicleLocationDataApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         truck_reg_number: Annotated[
             Optional[StrictStr],
             Field(
@@ -614,6 +629,8 @@ class VehicleLocationDataApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param truck_reg_number: Filters vehicle location data by specified truck registration number
         :type truck_reg_number: str
         :param waybill_number: Filters vehicle location data by specified waybill number
@@ -670,6 +687,7 @@ class VehicleLocationDataApi:
             driver_timestamp__lte=driver_timestamp__lte,
             limit=limit,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             truck_reg_number=truck_reg_number,
             waybill_number=waybill_number,
             waybill_status=waybill_status,
@@ -853,6 +871,12 @@ class VehicleLocationDataApi:
             Optional[Annotated[int, Field(strict=True, ge=0)]],
             Field(description="The initial index from which to return the results"),
         ] = None,
+        raw_id__gt: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="Filters objects whose Waybiller (raw) ID is greater than the specified value"
+            ),
+        ] = None,
         truck_reg_number: Annotated[
             Optional[StrictStr],
             Field(
@@ -941,6 +965,8 @@ class VehicleLocationDataApi:
         :type limit: int
         :param offset: The initial index from which to return the results
         :type offset: int
+        :param raw_id__gt: Filters objects whose Waybiller (raw) ID is greater than the specified value
+        :type raw_id__gt: int
         :param truck_reg_number: Filters vehicle location data by specified truck registration number
         :type truck_reg_number: str
         :param waybill_number: Filters vehicle location data by specified waybill number
@@ -997,6 +1023,7 @@ class VehicleLocationDataApi:
             driver_timestamp__lte=driver_timestamp__lte,
             limit=limit,
             offset=offset,
+            raw_id__gt=raw_id__gt,
             truck_reg_number=truck_reg_number,
             waybill_number=waybill_number,
             waybill_status=waybill_status,
@@ -1044,6 +1071,7 @@ class VehicleLocationDataApi:
         driver_timestamp__lte,
         limit,
         offset,
+        raw_id__gt,
         truck_reg_number,
         waybill_number,
         waybill_status,
@@ -1420,6 +1448,9 @@ class VehicleLocationDataApi:
 
         if offset is not None:
             _query_params.append(("offset", offset))
+
+        if raw_id__gt is not None:
+            _query_params.append(("raw_id__gt", raw_id__gt))
 
         if truck_reg_number is not None:
             _query_params.append(("truck_reg_number", truck_reg_number))

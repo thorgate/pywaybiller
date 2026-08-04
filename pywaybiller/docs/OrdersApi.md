@@ -95,7 +95,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **orders_list**
-> PaginatedExternalAPIOrderListList orders_list(limit=limit, offset=offset)
+> PaginatedExternalAPIOrderListList orders_list(limit=limit, offset=offset, raw_id__gt=raw_id__gt)
 
 Querying of orders
 
@@ -134,10 +134,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = openapi_client.OrdersApi(api_client)
     limit = 30 # int | Maximum number of objects to return per page (optional) (default to 30)
     offset = 0 # int | The initial index from which to return the results (optional) (default to 0)
+    raw_id__gt = 56 # int | Filters objects whose Waybiller (raw) ID is greater than the specified value (optional)
 
     try:
         # Querying of orders
-        api_response = api_instance.orders_list(limit=limit, offset=offset)
+        api_response = api_instance.orders_list(limit=limit, offset=offset, raw_id__gt=raw_id__gt)
         print("The response of OrdersApi->orders_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -153,6 +154,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| Maximum number of objects to return per page | [optional] [default to 30]
  **offset** | **int**| The initial index from which to return the results | [optional] [default to 0]
+ **raw_id__gt** | **int**| Filters objects whose Waybiller (raw) ID is greater than the specified value | [optional] 
 
 ### Return type
 
