@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Unique identifier of the origin-assortment relationship | [readonly] 
-**origin** | **str** | Name of the origin where the assortment is available | [readonly] 
-**assortment** | **str** | Name of the assortment | [readonly] 
+**origin** | **str** | Name of the origin where the assortment is available | [optional] [readonly] 
+**assortment** | **str** | Name of the assortment | [optional] [readonly] 
 **subset_type** | **str** | Type of the assortment subset | [readonly] 
 **subset** | **str** | Specific value within the subset type | [readonly] 
-**raw_data** | [**ExternalAPIOriginAssortmentRawData**](ExternalAPIOriginAssortmentRawData.md) | The IDs of the Waybiller internal objects | [readonly] 
+**raw_data** | [**ExternalAPIOriginAssortmentRawData**](ExternalAPIOriginAssortmentRawData.md) | The IDs of the Waybiller internal objects | [optional] [readonly] 
 
 ## Example
 

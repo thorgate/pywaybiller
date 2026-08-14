@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2026-08-04 14:04:55.716986586 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-08-04 14:04:54.338986568 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2026-08-14 15:33:57.556884592 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-08-14 15:32:34.319738955 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -29,6 +29,38 @@
              },
              "description": "Filters waybills where the dispatcher timestamp is less than the specified value."
            },
+@@ -6881,6 +6879,7 @@
+           "origin": {
+             "type": "string",
+             "readOnly": true,
++            "nullable": true,
+             "description": "Name of the origin where the assortment is available",
+             "maxLength": 255,
+             "minLength": 1
+@@ -6888,6 +6887,7 @@
+           "assortment": {
+             "type": "string",
+             "readOnly": true,
++            "nullable": true,
+             "description": "Name of the assortment",
+             "maxLength": 255,
+             "minLength": 1
+@@ -6913,14 +6913,12 @@
+               }
+             ],
+             "readOnly": true,
++            "nullable": true,
+             "description": "The IDs of the Waybiller internal objects"
+           }
+         },
+         "required": [
+-          "assortment",
+           "id",
+-          "origin",
+-          "raw_data",
+           "subset",
+           "subset_type"
+         ]
 @@ -8620,7 +8618,8 @@
            "transport_order_id": {
              "type": "string",

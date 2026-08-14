@@ -34,20 +34,22 @@ class ExternalAPIOriginAssortment(BaseModel):
     id: StrictInt = Field(
         description="Unique identifier of the origin-assortment relationship"
     )
-    origin: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(
-        description="Name of the origin where the assortment is available"
+    origin: Optional[
+        Annotated[str, Field(min_length=1, strict=True, max_length=255)]
+    ] = Field(
+        default=None, description="Name of the origin where the assortment is available"
     )
-    assortment: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = (
-        Field(description="Name of the assortment")
-    )
+    assortment: Optional[
+        Annotated[str, Field(min_length=1, strict=True, max_length=255)]
+    ] = Field(default=None, description="Name of the assortment")
     subset_type: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(
         description="Type of the assortment subset"
     )
     subset: Optional[Annotated[str, Field(strict=True, max_length=64)]] = Field(
         description="Specific value within the subset type"
     )
-    raw_data: ExternalAPIOriginAssortmentRawData = Field(
-        description="The IDs of the Waybiller internal objects"
+    raw_data: Optional[ExternalAPIOriginAssortmentRawData] = Field(
+        default=None, description="The IDs of the Waybiller internal objects"
     )
     __properties: ClassVar[List[str]] = [
         "id",
@@ -113,6 +115,16 @@ class ExternalAPIOriginAssortment(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw_data
         if self.raw_data:
             _dict["raw_data"] = self.raw_data.to_dict()
+        # set to None if origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin is None and "origin" in self.model_fields_set:
+            _dict["origin"] = None
+
+        # set to None if assortment (nullable) is None
+        # and model_fields_set contains the field
+        if self.assortment is None and "assortment" in self.model_fields_set:
+            _dict["assortment"] = None
+
         # set to None if subset_type (nullable) is None
         # and model_fields_set contains the field
         if self.subset_type is None and "subset_type" in self.model_fields_set:
@@ -122,6 +134,11 @@ class ExternalAPIOriginAssortment(BaseModel):
         # and model_fields_set contains the field
         if self.subset is None and "subset" in self.model_fields_set:
             _dict["subset"] = None
+
+        # set to None if raw_data (nullable) is None
+        # and model_fields_set contains the field
+        if self.raw_data is None and "raw_data" in self.model_fields_set:
+            _dict["raw_data"] = None
 
         return _dict
 
