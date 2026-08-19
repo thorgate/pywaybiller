@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**dispatched_amounts** | [**List[ExternalAPIWaybillRowDispatchedAmount]**](ExternalAPIWaybillRowDispatchedAmount.md) | Dispatched amounts | 
+**dispatched_amounts** | [**List[ExternalAPIWaybillRowDispatchedAmount]**](ExternalAPIWaybillRowDispatchedAmount.md) | Dispatched amounts | [optional] 
 
 ## Example
 

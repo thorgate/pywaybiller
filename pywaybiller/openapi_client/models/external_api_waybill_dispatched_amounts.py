@@ -31,8 +31,8 @@ class ExternalAPIWaybillDispatchedAmounts(BaseModel):
     ExternalAPIWaybillDispatchedAmounts
     """  # noqa: E501
 
-    dispatched_amounts: List[ExternalAPIWaybillRowDispatchedAmount] = Field(
-        description="Dispatched amounts"
+    dispatched_amounts: Optional[List[ExternalAPIWaybillRowDispatchedAmount]] = Field(
+        default=None, description="Dispatched amounts"
     )
     __properties: ClassVar[List[str]] = ["dispatched_amounts"]
 
@@ -80,6 +80,14 @@ class ExternalAPIWaybillDispatchedAmounts(BaseModel):
                 if _item_dispatched_amounts:
                     _items.append(_item_dispatched_amounts.to_dict())
             _dict["dispatched_amounts"] = _items
+        # set to None if dispatched_amounts (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.dispatched_amounts is None
+            and "dispatched_amounts" in self.model_fields_set
+        ):
+            _dict["dispatched_amounts"] = None
+
         return _dict
 
     @classmethod
