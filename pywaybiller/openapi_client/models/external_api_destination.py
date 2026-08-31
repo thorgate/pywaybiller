@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_destination_raw_data import (
@@ -38,14 +38,12 @@ class ExternalAPIDestination(BaseModel):
     address: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(
         description="Physical address of the destination"
     )
-    latitude: Union[
-        Annotated[float, Field(le=90, strict=True, ge=-90)],
-        Annotated[int, Field(le=90, strict=True, ge=-90)],
-    ] = Field(description="Latitude coordinate of the destination's location")
-    longitude: Union[
-        Annotated[float, Field(le=180, strict=True, ge=-180)],
-        Annotated[int, Field(le=180, strict=True, ge=-180)],
-    ] = Field(description="Longitude coordinate of the destination's location")
+    latitude: Union[StrictFloat, StrictInt] = Field(
+        description="Latitude coordinate of the destination's location"
+    )
+    longitude: Union[StrictFloat, StrictInt] = Field(
+        description="Longitude coordinate of the destination's location"
+    )
     owner_name: Annotated[str, Field(min_length=1, strict=True, max_length=64)] = Field(
         description="Name of the destination's owner company"
     )

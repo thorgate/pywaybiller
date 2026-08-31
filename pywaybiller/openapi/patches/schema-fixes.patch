@@ -1,5 +1,5 @@
---- ./pywaybiller/openapi/waybiller_schema.json	2026-08-19 14:05:21.570724215 +0300
-+++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-08-19 13:59:44.554602834 +0300
+--- ./pywaybiller/openapi/waybiller_schema.json	2026-08-31 11:29:23.528976310 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2026-08-31 11:29:58.680213383 +0300
 @@ -1,7 +1,7 @@
  {
    "openapi": "3.0.3",
@@ -29,7 +29,24 @@
              },
              "description": "Filters waybills where the dispatcher timestamp is less than the specified value."
            },
-@@ -6881,6 +6879,7 @@
+@@ -5328,16 +5326,12 @@
+           "latitude": {
+             "type": "number",
+             "format": "double",
+-            "maximum": 90,
+-            "minimum": -90,
+             "readOnly": true,
+             "description": "Latitude coordinate of the destination's location"
+           },
+           "longitude": {
+             "type": "number",
+             "format": "double",
+-            "maximum": 180,
+-            "minimum": -180,
+             "readOnly": true,
+             "description": "Longitude coordinate of the destination's location"
+           },
+@@ -6881,6 +6875,7 @@
            "origin": {
              "type": "string",
              "readOnly": true,
@@ -37,7 +54,7 @@
              "description": "Name of the origin where the assortment is available",
              "maxLength": 255,
              "minLength": 1
-@@ -6888,6 +6887,7 @@
+@@ -6888,6 +6883,7 @@
            "assortment": {
              "type": "string",
              "readOnly": true,
@@ -45,7 +62,7 @@
              "description": "Name of the assortment",
              "maxLength": 255,
              "minLength": 1
-@@ -6913,14 +6913,12 @@
+@@ -6913,14 +6909,12 @@
                }
              ],
              "readOnly": true,
@@ -61,7 +78,7 @@
            "subset",
            "subset_type"
          ]
-@@ -8620,7 +8618,8 @@
+@@ -8620,7 +8614,8 @@
            "transport_order_id": {
              "type": "string",
              "minLength": 1,
@@ -71,7 +88,7 @@
            },
            "order_raw_id": {
              "type": "integer",
-@@ -8909,7 +8908,8 @@
+@@ -8909,7 +8904,8 @@
            "transport_order_id": {
              "type": "string",
              "readOnly": true,
@@ -81,7 +98,7 @@
            },
            "number": {
              "type": "string",
-@@ -10168,7 +10168,8 @@
+@@ -10168,7 +10164,8 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
@@ -91,7 +108,7 @@
            },
            "confirmed_timestamp": {
              "type": "string",
-@@ -10193,11 +10194,13 @@
+@@ -10193,11 +10190,13 @@
            "navision_bin_code": {
              "type": "string",
              "readOnly": true,
@@ -107,7 +124,7 @@
            },
            "raw_data": {
              "allOf": [
-@@ -10458,7 +10461,8 @@
+@@ -10458,7 +10457,8 @@
            "evr_waybill_number": {
              "type": "string",
              "minLength": 1,
@@ -117,7 +134,7 @@
            }
          },
          "required": [
-@@ -10475,12 +10479,10 @@
+@@ -10475,12 +10475,10 @@
              "items": {
                "$ref": "#/components/schemas/ExternalAPIWaybillRowDispatchedAmount"
              },
@@ -132,7 +149,7 @@
        },
        "ExternalAPIWaybillDispatchedAmountsRequest": {
          "type": "object",
-@@ -10626,7 +10628,8 @@
+@@ -10626,7 +10624,8 @@
            "project": {
              "type": "string",
              "readOnly": true,
@@ -142,7 +159,7 @@
            },
            "raw_data": {
              "allOf": [
-@@ -10792,7 +10795,8 @@
+@@ -10792,7 +10791,8 @@
              "type": "object",
              "additionalProperties": {},
              "readOnly": true,
@@ -152,7 +169,7 @@
            },
            "order_id": {
              "type": "integer",
-@@ -10828,7 +10832,6 @@
+@@ -10828,7 +10828,6 @@
            "transport_order_id",
            "transport_order_number",
            "truck_id",
@@ -160,7 +177,7 @@
            "waybill_id"
          ]
        },
-@@ -11251,7 +11254,8 @@
+@@ -11251,7 +11250,8 @@
              "type": "string",
              "format": "date-time",
              "readOnly": true,
@@ -170,7 +187,7 @@
            },
            "confirmed_timestamp": {
              "type": "string",
-@@ -11276,17 +11280,20 @@
+@@ -11276,17 +11276,20 @@
            "navision_bin_code": {
              "type": "string",
              "readOnly": true,
@@ -194,7 +211,7 @@
            },
            "transport_costs": {
              "allOf": [
-@@ -11302,7 +11309,9 @@
+@@ -11302,7 +11305,9 @@
              "items": {
                "$ref": "#/components/schemas/ExternalAPIWaybillReadingPairs"
              },
@@ -205,7 +222,7 @@
            },
            "raw_data": {
              "allOf": [
-@@ -11346,7 +11355,6 @@
+@@ -11346,7 +11351,6 @@
            "pdf_url",
            "project",
            "raw_data",
@@ -213,7 +230,7 @@
            "receiver_company_name",
            "receiver_company_reg_code",
            "rows",
-@@ -11415,7 +11423,8 @@
+@@ -11415,7 +11419,8 @@
            "subset_type_name": {
              "type": "string",
              "readOnly": true,
@@ -223,7 +240,7 @@
            },
            "subset_object_raw_id": {
              "type": "integer",
-@@ -11424,7 +11433,8 @@
+@@ -11424,7 +11429,8 @@
            "subset_object_name": {
              "type": "string",
              "readOnly": true,
@@ -233,7 +250,7 @@
            },
            "extra_information_long": {
              "type": "string",
-@@ -11653,7 +11663,8 @@
+@@ -11653,7 +11659,8 @@
            "assortment_id": {
              "type": "string",
              "readOnly": true,
