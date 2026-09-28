@@ -19,7 +19,7 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_waybill_raw_data_list import (
@@ -74,6 +74,10 @@ class ExternalAPIWaybillList(BaseModel):
     driver_name: Annotated[str, Field(strict=True, max_length=255)] = Field(
         description="The name of the driver."
     )
+    mileage: Optional[StrictInt] = Field(
+        description="The mileage can be calculated using a map or can be taken from Distance object if exist"
+    )
+    mileage_by_driver: Optional[StrictInt]
     truck_reg_number: StrictStr = Field(
         description="The registration number of the vehicle."
     )
@@ -114,6 +118,8 @@ class ExternalAPIWaybillList(BaseModel):
         "origin_address",
         "transportation_company_name",
         "driver_name",
+        "mileage",
+        "mileage_by_driver",
         "truck_reg_number",
         "trailer_reg_number",
         "receiver_company_name",
@@ -190,6 +196,8 @@ class ExternalAPIWaybillList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -211,6 +219,8 @@ class ExternalAPIWaybillList(BaseModel):
                 "origin_address",
                 "transportation_company_name",
                 "driver_name",
+                "mileage",
+                "mileage_by_driver",
                 "truck_reg_number",
                 "trailer_reg_number",
                 "receiver_company_name",
@@ -298,6 +308,19 @@ class ExternalAPIWaybillList(BaseModel):
         if self.origin_id is None and "origin_id" in self.model_fields_set:
             _dict["origin_id"] = None
 
+        # set to None if mileage (nullable) is None
+        # and model_fields_set contains the field
+        if self.mileage is None and "mileage" in self.model_fields_set:
+            _dict["mileage"] = None
+
+        # set to None if mileage_by_driver (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.mileage_by_driver is None
+            and "mileage_by_driver" in self.model_fields_set
+        ):
+            _dict["mileage_by_driver"] = None
+
         # set to None if last_vehicle_location (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -339,6 +362,8 @@ class ExternalAPIWaybillList(BaseModel):
                 "origin_address": obj.get("origin_address"),
                 "transportation_company_name": obj.get("transportation_company_name"),
                 "driver_name": obj.get("driver_name"),
+                "mileage": obj.get("mileage"),
+                "mileage_by_driver": obj.get("mileage_by_driver"),
                 "truck_reg_number": obj.get("truck_reg_number"),
                 "trailer_reg_number": obj.get("trailer_reg_number"),
                 "receiver_company_name": obj.get("receiver_company_name"),

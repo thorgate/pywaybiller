@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**waybills_cancel_update**](WaybillsApi.md#waybills_cancel_update) | **PUT** /external-api/waybills/{id}/cancel/ | Cancelling waybill
 [**waybills_comment_create**](WaybillsApi.md#waybills_comment_create) | **POST** /external-api/waybills/{id}/comment/ | Commenting waybill
 [**waybills_create**](WaybillsApi.md#waybills_create) | **POST** /external-api/waybills/ | Creation of a waybill
+[**waybills_files_create**](WaybillsApi.md#waybills_files_create) | **POST** /external-api/waybills/{id}/files/ | Attaching a file
 [**waybills_finish_drive_create**](WaybillsApi.md#waybills_finish_drive_create) | **POST** /external-api/waybills/{id}/finish_drive/ | Completing driving
 [**waybills_list**](WaybillsApi.md#waybills_list) | **GET** /external-api/waybills/ | Querying of waybills
 [**waybills_refuse_update**](WaybillsApi.md#waybills_refuse_update) | **PUT** /external-api/waybills/{id}/refuse/ | Refusing waybill
@@ -346,6 +347,90 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**403** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **waybills_files_create**
+> AttachedFile waybills_files_create(id, file)
+
+Attaching a file
+
+Uploads a single file and attaches it to the waybill in the same way as uploading a file through the Waybiller user interface.<br><br>
+The file must be of a permitted type and must not exceed the maximum upload size.
+
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import openapi_client
+from openapi_client.models.attached_file import AttachedFile
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.WaybillsApi(api_client)
+    id = 'id_example' # str | The ID of the waybill.
+    file = None # bytearray | 
+
+    try:
+        # Attaching a file
+        api_response = api_instance.waybills_files_create(id, file)
+        print("The response of WaybillsApi->waybills_files_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WaybillsApi->waybills_files_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID of the waybill. | 
+ **file** | **bytearray**|  | 
+
+### Return type
+
+[**AttachedFile**](AttachedFile.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -969,7 +1054,12 @@ Updating custom fields
 
 Updates custom fields defined by the customer support.<br>
         The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,
-        the value must be an integer representing the timestamp in milliseconds.
+        the value must be an integer representing the timestamp in milliseconds.<br>
+        Fields your company does not own are ignored: they are skipped and the remaining values are still saved.<br>
+        A field your company owns cannot be changed while any of the companies owning it has locked its custom fields
+        on the waybill; resending the current value of a locked field is allowed. If any submitted value is locked or
+        invalid, the response is `400` with an error per field and none of the submitted values are saved.<br>
+        Locking and unlocking custom fields is not currently available through the API and must be done in the main app.
         
 
 ### Example

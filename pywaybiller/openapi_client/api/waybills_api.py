@@ -15,11 +15,20 @@ import warnings
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import (
+    Field,
+    StrictBool,
+    StrictBytes,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    validate_call,
+)
 from typing_extensions import Annotated
 
 from pywaybiller.openapi_client.api_client import ApiClient, RequestSerialized
 from pywaybiller.openapi_client.api_response import ApiResponse
+from pywaybiller.openapi_client.models.attached_file import AttachedFile
 from pywaybiller.openapi_client.models.external_api_waybill_accept import (
     ExternalAPIWaybillAccept,
 )
@@ -1168,6 +1177,275 @@ class WaybillsApi:
         return self.api_client.param_serialize(
             method="POST",
             resource_path="/external-api/waybills/",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def waybills_files_create(
+        self,
+        id: Annotated[StrictStr, Field(description="The ID of the waybill.")],
+        file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AttachedFile:
+        """Attaching a file
+
+        Uploads a single file and attaches it to the waybill in the same way as uploading a file through the Waybiller user interface.<br><br> The file must be of a permitted type and must not exceed the maximum upload size.
+
+        :param id: The ID of the waybill. (required)
+        :type id: str
+        :param file: (required)
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._waybills_files_create_serialize(
+            id=id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "AttachedFile",
+            "403": "DestinationsList403Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def waybills_files_create_with_http_info(
+        self,
+        id: Annotated[StrictStr, Field(description="The ID of the waybill.")],
+        file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AttachedFile]:
+        """Attaching a file
+
+        Uploads a single file and attaches it to the waybill in the same way as uploading a file through the Waybiller user interface.<br><br> The file must be of a permitted type and must not exceed the maximum upload size.
+
+        :param id: The ID of the waybill. (required)
+        :type id: str
+        :param file: (required)
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._waybills_files_create_serialize(
+            id=id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "AttachedFile",
+            "403": "DestinationsList403Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def waybills_files_create_without_preload_content(
+        self,
+        id: Annotated[StrictStr, Field(description="The ID of the waybill.")],
+        file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Attaching a file
+
+        Uploads a single file and attaches it to the waybill in the same way as uploading a file through the Waybiller user interface.<br><br> The file must be of a permitted type and must not exceed the maximum upload size.
+
+        :param id: The ID of the waybill. (required)
+        :type id: str
+        :param file: (required)
+        :type file: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._waybills_files_create_serialize(
+            id=id,
+            file=file,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "201": "AttachedFile",
+            "403": "DestinationsList403Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _waybills_files_create_serialize(
+        self,
+        id,
+        file,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params["id"] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        if file is not None:
+            _files["file"] = file
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json"]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["multipart/form-data"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = ["ApiKeyAuth"]
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/external-api/waybills/{id}/files/",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4511,7 +4789,7 @@ class WaybillsApi:
     ) -> ExternalAPIWaybillRetrieve:
         """Updating custom fields
 
-        Updates custom fields defined by the customer support.<br>         The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,         the value must be an integer representing the timestamp in milliseconds.
+        Updates custom fields defined by the customer support.<br>         The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,         the value must be an integer representing the timestamp in milliseconds.<br>         Fields your company does not own are ignored: they are skipped and the remaining values are still saved.<br>         A field your company owns cannot be changed while any of the companies owning it has locked its custom fields         on the waybill; resending the current value of a locked field is allowed. If any submitted value is locked or         invalid, the response is `400` with an error per field and none of the submitted values are saved.<br>         Locking and unlocking custom fields is not currently available through the API and must be done in the main app.
 
         :param id: A unique integer value identifying this waybill. (required)
         :type id: int
@@ -4586,7 +4864,7 @@ class WaybillsApi:
     ) -> ApiResponse[ExternalAPIWaybillRetrieve]:
         """Updating custom fields
 
-        Updates custom fields defined by the customer support.<br>         The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,         the value must be an integer representing the timestamp in milliseconds.
+        Updates custom fields defined by the customer support.<br>         The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,         the value must be an integer representing the timestamp in milliseconds.<br>         Fields your company does not own are ignored: they are skipped and the remaining values are still saved.<br>         A field your company owns cannot be changed while any of the companies owning it has locked its custom fields         on the waybill; resending the current value of a locked field is allowed. If any submitted value is locked or         invalid, the response is `400` with an error per field and none of the submitted values are saved.<br>         Locking and unlocking custom fields is not currently available through the API and must be done in the main app.
 
         :param id: A unique integer value identifying this waybill. (required)
         :type id: int
@@ -4661,7 +4939,7 @@ class WaybillsApi:
     ) -> RESTResponseType:
         """Updating custom fields
 
-        Updates custom fields defined by the customer support.<br>         The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,         the value must be an integer representing the timestamp in milliseconds.
+        Updates custom fields defined by the customer support.<br>         The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,         the value must be an integer representing the timestamp in milliseconds.<br>         Fields your company does not own are ignored: they are skipped and the remaining values are still saved.<br>         A field your company owns cannot be changed while any of the companies owning it has locked its custom fields         on the waybill; resending the current value of a locked field is allowed. If any submitted value is locked or         invalid, the response is `400` with an error per field and none of the submitted values are saved.<br>         Locking and unlocking custom fields is not currently available through the API and must be done in the main app.
 
         :param id: A unique integer value identifying this waybill. (required)
         :type id: int

@@ -138,6 +138,15 @@
               "default": 0,
               "minimum": 0
             }
+          },
+          {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "tags": [
@@ -230,6 +239,15 @@
               "type": "integer",
               "default": 0,
               "minimum": 0
+            }
+          },
+          {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
             }
           }
         ],
@@ -423,6 +441,15 @@
             }
           },
           {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
             "in": "query",
             "name": "timestamp",
             "schema": {
@@ -575,6 +602,15 @@
               "type": "integer",
               "default": 0,
               "minimum": 0
+            }
+          },
+          {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
             }
           }
         ],
@@ -1396,6 +1432,15 @@
             "description": "Filters origin assortments by exact origin name (case-insensitive)"
           },
           {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
             "in": "query",
             "name": "subset__subset_type__name",
             "schema": {
@@ -1743,6 +1788,15 @@
               "type": "integer",
               "default": 0,
               "minimum": 0
+            }
+          },
+          {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
             }
           }
         ],
@@ -2391,6 +2445,15 @@
             "description": "Filters transport orders with a specified list of raw destination IDs. Multiple values may be separated by commas."
           },
           {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
             "in": "query",
             "name": "raw_organizer_company_ids",
             "schema": {
@@ -2563,8 +2626,34 @@
                             "destination_id": 1,
                             "entity_code": null,
                             "truck_id": 1,
-                            "waybills_ids": []
-                          }
+                            "waybills_ids": [],
+                            "rows": [
+                              {
+                                "destination_id": 1,
+                                "assortment_id": 1,
+                                "accepted_amount": "0.000",
+                                "dispatched_amount": "0.000"
+                              },
+                              {
+                                "destination_id": 2,
+                                "assortment_id": 2,
+                                "accepted_amount": "0.000",
+                                "dispatched_amount": "0.000"
+                              }
+                            ]
+                          },
+                          "rows": [
+                            {
+                              "assortment_id": "1",
+                              "assortment_name": "Construction sand",
+                              "destination_id": "1",
+                              "destination_name": "Waybiller O\u00dc",
+                              "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                              "destination_latitude": "59.436961",
+                              "destination_longitude": "24.753575",
+                              "amount": "23.456"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -2617,6 +2706,12 @@
                         "assortment_id": "1",
                         "assortment_name": "Construction sand",
                         "amount": "23.456"
+                      },
+                      {
+                        "assortment_id": "2",
+                        "assortment_name": "Gravel sand",
+                        "amount": "30.000",
+                        "destination_id": "2"
                       }
                     ],
                     "organizer_user_id": 1,
@@ -2662,6 +2757,10 @@
                     "transportation_company_reg_code": "14200010",
                     "truck_reg_number": "ABC123",
                     "trailer_reg_number": "XYZ789",
+                    "truck_waybill_created_emails": [
+                      "waybiller@waybiller.com"
+                    ],
+                    "truck_waybill_created_emails_language": "en",
                     "driver_email": "driver@waybiller.com",
                     "driver_personal_code": "3891020xxxx",
                     "driver_name": "John Doe",
@@ -2700,7 +2799,22 @@
                         {
                           "assortment_id": "1",
                           "assortment_name": "Construction sand",
+                          "destination_id": "1",
+                          "destination_name": "Waybiller O\u00dc",
+                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "destination_latitude": 59.3962767,
+                          "destination_longitude": 24.6566519,
                           "amount": "23.456"
+                        },
+                        {
+                          "assortment_id": "2",
+                          "assortment_name": "Gravel sand",
+                          "destination_id": "2",
+                          "destination_name": "Waybiller O\u00dc 2",
+                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "destination_latitude": 59.3962767,
+                          "destination_longitude": 24.6566519,
+                          "amount": "30.000"
                         }
                       ],
                       "organizer_user_id": 1,
@@ -2757,10 +2871,19 @@
                       "pallets_number": 10,
                       "raw_data": {
                         "transport_order_id": 1,
-                        "order_id": 1,
+                        "order_id": null,
                         "rows": [
                           {
-                            "assortment_id": 1
+                            "assortment_id": 1,
+                            "destination_id": 1,
+                            "accepted_amount": "0.000",
+                            "dispatched_amount": "0.000"
+                          },
+                          {
+                            "assortment_id": 2,
+                            "destination_id": 2,
+                            "accepted_amount": "0.000",
+                            "dispatched_amount": "0.000"
                           }
                         ],
                         "destination_id": 1,
@@ -2838,7 +2961,22 @@
                         {
                           "assortment_id": "1",
                           "assortment_name": "Construction sand",
+                          "destination_id": "1",
+                          "destination_name": "Waybiller O\u00dc",
+                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "destination_latitude": 59.3962767,
+                          "destination_longitude": 24.6566519,
                           "amount": "23.456"
+                        },
+                        {
+                          "assortment_id": "2",
+                          "assortment_name": "Gravel sand",
+                          "destination_id": "2",
+                          "destination_name": "Waybiller O\u00dc 2",
+                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "destination_latitude": 59.3962767,
+                          "destination_longitude": 24.6566519,
+                          "amount": "30.000"
                         }
                       ],
                       "organizer_user_id": 1,
@@ -2895,10 +3033,19 @@
                       "pallets_number": 10,
                       "raw_data": {
                         "transport_order_id": 1,
-                        "order_id": 1,
+                        "order_id": null,
                         "rows": [
                           {
-                            "assortment_id": 1
+                            "assortment_id": 1,
+                            "destination_id": 1,
+                            "accepted_amount": "0.000",
+                            "dispatched_amount": "0.000"
+                          },
+                          {
+                            "assortment_id": 2,
+                            "destination_id": 2,
+                            "accepted_amount": "0.000",
+                            "dispatched_amount": "0.000"
                           }
                         ],
                         "destination_id": 1,
@@ -3024,7 +3171,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "security": [
           {
@@ -3048,7 +3196,22 @@
                         {
                           "assortment_id": "1",
                           "assortment_name": "Construction sand",
+                          "destination_id": "1",
+                          "destination_name": "Waybiller O\u00dc",
+                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "destination_latitude": 59.3962767,
+                          "destination_longitude": 24.6566519,
                           "amount": "23.456"
+                        },
+                        {
+                          "assortment_id": "2",
+                          "assortment_name": "Gravel sand",
+                          "destination_id": "2",
+                          "destination_name": "Waybiller O\u00dc 2",
+                          "destination_address": "M\u00e4ealuse 2/1, Tallinn",
+                          "destination_latitude": 59.3962767,
+                          "destination_longitude": 24.6566519,
+                          "amount": "30.000"
                         }
                       ],
                       "organizer_user_id": 1,
@@ -3105,10 +3268,19 @@
                       "pallets_number": 10,
                       "raw_data": {
                         "transport_order_id": 1,
-                        "order_id": 1,
+                        "order_id": null,
                         "rows": [
                           {
-                            "assortment_id": 1
+                            "assortment_id": 1,
+                            "destination_id": 1,
+                            "accepted_amount": "0.000",
+                            "dispatched_amount": "0.000"
+                          },
+                          {
+                            "assortment_id": 2,
+                            "destination_id": 2,
+                            "accepted_amount": "0.000",
+                            "dispatched_amount": "0.000"
                           }
                         ],
                         "destination_id": 1,
@@ -3482,6 +3654,15 @@
             }
           },
           {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
             "in": "query",
             "name": "truck_reg_number",
             "schema": {
@@ -3606,6 +3787,15 @@
               "type": "integer",
               "default": 0,
               "minimum": 0
+            }
+          },
+          {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
             }
           }
         ],
@@ -3758,9 +3948,115 @@
     "/external-api/waybills/": {
       "get": {
         "operationId": "waybills_list",
-        "description": "Returns all waybills associated with your company, according to the specified filters.<br><br>\n        **NB!** By default, past 30 days according to the `dispatcher_timestamp` field waybills are returned. Use\n        `dispatcher_timestamp__lt` and `dispatcher_timestamp__gt` for filtering. Note that the maximum range is 30 days.\n        ",
+        "description": "Returns all waybills associated with your company, according to the specified filters.<br><br>\n        **NB!** When no filters are provided, only waybills from the past 30 days (based on the `dispatcher_timestamp`)\n        are returned. Providing any filter overrides this default and enables queries of arbitrary periods.<br>\n        All timestamp filters must be in ISO 8601 format\n        ",
         "summary": "Querying of waybills",
         "parameters": [
+          {
+            "in": "query",
+            "name": "cancelled_timestamp",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the cancelled timestamp equals the specified value."
+          },
+          {
+            "in": "query",
+            "name": "cancelled_timestamp__gt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the cancelled timestamp is greater than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "cancelled_timestamp__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the cancelled timestamp is greater than or equal to the specified value."
+          },
+          {
+            "in": "query",
+            "name": "cancelled_timestamp__isnull",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "When true, returns waybills where the cancelled timestamp is null; when false, only those with a value."
+          },
+          {
+            "in": "query",
+            "name": "cancelled_timestamp__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the cancelled timestamp is less than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "cancelled_timestamp__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the cancelled timestamp is less than or equal to the specified value."
+          },
+          {
+            "in": "query",
+            "name": "confirmed_timestamp",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the confirmed timestamp equals the specified value."
+          },
+          {
+            "in": "query",
+            "name": "confirmed_timestamp__gt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the confirmed timestamp is greater than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "confirmed_timestamp__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the confirmed timestamp is greater than or equal to the specified value."
+          },
+          {
+            "in": "query",
+            "name": "confirmed_timestamp__isnull",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "When true, returns waybills where the confirmed timestamp is null; when false, only those with a value."
+          },
+          {
+            "in": "query",
+            "name": "confirmed_timestamp__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the confirmed timestamp is less than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "confirmed_timestamp__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the confirmed timestamp is less than or equal to the specified value."
+          },
           {
             "in": "query",
             "name": "destination_ids",
@@ -3768,6 +4064,94 @@
               "type": "string"
             },
             "description": "Filters waybills with a specified list of destination IDs from your system. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "destination_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills by the final destination name. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "destination_timestamp",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the destination timestamp equals the specified value. The value must be in ISO 8601 format."
+          },
+          {
+            "in": "query",
+            "name": "dispatcher_timestamp__gt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the dispatcher timestamp is greater than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "dispatcher_timestamp__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the dispatcher timestamp is less than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "driver_timestamp",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the driver timestamp equals the specified value."
+          },
+          {
+            "in": "query",
+            "name": "driver_timestamp__gt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the driver timestamp is greater than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "driver_timestamp__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the driver timestamp is greater than or equal to the specified value."
+          },
+          {
+            "in": "query",
+            "name": "driver_timestamp__isnull",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "When true, returns waybills where the driver timestamp is null; when false, only those with a value."
+          },
+          {
+            "in": "query",
+            "name": "driver_timestamp__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the driver timestamp is less than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "driver_timestamp__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Filters waybills where the driver timestamp is less than or equal to the specified value."
           },
           {
             "name": "limit",
@@ -3780,6 +4164,38 @@
               "maximum": 1000,
               "minimum": 1
             }
+          },
+          {
+            "in": "query",
+            "name": "number",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the waybill number equals the specified value."
+          },
+          {
+            "in": "query",
+            "name": "number__contains",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the waybill number contains the specified substring."
+          },
+          {
+            "in": "query",
+            "name": "number__icontains",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the waybill number contains the specified substring (case-insensitive)."
+          },
+          {
+            "in": "query",
+            "name": "number__iexact",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the waybill number equals the specified value (case-insensitive)."
           },
           {
             "name": "offset",
@@ -3798,7 +4214,39 @@
             "schema": {
               "type": "string"
             },
-            "description": "Filters waybills with a specified list of origin IDs from your systemMultiple values may be separated by commas."
+            "description": "Filters waybills with a specified list of origin IDs from your system. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "origin_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the origin name equals the specified value."
+          },
+          {
+            "in": "query",
+            "name": "origin_name__contains",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the origin name contains the specified substring."
+          },
+          {
+            "in": "query",
+            "name": "origin_name__icontains",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the origin name contains the specified substring (case-insensitive)."
+          },
+          {
+            "in": "query",
+            "name": "origin_name__iexact",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the origin name equals the specified value (case-insensitive)."
           },
           {
             "in": "query",
@@ -3807,6 +4255,15 @@
               "type": "string"
             },
             "description": "Filters waybills with a specified list of raw destination IDs. Multiple values may be separated by commas."
+          },
+          {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
+            "schema": {
+              "type": "integer"
+            }
           },
           {
             "in": "query",
@@ -3818,12 +4275,84 @@
           },
           {
             "in": "query",
+            "name": "receiver_company_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills by the receiver (final destination) company name. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "shipper_company_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills by the dispatcher (shipper) company name. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filters waybills where the waybill status equals the specified value."
+          },
+          {
+            "in": "query",
+            "name": "status__gt",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filters waybills where the waybill status is greater than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "status__gte",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filters waybills where the waybill status is greater than or equal to the specified value."
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills where the waybill status matches any of the comma-separated values."
+          },
+          {
+            "in": "query",
+            "name": "status__lt",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filters waybills where the waybill status is less than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "status__lte",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filters waybills where the waybill status is less than or equal to the specified value."
+          },
+          {
+            "in": "query",
+            "name": "transportation_company_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills by the transportation (driver) company name. Multiple values may be separated by commas."
+          },
+          {
+            "in": "query",
             "name": "transportation_cost_confirmed_at_timestamp__gt",
             "schema": {
               "type": "string",
               "format": "date-time"
             },
-            "description": "Filters waybills with a transportation cost confirmed timestamp greater than the specified value. The value must be in ISO 8601 format."
+            "description": "Filters waybills where the transportation cost confirmed timestamp is greater than the specified value."
           },
           {
             "in": "query",
@@ -3832,7 +4361,15 @@
               "type": "string",
               "format": "date-time"
             },
-            "description": "Filters waybills with a transportation cost confirmed timestamp less than the specified value. The value must be in ISO 8601 format."
+            "description": "Filters waybills where the transportation cost confirmed timestamp is less than the specified value."
+          },
+          {
+            "in": "query",
+            "name": "truck_reg_number",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filters waybills by the confirmed truck registration number. Multiple values may be separated by commas."
           }
         ],
         "tags": [
@@ -4186,6 +4723,71 @@
         }
       }
     },
+    "/external-api/waybills/{id}/files/": {
+      "post": {
+        "operationId": "waybills_files_create",
+        "description": "Uploads a single file and attaches it to the waybill in the same way as uploading a file through the Waybiller user interface.<br><br>\nThe file must be of a permitted type and must not exceed the maximum upload size.\n",
+        "summary": "Attaching a file",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the waybill.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Waybills"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AttachedFileCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttachedFile"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "example": "Provided API key is not correct or expired",
+                      "description": "Provided API key is not correct or expired"
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
     "/external-api/waybills/{id}/finish_drive/": {
       "post": {
         "operationId": "waybills_finish_drive_create",
@@ -4442,7 +5044,7 @@
     "/external-api/waybills/{id}/update_custom_fields/": {
       "put": {
         "operationId": "waybills_update_custom_fields_update",
-        "description": "Updates custom fields defined by the customer support.<br>\n        The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,\n        the value must be an integer representing the timestamp in milliseconds.\n        ",
+        "description": "Updates custom fields defined by the customer support.<br>\n        The values of the fields must match the type assigned to the field. If the field is of type `timestamp`,\n        the value must be an integer representing the timestamp in milliseconds.<br>\n        Fields your company does not own are ignored: they are skipped and the remaining values are still saved.<br>\n        A field your company owns cannot be changed while any of the companies owning it has locked its custom fields\n        on the waybill; resending the current value of a locked field is allowed. If any submitted value is locked or\n        invalid, the response is `400` with an error per field and none of the submitted values are saved.<br>\n        Locking and unlocking custom fields is not currently available through the API and must be done in the main app.\n        ",
         "summary": "Updating custom fields",
         "parameters": [
           {
@@ -4627,24 +5229,47 @@
         }
       }
     },
-    "/external-api/waybills/{id}/vehicle_location_data/": {
+    "/external-api/worklogs/": {
       "get": {
-        "operationId": "waybills_vehicle_location_data_retrieve",
-        "description": "Returns vehicle location data.\n        ",
-        "summary": "Querying of vehicle location data",
+        "operationId": "worklogs_list",
+        "description": "Returns all time entries associated with your company.",
+        "summary": "Querying time entries",
         "parameters": [
           {
-            "in": "path",
-            "name": "id",
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Maximum number of objects to return per page",
+            "schema": {
+              "type": "integer",
+              "default": 30,
+              "maximum": 1000,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "raw_id__gt",
+            "required": false,
+            "in": "query",
+            "description": "Filters objects whose Waybiller (raw) ID is greater than the specified value",
             "schema": {
               "type": "integer"
-            },
-            "description": "A unique integer value identifying this waybill.",
-            "required": true
+            }
           }
         ],
         "tags": [
-          "Waybills"
+          "Worklogs"
         ],
         "security": [
           {
@@ -4656,7 +5281,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExternalAPIWaybillVehicleLocation"
+                  "$ref": "#/components/schemas/PaginatedExternalAPITimeEntryList"
                 }
               }
             },
@@ -4678,8 +5303,43 @@
               }
             },
             "description": ""
+          }
+        }
+      },
+      "post": {
+        "operationId": "worklogs_create",
+        "description": "Creates a new time entry associated with your company.",
+        "summary": "Creation of a time entry",
+        "tags": [
+          "Worklogs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalAPITimeEntryRequest"
+              }
+            }
           },
-          "404": {
+          "required": true
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalAPITimeEntry"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
             "content": {
               "application/json": {
                 "schema": {
@@ -4687,8 +5347,8 @@
                   "properties": {
                     "detail": {
                       "type": "string",
-                      "example": "No instance matches the given query.",
-                      "description": "No instance matches the given query."
+                      "example": "Provided API key is not correct or expired",
+                      "description": "Provided API key is not correct or expired"
                     }
                   }
                 }
@@ -4702,6 +5362,59 @@
   },
   "components": {
     "schemas": {
+      "AttachedFile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "file": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true
+          },
+          "display_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "mime_type": {
+            "type": "string",
+            "readOnly": true,
+            "title": "File MIME type",
+            "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types\" target=\"_blank\" rel=\"noopener noreferrer\">https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types</a>"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "created_by",
+          "display_name",
+          "file",
+          "id",
+          "mime_type"
+        ]
+      },
+      "AttachedFileCreateRequest": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "required": [
+          "file"
+        ]
+      },
       "BlankEnum": {
         "enum": [
           ""
@@ -4882,7 +5595,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TypeEnum"
+            "$ref": "#/components/schemas/ExternalAPIHoldingBaseTypeEnum"
           },
           "contractNumber": {
             "type": "string",
@@ -4948,7 +5661,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TypeEnum"
+            "$ref": "#/components/schemas/ExternalAPIHoldingBaseTypeEnum"
           },
           "contractNumber": {
             "type": "string",
@@ -4964,6 +5677,18 @@
             "$ref": "#/components/schemas/ExternalAPIHoldingBasePreviousOwnerRequest"
           }
         }
+      },
+      "ExternalAPIHoldingBaseTypeEnum": {
+        "enum": [
+          "ForestNotice",
+          "WithoutForestNotice",
+          "InventoryAct",
+          "ConsolidatedAct",
+          "ForestAct",
+          "SalesContract",
+          "ContractForTransferOfCuttingRights"
+        ],
+        "type": "string"
       },
       "ExternalAPILoaderActionLog": {
         "type": "object",
@@ -7507,6 +8232,214 @@
           }
         }
       },
+      "ExternalAPITimeEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "ID of the time entry"
+          },
+          "owner": {
+            "type": "integer",
+            "description": "ID of the employee owning the time entry"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start time",
+            "description": "Start time of the time entry"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "End time",
+            "description": "End time of the time entry"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the time entry"
+          },
+          "location": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPITimeEntryLocation"
+              }
+            ],
+            "description": "Location information (`Origin` or `Destination`)"
+          },
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPITimeEntryVehicle"
+              }
+            ],
+            "description": "Vehicle information"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "readOnly": true,
+            "description": "Whether the time entry has been confirmed"
+          },
+          "confirmed_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Confirmed by user",
+            "description": "ID of the user who confirmed the time entry"
+          },
+          "confirmed_by_name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Full name of the user who confirmed the time entry"
+          }
+        },
+        "required": [
+          "confirmed",
+          "confirmed_by",
+          "confirmed_by_name",
+          "description",
+          "end",
+          "id",
+          "owner",
+          "start"
+        ]
+      },
+      "ExternalAPITimeEntryLocation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID of the location (`Origin` or `Destination`)"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPITimeEntryLocationTypeEnum"
+              }
+            ],
+            "description": "Type of the location"
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Name of the location"
+          },
+          "company_name": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Name of the company owning the location"
+          }
+        },
+        "required": [
+          "company_name",
+          "id",
+          "name",
+          "type"
+        ]
+      },
+      "ExternalAPITimeEntryLocationRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID of the location (`Origin` or `Destination`)"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPITimeEntryLocationTypeEnum"
+              }
+            ],
+            "description": "Type of the location"
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ]
+      },
+      "ExternalAPITimeEntryLocationTypeEnum": {
+        "enum": [
+          "origin",
+          "destination"
+        ],
+        "type": "string"
+      },
+      "ExternalAPITimeEntryRequest": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "integer",
+            "description": "ID of the employee owning the time entry"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start time",
+            "description": "Start time of the time entry"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "End time",
+            "description": "End time of the time entry"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the time entry"
+          },
+          "location": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPITimeEntryLocationRequest"
+              }
+            ],
+            "description": "Location information (`Origin` or `Destination`)"
+          },
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalAPITimeEntryVehicleRequest"
+              }
+            ],
+            "description": "Vehicle information"
+          }
+        },
+        "required": [
+          "description",
+          "end",
+          "owner",
+          "start"
+        ]
+      },
+      "ExternalAPITimeEntryVehicle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID of the vehicle"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "ExternalAPITimeEntryVehicleRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID of the vehicle"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
       "ExternalAPITransportOrderCancel": {
         "type": "object",
         "properties": {
@@ -7602,6 +8535,7 @@
           "transportation_company_name": {
             "type": "string",
             "readOnly": true,
+            "nullable": true,
             "description": "Transportation company name",
             "maxLength": 64
           },
@@ -7627,6 +8561,14 @@
             ],
             "readOnly": true,
             "description": "The IDs of the Waybiller internal objects"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPITransportOrderRowRetrieve"
+            },
+            "readOnly": true,
+            "description": "List of assortments associated with the transport order"
           }
         },
         "required": [
@@ -7638,6 +8580,7 @@
           "origin_id",
           "origin_name",
           "raw_data",
+          "rows",
           "trailer_reg_number",
           "transport_date",
           "transport_order_id",
@@ -7767,6 +8710,14 @@
             },
             "readOnly": true,
             "description": "List of waybill IDs associated with the transport order"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPITransportOrderRowRawData"
+            },
+            "readOnly": true,
+            "description": "List of assortments associated with the transport order"
           }
         },
         "required": [
@@ -7774,6 +8725,7 @@
           "entity_code",
           "number",
           "origin_id",
+          "rows",
           "status",
           "transport_order_id",
           "truck_id",
@@ -7972,12 +8924,14 @@
           },
           "transportation_company_name": {
             "type": "string",
+            "nullable": true,
             "minLength": 1,
             "description": "Transportation company name",
             "maxLength": 64
           },
           "transportation_company_reg_code": {
             "type": "string",
+            "nullable": true,
             "minLength": 1,
             "description": "Transportation company registration code",
             "maxLength": 16
@@ -7995,26 +8949,46 @@
             "description": "Registration number of the trailer",
             "maxLength": 16
           },
+          "truck_waybill_created_emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 254
+            },
+            "nullable": true,
+            "description": "List of emails to notify when a waybill is created for the vehicle. This only applies when a new vehicle is created as part of this request, except for transportation companies named 'Eraisik', for which it also overwrites the emails for existing vehicles."
+          },
+          "truck_waybill_created_emails_language": {
+            "type": "string",
+            "nullable": true,
+            "description": "Language of the waybill-created notification emails for the vehicle. This only applies when a new vehicle is created as part of this request, except for transportation companies named 'Eraisik', for which it also overwrites the language for existing vehicles.",
+            "maxLength": 5
+          },
           "driver_email": {
             "type": "string",
             "format": "email",
+            "nullable": true,
             "minLength": 1,
             "description": "Driver email",
             "maxLength": 254
           },
           "driver_personal_code": {
             "type": "string",
+            "nullable": true,
             "description": "Driver personal code",
             "maxLength": 24
           },
           "driver_name": {
             "type": "string",
+            "nullable": true,
             "minLength": 1,
             "description": "Driver name",
             "maxLength": 255
           },
           "driver_phone": {
             "type": "string",
+            "nullable": true,
             "description": "Driver phone number",
             "maxLength": 128
           },
@@ -8075,7 +9049,7 @@
           "rows": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ExternalAPITransportOrderRow"
+              "$ref": "#/components/schemas/ExternalAPITransportOrderRowRetrieve"
             },
             "readOnly": true,
             "description": "List of assortments associated with the transport order"
@@ -8260,12 +9234,14 @@
           "transportation_company_name": {
             "type": "string",
             "readOnly": true,
+            "nullable": true,
             "description": "Transportation company name",
             "maxLength": 64
           },
           "transportation_company_reg_code": {
             "type": "string",
             "readOnly": true,
+            "nullable": true,
             "description": "Transportation company registration code",
             "maxLength": 16
           },
@@ -8287,24 +9263,28 @@
             "type": "string",
             "format": "email",
             "readOnly": true,
+            "nullable": true,
             "description": "Driver email",
             "maxLength": 254
           },
           "driver_personal_code": {
             "type": "string",
             "readOnly": true,
+            "nullable": true,
             "description": "Driver personal code",
             "maxLength": 24
           },
           "driver_name": {
             "type": "string",
             "readOnly": true,
+            "nullable": true,
             "description": "Driver name",
             "maxLength": 255
           },
           "driver_phone": {
             "type": "string",
             "readOnly": true,
+            "nullable": true,
             "description": "Driver phone number",
             "maxLength": 128
           },
@@ -8396,45 +9376,39 @@
           "waybill_pdf_urls"
         ]
       },
-      "ExternalAPITransportOrderRow": {
-        "type": "object",
-        "properties": {
-          "assortment_id": {
-            "type": "string",
-            "description": "Unique identifier of the assortment in your system",
-            "readOnly": true,
-            "nullable": true
-          },
-          "assortment_name": {
-            "type": "string",
-            "description": "Name of the assortment"
-          },
-          "amount": {
-            "type": "string",
-            "format": "decimal",
-            "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
-            "title": "Amount in tonnes",
-            "description": "Amount of the assortment"
-          }
-        },
-        "required": [
-          "amount",
-          "assortment_id",
-          "assortment_name"
-        ]
-      },
       "ExternalAPITransportOrderRowRawData": {
         "type": "object",
         "properties": {
+          "destination_id": {
+            "type": "integer",
+            "nullable": true,
+            "readOnly": true,
+            "description": "Unique identifier of the destination in Waybiller"
+          },
           "assortment_id": {
             "type": "integer",
             "nullable": true,
             "readOnly": true,
-            "description": "Unique identifier of the assortment in your system"
+            "description": "Unique identifier of the assortment in Waybiller"
+          },
+          "accepted_amount": {
+            "type": "string",
+            "format": "decimal",
+            "readOnly": true,
+            "description": "Total accepted amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row."
+          },
+          "dispatched_amount": {
+            "type": "string",
+            "format": "decimal",
+            "readOnly": true,
+            "description": "Total dispatched amount, aggregated across waybill rows from waybills connected to this transport order with same assortment as in this row."
           }
         },
         "required": [
-          "assortment_id"
+          "accepted_amount",
+          "assortment_id",
+          "destination_id",
+          "dispatched_amount"
         ]
       },
       "ExternalAPITransportOrderRowRequest": {
@@ -8449,6 +9423,10 @@
             "minLength": 1,
             "description": "Name of the assortment"
           },
+          "destination_id": {
+            "type": "integer",
+            "description": "Unique identifier of the destination in your system or Waybiller. If not provided, the transport order's destination will be used"
+          },
           "amount": {
             "type": "string",
             "format": "decimal",
@@ -8461,6 +9439,73 @@
           "amount",
           "assortment_id",
           "assortment_name"
+        ]
+      },
+      "ExternalAPITransportOrderRowRetrieve": {
+        "type": "object",
+        "properties": {
+          "assortment_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Unique identifier of the assortment in your system"
+          },
+          "assortment_name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Name of the assortment"
+          },
+          "destination_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Unique identifier of the destination in your system or Waybiller"
+          },
+          "destination_name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Name of the destination"
+          },
+          "destination_address": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Address of the destination"
+          },
+          "destination_latitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Latitude of the destination location"
+          },
+          "destination_longitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true,
+            "nullable": true,
+            "description": "Longitude of the destination location"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
+            "readOnly": true,
+            "title": "Amount in tonnes",
+            "description": "Amount of the assortment"
+          }
+        },
+        "required": [
+          "amount",
+          "assortment_id",
+          "assortment_name",
+          "destination_address",
+          "destination_id",
+          "destination_latitude",
+          "destination_longitude",
+          "destination_name"
         ]
       },
       "ExternalAPITransportOrderUpdateRequest": {
@@ -8580,6 +9625,13 @@
             "format": "double",
             "description": "Longitude of the destination location"
           },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPITransportOrderRowRequest"
+            },
+            "description": "List of assortments associated with the transport order"
+          },
           "receiver_company_name": {
             "type": "string",
             "minLength": 1,
@@ -8652,7 +9704,10 @@
             "nullable": true,
             "description": "Number of pallets in the transport order"
           }
-        }
+        },
+        "required": [
+          "rows"
+        ]
       },
       "ExternalAPIVehicle": {
         "type": "object",
@@ -9296,8 +10351,6 @@
           "rows",
           "status",
           "status_description",
-          "transportation_company_name",
-          "transportation_company_reg_code",
           "truck_reg_number",
           "waybill_id"
         ]
@@ -9528,8 +10581,6 @@
         },
         "required": [
           "rows",
-          "transportation_company_name",
-          "transportation_company_reg_code",
           "truck_reg_number",
           "waybill_id"
         ]
@@ -9734,6 +10785,18 @@
             "description": "The name of the driver.",
             "maxLength": 255
           },
+          "mileage": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "description": "The mileage can be calculated using a map or can be taken from Distance object if exist"
+          },
+          "mileage_by_driver": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Mileage entered by a driver"
+          },
           "truck_reg_number": {
             "type": "string",
             "readOnly": true,
@@ -9798,6 +10861,8 @@
           "driver_name",
           "driver_timestamp",
           "last_vehicle_location",
+          "mileage",
+          "mileage_by_driver",
           "navision_bin_code",
           "number",
           "origin_address",
@@ -9860,15 +10925,49 @@
             "additionalProperties": {},
             "readOnly": true,
             "description": "User defined fields."
+          },
+          "user_defined_field_lock_states": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "readOnly": true,
+            "description": "Lock state of every returned user defined field. A field is locked when any of the companies owning it has locked its user defined fields on the waybill, and locked fields cannot be updated."
+          },
+          "order_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Order which was used for creating this waybill",
+            "readOnly": true
+          },
+          "order_number": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "maxLength": 16
+          },
+          "transport_order_id": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "transport_order_number": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "maxLength": 16
           }
         },
         "required": [
           "destination_id",
           "driver_user_id",
+          "order_id",
+          "order_number",
           "origin_id",
           "rows",
+          "transport_order_id",
+          "transport_order_number",
           "truck_id",
-          "user_defined_fields",
           "waybill_id"
         ]
       },
@@ -9890,12 +10989,88 @@
             "type": "integer",
             "readOnly": true,
             "description": "The ID of the origin."
+          },
+          "order_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The ID of the order.",
+            "readOnly": true
+          },
+          "transportorder_id": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Transport order",
+            "readOnly": true,
+            "description": "The ID of the transport order."
+          },
+          "order_number": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "The order number.",
+            "maxLength": 16
+          },
+          "transportorder_number": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true,
+            "description": "The transport order number.",
+            "maxLength": 16
           }
         },
         "required": [
           "destination_id",
+          "order_id",
+          "order_number",
           "origin_id",
+          "transportorder_id",
+          "transportorder_number",
           "waybill_id"
+        ]
+      },
+      "ExternalAPIWaybillReadingPairs": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "Unique identifier of the reading pair."
+          },
+          "weighing_flow": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WeighingFlowEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Weighing flow type"
+          },
+          "tare_reading": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScaleReadingInReadingPair"
+              }
+            ],
+            "readOnly": true,
+            "nullable": true,
+            "description": "Information about the tare reading."
+          },
+          "gross_reading": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScaleReadingInReadingPair"
+              }
+            ],
+            "readOnly": true,
+            "nullable": true,
+            "description": "Information about the gross reading."
+          }
+        },
+        "required": [
+          "gross_reading",
+          "id",
+          "tare_reading",
+          "weighing_flow"
         ]
       },
       "ExternalAPIWaybillRefuse": {
@@ -10261,6 +11436,13 @@
             "nullable": true,
             "description": "Information about transport costs"
           },
+          "reading_pairs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPIWaybillReadingPairs"
+            },
+            "description": "Information about reading pairs"
+          },
           "raw_data": {
             "allOf": [
               {
@@ -10303,6 +11485,7 @@
           "pdf_url",
           "project",
           "raw_data",
+          "reading_pairs",
           "receiver_company_name",
           "receiver_company_reg_code",
           "rows",
@@ -10320,6 +11503,11 @@
       "ExternalAPIWaybillRow": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "The ID of the row."
+          },
           "assortment_id": {
             "type": "string",
             "nullable": true,
@@ -10389,6 +11577,7 @@
         "required": [
           "accepted_amount",
           "assortment_ids",
+          "id",
           "scale_assortment_raw_id",
           "subset_object_name",
           "subset_type_name"
@@ -10424,6 +11613,7 @@
           "accepted_gross_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the accepted gross weight."
           },
           "accepted_tare_weight": {
@@ -10435,6 +11625,7 @@
           "accepted_tare_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the accepted tare weight."
           },
           "accepted_amount": {
@@ -10469,6 +11660,7 @@
           "accepted_gross_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the accepted gross weight."
           },
           "accepted_tare_weight": {
@@ -10480,6 +11672,7 @@
           "accepted_tare_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the accepted tare weight."
           },
           "accepted_amount": {
@@ -10519,6 +11712,7 @@
           "dispatched_gross_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the dispatched gross weight."
           },
           "dispatched_tare_weight": {
@@ -10530,6 +11724,7 @@
           "dispatched_tare_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the dispatched tare weight."
           },
           "dispatched_amount": {
@@ -10560,6 +11755,7 @@
           "dispatched_gross_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the dispatched gross weight."
           },
           "dispatched_tare_weight": {
@@ -10571,6 +11767,7 @@
           "dispatched_tare_weight_timestamp": {
             "type": "string",
             "format": "date-time",
+            "nullable": true,
             "description": "The timestamp of the dispatched tare weight."
           },
           "dispatched_amount": {
@@ -10587,6 +11784,11 @@
       "ExternalAPIWaybillRowList": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "The ID of the row."
+          },
           "assortment_id": {
             "type": "string",
             "readOnly": true,
@@ -10644,6 +11846,7 @@
           "assortment_name",
           "assortment_unit",
           "dispatched_amount",
+          "id",
           "scale_assortment_raw_id"
         ]
       },
@@ -10652,20 +11855,38 @@
         "properties": {
           "assortment_id": {
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "description": "The ID of the dispatched assortment."
           },
           "subset_id": {
             "type": "integer",
-            "readOnly": true
+            "readOnly": true,
+            "nullable": true,
+            "description": "The ID of the subset."
           },
           "subset_type_id": {
             "type": "integer",
             "readOnly": true,
-            "nullable": true
+            "nullable": true,
+            "description": "The ID of the subset type."
+          },
+          "incoming_reading_pair_id": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "description": "The ID of the incoming reading pair."
+          },
+          "outgoing_reading_pair_id": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "description": "The ID of the outgoing reading pair."
           }
         },
         "required": [
           "assortment_id",
+          "incoming_reading_pair_id",
+          "outgoing_reading_pair_id",
           "subset_id",
           "subset_type_id"
         ]
@@ -10951,33 +12172,6 @@
           "weights_to_use"
         ]
       },
-      "ExternalAPIWaybillVehicleLocation": {
-        "type": "object",
-        "properties": {
-          "latitude": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true,
-            "description": "The latitude coordinate of the vehicle (eg 59.401034)."
-          },
-          "longitude": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true,
-            "description": "The longitude coordinate of the vehicle (eg 24.791717)."
-          },
-          "location_timestamp": {
-            "type": "string",
-            "readOnly": true,
-            "description": "UTC timestamp when vehicle was in that position (eg 2020-05-08T19:06:33)."
-          }
-        },
-        "required": [
-          "latitude",
-          "location_timestamp",
-          "longitude"
-        ]
-      },
       "IncotermEnum": {
         "enum": [
           "EXW",
@@ -10991,6 +12185,7 @@
           "ru",
           "en",
           "us",
+          "lt",
           "lv",
           "fi",
           "nb",
@@ -11223,6 +12418,42 @@
           }
         }
       },
+      "PaginatedExternalAPITimeEntryList": {
+        "type": "object",
+        "required": [
+          "count",
+          "next",
+          "previous",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123,
+            "description": "Total number of objects matching the provided query"
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "https://app.waybiller.com/external-api/worklogs/?limit=30&offset=90",
+            "description": "URL to the next page of results, or null if there are no additional pages"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "https://app.waybiller.com/external-api/worklogs/?limit=30&offset=30",
+            "description": "URL to the previous page of results, or null if it's the first page"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalAPITimeEntry"
+            }
+          }
+        }
+      },
       "PaginatedExternalAPITransportOrderListList": {
         "type": "object",
         "required": [
@@ -11378,6 +12609,7 @@
       },
       "RoleEnum": {
         "enum": [
+          "company_admin",
           "manager",
           "project_manager",
           "object_manager",
@@ -11385,6 +12617,49 @@
           "driver",
           "acceptor",
           "loader_operator"
+        ],
+        "type": "string"
+      },
+      "ScaleReadingInReadingPair": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "value": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,5}(?:\\.\\d{0,3})?$",
+            "nullable": true
+          },
+          "measurement_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SourceEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "SourceEnum": {
+        "enum": [
+          "scale",
+          "manual",
+          "previous_tare_reading",
+          "loader",
+          "file_import",
+          "external_api"
         ],
         "type": "string"
       },
@@ -11400,18 +12675,6 @@
         ],
         "type": "string"
       },
-      "TypeEnum": {
-        "enum": [
-          "ForestNotice",
-          "WithoutForestNotice",
-          "InventoryAct",
-          "ConsolidatedAct",
-          "ForestAct",
-          "SalesContract",
-          "ContractForTransferOfCuttingRights"
-        ],
-        "type": "string"
-      },
       "WaybillStatusEnum": {
         "enum": [
           0,
@@ -11421,6 +12684,13 @@
           4
         ],
         "type": "integer"
+      },
+      "WeighingFlowEnum": {
+        "enum": [
+          "outgoing",
+          "incoming"
+        ],
+        "type": "string"
       },
       "WeightsToUseEnum": {
         "enum": [

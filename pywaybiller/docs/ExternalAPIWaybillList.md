@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **origin_address** | **str** |  | [readonly] 
 **transportation_company_name** | **str** | The name of the transportation company. | [readonly] 
 **driver_name** | **str** | The name of the driver. | [readonly] 
+**mileage** | **int** | The mileage can be calculated using a map or can be taken from Distance object if exist | [readonly] 
+**mileage_by_driver** | **int** |  | [readonly] 
 **truck_reg_number** | **str** | The registration number of the vehicle. | [readonly] 
 **trailer_reg_number** | **str** | The registration number of the trailer. | [readonly] 
 **receiver_company_name** | **str** | The name of the receiving company. | [readonly] 

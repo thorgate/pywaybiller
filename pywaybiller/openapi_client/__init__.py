@@ -42,6 +42,7 @@ from pywaybiller.openapi_client.exceptions import ApiAttributeError
 from pywaybiller.openapi_client.exceptions import ApiException
 
 # import models into sdk package
+from pywaybiller.openapi_client.models.attached_file import AttachedFile
 from pywaybiller.openapi_client.models.blank_enum import BlankEnum
 from pywaybiller.openapi_client.models.destinations_list403_response import (
     DestinationsList403Response,

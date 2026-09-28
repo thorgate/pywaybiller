@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **destination_id** | **int** | The ID of the destination. | [readonly] 
 **rows** | [**List[ExternalAPIWaybillRowRawData]**](ExternalAPIWaybillRowRawData.md) | Waybill rows. | [readonly] 
 **user_defined_fields** | **Dict[str, object]** | User defined fields. | [optional] [readonly] 
+**user_defined_field_lock_states** | **Dict[str, bool]** | Lock state of every returned user defined field. A field is locked when any of the companies owning it has locked its user defined fields on the waybill, and locked fields cannot be updated. | [optional] [readonly] 
 **order_id** | **int** | Order which was used for creating this waybill | [readonly] 
 **order_number** | **str** |  | [readonly] 
 **transport_order_id** | **int** |  | [readonly] 
