@@ -13,6 +13,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 # import models into model package
+from pywaybiller.openapi_client.models.attached_file import AttachedFile
 from pywaybiller.openapi_client.models.blank_enum import BlankEnum
 from pywaybiller.openapi_client.models.destinations_list403_response import (
     DestinationsList403Response,

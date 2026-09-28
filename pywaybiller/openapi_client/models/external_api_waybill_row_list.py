@@ -29,9 +29,7 @@ class ExternalAPIWaybillRowList(BaseModel):
 
     id: StrictInt = Field(description="The ID of the row.")
     assortment_id: Optional[StrictStr] = Field(description="The ID of the assortment.")
-    assortment_ids: List[Annotated[str, Field(strict=True, max_length=8)]] = Field(
-        description="The IDs of the assortments."
-    )
+    assortment_ids: List[StrictStr] = Field(description="The IDs of the assortments.")
     assortment_raw_id: Optional[StrictInt] = Field(
         default=None, description="The ID of the assortment."
     )

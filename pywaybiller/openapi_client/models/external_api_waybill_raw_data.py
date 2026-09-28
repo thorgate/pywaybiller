@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing_extensions import Annotated, Self
 
 from pywaybiller.openapi_client.models.external_api_waybill_row_raw_data import (
@@ -42,6 +42,10 @@ class ExternalAPIWaybillRawData(BaseModel):
     user_defined_fields: Optional[Dict[str, Any]] = Field(
         default=None, description="User defined fields."
     )
+    user_defined_field_lock_states: Optional[Dict[str, StrictBool]] = Field(
+        default=None,
+        description="Lock state of every returned user defined field. A field is locked when any of the companies owning it has locked its user defined fields on the waybill, and locked fields cannot be updated.",
+    )
     order_id: Optional[StrictInt] = Field(
         description="Order which was used for creating this waybill"
     )
@@ -56,6 +60,7 @@ class ExternalAPIWaybillRawData(BaseModel):
         "destination_id",
         "rows",
         "user_defined_fields",
+        "user_defined_field_lock_states",
         "order_id",
         "order_number",
         "transport_order_id",
@@ -102,6 +107,7 @@ class ExternalAPIWaybillRawData(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set(
             [
@@ -112,6 +118,7 @@ class ExternalAPIWaybillRawData(BaseModel):
                 "destination_id",
                 "rows",
                 "user_defined_fields",
+                "user_defined_field_lock_states",
                 "order_id",
                 "order_number",
                 "transport_order_id",
@@ -205,6 +212,9 @@ class ExternalAPIWaybillRawData(BaseModel):
                 if obj.get("rows") is not None
                 else None,
                 "user_defined_fields": obj.get("user_defined_fields"),
+                "user_defined_field_lock_states": obj.get(
+                    "user_defined_field_lock_states"
+                ),
                 "order_id": obj.get("order_id"),
                 "order_number": obj.get("order_number"),
                 "transport_order_id": obj.get("transport_order_id"),
